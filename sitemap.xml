@@ -13,10 +13,6 @@
   </url>
   
   <url>
-    <loc>https://manmartgarc.github.io/about/about/</loc>
-  </url>
-  
-  <url>
     <loc>https://manmartgarc.github.io/</loc>
     <priority>0</priority>
   </url>
@@ -24,6 +20,10 @@
   <url>
     <loc>https://manmartgarc.github.io/tags/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://manmartgarc.github.io/about/about-me/</loc>
   </url>
   
 </urlset>
