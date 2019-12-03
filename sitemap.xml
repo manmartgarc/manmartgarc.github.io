@@ -3,11 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://manmartgarc.github.io/about/about-me/</loc>
-  </url>
-  
-  <url>
-    <loc>https://manmartgarc.github.io/about/</loc>
+    <loc>https://manmartgarc.github.io/posts/about/</loc>
   </url>
   
   <url>
@@ -15,11 +11,15 @@
   </url>
   
   <url>
-    <loc>https://manmartgarc.github.io/about/cv/</loc>
+    <loc>https://manmartgarc.github.io/posts/cv/</loc>
   </url>
   
   <url>
     <loc>https://manmartgarc.github.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://manmartgarc.github.io/posts/</loc>
   </url>
   
   <url>
