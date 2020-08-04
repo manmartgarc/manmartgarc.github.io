@@ -98,3 +98,9 @@ footer {
 img {
     max-width: 100%;
 }
+
+img[src$='#center']
+{
+    display: block;
+    margin: 0.7rem auto;
+}
