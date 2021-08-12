@@ -111,8 +111,8 @@ img[src$='#center-circle']
     display: block;
     width: 72.25%;
     height: 72.25%;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 275px;
+    max-height: 275px;
     margin: auto auto;
     border-radius: 50%;
 }
