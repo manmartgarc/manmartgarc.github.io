@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    width: 100%;
 }
 
 body {
@@ -108,8 +109,10 @@ img[src$='#center']
 img[src$='#center-circle']
 {
     display: block;
-    width: 425px;
-    height: 425px;
+    width: 72.25%;
+    height: 72.25%;
+    max-width: 400px;
+    max-height: 400px;
     margin: auto auto;
     border-radius: 50%;
 }
