@@ -104,3 +104,12 @@ img[src$='#center']
     display: block;
     margin: 0.7rem auto;
 }
+
+img[src$='#center-circle']
+{
+    display: block;
+    width: 425px;
+    height: 425px;
+    margin: auto auto;
+    border-radius: 50%;
+}
