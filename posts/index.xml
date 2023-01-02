@@ -5,25 +5,15 @@
     <link>https://manmartgarc.github.io/posts/</link>
     <description>Recent content in Posts on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About Me</title>
-      <link>https://manmartgarc.github.io/posts/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Application Mistakes and Information frictions in College Admissions.</title>
+      <link>https://manmartgarc.github.io/posts/mistakes/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://manmartgarc.github.io/posts/about/</guid>
-      <description>TLDR -&amp;gt; You can view my CV here
-I am a second year CAPP candidate at the University of Chicago Harris School of Public Policy and the University of Chicago Department of Computer Science. I currently work as a Research Engineer at the Mansueto Institute for Urban Innovation at the University of Chicago helping researchers do their work more efficiently and maintainable.
-Over the 2022 summer I interned at Amazon Web Services as a Data Engineer working on machine learning pipelines and large-scale data analytics.</description>
-    </item>
-    
-    <item>
-      <title>CV</title>
-      <link>https://manmartgarc.github.io/posts/cv/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://manmartgarc.github.io/posts/cv/</guid>
-      <description>You can view my CV here</description>
+      <guid>https://manmartgarc.github.io/posts/mistakes/</guid>
+      <description>This is a working paper with Tomas Larroucau, Christopher Neilson and Ignacio Rios. The paper explores how information and beliefs have an effect on outcomes within the tertiary education market in Chile, which is a centralized college admissions system. The paper includes two waves of surveys done in 2019 and 2020 and an RCT done in 2021 with both government and NGOs. The abstract is below, and you can find the latest version of the working paper here.</description>
     </item>
     
   </channel>
