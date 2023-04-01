@@ -224,7 +224,7 @@
 </span></span><span style="display:flex;"><span>ms-python.python-2023.6.0           vscjava.vscode-java-debug-0.49.1
 </span></span><span style="display:flex;"><span>ms-python.vscode-pylance-2023.3.40  vscjava.vscode-java-dependency-0.21.2
 </span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><p>You can use the same names from directories in your <code>settings.json</code>, i.e. <code>ms-python.vscode-pylance</code>, just make sure it&rsquo;s set to <code>[ui]</code>.</p>
+</span></span></code></pre></div><p>You can use these same names in your <code>settings.json</code>, i.e. <code>ms-python.vscode-pylance</code>, just make sure it&rsquo;s set to <code>[ui]</code>.</p>
 <h2 id="downside">
   Downside
   <a class="heading-link" href="#downside">
@@ -232,7 +232,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>The issue now is that by making the Python language service run locally, well it runs locally. It won&rsquo;t know anything about any Python environment that you might have in the remote instance. So now you have to choose your favorite virtual environment manager and replicate the environment locally. This is annoying if you want language features from a custom package that you&rsquo;re writing currently; but why not do that entirely local and push the changes via a source-control tool?</p>
+<p>The issue now is that by making the Python language service run locally, well, it runs locally. It won&rsquo;t know anything about any Python environment that you might have in the remote instance. So now you have to choose your favorite virtual environment manager and replicate the environment locally. This is annoying if you want language features from a custom package that you&rsquo;re writing currently; but why not do that entirely local and push the changes via a source-control tool?</p>
 <p>Personally, I am happy with the setup. Between not using VSCode at all (or using it and dreading the next crash), and using it and waving my hands around package imports, I&rsquo;d rather use it.</p>
 
       </div>
