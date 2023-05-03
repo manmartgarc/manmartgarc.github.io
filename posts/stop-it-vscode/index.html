@@ -12,19 +12,20 @@
 
 
 <meta name="author" content="Manuel Martinez">
-<meta name="description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.">
+<meta name="description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="VSCode and Tiny Instances over Remote SSH"/>
-<meta name="twitter:description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions."/>
+<meta name="twitter:description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions."/>
 
 <meta property="og:title" content="VSCode and Tiny Instances over Remote SSH" />
-<meta property="og:description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions." />
+<meta property="og:description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/stop-it-vscode/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-04-01T00:00:00+00:00" />
+
 
 
 
@@ -69,7 +70,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.111.3">
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -194,7 +195,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>AWS&rsquo; <code>t3.nano</code> comes with 0.5 GB of memory; and if you <code>Remote-SSH</code> into your instance, it will most likely be okay, and you will be able to edit files and do a lot of things. Until you install some extensions to make your life <em>considerably</em> easier.</p>
+<p>AWS' <code>t3.nano</code> comes with 0.5 GB of memory; and if you <code>Remote-SSH</code> into your instance, it will most likely be okay, and you will be able to edit files and do a lot of things. Until you install some extensions to make your life <em>considerably</em> easier.</p>
 <p>For me it&rsquo;s Microsoft&rsquo;s <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">Pylance</a>, which offers a feature-rich support for Python in VSCode. Add to that some on-save linter or static checker, and now your machine will be either hanging or close to hanging.</p>
 <h2 id="the-solution">
   The solution
@@ -205,26 +206,26 @@
 </h2>
 <p>Thankfully, you can give your remote instance a well-deserved break and offload some of the cost of running extensions to your local machine. The distinction is that there are <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds">two kinds of extensions</a>; UI Extensions and Workspace Extensions, and you can change an extension&rsquo;s kind in your settings. Found this on the repo <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds"><code>vscode-remote-release</code></a>.</p>
 <p>Basically in your <code>settings.json</code>, you can set these <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#incorrect-execution-location">settings</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;remote.extensionKind&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-azuretools.vscode-cosmosdb&#34;</span>: [<span style="color:#a5d6ff">&#34;ui&#34;</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-vscode-remote.remote-ssh-edit&#34;</span>: [<span style="color:#a5d6ff">&#34;workspace&#34;</span>]
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>In my case, for Pylance it was changing these settings:</p>
-<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;remote.extensionKind&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-python.python&#34;</span>: [<span style="color:#a5d6ff">&#34;ui&#34;</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-python.vscode-pylance&#34;</span>: [<span style="color:#a5d6ff">&#34;ui&#34;</span>],
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Another very good comment by <a href="https://github.com/microsoft/vscode-remote-release/issues/2692#issuecomment-1441846038">deltemp</a> is that you can see exactly which Workspace Extensions are being run in the remote machine:</p>
-<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls ~/.vscode-server/extensions
-</span></span><span style="display:flex;"><span>extensions.json                     golang.go-0.38.0
-</span></span><span style="display:flex;"><span>ms-python.python-2023.6.0           vscjava.vscode-java-debug-0.49.1
-</span></span><span style="display:flex;"><span>ms-python.vscode-pylance-2023.3.40  vscjava.vscode-java-dependency-0.21.2
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><p>You can use these same names in your <code>settings.json</code>, i.e. <code>ms-python.vscode-pylance</code>, just make sure it&rsquo;s set to <code>[ui]</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;remote.extensionKind&#34;</span>: {
+    <span style="font-weight:bold">&#34;ms-azuretools.vscode-cosmosdb&#34;</span>: [<span style="color:#0ff;font-weight:bold">&#34;ui&#34;</span>],
+    <span style="font-weight:bold">&#34;ms-vscode-remote.remote-ssh-edit&#34;</span>: [<span style="color:#0ff;font-weight:bold">&#34;workspace&#34;</span>]
+  }
+}
+</code></pre></div><p>In my case, for Pylance it was changing these settings:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;remote.extensionKind&#34;</span>: {
+    <span style="font-weight:bold">&#34;ms-python.python&#34;</span>: [<span style="color:#0ff;font-weight:bold">&#34;ui&#34;</span>],
+    <span style="font-weight:bold">&#34;ms-python.vscode-pylance&#34;</span>: [<span style="color:#0ff;font-weight:bold">&#34;ui&#34;</span>],
+  }
+}
+</code></pre></div><p>Another very good comment by <a href="https://github.com/microsoft/vscode-remote-release/issues/2692#issuecomment-1441846038">deltemp</a> is that you can see exactly which Workspace Extensions are being run in the remote machine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ls ~/.vscode-server/extensions
+extensions.json                     golang.go-0.38.0
+ms-python.python-2023.6.0           vscjava.vscode-java-debug-0.49.1
+ms-python.vscode-pylance-2023.3.40  vscjava.vscode-java-dependency-0.21.2
+...
+</code></pre></div><p>You can use these same names in your <code>settings.json</code>, i.e. <code>ms-python.vscode-pylance</code>, just make sure it&rsquo;s set to <code>[ui]</code>.</p>
 <h2 id="downside">
   Downside
   <a class="heading-link" href="#downside">
@@ -242,7 +243,30 @@
         
 
 
-        
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "manmartgarc" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
         
         
       </footer>
@@ -275,7 +299,7 @@
 
   
   
-  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
   
 
   
