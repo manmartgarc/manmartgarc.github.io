@@ -5,15 +5,24 @@
     <link>https://manmartgarc.github.io/posts/</link>
     <description>Recent content in Posts on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 01 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neural Networks and Deep Learning: Week 1</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
+      <description>Introduction to Deep LearningLink to headingThis is the first course in the Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks in each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
+    </item>
+    
     <item>
       <title>VSCode and Tiny Instances over Remote SSH</title>
-      <link>https://manmartgarc.github.io/posts/stop-it-vscode/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://manmartgarc.github.io/posts/stop-it-vscode/</guid>
-      <description>VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&amp;rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</description>
+      <guid>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</guid>
+      <description>VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&amp;rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</description>
     </item>
     
     <item>

@@ -3,21 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://manmartgarc.github.io/categories/</loc>
-    <lastmod>2023-04-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/categories/coursera/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/tags/deep-learning/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/categories/deep-learning/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/tags/machine-learning/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/posts/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://manmartgarc.github.io/tags/</loc>
+    <lastmod>2023-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://manmartgarc.github.io/tags/cloud/</loc>
     <lastmod>2023-04-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://manmartgarc.github.io/</loc>
-    <lastmod>2023-04-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://manmartgarc.github.io/posts/</loc>
-    <lastmod>2023-04-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://manmartgarc.github.io/tags/remote/</loc>
-    <lastmod>2023-04-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://manmartgarc.github.io/tags/</loc>
     <lastmod>2023-04-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://manmartgarc.github.io/categories/tech-support/</loc>
@@ -26,7 +44,7 @@
     <loc>https://manmartgarc.github.io/tags/vscode/</loc>
     <lastmod>2023-04-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://manmartgarc.github.io/posts/stop-it-vscode/</loc>
+    <loc>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</loc>
     <lastmod>2023-04-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://manmartgarc.github.io/posts/mistakes/</loc>

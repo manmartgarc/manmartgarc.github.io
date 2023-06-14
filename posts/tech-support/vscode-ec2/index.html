@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  VSCode and Tiny Instances over Remote SSH · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VSCode and Tiny Instances over Remote SSH"/>
+<meta name="twitter:description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions."/>
+
+<meta property="og:title" content="VSCode and Tiny Instances over Remote SSH" />
+<meta property="og:description" content="VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/tech-support/vscode-ec2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-04-01T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/tech-support/vscode-ec2/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.113.0">
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/tech-support/vscode-ec2/">
+              VSCode and Tiny Instances over Remote SSH
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-04-01T00:00:00Z">
+                April 1, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              3-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/tech-support/">Tech Support</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/vscode/">vscode</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/cloud/">cloud</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/remote/">remote</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h2 id="vscode-is-very-popular">
+  VSCode is very popular
+  <a class="heading-link" href="#vscode-is-very-popular">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>A lot of people like VSCode, 74% of respondents in <a href="https://survey.stackoverflow.co/2022/#section-most-popular-technologies-integrated-development-environment">StackOverflow&rsquo;s 2022 Developer Survey</a> said that VSCode is the IDE that they&rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</p>
+<p>The issue is that, as you might imagine, all that functionality doesn&rsquo;t come for free. Making things work perfectly all the time is hard. Even harder is to make it efficient and lightweight. To work around performance, some functionalities take advantage of the fact that many consumer machines ship out with a very healthy CPU and an equally healthy amount of RAM. A sensible choice since most people use their work/personal machines to develop. But what about if you&rsquo;re toying around on a cloud provider and don&rsquo;t want to spend the money, or you&rsquo;re taking a cloud-based programming class where they won&rsquo;t let you run anything that costs more than the free-tier?</p>
+<h2 id="working-on-itty-bitty-machines">
+  Working on itty-bitty machines
+  <a class="heading-link" href="#working-on-itty-bitty-machines">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>AWS&rsquo; <code>t3.nano</code> comes with 0.5 GB of memory; and if you <code>Remote-SSH</code> into your instance, it will most likely be okay, and you will be able to edit files and do a lot of things. Until you install some extensions to make your life <em>considerably</em> easier.</p>
+<p>For me it&rsquo;s Microsoft&rsquo;s <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">Pylance</a>, which offers a feature-rich support for Python in VSCode. Add to that some on-save linter or static checker, and now your machine will be either hanging or close to hanging.</p>
+<h2 id="the-solution">
+  The solution
+  <a class="heading-link" href="#the-solution">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Thankfully, you can give your remote instance a well-deserved break and offload some of the cost of running extensions to your local machine. The distinction is that there are <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds">two kinds of extensions</a>; UI Extensions and Workspace Extensions, and you can change an extension&rsquo;s kind in your settings. Found this on the repo <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds"><code>vscode-remote-release</code></a>.</p>
+<p>Basically in your <code>settings.json</code>, you can set these <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#incorrect-execution-location">settings</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;remote.extensionKind&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-azuretools.vscode-cosmosdb&#34;</span>: [<span style="color:#a5d6ff">&#34;ui&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-vscode-remote.remote-ssh-edit&#34;</span>: [<span style="color:#a5d6ff">&#34;workspace&#34;</span>]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In my case, for Pylance it was changing these settings:</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;remote.extensionKind&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-python.python&#34;</span>: [<span style="color:#a5d6ff">&#34;ui&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ms-python.vscode-pylance&#34;</span>: [<span style="color:#a5d6ff">&#34;ui&#34;</span>],
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Another very good comment by <a href="https://github.com/microsoft/vscode-remote-release/issues/2692#issuecomment-1441846038">deltemp</a> is that you can see exactly which Workspace Extensions are being run in the remote machine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls ~/.vscode-server/extensions
+</span></span><span style="display:flex;"><span>extensions.json                     golang.go-0.38.0
+</span></span><span style="display:flex;"><span>ms-python.python-2023.6.0           vscjava.vscode-java-debug-0.49.1
+</span></span><span style="display:flex;"><span>ms-python.vscode-pylance-2023.3.40  vscjava.vscode-java-dependency-0.21.2
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>You can use these same names in your <code>settings.json</code>, i.e. <code>ms-python.vscode-pylance</code>, just make sure it&rsquo;s set to <code>[ui]</code>.</p>
+<h2 id="downside">
+  Downside
+  <a class="heading-link" href="#downside">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The issue now is that by making the Python language service run locally, well, it runs locally. It won&rsquo;t know anything about any Python environment that you might have in the remote instance. So now you have to choose your favorite virtual environment manager and replicate the environment locally. This is annoying if you want language features from a custom package that you&rsquo;re writing currently; but why not do that entirely local and push the changes via a source-control tool?</p>
+<p>Personally, I am happy with the setup. Between not using VSCode at all (or using it and dreading the next crash), and using it and waving my hands around package imports, I&rsquo;d rather use it.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

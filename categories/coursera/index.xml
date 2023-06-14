@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coursera on Manuel Martinez</title>
+    <link>https://manmartgarc.github.io/categories/coursera/</link>
+    <description>Recent content in Coursera on Manuel Martinez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neural Networks and Deep Learning: Week 1</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
+      <description>Introduction to Deep LearningLink to headingThis is the first course in the Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks in each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
+    </item>
+    
+  </channel>
+</rss>
