@@ -17,6 +17,16 @@
     </item>
     
     <item>
+      <title>Neural Networks and Deep Learning: Week 2</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</link>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
+      <description>Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+Binary ClassificationLink to headingBinary classification a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+    </item>
+    
+    <item>
       <title>VSCode and Tiny Instances over Remote SSH</title>
       <link>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
