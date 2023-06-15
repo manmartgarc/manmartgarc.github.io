@@ -6,7 +6,17 @@
     <description>Recent content in deep learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 14 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neural Networks and Deep Learning: Week 3</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
+      <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
+Shallow Neural NetworkLink to headingOverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
+    </item>
+    
     <item>
       <title>Neural Networks and Deep Learning: Week 2</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</link>
