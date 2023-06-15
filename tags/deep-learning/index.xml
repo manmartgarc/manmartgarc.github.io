@@ -8,22 +8,22 @@
     <language>en</language>
     <lastBuildDate>Wed, 14 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Neural Networks and Deep Learning: Week 1</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</link>
-      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
-      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
-    </item>
-    
-    <item>
       <title>Neural Networks and Deep Learning: Week 2</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</link>
-      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
       <description>Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+    </item>
+    
+    <item>
+      <title>Neural Networks and Deep Learning: Week 1</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</link>
+      <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
+      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
     </item>
     
   </channel>
