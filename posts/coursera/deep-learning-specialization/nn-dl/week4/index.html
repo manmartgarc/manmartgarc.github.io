@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Neural Networks and Deep Learning: Week 4 | Deep Neural Networks · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.
+Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Neural Networks and Deep Learning: Week 4 | Deep Neural Networks"/>
+<meta name="twitter:description" content="Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.
+Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;."/>
+
+<meta property="og:title" content="Neural Networks and Deep Learning: Week 4 | Deep Neural Networks" />
+<meta property="og:description" content="Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.
+Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-16T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.113.0">
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/">
+              Neural Networks and Deep Learning: Week 4 | Deep Neural Networks
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-06-16T00:00:00Z">
+                June 16, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              6-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning/">Deep Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/neural-networks-and-deep-learning/">Neural Networks and Deep Learning</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.</p>
+<h2 id="deep-neural-networks">
+  Deep Neural Networks
+  <a class="heading-link" href="#deep-neural-networks">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="deep-l-layer-neural-network">
+  Deep L-Layer neural network
+  <a class="heading-link" href="#deep-l-layer-neural-network">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;. Exactly how many layers is deep or shallow is not set in stone.</p>
+<p>More notation is introduced to have an explicit way of communicating two things:</p>
+<ol>
+<li>The number of layers</li>
+<li>The &ldquo;height&rdquo; of each layer, i.e. how many hidden units are in each layer.</li>
+</ol>
+<p>Therefore, the following notation is introduced:</p>
+<ul>
+<li>$L$ is the number of layers in your network. This includes the output layer, but it does not include the input layer (i.e. your features). The simple reason is that the input layer is usually layer $0$, so that your output layer is layer $L$.</li>
+<li>$n^{[l]}$ denotes the number of hidden units or nodes in layer $l$. This is the &ldquo;height&rdquo; of your hidden layer.</li>
+<li>$a^{[l]}$ is the corresponding activation for layer $l$. Remember that layers can have different activation functions so that $A^{[l]} = g^{[l]}(Z^{[l]})$, where $g^{[l]}$ is the activation function used in layer $l$.</li>
+</ul>
+<p>A key thing to remember is that for any layer, you calculate $A^{[l]}$ as:
+$$
+\begin{equation}
+Z^{[l]} = g^{[l]}(W^{[l]}A^{[l - 1]} + b^{[l]})
+\end{equation}
+$$</p>
+<p>Remembering that the input layer is usually denoted $A^{[0]} = X$.</p>
+<p>This is pretty much all there is to making deeper networks.The caveat however, is that this applies to fully-connected layers or feed-forward neural networks. In the fourth course, we will go over different architectures which try to represent information in more novel ways.</p>
+<h3 id="getting-your-matrix-dimensions-right">
+  Getting your matrix dimensions right
+  <a class="heading-link" href="#getting-your-matrix-dimensions-right">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>If you&rsquo;re implementing this from scratch, making sure that your dimensions are right is usually the first step in debugging. In other architectures such as CNNs it&rsquo;s more involved, and therefore it becomes more important to keep track of the dimensions, at least in your head. Here are the key things to keep in mind:</p>
+<p>The dimensions of arrays in vector land:</p>
+<ul>
+<li>$W^{[l]} = (n^{[l]}, n^{[l - 1]})$</li>
+<li>$b^{[l]} = (n^{[l]}, 1)$</li>
+<li>$z^{[l]} = a^{[l]} = (n^{[l]}, 1)$</li>
+</ul>
+<p>In a single equation:</p>
+<p>$$
+\begin{equation}
+\underset{(n^{[l]}, 1)}{z^{[l]}} = \underset{(n^{[l]}, n^{[l -1]})}{W^{[l]}}\underset{(n^{[l - 1]}, 1)}{a^{[l - 1]}} + \underset{(n^{[l]}, 1)}{b^{[l]}}
+\end{equation}
+$$</p>
+<p>Now, in matrix land:</p>
+<ul>
+<li>$W^{[l]} = (n^{[l]}, n^{[l - 1]})$ (remains the same)</li>
+<li>$b^{[l]} = (n^{[l]}, 1)$ (remains the same)</li>
+<li>$Z^{[l]} = A^{[l]} = (n^{[l]}, m)$, where $m$ is the number of training samples.</li>
+</ul>
+<p>Again, in a single equation:</p>
+<p>$$
+\begin{equation}
+\underset{(n^{[l]}, m)}{Z^{[l]}} = \underset{(n^{[l]}, n^{[l - 1]})}{W^{[l]}}\underset{(n^{[l - 1]}, m)}{A^{[l-1]}} + \underset{(n^{[l]}, 1)}{b^{[l]}}
+\end{equation}
+$$</p>
+<p>Notice that adding $b^{[l]}$ to the product $W^{[l]}A^{[l-1]}$ is done via broadcasting with NumPy!</p>
+<blockquote>
+<p>A note about taking derivatives is that the derivatives should be the sime dimensions as the arrays.</p>
+</blockquote>
+<h3 id="why-deep-representations">
+  Why deep representations?
+  <a class="heading-link" href="#why-deep-representations">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We have been mentioning how deep neural networks amount to automatic feature generation, and how this is was what really set deep neural networks apart from other contemporaneous models. Therefore a key thing is that they do not just need to be &ldquo;big&rdquo;, but they need to be deep, i.e. have hidden layers. How many? Keep reading.</p>
+<p>The basic idea is that as you run the features through your network, they are combined into more abstract features. The example used in the course is going from raw audio to phonemes, from phonemes to words, from words to sentences; and of course the magic is that you, the programmer, don&rsquo;t to know what these are, but the machinery figures them out by itself by optimization.</p>
+<p>An important idea mentioned in the course is that of the relationship between depth and height, that is the number of hidden units. First think of neural networks as trying to learn a function $f(x)$ that maps a vector $x \rightarrow y$. Now, there are some functions that you can estimate using &ldquo;small&rdquo; $L$-layer neural networks. However, if you want to use a shallower network and keep the same level of performance in the estimation, you will need to use <em>exponentially</em> more hidden units.</p>
+<p>More precisely, if you have $n$ features, and you want to compute the <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or (XOR)</a> of all the features, you will need a network which has a <em>depth</em> in the order of $O(\log n)$, where $n$ is also the number of nodes in your network. On the other hand, if you&rsquo;re forced to use a shallow network, i.e. logistic regression, you will need $O(2^n)$ nodes. In summary, adding layers to your network is much more computationally efficient than growing the size of a hidden layer. Authors Mhaskar, Liao and Poggio show this at much more detail in their <a href="https://arxiv.org/pdf/1603.00988.pdf">paper</a>.</p>
+<h3 id="parameters-and-hyperparameters">
+  Parameters and Hyperparameters
+  <a class="heading-link" href="#parameters-and-hyperparameters">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The parameters $W^{[l]}, b^{[l]}$ are the things you derive via training. On the other hand hyperparameters are fixed during training and must be set before training.</p>
+<p>A good way to think about the difference between parameters and hyperparameters comes from <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf">Tamara Broderick</a>&rsquo;s slides. In machine learning we usually want to evaluate a hypothesis $h(x)$ that maps $x \rightarrow y$. A hypothesis can belong to a hypothesis class. A hypothesis class $H$ used by a learning algorithm is the set of all classifiers considered by it. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> For example a linear classifier considers all classifiers whose decision boundary is linear. During training the algorithm will search <em>within</em> the hypothesis class for a <em>particular</em> hypothesis that minimizes the cost. Hyperparameters are related to the hypothesis class, while parameters are related to a particular hypothesis.</p>
+<p>Hyperparameters are usually selected via hyperparameter tuning, which is the topic of the next course.</p>
+<p>Some of the hyperparameters in neural networks are:</p>
+<ul>
+<li>Learning rate $\alpha$: the step-size of gradient descent.</li>
+<li>Number of iterations: how many times will the model observe the entire training set.</li>
+<li>Number of hidden layers.</li>
+<li>Size of hidden layers.</li>
+<li>Which activation functions and on which layers.</li>
+</ul>
+<p>As you can probably see, there are a lot hyperparameters to search over, especially considering the size of the set of all combinations.</p>
+<h2 id="summary">
+  Summary
+  <a class="heading-link" href="#summary">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p>Matrix dimensions are important when debugging.</p>
+<ul>
+<li>When using vanilla gradient descent, the dimensions of $Z^{[l]}$ are $(n^{[l]}, m)$ where $n$ is the number of hidden units in hidden layer $l$ and $m$ is the number of examples in your training dataset.</li>
+</ul>
+</li>
+<li>
+<p>Deeper networks are smarter:</p>
+<ul>
+<li>Adding hidden layers amount to more feature generation.</li>
+<li>You don&rsquo;t have to think about which features the network picks up, it will do so while optimizing the cost function.</li>
+<li>You can learn functions with a deeper network that a shallow network cannot learn.</li>
+</ul>
+</li>
+<li>
+<p>Hyperparameter tuning is hard.</p>
+<ul>
+<li>As your data changes, you might need to update your hyperparameters.</li>
+<li>There are many ways to to hyperparameter tuning, across the computational spectrum.</li>
+<li>Neural nets have a lot of hyperparameters compared to other machine learning algorithms.</li>
+</ul>
+</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://www.cs.cmu.edu/~epxing/Class/10701-11f/recitation/recitation_4_Bin.pdf">Hypothesis Class | Carnegie Mellon University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
