@@ -155,7 +155,7 @@ Practical Aspects of Deep LearningLink to headingSetting up our Machine Lea
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              21-minute read
+              26-minute read
             </span>
           </div>
           
@@ -447,6 +447,95 @@ $$</p>
 </h4>
 <p>Another regularization method is that of data augmentation. For example if you have images as your training data, you might think about applying some geometric distortions (flipping, scaling, etc). This works as regularization by injecting more variance into your training set, making your model smarter by making it harder for it to put all its eggs in one basket (focusing too much on some parameters).</p>
 <p>Another method is early stopping. This amounts to regularization because early stopping might amount to stopping training <em>before</em> $W{[l]}$ gets &ldquo;too big&rdquo;. What is too big? You won&rsquo;t know. The problem with early stopping is that it conflates two processes that should be orthogonal (independent): doing well on your training samples and <em>not</em> overfitting. There&rsquo;s more information about orthogonizing your goals in the next course.</p>
+<h3 id="setting-up-our-optimization-problem">
+  Setting up our Optimization Problem
+  <a class="heading-link" href="#setting-up-our-optimization-problem">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>One thing is to make sure that your model has the right combination of bias and variance, which amounts to learning the problem at hand well enough and also being able to generalize to unseen samples. Now, we turn our attention to making the optimization process (learning the problem) easier and more efficient.</p>
+<h3 id="normalizing-inputs">
+  Normalizing Inputs
+  <a class="heading-link" href="#normalizing-inputs">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Normalization is one of those topics that means different things to different people. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> Let&rsquo;s disambiguate the term and also talk about why normalizing our inputs might be helpful for our optimization process.</p>
+<p>As the name implies, normalization is the process of making something normal. Of course, there are many ways of making something &ldquo;normal&rdquo;, and we haven&rsquo;t even defined what &ldquo;normal&rdquo; is. Let&rsquo;s focus on one of the ways to normalize things.</p>
+<p>In the context of statistics, normalization usually refers to <em>standardizing</em>, which is where we calculate a <a href="https://en.wikipedia.org/wiki/Standard_score"><em>standard score</em></a> for a random variable $X$. It&rsquo;s called the <em>standard</em> score because its units are standard deviations.</p>
+<p>Standardizing a random variable $X$ is pretty easy and intuitive:</p>
+<p>$$
+\begin{equation}
+z = \frac{x - \mu}{\sigma}
+\end{equation}
+$$</p>
+<p>where $\mu$ is the mean of the population and $\sigma$ is the standard deviation of the population. Because we don&rsquo;t know those values and we usually estimate them, we usually work with z-scores, which are the sample analogues:</p>
+<p>$$
+\begin{equation}
+z = \frac{x - \bar{x}}{S}
+\end{equation}
+$$</p>
+<p>where $\bar{x}$ is the sample mean and $S$ is the sample standard deviation. If your features are normally distributed, then the transformed variables will approximately mean zero and standard deviation of one.</p>
+<p>The process is intuitive, for each observation we first ask: how far is this observation from the sample mean. Whatever that distance is, positive or negative, we scale it by the standard deviation. So that the result is: an observation is $z$ standard deviations from the mean.</p>
+<p>But why do this? The purpose of this process is to convert <em>different</em> random variables that have <em>different</em> scales and shifts, into the same units. The units will be standard deviations for that particular random variable. So that $z_i$ will tell you how many standard deviations observation $i$ is from the mean. Positive values will be above the mean and negative values will be below the mean. Using this approach we can negate the effects of having different features with wildly different unit scales and shapes.</p>
+<p>When you normalize your training set, you want to use <a href="#normalizing-inputs">standardization</a> on each of your features separately. However when you are testing, you want to use the same $\bar{x}$ and $S$ that you calculated during training. You don&rsquo;t want to scale and shift your training data separately from your testing data. You want the opposite, you want your training and testing data to go through <em>the same</em> transformations.</p>
+<p>How is this related to optimization? How does normalizing scales and shifts in our features affect our optimization? It all has do to with gradient descent and how the updates are made.</p>
+<figure><img src="/images/04_25.jpg"
+         alt="Gradient Descent with and without features scaling" width="50%"/><figcaption>
+            <p><a href="https://livebook.manning.com/book/deep-learning-for-vision-systems/chapter-4/v-3/79">Gradient Descent with and without features scaling</a></p>
+        </figcaption>
+</figure>
+
+<p>The contour plot above shows an imaginary two dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features' scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
+<h3 id="vanishing-and-exploding-gradients">
+  Vanishing and Exploding Gradients
+  <a class="heading-link" href="#vanishing-and-exploding-gradients">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Vanishing and exploding gradients sound magical, if not outright dangerous. What this means is that when we train very deep networks, and we take the derivatives for gradient descent, the magnitude of these derivatives either &ldquo;vanish&rdquo; to $0$ or &ldquo;explode&rdquo; towards $\infty$. How does this disaster come about?</p>
+<p>Think about a very deep $L$-layered neural network. Imagine also that all $W^{[l]}$ are the same:</p>
+<p>$$
+\begin{equation}
+W^{[l]} = \begin{bmatrix}
+1.5 &amp; 0 \\
+0 &amp; 1.5
+\end{bmatrix}
+\end{equation}
+$$</p>
+<p>Also imagine that all $b^{[l]} = 0$.</p>
+<p>Since all $W^{[l]}$ are the same, then whatever our features $x$ is, we get that:</p>
+<p>$$
+\hat{y} = W^{[l]L}x
+$$</p>
+<p>That is the $W^{[l]}$ is multiplied by itself $L$ times. In our case this amounts to $1.5^L$, which literally grows exponentially with the number of layers. Imagine now that instead of $1.5$ on the diagonal of $W^{[l]}$ we have a number less than 0, i.e. $0.5$. With the same problem setup, now the values will be $0.5^L$ which is an expression that <em>shrinks</em> exponentially in the number of layers.</p>
+<p>In either case, this is a huge problem. With exploding gradients, the gradient descent steps are gigantic, and with vanishing gradients the gradient descent steps are tiny. Either way, converging the the minimum of our cost function will take a long, long time. We tackle this issue by being more careful in the way that we initialize our parameters.</p>
+<h3 id="weight-initialization">
+  Weight Initialization
+  <a class="heading-link" href="#weight-initialization">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>In order to avoid exploding or vanishing gradients, we need to be more careful as to how we initialize our parameters. The main idea here is that the more hidden units in a hidden-layer, the smaller each $w^{[l]}_j$ you want. This is to keep large hidden layers and small hidden layers in around the same output scale.</p>
+<p>We will still initialize our parameters to random values, but we will <em>scale</em> them by a term, $s$, that is proportional to the size of the inputs coming into a layer $l$. The whole point of this is to adjust the variance of $W^{[l]}$ so that it&rsquo;s proportional to inputs, $n^{[l-1]}$:</p>
+<p>$$
+\begin{equation}
+W^{[l]} = \texttt{np.random.randn(shape)} \times s
+\end{equation}
+$$</p>
+<p>The choice is $s$ depends on $g^{[l]}(x)$, the activation function for layer $l$:</p>
+<ul>
+<li>In the case that $g^{[l]}(x) = \text{ReLU}(x)$, then $s = \sqrt{\frac{2}{n^{[l-1]}}}$.</li>
+<li>In the case that $g^{[l]}(x) = \text{tanh}(x)$, then $s = \sqrt{\frac{1}{n^{[l-1]}}}$, which is also called <a href="https://cs230.stanford.edu/section/4/">Xavier initialization</a>.
+<ul>
+<li>Another variant for $\text{tanh}(x)$ is $s = \sqrt{\frac{2}{n^{[l-1]} + n^{[l]}}}$</li>
+</ul>
+</li>
+</ul>
 <h2 id="summary">
   Summary
   <a class="heading-link" href="#summary">
@@ -490,6 +579,20 @@ $$</p>
 <li>There are other regularization tools but L2-norm and dropout are the most common ones.</li>
 </ul>
 </li>
+<li>There are ways in which we can help out gradient descent:
+<ul>
+<li>Normalizing (standardizing) the features can help reshape the cost function so that there is no unduly effect from one feature that simply has bigger units.
+<ul>
+<li>This can help gradient descent converge a lot faster.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Our gradients can vanish or explode if we are not careful:
+<ul>
+<li>Initializing our weights in a sensible way can help our gradients from becoming to small, approaching $0$, or to big, approaching $\infty$.</li>
+</ul>
+</li>
 </ul>
 <section class="footnotes" role="doc-endnotes">
 <hr>
@@ -499,6 +602,9 @@ $$</p>
 </li>
 <li id="fn:2" role="doc-endnote">
 <p><a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">Norm | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">Normalization | Wikipedia</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
