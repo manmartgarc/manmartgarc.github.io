@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning"/>
+<meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative."/>
+
+<meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning" />
+<meta property="og:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-18T00:00:00+00:00" />
+
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.92.2" />
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
+              Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-06-18T00:00:00Z">
+                June 18, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              21-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning/">Deep Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/improving-deep-learning-networks/">Improving Deep Learning Networks</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the first week in the <a href="https://www.coursera.org/learn/deep-neural-network">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.</p>
+<h2 id="practical-aspects-of-deep-learning">
+  Practical Aspects of Deep Learning
+  <a class="heading-link" href="#practical-aspects-of-deep-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="setting-up-our-machine-learning-problem">
+  Setting up our Machine Learning problem
+  <a class="heading-link" href="#setting-up-our-machine-learning-problem">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h4 id="train--dev--test-sets">
+  Train / Dev / Test sets
+  <a class="heading-link" href="#train--dev--test-sets">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Machine learning projects are highly iterative. That is, you try something new, see how it does and then adjust; very much like gradient descent. Therefore you want the iteration time to be quick so that you can try as many things as quickly as possible, without affecting the final performance of the model. Part of this is setting up your datasets correctly so that you can efficiently iterate over different approaches.</p>
+<p>If you have a data set $M$ of $|m|$ samples then you usually want to split it into three parts.</p>
+<ol>
+<li>Training set: $M_{train} \subseteq M$. The set of samples that will be used to learn the parameters of our chosen hypothesis $h(X, \theta)$, i.e. your model parameters via SGD.</li>
+<li>Holdout/Cross-validation/Development set: $M_{dev} \subseteq M$. The set of samples that will be used to evaluate a hypothesis class $H$, i.e. your model hyperparameters via hyperparameter tuning.</li>
+<li>Test set: $M_{test} \subseteq M$. The set of samples that will be used the best hypothesis you&rsquo;ve found so far on completely unseen data that belongs to the same distribution as the dev set.</li>
+</ol>
+<p>Note that these three subsets are disjoint, i.e. $M_{train} \cap M_{test} \cap M_{dev} = \emptyset$</p>
+<p>Historically most researchers would split the set $M$ using a 70%/30% training and testing respectively. If using a dev set most of the time they a 60%/20%/20% split for training, dev and test. This was reasonable for datasets that have sizes in the order of 10,000. If you have a dataset $M$ with 1,000,000 training samples, then it can be reasonable to use a 98%/1%/1% training, dev and test split. You can read more about how big a sample has to be for certain statistical properties to kick in, but a number around 10,000 is considered relatively safe.</p>
+<p>One assumption is that all the training samples $m \in M$ come from the same distribution, which implies that each of the splits also belong to the same distribution. This is critical because you don&rsquo;t want to develop a model with pictures of cats and then test it on picture of dogs. A key they is to make sure that your dev and test sets come from the same distribution. Having the training set come from a different distribution is more lax, as long as the training distribution is a superset of the dev and test sets. In some cases it might be okay to not have a test set, but measuring variance will be harder.</p>
+<h4 id="bias-variance-tradeoff">
+  Bias-Variance Tradeoff
+  <a class="heading-link" href="#bias-variance-tradeoff">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>The bias/variance tradeoff is a topic in machine learning and statistics. The whole idea of supervised learning is that, if you do it correctly, your model can generalize <em>beyond</em> the training set, i.e. samples it has not seen during training and still do a good job. We think that there is some parameters $\theta$ that minimize our cost function. We don&rsquo;t know what that is, and the only way to know that is to have <em>infinite</em> training samples. We need to make due with our estimate $\hat{\theta}$, which implies that $\theta \neq \hat{\theta}$. When we talk about the bias-variance tradeoff we are describing the errors, i.e. $\epsilon = \theta - \hat{\theta}$ that are produced by our model that uses our estimates of the parameters. In particular we are describing the mean and variance of the error distribution. The bias is a part of how far $\hat{\theta}$ is from $\theta$ on average, while the variance measures the spread of the errors.</p>
+<p>It turns out that we can characterize our expected test errors even further by decomposing them into three components (skipping some math):</p>
+<ol>
+<li>Variance: $E_{x, D}\left[\left(h_D(x) - \bar{h}(x)\right)^2\right]$</li>
+<li>$\text{Bias}^2$: $E_x\left[\left(\bar{h}(x) - \bar{y}(x)\right)^2\right]$</li>
+<li>Noise: $E_{x,y}\left[\left(\bar{y}(x) - y\right)^2\right]$</li>
+</ol>
+<p>Keep in mind:</p>
+<ol>
+<li>Variance measures measures how much our classifier $h_D$ changes when we train it on a different training set $D$. How &ldquo;over-specialized&rdquo; is our classifier to a particular training set $D$? <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Notice that $h$ and $h_D$ are random variables, and so this measures the spread of a classifier trained on each possible sample $D$ drawn from $P^n$ versus the average classifier $\bar{h}(x)$.</li>
+<li>Bias measures the inherent error from our classifier <em>if</em> we had infinite training data. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> How far is our estimator&rsquo;s expected value $\bar{y}(x)$ from the expected classifier?</li>
+<li>Noise measures some irreducible error, which is an intrinsic property of the data. This related to Bayes error rate, which is the <em>lowest</em> possible error rate for any classifier of <em>random</em> outcomes.</li>
+</ol>
+<figure><img src="/images/bullseye.png"
+         alt="Graphical Illustration of bias and variance" width="50%"/><figcaption>
+            <p><a href="http://scott.fortmann-roe.com/docs/BiasVariance.html">Graphical Illustration of bias and variance</a></p>
+        </figcaption>
+</figure>
+
+<p>We know that bias and variance are the components of our model&rsquo;s expected test error. But why is it a tradeoff? It turns out that <em>model complexity</em> is related to both bias and variance. A model with low complexity (always guess the same) will have high error, and the majority of the error will come from the bias term. This means that as we decrease the complexity of a model, our error will increase, but most of the increase will come from the bias term. Conversely, a model with high complexity (guessing randomly) will have high error, and the majority of the error will come from the variance term. This means that as we increase model complexity, our error will <em>also</em> increase, but most the increase will come from the variance term. Somewhere in the middle, there is a sweet spot, a combination of bias and variance that has the minimum total error.</p>
+<p>When we say that a model has high bias, we say that it&rsquo;s underfitting. It&rsquo;s too basic and not being complex enough to learn the training data, underfitting it. On the other hand, when we say that a model has high variance we say that a model is overfitting the training data, not being able to generalize beyond it, overfitting it. This is where we come back to our dataset splits.</p>
+<p>Before moving on, we have to re-introduce the irreducible error term from the previous section. For every classification task, there is some amount of error that cannot be done away with. This is also called Bayes error rate, and it&rsquo;s a theoretical limit that no classifier can surpass. Similarly there is a human-level error achieved by the best a human can do, whether a group or individual, and this is called the human-level error. The best classifier can be better or worse than human-level error but never better than Bayes error rate. For the following section we assume that the human-level error is approximately $0$ but more than the Bayes error rate.</p>
+<p>Evaluating the performance of your model on the training and dev set can help you diagnose whether your model has high variance or high bias or both very quickly. Let $\epsilon_{train}, \epsilon_{dev}$ the error of your model on the training and dev sets respectively.</p>
+<ul>
+<li>$e_{train} = 1\%, e_{dev} = 11\%$: Our model is doing really well on the training set but much poorer on the development set. It smells of high variance since the model is not able to generalize from the training set to the dev set. It&rsquo;s therefore overfitting the training set.</li>
+<li>$e_{train} = 15\%, e_{dev} = 16\%$: Assuming that human-level error is approximately $0$, then this looks like high bias. The model is very far from human-level error on the training set, therefore it&rsquo;s not fitting our training data enough. It&rsquo;s therefore underfitting the training set. However it&rsquo;s generalizing quite well to the dev set, therefore it might have low variance.</li>
+<li>$e_{train} = 15\%, e_{dev} = 30\%$: Assuming that human-level error is approximately $0$, then this looks like high bias again. But because it&rsquo;s not generalizing well, it also smells of high variance because of the discrepancy in performance between the test and dev sets.</li>
+<li>$e_{train} = 0.5\%, e_{dev} = 1\%$: Assuming that human-level error is approximately $0$, then this looks like both low bias and low variance. It&rsquo;s very close to the Bayes' error rate, and also generalizes well to the dev set.</li>
+</ul>
+<p>The key assumption is that human-level error is approximately $0$, which implies that Bayes error has to be between $0$ and the human-level error. If for example the Bayes error rate is $15\%$ then the second case would not be high variance, because we are actually close to the best possible classifier.</p>
+<p>If you&rsquo;re wondering about how you can simultaneously underfit and overfit your training data, think about this:</p>
+<figure><img src="/images/highbv.png"
+         alt="High Bias and High Variance" width="50%"/><figcaption>
+            <p><a href="https://www.coursera.org/learn/deep-neural-network">High Bias and High Variance</a></p>
+        </figcaption>
+</figure>
+
+<h4 id="basic-recipe-for-machine-learning">
+  Basic Recipe for Machine Learning
+  <a class="heading-link" href="#basic-recipe-for-machine-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Ideally we want a low-bias and low-variance model. But how do we get there?</p>
+<ol>
+<li>Do we have high bias? How is our performance on the training set relative to Bayes error rate?
+<ul>
+<li>If high bias:
+<ul>
+<li>Increase the size/depth of your network, adding model complexity, increasing variance but lowering bias.</li>
+<li>Train it longer, better estimates of the parameters, lower bias and variance.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Do we have high variance? How is our performance on the dev set relative to the training set and Bayes error rate?
+<ul>
+<li>Get more data, better estimates of the parameters, lower bias and variance.</li>
+<li>Regularization, decreasing model complexity, increasing bias but lowering variance.</li>
+</ul>
+</li>
+</ol>
+<p>Following these steps, i.e. fixing high bias before high variance is the basic recipe for machine learning.</p>
+<p>It&rsquo;s mentioned in the course that in the deep learning era, there is less of a tradeoff. The ability to have bigger models and get more data are both tools that don&rsquo;t expose the bias-variance tradeoff, so usually these are your first go tos when hitting high bias or high variance. In general training a bigger network almost never hurts, <strong>as long</strong> as you add proper regularization, keeping the model complexity from exploding.</p>
+<h3 id="regularizing-our-neural-network">
+  Regularizing our Neural Network
+  <a class="heading-link" href="#regularizing-our-neural-network">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h4 id="regularization">
+  Regularization
+  <a class="heading-link" href="#regularization">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Regularization is a tool you employ when you suspect your model is suffering from high variance or overfitting. Regularization will reduce your model complexity by penalizing model complexity when evaluating its performance and therefore generating a &ldquo;simpler&rdquo; model. It turns out that you can add a term to your cost function, which is a measure of model complexity, so that more complex models result in a higher cost, therefore driving down complexity. But how do we measure model complexity? Let&rsquo;s answer this using the logistic regression case:</p>
+<p>Let&rsquo;s recall our cost function:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)})
+\end{equation}
+$$</p>
+<p>We would like to add add something to the expression above that measures model complexity. One way of measuring model complexity is literally to look at the magnitude of the parameters, literally how big they are. Remember that in logistic regression we have one theta $\theta_i$ for each feature in our data. This implies that if coefficients blow up in magnitude, that is, get very big or very small, they are having a lot of effect on the output. This is simply because the relationship between parameters and features is multiplicative and additive, i.e. it&rsquo;s linear.</p>
+<p>We can check how big the parameters are by summing over each of them, let&rsquo;s call that $|w|$:</p>
+<p>$$
+\begin{equation}
+|w| = \sum_{j=1}^{N_x} w_j
+\end{equation}
+$$</p>
+<p>The issue with the above is that some $w_j$ might be positive and others might be negative, undoing each of their effects in the summation. The solution to this problem is to use a <a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">norm</a>. A norm is a function that maps the real or complex numbers into the non-negative real numbers. An important geometrical idea related to linear algebra is that the norm is a generalization of distance from the origin: it&rsquo;s proportional to scaling, it doesn&rsquo;t violate a form of the triangle inequality, and is zero only at the origin. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> We would also like to generalize this to more dimensions, which is handy when our parameters is not just a vector but matrices that describe some vector space that has some &ldquo;size&rdquo;. When talking about the norm of a matrix, the term <a href="https://en.wikipedia.org/wiki/Matrix_norm">Matrix norm</a> is used, and the euclidean norm equivalent is called the <a href="https://en.wikipedia.org/wiki/Matrix_norm#Frobenius_norm">Frobenius norm</a>. It has a different name because you have to do some work before generalizing from one to many dimensions and some brilliant mathematicians figured it out.</p>
+<p>One of the most common norms is to take the squares to only get positive numbers. This is called the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l002.htm">L2 Norm</a>, or Euclidean norm for being related the definition of distance in Euclidean geometry, remember the guy Pythagoras?. It&rsquo;s denoted $||w||_2$. When working with the square of the L2 norm, its denoted $||w||_2^2$. It&rsquo;s defined by:</p>
+<p>$$
+||w||_2 = \sqrt{\sum_{j=1}^{N_x} w_j^2} = \sqrt{w^Tw}
+$$</p>
+<p>Also:</p>
+<p>$$
+||w||^2_2 = w^Tw
+$$</p>
+<p>Adding this to our cost function makes it looks like this now:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + ||w||_2^2
+\end{equation}
+$$</p>
+<p>Why are we ignoring the other parameter $b$? Because its a scalar and not a vector. $w \in \mathbb{R}^{N_x}$, which means $w$ has $N_x$ elements. While $b \in \mathbb{R}$, which means that $b$ has only one element. This means that if we have $N_x$ features, then $b$ has to be $N_x$ times bigger than the $w$ norm to influence the same amount. You can also think about how the space or volume of a $N_x$ dimensional hypercube grows as opposed to a $1$ dimensional line. So we usually ignore $b$.</p>
+<p>We now have a way of penalizing model complexity by assigning a higher cost to a more complex model. What would also be great is to have a way of scaling the effect of the regularization. For example we don&rsquo;t want a model with a very small $w$ because the smallest is where $w_i = 0$, we want to retain some complexity but not too much.</p>
+<p>We do this by introducing a hyperparameter $\lambda$ called the regularization parameter, which is a scalar that scales the regularization effect:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \lambda||w||_2^2
+\end{equation}
+$$</p>
+<p>We can find a good $\lambda$ by hyperparameter tuning using the dev set. By comparing the loss between the training set and the dev set, we can find a good regularization value that balances simplicity and complexity, or bias and variance.</p>
+<p>We also want to scale the effect of the regularization by the size of our training data $m$. Remember, we have a high variance problem we are trying to solve by penalizing a complex model. However, our model will be more complex as we add more training data. So we want our regularization to be stronger when our training data is small, but decrease as our training data is larger. We can just divide $\lambda$ by $m$ to have a linearly decreasing effect:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \frac{\lambda}{m}||w||_2^2
+\end{equation}
+$$</p>
+<p>Finally for differentiation reasons, we add an easy way to cancel some terms:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m}||w||_2^2
+\end{equation}
+$$</p>
+<p>Think about what happens to $w$ after we introduce this term to our cost function. It means it will prefer smaller parameters than bigger ones, and if it has to chose between two big ones, it will chose the one that is the least costly. In other words the model will let some parameters be large as long as they earn their keep (in terms of model performance) and decrease the features that are not that relevant. In this sense, regularization can be thought of as a type of feature selection. With the L2 norm the parameters that don&rsquo;t earn their keep approach zero, but never quite get to be zero.</p>
+<p>But the L2 norm is not the only norm. What if you use some other norm? Another popular norm is the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l001.htm">L1-Norm</a>:</p>
+<p>$$
+||x||_1 = \sum_{j=1}^{N_x} |x_i|
+$$</p>
+<p>Just like the L2-norm, it maps the real or complex numbers into the non-negative real numbers. We can also use this in our cost function:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m}||w||_1
+\end{equation}
+$$</p>
+<p>Unlike the L2-norm, the L1-norm does actually send the parameters that don&rsquo;t earn their keep to zero. This means that $w$ will end up being <em>sparser</em>. Which implies that the L1-norm works as a sort of model compression. In practice however, the L2 norm is used more commonly so that should be your first go to.</p>
+<p>We mentioned the Frobenius-norm as the generalization of the L2-norm to higher dimensions. The L2-norm works in logistic regression precisely because $w$ is a vector. When we have matrices of parameters, $W^{[l]}$ as is the case for a neural network, we need to use the grown-up&rsquo;s norm. The Frobenius-norm is a reasonable extension, instead of summing over a vector&rsquo;s single dimension, you sum over both dimensions in a matrix:</p>
+<p>$$
+||W^{[l]}||_F = \sqrt{\sum_{i=1}^{n^{[l - 1]}}\sum_{j=1}^{n^{[l]}}w_{ij}^{[l]}}
+$$</p>
+<p>Also:</p>
+<p>$$
+||W^{[l]}||^2_F = \sum_{i=1}^{n^{[l - 1]}}\sum_{j=1}^{n^{[l]}}w_{ij}^{[l]}
+$$</p>
+<p>So for a $L$-layered neural network our cost function will look like:</p>
+<p>$$
+\begin{equation}
+\mathcal{J}(W^{[1]}, b^{[l]}, \dots, W^{[l]}, b{[l]}) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m} \sum_{l=1}^L ||W^{[l]}||^2_F
+\end{equation}
+$$</p>
+<p>A couple of things to mention:</p>
+<ul>
+<li>Notice that now the cost function is a function of all layers of our network, $W^{[l]}, b^{[l]}$. This is in contrast to logistic regression where we only have one pair of $W, b$.</li>
+<li>Also notice that in the regularization term we need to sum over all layers of our network. Again we are ignoring the $b^{[l]}$ and only focusing on the $W^{[l]}$ parameters.</li>
+</ul>
+<p>The L2-norm is also usually called <em>weight decay</em>. This is because when you differentiate the loss function, which now includes the regularization term, with respect to the parameters, it will scale down $W^{[l]}$ by $1 - \frac{\alpha\lambda}{m}$ on every step. Making those weights smaller, or decaying the weights if you please.</p>
+<blockquote>
+<p>If you&rsquo;re coming from econ-land, you might have heard of Lasso and Ridge regressions. Lasso is a linear regression that uses the L1-norm, while Ridge is a linear regression that uses the L2-norm.</p>
+</blockquote>
+<h4 id="why-does-regularization-reduce-overfitting">
+  Why Does Regularization Reduce Overfitting?
+  <a class="heading-link" href="#why-does-regularization-reduce-overfitting">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>We went over how regularization is equivalent to penalizing model complexity, and how model complexity can be measured by the magnitude of the parameters of your model, which is the mechanism through which we implement regularization. The intuition here is that parameters with high values assign <em>high sensitivity</em> to the features being multiplied by those parameters. The high sensitivity is what results in the high variance, and by penalizing the magnitude of the parameters is how we reduce overfitting.</p>
+<p>Another great way of thinking about it is to think about what happens in the activation functions when the values are big or small.</p>
+<p>Remember that $Z^{[l]} = W^{[l]}A^{[l-1]} + b^{[l]}$. This, we pass through our activation function $g^{[l]}$ so that we get $A^{[l]} = g^{[l]}(Z^{[l]})$. Taking as an example the sigmoid activation function $\sigma(x)$, think about what happens when the inputs $Z^{[l]}$ are small. How can $Z^{[l]}$ be small? If we set $\lambda$ to be really big, then most of our $W^{[l]}$ will be small, therefore making $Z^{[l]}$ small as well. When we pass small values, that is values close to $0$ to the sigmoid function, the outputs are approximately <em>linear</em>. It is only when $|x| \geq 2$ that $\sigma(x)$ (approximately) becomes non-linear. So in a way, setting $W{[l]}$ to be small <em>undoes</em> all the non-linear magic that you got from adding more layers to your network.</p>
+<h4 id="dropout-regularization">
+  Dropout Regularization
+  <a class="heading-link" href="#dropout-regularization">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>It turns out that measuring the &ldquo;size&rdquo; of your parameters is not the only way to measure model complexity. Conversely, minimizing the size of your parameters is also not the only way to punish model complexity. Dropout achieves a similar result by doing something more intuitive to some.</p>
+<p>In a nutshell, dropout <em>randomly</em> deletes some fraction of nodes in each hidden layer on each forward-backward pass. Since on each forward-backwards pass you are &ldquo;turning off&rdquo; some hidden units, the model trained on each iteration is literally smaller. The random component of the dropout guarantees that all parts of the model are affected equally on expectation. So what do we mean exactly by &ldquo;deleting&rdquo; nodes? We mean setting them to 0. It really is that simple.</p>
+<p>More formally, there is some probability $p$ that represents probability for <em>a single hidden unit</em> to be kept untouched. $p$ is referred to as the <em>keep probability</em>. Conversely, $1 - p$ is the &ldquo;dropout&rdquo; probability. Notice that the events are <em>independent</em> from each other. That is each <em>hidden unit</em>, i.e. each node is dropped independently from all the other units in that layer, and also from other layers.</p>
+<p>Say that you have a layer with $50$ hidden units, and that $p = 0.8$, so that you will be dropping out $1 - 0.8 = 0.2$ of the units in a hidden layer. So on expectation you will be dropping $50 * 0.2 = 10$ nodes. Let&rsquo;s also think that this layer is $l = 3$. Let&rsquo;s think about how this will affect the next layer.</p>
+<p>The next layer&rsquo;s computation will be:</p>
+<p>$$
+\begin{equation}
+Z^{[4]} = W^{[4]}A^{[3]} + b^{[4]}
+\end{equation}
+$$</p>
+<p>where $A^{[3]}$ is the output of the layer with $50$ hidden units and we shut down $20\%$ of them. This means that $A^{[3]}$ is reduced by $20\%$, which also implies that $Z^{[4]}$ is reduced by $20\%$ because $Z^{[4]}$ is just a linear combination of $A^{[3]}$. In order to avoid this problem propagating throughout our network making everything small, we need to roughly &ldquo;refund&rdquo; the lost value to $A^{[3]}$ before passing it to the next layer. We do this simply by:</p>
+<p>$$
+\begin{equation}
+A^{[3]*} = \frac{A^{[3]}}{p}
+\end{equation}
+$$</p>
+<p>Remember that dividing anything by a number less than $1$ will make it bigger. Therefore:</p>
+<p>$$
+\begin{equation}
+Z^{[4]} = W^{[4]}A^{[3]*} + b^{[4]}
+\end{equation}
+$$</p>
+<p>Will make $Z^{[4]}$ be <em>roughly</em> the same as it was originally. This scaling technique is called <a href="https://machinelearning.wtf/terms/inverted-dropout/">inverted dropout</a>.</p>
+<p>The intuition behind this rescaling is that when you set some hidden-units to zero, you are shifting the expected value of $A^{[3]}$, which is an issue when you do testing. Because when you evaluate your network with the test set, you <strong>do not do any dropout</strong>, the difference in expected values becomes a problem. Therefore the rescaling ameliorates the scaling issue between training and testing.</p>
+<p>Finally, you can apply a different value of $p$ to different layers, so that you have a vector $p$ where $p^{[l]}$ is the probability of keeping units in hidden layer $l$. This faces you with a tradeoff of having more hyperparameters, so it should be used wisely.</p>
+<h4 id="understanding-dropout">
+  Understanding Dropout
+  <a class="heading-link" href="#understanding-dropout">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>So why does dropout behave like regularization? It seems crazy to &ldquo;kill&rdquo; some nodes at random, it&rsquo;s the very definition of chaotic evil. It turns out that by doing this, the model will learn not to rely on any specific feature, because it might not be there the next time. The model will respond to dropout by <em>spreading</em> out the weights across the network, effectively reducing their magnitude. This is why dropout can be thought of as regularization.</p>
+<blockquote>
+<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, where by randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
+</blockquote>
+<h4 id="other-regularization-methods">
+  Other Regularization Methods
+  <a class="heading-link" href="#other-regularization-methods">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Another regularization method is that of data augmentation. For example if you have images as your training data, you might think about applying some geometric distortions (flipping, scaling, etc). This works as regularization by injecting more variance into your training set, making your model smarter by making it harder for it to put all its eggs in one basket (focusing too much on some parameters).</p>
+<p>Another method is early stopping. This amounts to regularization because early stopping might amount to stopping training <em>before</em> $W{[l]}$ gets &ldquo;too big&rdquo;. What is too big? You won&rsquo;t know. The problem with early stopping is that it conflates two processes that should be orthogonal (independent): doing well on your training samples and <em>not</em> overfitting. There&rsquo;s more information about orthogonizing your goals in the next course.</p>
+<h2 id="summary">
+  Summary
+  <a class="heading-link" href="#summary">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>Splitting our data efficiently can make us iterate faster:
+<ul>
+<li>Split into train/dev or train/dev/test.</li>
+<li>The dev and test sets <em>must</em> come from the same distribution.</li>
+<li>If we have a lot of data, we can ignore the 60/20/20 split, and use something like 98/1/1</li>
+</ul>
+</li>
+<li>Bias and variance are both perpetual enemies that must be fought:
+<ul>
+<li>Both of these concepts are components of our model&rsquo;s errors.</li>
+<li>We must understand what the Bayes error rate is for our problem.</li>
+<li>We must understand what human-level performance is for our problem.</li>
+<li>Bias describes how far away we are on average from the average model.
+<ul>
+<li>We can decrease bias by increasing the complexity of our model.</li>
+</ul>
+</li>
+<li>Variance describes how spread out our errors are from the average model.
+<ul>
+<li>We can decrease variance by decreasing the complexity of our model.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Regularization is a tool we can use increase bias and decrease variance:
+<ul>
+<li>Usually we use a norm of our model&rsquo;s parameters. Punishing parameters with high magnitudes.</li>
+<li>Dropout is a tool that randomly shuts off hidden units, and it amounts to regularization.
+<ul>
+<li>You only apply dropout when training and not when testing. To avoid scaling issues you use inverted dropout.</li>
+</ul>
+</li>
+<li>There are other regularization tools but L2-norm and dropout are the most common ones.</li>
+</ul>
+</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html">Bias-Variance Tradeoff | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">Norm | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

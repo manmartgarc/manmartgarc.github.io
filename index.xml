@@ -5,16 +5,26 @@
     <link>https://manmartgarc.github.io/</link>
     <description>Recent content on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 16 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
+      <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative.</description>
+    </item>
+    
     <item>
       <title>Neural Networks and Deep Learning: Week 4 | Deep Neural Networks</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</link>
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
-      <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&amp;rsquo; weeks ideas into $L$-layered networks.
-Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
+      <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&#39; weeks ideas into $L$-layered networks.
+Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -24,7 +34,7 @@ Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to heading
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
-Shallow Neural NetworkLink to headingOverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
+ Shallow Neural NetworkLink to headingOverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
     </item>
     
     <item>
@@ -33,8 +43,8 @@ Shallow Neural NetworkLink to headingOverviewLink to headingIt&amp;rsquo;s t
       <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
-      <description>Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
-Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+      <description>Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+ Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
     </item>
     
     <item>
@@ -43,7 +53,7 @@ Binary ClassificationLink to headingBinary classification is a supervised lear
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
-      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
+      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
     </item>
     
     <item>
@@ -52,7 +62,7 @@ Binary ClassificationLink to headingBinary classification is a supervised lear
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</guid>
-      <description>VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&amp;rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</description>
+      <description>VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&amp;rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</description>
     </item>
     
     <item>
@@ -80,7 +90,7 @@ Binary ClassificationLink to headingBinary classification is a supervised lear
       
       <guid>https://manmartgarc.github.io/about/</guid>
       <description>TLDR $\rightarrow$ You can view my CV here
-I am a second year CAPP candidate at the University of Chicago Harris School of Public Policy and the University of Chicago Department of Computer Science. I currently work as a Research Engineer at the Mansueto Institute for Urban Innovation at the University of Chicago helping researchers do their work more efficiently and maintainable.
+ I am a second year CAPP candidate at the University of Chicago Harris School of Public Policy and the University of Chicago Department of Computer Science. I currently work as a Research Engineer at the Mansueto Institute for Urban Innovation at the University of Chicago helping researchers do their work more efficiently and maintainable.
 Over the 2022 summer I interned at Amazon Web Services as a Data Engineer working on machine learning pipelines and large-scale data analytics.</description>
     </item>
     
