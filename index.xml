@@ -6,7 +6,17 @@
     <description>Recent content on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Improving Deep Learning Networks: Week 2 | Optimization Algorithms</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
+      <description>This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
+Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$.</description>
+    </item>
+    
     <item>
       <title>Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</link>
