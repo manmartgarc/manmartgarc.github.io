@@ -13,17 +13,20 @@
 
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
-Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$.">
+This week&rsquo;s topics are:
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Summary   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms"/>
 <meta name="twitter:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
-Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$."/>
+This week&rsquo;s topics are:
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Summary   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course."/>
 
 <meta property="og:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms" />
 <meta property="og:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
-Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$." />
+This week&rsquo;s topics are:
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Summary   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-19T00:00:00+00:00" />
@@ -183,20 +186,28 @@ Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to 
       <div class="post-content">
         
         <p>This week is focused on the optimization or training process. Particularly, this week goes   over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.</p>
-<h2 id="optimization-algorithms">
-  Optimization Algorithms
-  <a class="heading-link" href="#optimization-algorithms">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="mini-batch-gradient-descent">
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#mini-batch-gradient-descent">Mini-batch Gradient Descent</a></li>
+<li><a href="#exponentially-weighted-moving-averages-ewma">Exponentially Weighted Moving Averages (EWMA)</a>
+<ul>
+<li><a href="#bias-correction">Bias Correction</a></li>
+</ul>
+</li>
+<li><a href="#gradient-descent-with-momentum">Gradient Descent with Momentum</a></li>
+<li><a href="#rmsprop">RMSProp</a></li>
+<li><a href="#adam">Adam</a></li>
+<li><a href="#learning-rate-decay">Learning Rate Decay</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<hr>
+<h2 id="mini-batch-gradient-descent">
   Mini-batch Gradient Descent
   <a class="heading-link" href="#mini-batch-gradient-descent">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>We discussed <a href="/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent">gradient descent</a> briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.</p>
 <p>The process described above is called <em>batch</em> gradient descent, that is a batch is our <em>entire</em> training set $M_{train}$. The name <em>batch</em> gradient descent is an artifact of history, so just take it as it is. Remember that <em>batch</em> gradient descent is the gradient descent version that uses all of our training samples.</p>
 <p>As we might imagine, <em>mini-batch</em> gradient descent is running gradient descent on smaller batches of our data. Formally a mini-batch is a subset of our training samples and labels, $X, Y$. We refer to batch $t$ by the tuple $(X^{\{t\}}, Y^{\{t\}})$. For example if we have $m = 5,000,000$ training samples. we might generate $5,000$ mini-batches of $1,000$ samples each. If the dimensions of $X$ are $(N_x, m)$, then the dimensions of $X^{\{t\}}$ should be $(N_x, 1000)$, and those of $Y^{\{t\}}$ should be $(1, 1000)$.</p>
@@ -206,13 +217,13 @@ Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to 
 <blockquote>
 <p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p>
 </blockquote>
-<h3 id="exponentially-weighted-moving-averages-ewma">
+<h2 id="exponentially-weighted-moving-averages-ewma">
   Exponentially Weighted Moving Averages (EWMA)
   <a class="heading-link" href="#exponentially-weighted-moving-averages-ewma">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>EWMA is a central component of other optimization algorithms that build upon gradient descent. If we have ever tried to code up a moving average, we might have noticed that it is very memory inefficient, especially if we want to do it in a vectorized fashion. EWMA is a solution with a memory complexity of $O(1)$ that approximates a moving average over an arbitrary number of periods. We will later see how this is applied within the context of gradient descent. Let&rsquo;s first look at what exponentially weighted averages are.</p>
 <p>Say that we have a sequence of observations over time from the same source; that is a time-series measurement. Let $\theta_t$ be the measurement in period $t$. A very common thing to do with time-series is to smoothen the time-series. A common approach is to use a moving average: at every period $t$ we look behind some number of periods, and calculate the average and assign that to a new time-series $V_t$, and so on. If we use a 7-period moving average, we will lose first 7 periods. There is another way that approximates this and it&rsquo;s defined as this:</p>
 <p>$$
@@ -223,13 +234,13 @@ $$</p>
 <p>That is, each smoothed value $V_t$ is some combination of the previous one $V_{t-1}$ and the current one $\theta_t$ scaled by $\beta$ and $(1-\beta)$, thinking about $\beta$ as the mix between the past and today. The nice thing is that we can go from values of $\beta$ to the number of periods pretty easily: when $\beta = 0.9$ we are approximately averaging over the last 10 periods. If we set $\beta = 0.98$ then this is approximately averaging over the last 50 periods. If we set $\beta = 0.5$ then this is approximately averaging over the last 2 periods. Think about what happens when $\beta=1$.</p>
 <p>There is a nice explanation of why this approximates a regular moving average on the course, but I think the details are fine to be left out for now.</p>
 <p>In practice we usually initialize $V_t = 0$ and loop over our periods to calculate all $V_t$ for each period $t$.</p>
-<h4 id="bias-correction">
+<h3 id="bias-correction">
   Bias Correction
   <a class="heading-link" href="#bias-correction">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>If we initialize $V_t = 0$, then we might imagine that our initial $V_t$s will be heavily biased downwards. The bias will eventually disappear as we move through our time periods. It turns out that there is a way to correct the bias with a simple scaling procedure:</p>
 <p>$$
 \begin{equation}
@@ -237,13 +248,13 @@ V_t = \frac{\beta V_{t-1} + (1-\beta)\theta_t}{1 - \beta^t}
 \end{equation}
 $$</p>
 <p>Notice the term $\beta^t$ in the denominator. When $t$ is small, i.e. our initial periods, then $V_t$ will be scaled upwards. As we move down our time-series, the bias correction will be much smaller since $\beta^t$ will become much smaller since $0 &lt; \beta \leq 1$.</p>
-<h3 id="gradient-descent-with-momentum">
+<h2 id="gradient-descent-with-momentum">
   Gradient Descent with Momentum
   <a class="heading-link" href="#gradient-descent-with-momentum">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Let&rsquo;s come back from the time-series digression. Why did we go over moving averages on time-series? Remember that when we introduced mini-batch gradient descent we mentioned that the &ldquo;path down the mountain&rdquo; will be more &ldquo;noisy&rdquo;. From the extreme of using a batch of size $1$, which is the most &ldquo;noisy&rdquo; up to using our entire data, which is the least noisy. It turns out that we can use the concept of EWMA to give &ldquo;inertia&rdquo; to the steps &ldquo;down the mountain&rdquo; that mini-batch gradient descent takes. This is called momentum, and it uses EWMA of the gradients to take steps, instead of each gradient being independently evaluated.</p>
 <blockquote>
 <p>Remember that in physics, momentum is a vector: $\mathbf{p} = m\mathbf{v}$ since $\mathbf{v}$ is the velocity vector. While inertia is a scalar!</p>
@@ -262,13 +273,13 @@ W^{[l]} = W^{[l]} - \alpha v_{dW^{[l]}}
 \end{equation}
 $$</p>
 <p>Notice that in practice many people don&rsquo;t use bias correction, and that the example above is only for the $W^{[l]}$ parameters. This should also be repeated for the $b^{[l]}$ parameters. Finally, the choice of $\beta$ is now part of hyperparameter tuning, but mostly everyone uses $\beta = 0.9$, which approximates averaging over the last 10 gradient iterations. In a nutshell, momentum accelerates our search in the direction of the minima (and away from oscillations) using EWMA. Finally notice that we are updating our parameters <em>directly</em> with the EWMA of the gradients. We will do something slightly different next.</p>
-<h3 id="rmsprop">
+<h2 id="rmsprop">
   RMSProp
   <a class="heading-link" href="#rmsprop">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>RMSProp (root mean square propagation) is a cousin of the momentum idea. However, instead of using the EWMA of the gradients for the update, we <em>scale</em> the gradient with the EWMA of the <em>squares</em> of the gradients. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> If this is confusing, looking at the equation below might help:</p>
 <p>$$
 \begin{equation}
@@ -283,13 +294,13 @@ W^{[l]} = W^{[l]} - \alpha \frac{dW^{[l]}}{\sqrt{S_{dW^{[l]}}}+ \epsilon}
 $$</p>
 <p>where $\epsilon = 10^{-8}$ is a constant that guarantees numerical stability.</p>
 <p>The idea is similar to momentum, only that with the case of RMSProp we are shrinking the gradient by the square root of the squared EWMA of the gradients. This in turn means that the gradient dimension with the largest oscillation will be dampened proportionally to its size. In a nutshell, RMSProp constrains the oscillations away from the minima, also using EWMA. Intuitively, this is what&rsquo;s happening when we scale down our gradient by the squared EWMA of the gradient.</p>
-<h3 id="adam">
+<h2 id="adam">
   Adam
   <a class="heading-link" href="#adam">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Adam is usually introduced as a combination of momentum and RMSProp. It turns out that Adam has been shown to be more flexible and generalizable than momentum. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <p>The update step is literally combining momentum and RMSProp, and again we will only go over the $W^{[l]}$ update, ignoring the $b^{[l]}$ update for conciseness. We initialize $V_{dW^{[l]}}, S_{dW^{[l]}} = 0$:</p>
 <p>$$
@@ -318,13 +329,13 @@ $$</p>
 <li>$\beta_2 = 0.999$</li>
 <li>$\epsilon = 10^{-8}$</li>
 </ul>
-<h3 id="learning-rate-decay">
+<h2 id="learning-rate-decay">
   Learning Rate Decay
   <a class="heading-link" href="#learning-rate-decay">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>You might hear that RMSProp or Adam have adaptive learning rates. However we should think of these as two separate things. On the descriptions above, the learning rate $\alpha$ never changes. However we can combine the approaches described above with learning rate decay for better performance.</p>
 <p>Learning rate decay is a pretty simple idea: as we get closer to the a minima, we want to take smaller steps in gradient descent; that is, start with some $alpha$ and keep reducing that by some amount everytime to we make a step. The reason why we want to do this is that we might be running circles around the minima if the cost function has a degenerate minima, and therefore take longer to converge.</p>
 <p>There are many ways to do this, but the one described on the course is that we will decrease $\alpha$, the learning rate, by some fixed amount every <em>epoch</em> of training:</p>
@@ -378,6 +389,7 @@ $$</p>
 </ul>
 </li>
 </ul>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">here</a>.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>

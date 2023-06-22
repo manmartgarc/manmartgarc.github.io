@@ -13,17 +13,20 @@
 
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
-Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative.">
+This week&rsquo;s topics are:
+ Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning"/>
 <meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
-Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative."/>
+This week&rsquo;s topics are:
+ Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?"/>
 
 <meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning" />
 <meta property="og:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
-Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative." />
+This week&rsquo;s topics are:
+ Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-18T00:00:00+00:00" />
@@ -183,27 +186,45 @@ Practical Aspects of Deep LearningLink to headingSetting up our Machine Lea
       <div class="post-content">
         
         <p>This is the first week in the <a href="https://www.coursera.org/learn/deep-neural-network">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.</p>
-<h2 id="practical-aspects-of-deep-learning">
-  Practical Aspects of Deep Learning
-  <a class="heading-link" href="#practical-aspects-of-deep-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="setting-up-our-machine-learning-problem">
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#setting-up-our-machine-learning-problem">Setting up our Machine Learning problem</a>
+<ul>
+<li><a href="#train--dev--test-sets">Train / Dev / Test sets</a></li>
+<li><a href="#bias-variance-tradeoff">Bias-Variance Tradeoff</a></li>
+<li><a href="#basic-recipe-for-machine-learning">Basic Recipe for Machine Learning</a></li>
+</ul>
+</li>
+<li><a href="#regularizing-our-neural-network">Regularizing our Neural Network</a>
+<ul>
+<li><a href="#regularization">Regularization</a></li>
+<li><a href="#why-does-regularization-reduce-overfitting">Why Does Regularization Reduce Overfitting?</a></li>
+<li><a href="#dropout-regularization">Dropout Regularization</a></li>
+<li><a href="#understanding-dropout">Understanding Dropout</a></li>
+<li><a href="#other-regularization-methods">Other Regularization Methods</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-our-optimization-problem">Setting up our Optimization Problem</a></li>
+<li><a href="#normalizing-inputs">Normalizing Inputs</a></li>
+<li><a href="#vanishing-and-exploding-gradients">Vanishing and Exploding Gradients</a></li>
+<li><a href="#weight-initialization">Weight Initialization</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<hr>
+<h2 id="setting-up-our-machine-learning-problem">
   Setting up our Machine Learning problem
   <a class="heading-link" href="#setting-up-our-machine-learning-problem">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
-<h4 id="train--dev--test-sets">
+</h2>
+<h3 id="train--dev--test-sets">
   Train / Dev / Test sets
   <a class="heading-link" href="#train--dev--test-sets">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>Machine learning projects are highly iterative. That is, you try something new, see how it does and then adjust; very much like gradient descent. Therefore you want the iteration time to be quick so that you can try as many things as quickly as possible, without affecting the final performance of the model. Part of this is setting up your datasets correctly so that you can efficiently iterate over different approaches.</p>
 <p>If you have a data set $M$ of $|m|$ samples then you usually want to split it into three parts.</p>
 <ol>
@@ -214,13 +235,13 @@ Practical Aspects of Deep LearningLink to headingSetting up our Machine Lea
 <p>Note that these three subsets are disjoint, i.e. $M_{train} \cap M_{test} \cap M_{dev} = \emptyset$</p>
 <p>Historically most researchers would split the set $M$ using a 70%/30% training and testing respectively. If using a dev set most of the time they a 60%/20%/20% split for training, dev and test. This was reasonable for datasets that have sizes in the order of 10,000. If you have a dataset $M$ with 1,000,000 training samples, then it can be reasonable to use a 98%/1%/1% training, dev and test split. You can read more about how big a sample has to be for certain statistical properties to kick in, but a number around 10,000 is considered relatively safe.</p>
 <p>One assumption is that all the training samples $m \in M$ come from the same distribution, which implies that each of the splits also belong to the same distribution. This is critical because you don&rsquo;t want to develop a model with pictures of cats and then test it on picture of dogs. A key they is to make sure that your dev and test sets come from the same distribution. Having the training set come from a different distribution is more lax, as long as the training distribution is a superset of the dev and test sets. In some cases it might be okay to not have a test set, but measuring variance will be harder.</p>
-<h4 id="bias-variance-tradeoff">
+<h3 id="bias-variance-tradeoff">
   Bias-Variance Tradeoff
   <a class="heading-link" href="#bias-variance-tradeoff">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>The bias/variance tradeoff is a topic in machine learning and statistics. The whole idea of supervised learning is that, if you do it correctly, your model can generalize <em>beyond</em> the training set, i.e. samples it has not seen during training and still do a good job. We think that there is some parameters $\theta$ that minimize our cost function. We don&rsquo;t know what that is, and the only way to know that is to have <em>infinite</em> training samples. We need to make due with our estimate $\hat{\theta}$, which implies that $\theta \neq \hat{\theta}$. When we talk about the bias-variance tradeoff we are describing the errors, i.e. $\epsilon = \theta - \hat{\theta}$ that are produced by our model that uses our estimates of the parameters. In particular we are describing the mean and variance of the error distribution. The bias is a part of how far $\hat{\theta}$ is from $\theta$ on average, while the variance measures the spread of the errors.</p>
 <p>It turns out that we can characterize our expected test errors even further by decomposing them into three components (skipping some math):</p>
 <ol>
@@ -258,13 +279,13 @@ Practical Aspects of Deep LearningLink to headingSetting up our Machine Lea
         </figcaption>
 </figure>
 
-<h4 id="basic-recipe-for-machine-learning">
+<h3 id="basic-recipe-for-machine-learning">
   Basic Recipe for Machine Learning
   <a class="heading-link" href="#basic-recipe-for-machine-learning">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>Ideally we want a low-bias and low-variance model. But how do we get there?</p>
 <ol>
 <li>Do we have high bias? How is our performance on the training set relative to Bayes error rate?
@@ -286,20 +307,20 @@ Practical Aspects of Deep LearningLink to headingSetting up our Machine Lea
 </ol>
 <p>Following these steps, i.e. fixing high bias before high variance is the basic recipe for machine learning.</p>
 <p>It&rsquo;s mentioned in the course that in the deep learning era, there is less of a tradeoff. The ability to have bigger models and get more data are both tools that don&rsquo;t expose the bias-variance tradeoff, so usually these are your first go tos when hitting high bias or high variance. In general training a bigger network almost never hurts, <strong>as long</strong> as you add proper regularization, keeping the model complexity from exploding.</p>
-<h3 id="regularizing-our-neural-network">
+<h2 id="regularizing-our-neural-network">
   Regularizing our Neural Network
   <a class="heading-link" href="#regularizing-our-neural-network">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
-<h4 id="regularization">
+</h2>
+<h3 id="regularization">
   Regularization
   <a class="heading-link" href="#regularization">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>Regularization is a tool you employ when you suspect your model is suffering from high variance or overfitting. Regularization will reduce your model complexity by penalizing model complexity when evaluating its performance and therefore generating a &ldquo;simpler&rdquo; model. It turns out that you can add a term to your cost function, which is a measure of model complexity, so that more complex models result in a higher cost, therefore driving down complexity. But how do we measure model complexity? Let&rsquo;s answer this using the logistic regression case:</p>
 <p>Let&rsquo;s recall our cost function:</p>
 <p>$$
@@ -385,23 +406,23 @@ $$</p>
 <blockquote>
 <p>If you&rsquo;re coming from econ-land, you might have heard of Lasso and Ridge regressions. Lasso is a linear regression that uses the L1-norm, while Ridge is a linear regression that uses the L2-norm.</p>
 </blockquote>
-<h4 id="why-does-regularization-reduce-overfitting">
+<h3 id="why-does-regularization-reduce-overfitting">
   Why Does Regularization Reduce Overfitting?
   <a class="heading-link" href="#why-does-regularization-reduce-overfitting">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>We went over how regularization is equivalent to penalizing model complexity, and how model complexity can be measured by the magnitude of the parameters of your model, which is the mechanism through which we implement regularization. The intuition here is that parameters with high values assign <em>high sensitivity</em> to the features being multiplied by those parameters. The high sensitivity is what results in the high variance, and by penalizing the magnitude of the parameters is how we reduce overfitting.</p>
 <p>Another great way of thinking about it is to think about what happens in the activation functions when the values are big or small.</p>
 <p>Remember that $Z^{[l]} = W^{[l]}A^{[l-1]} + b^{[l]}$. This, we pass through our activation function $g^{[l]}$ so that we get $A^{[l]} = g^{[l]}(Z^{[l]})$. Taking as an example the sigmoid activation function $\sigma(x)$, think about what happens when the inputs $Z^{[l]}$ are small. How can $Z^{[l]}$ be small? If we set $\lambda$ to be really big, then most of our $W^{[l]}$ will be small, therefore making $Z^{[l]}$ small as well. When we pass small values, that is values close to $0$ to the sigmoid function, the outputs are approximately <em>linear</em>. It is only when $|x| \geq 2$ that $\sigma(x)$ (approximately) becomes non-linear. So in a way, setting $W{[l]}$ to be small <em>undoes</em> all the non-linear magic that you got from adding more layers to your network.</p>
-<h4 id="dropout-regularization">
+<h3 id="dropout-regularization">
   Dropout Regularization
   <a class="heading-link" href="#dropout-regularization">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>It turns out that measuring the &ldquo;size&rdquo; of your parameters is not the only way to measure model complexity. Conversely, minimizing the size of your parameters is also not the only way to punish model complexity. Dropout achieves a similar result by doing something more intuitive to some.</p>
 <p>In a nutshell, dropout <em>randomly</em> deletes some fraction of nodes in each hidden layer on each forward-backward pass. Since on each forward-backwards pass you are &ldquo;turning off&rdquo; some hidden units, the model trained on each iteration is literally smaller. The random component of the dropout guarantees that all parts of the model are affected equally on expectation. So what do we mean exactly by &ldquo;deleting&rdquo; nodes? We mean setting them to 0. It really is that simple.</p>
 <p>More formally, there is some probability $p$ that represents probability for <em>a single hidden unit</em> to be kept untouched. $p$ is referred to as the <em>keep probability</em>. Conversely, $1 - p$ is the &ldquo;dropout&rdquo; probability. Notice that the events are <em>independent</em> from each other. That is each <em>hidden unit</em>, i.e. each node is dropped independently from all the other units in that layer, and also from other layers.</p>
@@ -427,41 +448,41 @@ $$</p>
 <p>Will make $Z^{[4]}$ be <em>roughly</em> the same as it was originally. This scaling technique is called <a href="https://machinelearning.wtf/terms/inverted-dropout/">inverted dropout</a>.</p>
 <p>The intuition behind this rescaling is that when you set some hidden-units to zero, you are shifting the expected value of $A^{[3]}$, which is an issue when you do testing. Because when you evaluate your network with the test set, you <strong>do not do any dropout</strong>, the difference in expected values becomes a problem. Therefore the rescaling ameliorates the scaling issue between training and testing.</p>
 <p>Finally, you can apply a different value of $p$ to different layers, so that you have a vector $p$ where $p^{[l]}$ is the probability of keeping units in hidden layer $l$. This faces you with a tradeoff of having more hyperparameters, so it should be used wisely.</p>
-<h4 id="understanding-dropout">
+<h3 id="understanding-dropout">
   Understanding Dropout
   <a class="heading-link" href="#understanding-dropout">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>So why does dropout behave like regularization? It seems crazy to &ldquo;kill&rdquo; some nodes at random, it&rsquo;s the very definition of chaotic evil. It turns out that by doing this, the model will learn not to rely on any specific feature, because it might not be there the next time. The model will respond to dropout by <em>spreading</em> out the weights across the network, effectively reducing their magnitude. This is why dropout can be thought of as regularization.</p>
 <blockquote>
 <p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, where by randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
 </blockquote>
-<h4 id="other-regularization-methods">
+<h3 id="other-regularization-methods">
   Other Regularization Methods
   <a class="heading-link" href="#other-regularization-methods">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h4>
+</h3>
 <p>Another regularization method is that of data augmentation. For example if you have images as your training data, you might think about applying some geometric distortions (flipping, scaling, etc). This works as regularization by injecting more variance into your training set, making your model smarter by making it harder for it to put all its eggs in one basket (focusing too much on some parameters).</p>
 <p>Another method is early stopping. This amounts to regularization because early stopping might amount to stopping training <em>before</em> $W{[l]}$ gets &ldquo;too big&rdquo;. What is too big? You won&rsquo;t know. The problem with early stopping is that it conflates two processes that should be orthogonal (independent): doing well on your training samples and <em>not</em> overfitting. There&rsquo;s more information about orthogonizing your goals in the next course.</p>
-<h3 id="setting-up-our-optimization-problem">
+<h2 id="setting-up-our-optimization-problem">
   Setting up our Optimization Problem
   <a class="heading-link" href="#setting-up-our-optimization-problem">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>One thing is to make sure that your model has the right combination of bias and variance, which amounts to learning the problem at hand well enough and also being able to generalize to unseen samples. Now, we turn our attention to making the optimization process (learning the problem) easier and more efficient.</p>
-<h3 id="normalizing-inputs">
+<h2 id="normalizing-inputs">
   Normalizing Inputs
   <a class="heading-link" href="#normalizing-inputs">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Normalization is one of those topics that means different things to different people. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> Let&rsquo;s disambiguate the term and also talk about why normalizing our inputs might be helpful for our optimization process.</p>
 <p>As the name implies, normalization is the process of making something normal. Of course, there are many ways of making something &ldquo;normal&rdquo;, and we haven&rsquo;t even defined what &ldquo;normal&rdquo; is. Let&rsquo;s focus on one of the ways to normalize things.</p>
 <p>In the context of statistics, normalization usually refers to <em>standardizing</em>, which is where we calculate a <a href="https://en.wikipedia.org/wiki/Standard_score"><em>standard score</em></a> for a random variable $X$. It&rsquo;s called the <em>standard</em> score because its units are standard deviations.</p>
@@ -489,13 +510,13 @@ $$</p>
 </figure>
 
 <p>The contour plot above shows an imaginary two dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features' scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
-<h3 id="vanishing-and-exploding-gradients">
+<h2 id="vanishing-and-exploding-gradients">
   Vanishing and Exploding Gradients
   <a class="heading-link" href="#vanishing-and-exploding-gradients">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Vanishing and exploding gradients sound magical, if not outright dangerous. What this means is that when we train very deep networks, and we take the derivatives for gradient descent, the magnitude of these derivatives either &ldquo;vanish&rdquo; to $0$ or &ldquo;explode&rdquo; towards $\infty$. How does this disaster come about?</p>
 <p>Think about a very deep $L$-layered neural network. Imagine also that all $W^{[l]}$ are the same:</p>
 <p>$$
@@ -513,13 +534,13 @@ $$</p>
 $$</p>
 <p>That is the $W^{[l]}$ is multiplied by itself $L$ times. In our case this amounts to $1.5^L$, which literally grows exponentially with the number of layers. Imagine now that instead of $1.5$ on the diagonal of $W^{[l]}$ we have a number less than 0, i.e. $0.5$. With the same problem setup, now the values will be $0.5^L$ which is an expression that <em>shrinks</em> exponentially in the number of layers.</p>
 <p>In either case, this is a huge problem. With exploding gradients, the gradient descent steps are gigantic, and with vanishing gradients the gradient descent steps are tiny. Either way, converging the the minimum of our cost function will take a long, long time. We tackle this issue by being more careful in the way that we initialize our parameters.</p>
-<h3 id="weight-initialization">
+<h2 id="weight-initialization">
   Weight Initialization
   <a class="heading-link" href="#weight-initialization">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>In order to avoid exploding or vanishing gradients, we need to be more careful as to how we initialize our parameters. The main idea here is that the more hidden units in a hidden-layer, the smaller each $w^{[l]}_j$ you want. This is to keep large hidden layers and small hidden layers in around the same output scale.</p>
 <p>We will still initialize our parameters to random values, but we will <em>scale</em> them by a term, $s$, that is proportional to the size of the inputs coming into a layer $l$. The whole point of this is to adjust the variance of $W^{[l]}$ so that it&rsquo;s proportional to inputs, $n^{[l-1]}$:</p>
 <p>$$

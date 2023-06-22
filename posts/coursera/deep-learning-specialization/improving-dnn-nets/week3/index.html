@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the third and last week of the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera.
+This week&rsquo;s topics are:
+ Hyperparameter Tuning  Tuning Process  Random Search Coarse-to-fine Grained Search   Using an Appropriate Scale when Searching  Python Implementation   Hyperparameter Tuning in Practice: Pandas vs. Caviar   Batch Normalization  Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work?">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks"/>
+<meta name="twitter:description" content="This is the third and last week of the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera.
+This week&rsquo;s topics are:
+ Hyperparameter Tuning  Tuning Process  Random Search Coarse-to-fine Grained Search   Using an Appropriate Scale when Searching  Python Implementation   Hyperparameter Tuning in Practice: Pandas vs. Caviar   Batch Normalization  Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work?"/>
+
+<meta property="og:title" content="Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks" />
+<meta property="og:description" content="This is the third and last week of the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera.
+This week&rsquo;s topics are:
+ Hyperparameter Tuning  Tuning Process  Random Search Coarse-to-fine Grained Search   Using an Appropriate Scale when Searching  Python Implementation   Hyperparameter Tuning in Practice: Pandas vs. Caviar   Batch Normalization  Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-21T00:00:00+00:00" />
+
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.92.2" />
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
+              Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-06-21T00:00:00Z">
+                June 21, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              16-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning/">Deep Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/improving-deep-learning-networks/">Improving Deep Learning Networks</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the third and last week of the <a href="https://www.coursera.org/learn/deep-neural-network">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#hyperparameter-tuning">Hyperparameter Tuning</a>
+<ul>
+<li><a href="#tuning-process">Tuning Process</a>
+<ul>
+<li><a href="#random-search">Random Search</a></li>
+<li><a href="#coarse-to-fine-grained-search">Coarse-to-fine Grained Search</a></li>
+</ul>
+</li>
+<li><a href="#using-an-appropriate-scale-when-searching">Using an Appropriate Scale when Searching</a>
+<ul>
+<li><a href="#python-implementation">Python Implementation</a></li>
+</ul>
+</li>
+<li><a href="#hyperparameter-tuning-in-practice-pandas-vs-caviar">Hyperparameter Tuning in Practice: Pandas vs. Caviar</a></li>
+</ul>
+</li>
+<li><a href="#batch-normalization">Batch Normalization</a>
+<ul>
+<li><a href="#normalizing-activations-in-a-network">Normalizing Activations in a Network</a></li>
+<li><a href="#fitting-batch-norm-into-a-neural-network">Fitting Batch Norm into a Neural Network</a></li>
+<li><a href="#why-does-batch-norm-work">Why does Batch Norm work?</a></li>
+<li><a href="#batch-norm-at-test-time">Batch Norm at Test Time</a></li>
+</ul>
+</li>
+<li><a href="#multi-class-classification">Multi-class Classification</a>
+<ul>
+<li><a href="#softmax-regression">Softmax Regression</a></li>
+<li><a href="#training-a-softmax-classifier">Training a Softmax Classifier</a></li>
+</ul>
+</li>
+<li><a href="#programming-frameworks">Programming Frameworks</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<h2 id="hyperparameter-tuning">
+  Hyperparameter Tuning
+  <a class="heading-link" href="#hyperparameter-tuning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We have seen by now that neural networks have a lot of hyperparameters. Remember that hyperparameters remain fixed during training. This means that the process of finding reasonable hyperparameters, called hyperparameter tuning, is a process that is separate from training your model.</p>
+<h3 id="tuning-process">
+  Tuning Process
+  <a class="heading-link" href="#tuning-process">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>As mentioned above, neural networks can have a lot of parameters:</p>
+<ul>
+<li>$\alpha$: the learning rate.</li>
+<li>$\beta$: the EWMA term in momentum.</li>
+<li>$\beta_1, \beta_2, \epsilon$: the EWMA parameters for Adam.</li>
+<li>The number of layers $L$.</li>
+<li>The number of hidden units $n^{[l]}$.</li>
+<li>Learning rate decay rate if using learning rate decay.</li>
+<li>The size of mini batches.</li>
+</ul>
+<p>If it seems daunting, it&rsquo;s because it is. Hyperparameter tuning is necessary most of the time because good hyperparameters from one problem not always translate to other problems. However, there are some hyperparameters that are usually more important than others. This can help you guide your tuning to focus on the most important ones first.</p>
+<p>In the course, Andrew defines three tiers of importance for hyperparameter tuning, the first ones being more important than the latter ones:</p>
+<ol>
+<li>$\alpha$</li>
+<li>$\beta$ if using momentum. Using $\beta = 0.9$ is a good default. The number of hidden layers and the mini-batch size.</li>
+<li>Learning rate decay, and $L$.</li>
+</ol>
+<blockquote>
+<p>If using Adam the defaults of $\beta_1 = 0.9, \beta_2 = 0.999, \epsilon=10^{-8}$ usually work fine.</p>
+</blockquote>
+<p>Now we know where to focus first. But how do we actually search and evaluate values?</p>
+<p>In the earlier generation of machine learning algorithms, researchers would usually use <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid search</a>. Grid search is an exhaustive search over a manually specified subset of the hyperparameter space, usually using cross validation. It&rsquo;s called a grid because if you imagine having two hyperparameters $h_1, h_2$, and some range of values <em>and</em> a step-size for each of the ranges $r_1, r_2$, then you can imagine a grid or matrix where each cell is a combination of $h_1, h_2$ over each of their ranges. For example you might say, I want to search a value for $\alpha$ in the interval $[0.001, 0.1]$, and I will draw some <em>equidistant</em> samples in that range and evaluate all the values. Notice that the &ldquo;grid&rdquo; becomes a matrix, or $n$-dimensional tensor as you add more hyperparameters; this is really bad because the volume of the search space increases exponentially with each additional dimension or hyperparameter.</p>
+<h4 id="random-search">
+  Random Search
+  <a class="heading-link" href="#random-search">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Staying within the simple example of using two hyperparameters $h_1, h_2$, the problem with grid search might be apparent: you evaluate the <em>same</em> value for each hyperparameter multiple times. If set a grid of $9$ cells, then each value of both $h_1, h_2$ will be tested three times while holding the other constant. This is why the recommendation is to use <strong>random search</strong>: where each combination of $h_1, h_2$ is unique (the probability of repetition being low if you sample appropriately at random). The following image illustrates this point:</p>
+<figure><img src="/images/grid-rand-search.png"
+         alt="Bergstra and Bengio | Hyperparameter Search" width="75%"/><figcaption>
+            <p><a href="https://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf">Bergstra and Bengio | Hyperparameter Search</a></p>
+        </figcaption>
+</figure>
+
+<h4 id="coarse-to-fine-grained-search">
+  Coarse-to-fine Grained Search
+  <a class="heading-link" href="#coarse-to-fine-grained-search">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Another, optional, recommendation is to first find a promising range for search and then zoom in within the range. This is called coarse-to-fine grained search.</p>
+<h3 id="using-an-appropriate-scale-when-searching">
+  Using an Appropriate Scale when Searching
+  <a class="heading-link" href="#using-an-appropriate-scale-when-searching">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>So we know that we should sample the hyperparameter space at random. However, this doesn&rsquo;t necessarily mean to do it uniformly at random. The reason for this is that the <em>search scale</em> for each hyperparameter matters a lot. Being able to communicate the desired scale to the random sampling process is crucial for efficient search.</p>
+<p>For some hyperparameters, such as the size of a hidden-layer $l$, $n^{[l]}$, it might be reasonable to sample uniformly at random. Say that you want to search for $n^{[l]}$ over the range $[50, 100]$. Then values like $89, 57, 62, 89, 74$ might be reasonable (actually sampled at random).</p>
+<blockquote>
+<p>Remember that a continuous uniform distribution has a PDF of $\frac{1}{b-a}$ where $a,b$ are the minimum and maximum values. Therefore every value in the range $[a, b]$ has the same probability of being realized.</p>
+</blockquote>
+<p>This will not work for a hyperparameter like $\alpha$ however. Say that we suspect that a good $\alpha$ value is in the range $[0.0001, 1]$ and we sample uniformly at random. Since every value has the same likelihood of being drawn, this means that values between $[0.1, 1]$ will be sampled with $90\%$ probability. What about the interval $[0.0001, 0.1)$? These values have only a $10\%$ probability of being drawn. This is terrible because we are <em>equally</em> interested in values in both ranges.</p>
+<p>This is why it makes more sense to sample for $\alpha$ values on the <strong>log scale</strong> as opposed to the <strong>linear scale</strong>. When we search over the linear scale and sample uniformly at random, we will spend $10\%$ of our effort searching over $[0.0001, 0.1)$ and $90\%$ of our effort searching over $[0.1, 1]$. On the other hand, when using a log-scale and sampling uniformly at random, we will spend an <em>equal</em> amount of effort searching over $[0.0001, 0.001), [0.001, 0.01), [0.01, 0.1), [0.1, 1]$.</p>
+<h4 id="python-implementation">
+  Python Implementation
+  <a class="heading-link" href="#python-implementation">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>The way to implement the example above is as follows on Python:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np.random.seed(<span style="color:#ff0;font-weight:bold">1337</span>)
+r = -<span style="color:#ff0;font-weight:bold">4</span> * np.random.rand()
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#ff0;font-weight:bold">10</span> ** r)
+<span style="color:#ff0;font-weight:bold">0.0895161303335359</span>
+</code></pre></div><p>Let&rsquo;s break this down. Remember that <code>np.random.rand()</code> generates random samples from a uniform distribution over the interval $[0, 1]$. Now, when we want to sample uniformly at random on a log scale, we want to sample uniformly <em>in the exponents</em>. What exponents? In our case, we want to sample uniformly in the range of $[0.0001, 1]$ which is the same as $[10^{-4}, 10^{0}]$. So if we can draw random samples $r$ from a uniform random distribution in the range $[-4, 0]$, then we can plug those into $10^{-r}$ and thus generate the samples in the log scale. How do we get $-4$? It&rsquo;s as simple as $-4 = \log_{10}0.0001$.</p>
+<p>Let&rsquo;s generate $10$ such values for $\alpha$ in a vectorized way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np.random.seed(<span style="color:#ff0;font-weight:bold">1337</span>)
+rs = -<span style="color:#ff0;font-weight:bold">4</span> * np.random.rand(<span style="color:#ff0;font-weight:bold">10</span>)  <span style="color:#007f7f"># we draw 10 samples</span>
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#ff0;font-weight:bold">10</span> ** rs)  <span style="color:#007f7f"># this is vectorized over `rs`</span>
+array([<span style="color:#ff0;font-weight:bold">2.31880438e-01</span>, <span style="color:#ff0;font-weight:bold">7.71780714e-02</span>, <span style="color:#ff0;font-weight:bold">1.45456272e-02</span>, <span style="color:#ff0;font-weight:bold">5.19993408e-02</span>,
+       <span style="color:#ff0;font-weight:bold">8.44167674e-03</span>, <span style="color:#ff0;font-weight:bold">8.95835560e-02</span>, <span style="color:#ff0;font-weight:bold">1.24640408e-04</span>, <span style="color:#ff0;font-weight:bold">1.17149864e-03</span>,
+       <span style="color:#ff0;font-weight:bold">3.45862195e-01</span>, <span style="color:#ff0;font-weight:bold">2.85036007e-02</span>])
+</code></pre></div><h3 id="hyperparameter-tuning-in-practice-pandas-vs-caviar">
+  Hyperparameter Tuning in Practice: Pandas vs. Caviar
+  <a class="heading-link" href="#hyperparameter-tuning-in-practice-pandas-vs-caviar">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Andrew mentions that there are two ways that hyperparameter tuning happens in practice: pandas vs. caviar. No, it&rsquo;s not related to the pandas Python package. It&rsquo;s related to how the animal, the giant panda, has offspring. Pandas usually have very few offspring and therefore put a lot of effort into the upbringing of each (don&rsquo;t think too heavily on the veracity of this statement). This is contrasted to other species that lay thousands of eggs, where each egg is almost left to chance (again no offense to the regal Giant Pacific Octopus mothers whom sometimes give their life for their precious 120,000 to 400,000 eggs).</p>
+<p>The idea is that sometimes your model is too big and you cannot afford to train multiple instances of your model, so must babysit it like a little panda. That is, adjusting the hyperparameters over longer periods of time. On the other hand, the caviar approach is where you can afford to train multiple models in parallel with different hyperparameters and then pick the winner.</p>
+<h2 id="batch-normalization">
+  Batch Normalization
+  <a class="heading-link" href="#batch-normalization">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>You might remember how we mentioned that <a href="/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#normalizing-inputs">normalizing your inputs</a> could help our optimization run faster. The issue with this is that even though our input layer is getting  normalized values, the outputs of each layer $l$, $A^{[l]}$ are no longer normalized. Batch normalization is applying the same reasoning but on each <em>layer</em>.</p>
+<blockquote>
+<p>Batch normalization doesn&rsquo;t have anything to do with batch or mini-batch gradient descent and can be implement under both approaches.</p>
+</blockquote>
+<p>A key thing is that we won&rsquo;t normalize $A^{[l]}$ but $Z^{[l]}$ instead. Let&rsquo;s go over the steps.</p>
+<h3 id="normalizing-activations-in-a-network">
+  Normalizing Activations in a Network
+  <a class="heading-link" href="#normalizing-activations-in-a-network">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>For a given layer $l$ in our network, under the <strong>batch</strong> gradient descent approach, we compute:</p>
+<p>$$
+\begin{equation}
+Z^{[l]} = W^{[l]}A^{[l-1]} + b^{[l]}
+\end{equation}
+$$</p>
+<p>Now, we will normalize $Z^{[l]}$ via standardization:</p>
+<p>$$
+\begin{equation}
+Z^{[l]}_{norm} = \frac{Z^{[l]} - \bar{Z}^{[l]}}{S^{[l]} + \epsilon}
+\end{equation}
+$$</p>
+<p>where $\bar{Z}^{[l]}$ is the sample mean of $Z^{[l]}$ and $S^{[l]}$ is the sample standard deviation of $Z^{[l]}$.</p>
+<p>Finally we compute $\tilde{Z}^{[l]}$ by:</p>
+<p>$$
+\begin{equation}
+\tilde{Z}^{[l]} = \gamma^{[l]} Z^{[l]}_{norm} + \beta^{[l]}
+\end{equation}
+$$</p>
+<p>There should be nothing new until the last step; we just standardized $Z^{[l]}$. But what is this new $\tilde{Z}^{[l]}$? It&rsquo;s simply a rescaled and reshifted version of $Z_{norm}^{[l]}$. Remember that standardizing samples of random variable will make them have approximately mean $0$ and variance $1$ if the random variable is normally distributed. Maybe this particular center and spread is not what&rsquo;s best for our model. Remember what happens in <a href="posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#why-does-regularization-reduce-overfitting">regularization</a> when $Z_i^{[l]} \approx 0, \forall i$ and $g^{[l]} = \sigma(x)$; maybe centering our $Z^{[l]}$ around $0$ makes our neural network approximately linear.</p>
+<p>Having $\gamma^{[l]}, \beta^{[l]}$ allows us to shift and scale $Z^{[l]}_{norm}$ in a way that improves the performance of our model. Yes, this means that $\gamma^{[l]}, \beta^{[l]}$ are new parameters that we can learn via our garden variety gradient descent.</p>
+<p>Think about what happens when $\gamma^{[l]} = S^{[l]} + \epsilon$ and $\beta^{[l]} = \bar{Z}^{[l]}$. In this case the last step <em>undoes</em> the normalization! This is not relevant to the actual implementation but simply to highlight that the learnable parameters are as powerful as standardizing.</p>
+<h3 id="fitting-batch-norm-into-a-neural-network">
+  Fitting Batch Norm into a Neural Network
+  <a class="heading-link" href="#fitting-batch-norm-into-a-neural-network">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>So now we have $\gamma^{[l]}, \beta^{[l]}$ for each of our hidden layers $l$. Remember that $\beta^{[l]}$ is different from $b^{[l]}$ and also different from the $\beta$ parameter used in gradient descent with momentum. We can learn these parameters in the same way we have been learning $W^{[l]}, b^{[l]}$; that is updating them on each step of gradient descent. We can <em>even</em> use EWMA methods such as momentum, RMSProp or Adam. One of the amazing things about these approaches is that they&rsquo;re generalizable.</p>
+<blockquote>
+<p>When using <em>mini-batch</em> gradient descent, we use the mean and standard deviation of <em>each mini-batch</em> to standardized. However, the $\gamma^{[l]}, \beta^{[l]}$ is the same for all mini-batches within a layer $l$.</p>
+</blockquote>
+<p>A final detail mentioned in the course is that, when using batch normalization, the parameters $b^{[l]}$ are redundant because they are subtracted when standardizing. Therefore you can drop $b^{[l]}, \forall l$ from the set of learnable parameters and simply focus on $\beta^{[l]}$.</p>
+<h3 id="why-does-batch-norm-work">
+  Why does Batch Norm work?
+  <a class="heading-link" href="#why-does-batch-norm-work">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Earlier we discussed how normalization helps the optimization by undoing weird scales in our data. Batch norm works on the exact principle, but not just on the input layer; it applies this idea to all the layers. Remember that the hidden-layers are the &ldquo;feature generation&rdquo; layers, so this also means that batch norm undoes any weird scaling issues produced by layer $l-1$ which affect layer $l$, but also layer $l+1$ and so on.</p>
+<p>Another way to think about this is to think about what happens in the following scenario. Imagine that we train a cat classifier using <em>only</em> cat pictures of cats with black fur. Assuming that our classifier performs well, it might not perform well on tasks where cats are allowed to have different fur colors than black. This is called <em>covariate shift</em> and it simply means that our training data comes from a different distribution than the testing data. What batch norm does it to weaken the coupling between layer $l$ and layers $1, 2, \dots, l$, which can be thought of as <em>internal</em> covariate shift.</p>
+<p>Finally, batch norm can act as a slight regularizer. This occurs because when using batch norm with mini-batches, there is sampling error in the estimates of the mean and variance of each mini-batch. This noise ends up having a similar effect to dropout, which can result in some slight regularization. The noise added is inversely proportional to the mini-batch size by $O\left(\frac{1}{\sqrt{n}}\right)$, so that the larger the mini-batch size the less the regularization effect.</p>
+<h3 id="batch-norm-at-test-time">
+  Batch Norm at Test Time
+  <a class="heading-link" href="#batch-norm-at-test-time">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>When we train our network with mini-batch batch norm, we calculate the mean and variance within each mini-batch. What happens when we want to make predictions or test our model? How can we calculate the mean and variance for a single test example?</p>
+<p>We don&rsquo;t. Instead, we keep a running average of the mean and variance for each layer using our favorite EWMA method during training. The last value is the one we use for testing, that is, the latest EWMA estimates for each layer&rsquo;s mean and variance.</p>
+<p>Andrew also mentions that batch norm is pretty robust to the particular approach you use to estimate the mean and variance when testing time. If you estimate it using your entire training set or if you use an EWMA approach, the results should be very similar.</p>
+<h2 id="multi-class-classification">
+  Multi-class Classification
+  <a class="heading-link" href="#multi-class-classification">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="softmax-regression">
+  Softmax Regression
+  <a class="heading-link" href="#softmax-regression">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>So far, all classification examples have been for binary classifiers, i.e. we only have two classes to predict: is this cat or not? What happens when we want to classify many classes, such as cats, dogs, baby chicks and anything else?</p>
+<p>We denote the number of classes as $C$. In the case above $C = 4$. Ideally we want to go from an input image, to a vector $A^{[L]} = \hat{y}$, where $\hat{y}_1 = P(C_1 \mid x), \hat{y}_2 = P(C_2 | x), \dots, \hat{y}_k = P(C_k | x)$. That is, each entry in $\hat{y}$ describes the probability that an input $x$ belongs to <em>each</em> class $k \in C$. Since each class should be independent, it would be nice if:</p>
+<p>$$\sum_{i=1}^k \hat{y}_k = 1$$</p>
+<p>That is, the probabilities for each class should add up to one, that being one of the requirements of a valid sample space. We solved this in the binary case using our trusty old friend the sigmoid $\sigma(x)$, which maps $\mathbb{R} \rightarrow (0, 1)$. But the sigmoid $\sigma(x)$ takes a single scalar, what can we do if $x$ is a vector? That is, what can we do when we have more than 2 classes? It turns out that there is a generalization of the sigmoid $\sigma(x)$ called the <a href="https://en.wikipedia.org/wiki/Softmax_function">softmax function</a>.</p>
+<p>The standard (unit) softmax function $\sigma: \mathbb{R}^K \mapsto (0, 1)^K$. This means that the softmax function $\sigma$ maps a $K$ dimensional real-valued vector, to a $K$ dimensional vector where each element is in the interval $(0 ,1)$, and it&rsquo;s defined when $K \geq 1$ by:</p>
+<p>$$
+\begin{equation}
+\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}
+\end{equation}
+$$</p>
+<p>Notice that in our case, $K = C$ where $C$ is the number of classes in our approach. Notice that because of the denominator, which is normalizing, all of our values will add up to $1$, which is exactly what we want.</p>
+<p>Let&rsquo;s walk over one example. Assume that:</p>
+<p>$$
+\begin{equation}
+Z^{[l]} = \begin{bmatrix}
+5 \\
+2 \\
+-1 \\
+3
+\end{bmatrix}
+\end{equation}
+$$</p>
+<p>Now let&rsquo;s calculate $A^{[l]} = \sigma(Z^{[l]})$ using the softmax. We will do this in two steps, first calculate the numerator, $t$:</p>
+<p>$$
+\begin{equation}
+t^{[l]} = \exp(Z^{[l]}) = \begin{bmatrix}
+e^5 \\
+e^2 \\
+e^{-1} \\
+e^3
+\end{bmatrix} = \begin{bmatrix}
+148.4 \\
+7.4 \\
+0.4 \\
+20.1
+\end{bmatrix}
+\end{equation}
+$$</p>
+<p>Now we normalize $t^{[l]}$ by the sum $\sum_{j=1}^4 e^{t_j} = 176.3$ to get $A^{[l]}$</p>
+<p>$$
+\begin{equation}
+A^{[l]} = \hat{y} = \frac{t^{[l]}}{176.3} = \begin{bmatrix}
+\frac{148.4}{176.3} \\
+\frac{7.4}{176.3} \\
+\frac{0.4}{176.3} \\
+\frac{20.1}{176.3}
+\end{bmatrix} = \begin{bmatrix}
+0.842 \\
+0.042 \\
+0.002 \\
+0.114
+\end{bmatrix}
+\end{equation}
+$$</p>
+<p>Now we can interpret these as probabilities! For example $P(x | C_1) = 0.842, P(x | C_2) = 0.042$ and so on. Also notice that the sum of these is $1$ because of the normalization in the denominator. Of course, we can think of the softmax as just another activation function, albeit a multi-dimensional one.</p>
+<blockquote>
+<p>The name softmax comes from the comparison against the &ldquo;hard max&rdquo; function, which used in our case would return the vector $[1, 0, 0, 0]$, that is a boolean mask of the maximum value in the vector. The softmax is a &ldquo;continuous&rdquo; or &ldquo;soft&rdquo; version of that so that the vector we get as output is $[0.842, 0.042, 0.002, 0.114]$.</p>
+</blockquote>
+<p>You might be thinking, what if $C=2$? In this case we are back to binary classification. If we compare softmax regression to logistic regression, then when $C=2$ softmax reduces to logistic regression. However, softmax can generalize logistic regression to $C=K$ dimensions or classes.</p>
+<h3 id="training-a-softmax-classifier">
+  Training a Softmax Classifier
+  <a class="heading-link" href="#training-a-softmax-classifier">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>It turns out that using negative log loss as your loss function generalizes nicely to many classes, i.e. $C &gt; 2$.</p>
+<p>Another thing to keep in mind if we are using the vectorized implementation, where:</p>
+<p>$$
+Y = [y^{(1)}, y^{(2)}, \dots, y^{(m)}]
+$$</p>
+<p>Then both $Y$ and $\hat{Y}$&rsquo;s dimensions will be $(C, m)$ now instead. That is each sample $m$ will have it&rsquo;s own softmax vector describing the probability that it belongs to each class.</p>
+<h2 id="programming-frameworks">
+  Programming Frameworks
+  <a class="heading-link" href="#programming-frameworks">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Okay, never program your deep learning framework from scratch unless you are an expert trying to squeeze the latest bits of performance in some kind of specialized hardware. Just go with your favorite deep learning framework package. Hopefully go with one that has a vibrant, active community where you can get support and learn how to use the framework.</p>
+<p>Most of the frameworks differ in their approaches and they ultimately end up being equivalent. Like many other packages, measuring the &ldquo;best&rdquo; is hard because the &ldquo;best&rdquo; package is not just the fastest, but the easiest to use, the one with the best community and support, etc.</p>
+<p>The key thing that all frameworks share is that they solve the problem of automatic differentiation. That is you can define some data, some kind of optimizer, some kind of cost function, and then automatically differentiate the cost function with respect to some parameters. For the purposes of the course, all frameworks should be thought of as equivalent. The course goes over a <em>very</em> simple TensorFlow example, but I decided to ignore it since TensorFlow&rsquo;s documentation has better introductory examples in my opinion.</p>
+<h2 id="summary">
+  Summary
+  <a class="heading-link" href="#summary">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>Hyperparameter tuning is the process of finding suitable hyperparameter values for a neural network.
+<ul>
+<li>The tuning process involves identifying important hyperparameters and searching for optimal values.</li>
+<li>Random search is recommended over grid search for hyperparameter optimization.</li>
+<li>Coarse-to-fine grained search involves narrowing down the search range after an initial exploration.</li>
+<li>Using an appropriate scale when searching for hyperparameters is important, and sampling on a log scale is often preferred for certain hyperparameters.</li>
+<li>Comparison between the &ldquo;pandas&rdquo; and &ldquo;caviar&rdquo;: babysitting a model vs training many models in parallel.</li>
+</ul>
+</li>
+<li>Batch normalization is a technique to normalize the activations in a neural network.
+<ul>
+<li>It involves normalizing the inputs of each layer using the sample mean and standard deviation.</li>
+<li>Batch normalization helps with optimization and can be applied under both batch and mini-batch gradient descent approaches.</li>
+</ul>
+</li>
+<li>Multi-class classification is the generalization of logistic regression from $C=2$ to $C=K$ where $C$ is the number of classes.</li>
+<li>Programming frameworks for deep learning are vast and many. Choose one that has a good community and support.</li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

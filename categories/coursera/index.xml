@@ -6,7 +6,18 @@
     <description>Recent content in Coursera on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</guid>
+      <description>This is the third and last week of the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera.
+This week&amp;rsquo;s topics are:
+ Hyperparameter Tuning  Tuning Process  Random Search Coarse-to-fine Grained Search   Using an Appropriate Scale when Searching  Python Implementation   Hyperparameter Tuning in Practice: Pandas vs. Caviar   Batch Normalization  Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work?</description>
+    </item>
+    
     <item>
       <title>Improving Deep Learning Networks: Week 2 | Optimization Algorithms</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</link>
@@ -14,7 +25,8 @@
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
       <description>This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
-Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$.</description>
+This week&amp;rsquo;s topics are:
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Summary   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
     </item>
     
     <item>
@@ -24,7 +36,8 @@ Optimization AlgorithmsLink to headingMini-batch Gradient DescentLink to 
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
       <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
-Practical Aspects of Deep LearningLink to headingSetting up our Machine Learning problemLink to headingTrain / Dev / Test setsLink to headingMachine learning projects are highly iterative.</description>
+This week&amp;rsquo;s topics are:
+ Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?</description>
     </item>
     
     <item>
@@ -34,7 +47,8 @@ Practical Aspects of Deep LearningLink to headingSetting up our Machine Lea
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
       <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&#39; weeks ideas into $L$-layered networks.
-Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
+This week&amp;rsquo;s topics are:
+ Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Summary   Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -44,7 +58,8 @@ Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to hea
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
- Shallow Neural NetworkLink to headingOverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
+This week&amp;rsquo;s topics are:
+ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
     </item>
     
     <item>
@@ -53,8 +68,9 @@ Deep Neural NetworksLink to headingDeep L-Layer neural networkLink to hea
       <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
-      <description>Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
- Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+      <description>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+This week&amp;rsquo;s topics are:
+ Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
     </item>
     
     <item>

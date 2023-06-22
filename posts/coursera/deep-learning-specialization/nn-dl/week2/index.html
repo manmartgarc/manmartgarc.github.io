@@ -12,18 +12,21 @@
 
 
 <meta name="author" content="Manuel Martinez">
-<meta name="description" content="Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
- Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier.">
+<meta name="description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+This week&rsquo;s topics are:
+ Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics"/>
-<meta name="twitter:description" content="Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
- Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier."/>
+<meta name="twitter:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+This week&rsquo;s topics are:
+ Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier."/>
 
 <meta property="og:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics" />
-<meta property="og:description" content="Neural Network BasicsLink to headingHere we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
- Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier." />
+<meta property="og:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+This week&rsquo;s topics are:
+ Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-14T00:00:00+00:00" />
@@ -155,7 +158,7 @@
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              12-minute read
+              13-minute read
             </span>
           </div>
           
@@ -182,22 +185,26 @@
 
       <div class="post-content">
         
-        <h2 id="neural-network-basics">
-  Neural Network Basics
-  <a class="heading-link" href="#neural-network-basics">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.</p>
+        <p>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#binary-classification">Binary Classification</a></li>
+<li><a href="#logistic-regression">Logistic Regression</a></li>
+<li><a href="#logistic-function">Logistic Function</a></li>
+<li><a href="#gradient-descent">Gradient Descent</a></li>
+<li><a href="#computation-graph">Computation Graph</a></li>
+<li><a href="#python-and-vectorization">Python and Vectorization</a></li>
+<li><a href="#broadcasting">Broadcasting</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
 <hr>
-<h3 id="binary-classification">
+<h2 id="binary-classification">
   Binary Classification
   <a class="heading-link" href="#binary-classification">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Binary classification is a supervised learning approach where you train what&rsquo;s called a <em>classifier</em>. The binary classifier is a model that learns how to discriminate between two classes from the features, think about cats and dogs. A key concept is that of <a href="https://en.wikipedia.org/wiki/Linear_separability">linearly separability</a>:</p>
 <figure><img src="/images/linear-separable.png"
          alt="The existence of a line separating the two types of points means that the data is linearly separable"/><figcaption>
@@ -206,13 +213,13 @@
 </figure>
 
 <p>This is a property of your training data, some datasets are linearly separable and others are not. You can a have a <em>linear</em> binary classifier that works perfectly if the data is linearly separable, and this is what a perceptron can do, the building blocks of neural nets. However if you imagine a dataset where there is no line that separates the classes then you need a non-linear classifier, which is extremely common when you work with data in the wild. There are two main ways of adding non-linearities to a linear classifier: use a <a href="https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick">kernel</a> classifier, or you can add a <strong>single</strong> hidden layer to a perceptron, making it into a neural network. One of the best demonstrations of this principle is in creating a classifier that works on the <a href="https://www.youtube.com/watch?v=s7nRWh_3BtA">XOR</a> problem. It turns out that the latter is much more versatile.</p>
-<h3 id="logistic-regression">
+<h2 id="logistic-regression">
   Logistic Regression
   <a class="heading-link" href="#logistic-regression">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>A basic perceptron can be a linear classifier, but by itself it cannot tell you how uncertain it is about a particular prediction. If dogs are labeled as $0$ and cats as $1$, then you don&rsquo;t want ones and zeros, but actually a probability that a training sample is a cat (or a dog depending on the positive class). We can define what we want our prediction to be:</p>
 <p>$$
 \begin{equation}
@@ -231,14 +238,14 @@ y_i = \mathbf{x}_i^Tw + b
 \end{equation}
 $$</p>
 <p>It turns out that under some assumptions, linear regression has a closed form solution, which simply means that you can take out a pen and do algebra and solve for a set of linear equations using <a href="https://en.wikipedia.org/wiki/Least_squares">least squares</a>. The next step will undo our ability to have a closed-form solution. If you&rsquo;re into economics you might now this and much more by heart, but to the extent of this course, it&rsquo;s enough to know that we have a way of fitting a line (linear classifier) to our data, and that it has a closed-form solution.</p>
-<h3 id="logistic-function">
+<h2 id="logistic-function">
   Logistic Function
   <a class="heading-link" href="#logistic-function">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
-<p>We now have a way of fitting a line to our data. However that line&rsquo;s domain, it&rsquo;s range of values, ranges over all the real numbers $\mathbb{R}$. Our linear regression could output any number, but we want probabilities. It turns out that there is a nice way to map the real numbers $\mathbb{R}$, or the interval $[-\infty, \infty]$ into the interval $[0, 1]$. You can do this with a type of <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a>, called the standard <a href="https://en.wikipedia.org/wiki/Logistic_function">logistic function</a>:</p>
+</h2>
+<p>We now have a way of fitting a line to our data. However that line&rsquo;s domain, it&rsquo;s range of values, ranges over all the real numbers $\mathbb{R}$. Our linear regression could output any number, but we want probabilities. It turns out that there is a nice way to map the real numbers $\mathbb{R}$, or the interval $[-\infty, \infty]$ into the interval $(0, 1)$. You can do this with a type of <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a>, called the standard <a href="https://en.wikipedia.org/wiki/Logistic_function">logistic function</a>:</p>
 <p>$$
 \begin{equation}
 \sigma(x) = f(x) = \frac{1}{1+e^{-x}}
@@ -265,25 +272,25 @@ P(y = 1 \mid x) = \hat{y} = \sigma(\theta^TX)
 \end{equation}
 $$</p>
 <p>where $X$ is a matrix representing our data, each sample in a row, and each feature as a column.</p>
-<h3 id="gradient-descent">
+<h2 id="gradient-descent">
   Gradient Descent
   <a class="heading-link" href="#gradient-descent">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>To recap, we have combined a linear regression with a sigmoid function with the purpose of getting an estimate of the probability that an image is a cat. We know that there is no closed-solution to the equation, and that we need to find the parameters via optimization. Gradient descent does this for us. There is a ton of amazing gradient descent content online, so I will skip a lot of details.</p>
 <p>In a nutshell, gradient descent is what fuels the &ldquo;learning&rdquo;. This is how the model is able to estimate the parameters from the training data, in our case $\hat{\theta}$. It starts with $\hat{\theta}$ chosen at random (more on this later), and then it runs a training sample through our logistic regression function. Then it compares the predicted value with the actual value, $(\hat{y_i}, y_i)$ using a loss function, $\mathcal{L}(\hat{y_i}, y_i)$. The loss function tells us how bad a <em>single</em> prediction is. We get to be very creative with our loss functions, although many loss functions are well established for certain applications. On top of this, we have a cost function $\mathcal{J}(\theta)$, which computes the loss for our entire training set using a specific set of parameters.</p>
 <p>Finally, gradient descent does its magic. Gradient descent will differentiate $J(\theta) = \sum_{i = 1}^m\frac{1}{m}\mathcal{L}(\hat{y_i}, y_i)$, our cost function averaged across our training set, with respect to $\hat{\theta}$, our current estimate of $\theta$ (some random numbers currently). Remember that differentiation describes the rate of change between some function parameter and its output. In this case, we want to know how perturbing or changing $\hat{\theta}$, our parameters, changes $J(\theta)$, how bad our prediction is. If $\theta$ is a knob in our machine, we want to know which way to turn the knob to make our predictions better. This is what gradient descent does for us. It figures out in which direction our predictions become better with respect to $\theta$ and then it takes a <em>step</em> (moves the knob) in the direction that minimizes our loss (how we want the machine to work). Then it repeats this steps many times, called iterations, until we converge to a minimum. The basic version of gradient descent uses the entire dataset for each iteration, and it calculates a <em>cost</em> function $J(\theta)$ which is the loss of our predictions averaged across the entire dataset.</p>
 <p>The name gradient descent comes from the fact that a gradient is simply the vector version of a derivative. Whereas the derivative is usually a scalar (single number), the gradient $\nabla f(\mathbf{x})$ is a vector describing how $f$ changes with respect to every element $x_i$ of $\mathbf{x}$. Since at every iteration we are &ldquo;taking a step&rdquo; towards a lower (better) cost, it&rsquo;s a descent.</p>
 <p>All of this is done via basic calculus, using derivative rules. In the case of logistic regression, this is relatively easy to do. But in the case of neural networks, where we stack these logistic regression on top of each other, the calculus gets very messy.</p>
-<h3 id="computation-graph">
+<h2 id="computation-graph">
   Computation Graph
   <a class="heading-link" href="#computation-graph">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Since the calculus gets very messy, we might as well get a machine to do it for us. We describe this process to a machine via a <a href="https://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf">computational graph</a>; this is simply an ordering of the mathematical operations in our neural network. This particular ordering can be differentiated step by step using the basic rules of differentiation. This is nice because as our neural networks grow deeper, the computational graph also grows bigger and so more computation is required. This is called <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> and it&rsquo;s the core of modern deep learning software like PyTorch or TensorFlow.</p>
 <p>With a computation graph and a way to calculate the derivatives, we can unleash gradient descent on our data. The basic steps are:</p>
 <ol>
@@ -358,7 +365,7 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
 </ol>
 <p>In the context of a single-layer neural network, which is equivalent to logistic regression, we use:</p>
 <ol>
-<li>Logistic regression: Allows us to linearly map our features $X$ to the range $[0, 1]$.</li>
+<li>Logistic regression: Allows us to linearly map our features $X$ to the range $(0, 1)$.</li>
 <li>Loss function: Allows us to evaluate how bad a prediction is $\mathcal{L}(\hat{y_i}, y_i)$ for a single example.</li>
 <li>Cost function: Allows us to evaluate how bad our current parameters $\hat{\theta}$ is over our entire dataset $\mathcal{J}(\hat{\theta})$</li>
 <li>Gradient Descent: At each iteration we can adjust our parameters $\hat{\theta}$ towards a lower cost.</li>

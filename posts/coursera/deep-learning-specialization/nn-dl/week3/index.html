@@ -13,17 +13,20 @@
 
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This week&rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
- Shallow Neural NetworkLink to headingOverviewLink to headingIt&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.">
+This week&rsquo;s topics are:
+ Overview Neural Network Representation Computing a Neural Network&rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks"/>
 <meta name="twitter:description" content="This week&rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
- Shallow Neural NetworkLink to headingOverviewLink to headingIt&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2."/>
+This week&rsquo;s topics are:
+ Overview Neural Network Representation Computing a Neural Network&rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2."/>
 
 <meta property="og:title" content="Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks" />
 <meta property="og:description" content="This week&rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
- Shallow Neural NetworkLink to headingOverviewLink to headingIt&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2." />
+This week&rsquo;s topics are:
+ Overview Neural Network Representation Computing a Neural Network&rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-15T00:00:00+00:00" />
@@ -155,7 +158,7 @@
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              9-minute read
+              10-minute read
             </span>
           </div>
           
@@ -183,21 +186,24 @@
       <div class="post-content">
         
         <p>This week&rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#neural-network-representation">Neural Network Representation</a></li>
+<li><a href="#computing-a-neural-networks-output">Computing a Neural Network&rsquo;s Output</a></li>
+<li><a href="#vectorizing-across-multiple-examples">Vectorizing across multiple examples</a></li>
+<li><a href="#activation-functions">Activation functions</a></li>
+<li><a href="#random-initialization">Random Initialization</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
 <hr>
-<h2 id="shallow-neural-network">
-  Shallow Neural Network
-  <a class="heading-link" href="#shallow-neural-network">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="overview">
+<h2 id="overview">
   Overview
   <a class="heading-link" href="#overview">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>It&rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2. Let&rsquo;s start with the notation used in the course.</p>
 <ul>
 <li>Our inputs are represented by a vector $x^{(i)}$ where $i$ represents the $i$th training sample.</li>
@@ -208,25 +214,25 @@
 <li>$a^{[l]}$ is the input to layer $l + 1$ so that $z^{[l + 1]} = W^{[l + 1]}a^{[l]} + b^{[l + 1]}$</li>
 <li>At the end, your loss is $\mathcal{L}(a^{[L]}, y)$</li>
 </ul>
-<h3 id="neural-network-representation">
+<h2 id="neural-network-representation">
   Neural Network Representation
   <a class="heading-link" href="#neural-network-representation">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>The input layer corresponds to your training samples $x^{(1)}, x^{(2)}, \dots, x^{(m)}$. You can also think of the input layer as $a^{[0]}$. This means that the first hidden layer is $a^{[1]}$, and in a neural network with a <em>single</em> hidden layer, the output layer would be $a^{[2]}$.</p>
 <p>Graduating from logistic regression to neural networks requires us to differentiate which $a$ we are taking about. This is because any hidden layer&rsquo;s inputs, including the output layer, is the output of a previous layer.</p>
 <blockquote>
 <p>An important comment in the course is that a network with a single hidden layer is usually referred to as a two layer network.</p>
 </blockquote>
-<h3 id="computing-a-neural-networks-output">
+<h2 id="computing-a-neural-networks-output">
   Computing a Neural Network&rsquo;s Output
   <a class="heading-link" href="#computing-a-neural-networks-output">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>This section goes over how to graduate from vectors into matrices to improve our notation. It might look intimidating but it&rsquo;s just notation and it&rsquo;s very important to become comfortable with the dimensions of the layers.</p>
 <p>Imagine that you have a <em>single</em> training example $x$ with three features: $x_1, x_2, x_3$. Imagine also that you have a two layer neural network, that is a neural network with a single hidden unit. Finally also imagine that the hidden layer has $4$ hidden units $a^{[1]}_1, a^{[1]}_2, a^{[1]}_3, a^{[1]}_4$. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <figure><img src="/images/2nn-example.png"
@@ -315,13 +321,13 @@ $$</p>
 <li>$\underset{(1, 1)}{a^{[2]}} = \underset{(1, 1)}{z^{[2]}}$</li>
 </ul>
 <p>Notice that the dimensions of the arrays are below them. Remember that the product $AB$ of two matrices $A, B$ is only defined if the number of <em>columns</em> in $A$ equals the number of <em>rows</em> in $B$. So that you can multiply an $m \times n$ matrix $A$ by an $n \times p$ matrix $B$, and the result $AB$ will be an $m \times p$ matrix. This is exactly why the dimensions have to line up. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-<h3 id="vectorizing-across-multiple-examples">
+<h2 id="vectorizing-across-multiple-examples">
   Vectorizing across multiple examples
   <a class="heading-link" href="#vectorizing-across-multiple-examples">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>Previously, $x$ was a <em>single</em> training sample. It had three features so that $x \in \mathbb{R}^3$ (this means that $x$ belongs to the set of all vectors that live in three dimensional space).</p>
 <p>We could run a for loop for each of our training samples and do the calculation in the previous section for each of the elements, but it turns out that linear algebra is the gift that keeps on givin'.</p>
 <p>If we stack our training samples $x_1, \dots x_m$ as <strong>columns</strong> of a matrix $X$ we can make our life infinitely easier. If our data has $n$ feature and $m$ training examples, then:</p>
@@ -347,13 +353,13 @@ $$</p>
 </ul>
 <p>Similar to how the training examples are stacked in the columns of $X$, each training example is a column of $A^{[l]}, Z^{[l]}$. In the case of $A^{[k]}$, the entry $i, j$ corresponds to the $i$th hidden-unit&rsquo;s activation of the $k$th hidden layer on the $j$th training example.</p>
 <p>On a personal note, I think that Andrew&rsquo;s explanation of this is exceptional, and highlights the importance of being able to abstract away from one-training-example scale to neural-network scale.</p>
-<h3 id="activation-functions">
+<h2 id="activation-functions">
   Activation functions
   <a class="heading-link" href="#activation-functions">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>So far we&rsquo;ve picked the sigmoid function, $\sigma(x)$, and slapped it at the end of our linear regression. But why did we pick it? We picked it to add non-linearities, which are important to deal with datasets that are non-linearly separable. Also think that the composition of two linear functions is itself a linear function. Without any non-linearities your network would not be able to learn more &ldquo;interesting&rdquo; (non-linear) features as you go deeper in the layers. It turns out however, that this is not our only choice, and in fact the choice matters in many ways.</p>
 <blockquote>
 <p><a href="https://tamarabroderick.com/">Tamara Broderick</a> is an Associate Professor at MIT, where she teaches machine learning and statistics. Being an all-around amazing person, she has published an entire course of machine learning on <a href="https://www.youtube.com/watch?v=0xaLT4Svzgo&amp;list=PLxC_ffO4q_rW0bqQB80_vcQB09HOA3ClV">YouTube</a>, and the slides made public on her website. The reason I mention this, besides she being an amazing teacher, is that her slides are beautiful; geometrically so. In her slides, you can see why how the choice of activation function changes the decision plane in graphical detail. I 100% suggest you check out these <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf">slides</a> and marvel at the geometric beauty of neural nets!</p>
@@ -365,13 +371,13 @@ $$</p>
 <li>Rectified Linear Unit (ReLU): $g^{[l]}(z^{[l]}) = \text{ReLu}(z^{[l]}) = \max(0, z)$</li>
 </ol>
 <p>Now when do you use which? Only use the $\sigma(z)$ as your output function. If your output is strictly greater than $0$, you could also use a $\text{ReLU}(z)$ here as well, even for regression. Sometimes you don&rsquo;t need a non-linear activation function in your output layer for regression. The $\text{tanh}(z)$ function is strictly superior than $\sigma(z)$ in hidden layers. Most commonly use the $\text{ReLU}(z)$ in hidden layers. Why? Because of differentiation! The derivatives of these functions have to well behaved across the domain in order for our fancy gradient descent to not get bogged by numerical precision issues. This is later covered in the course under the name of exploding or vanishing gradients.</p>
-<h3 id="random-initialization">
+<h2 id="random-initialization">
   Random Initialization
   <a class="heading-link" href="#random-initialization">
     <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
-</h3>
+</h2>
 <p>How do we initialize our parameters? The choice if how we initialize our $W^{[l]}$ actually matters. There is a property known as <a href="https://cedar.buffalo.edu/~srihari/CSE676/8.4%20ParInitializn.pdf">symmetry</a>. If you choose all your parameters as $0$, then you are not &ldquo;breaking&rdquo; symmetry. What this means is that every iteration of gradient descent will result in the same weights, therefore it will never improve your cost. You might be asking, hey what about $b^{[l]}$? It turns out that $b^{[l]}$ doesn&rsquo;t have the symmetry problem so you don&rsquo;t need to worry too much about it, and can in fact initialize it to $0$.</p>
 <p>Fine, but what do we initialize it to? You can use random numbers (actually not just any random numbers as we will see in the next course), with the only caveat that you need to scale your randomly chosen parameters by a constant, usually $0.01$ or $10^{-2}$. This is done to keep the numbers close to $0$, where the derivatives of your activation functions are better defined than at the extremes. Remember that $\sigma(z^{[l]})$ is basically flat for values $|x| \approx 6$. There are more sophisticated approaches to parameter initialization that will are covered in the next course.</p>
 <h2 id="summary">
