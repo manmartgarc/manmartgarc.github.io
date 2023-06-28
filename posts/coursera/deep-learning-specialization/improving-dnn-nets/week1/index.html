@@ -12,19 +12,19 @@
 
 
 <meta name="author" content="Manuel Martinez">
-<meta name="description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+<meta name="description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
  Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning"/>
-<meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+<meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
  Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?"/>
 
 <meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning" />
-<meta property="og:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+<meta property="og:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
  Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?" />
 <meta property="og:type" content="article" />
@@ -185,7 +185,7 @@ This week&rsquo;s topics are:
 
       <div class="post-content">
         
-        <p>This is the first week in the <a href="https://www.coursera.org/learn/deep-neural-network">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.</p>
+        <p>This is the first week in the <a href="https://www.coursera.org/learn/deep-neural-network">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
 <li><a href="#setting-up-our-machine-learning-problem">Setting up our Machine Learning problem</a>
@@ -225,7 +225,7 @@ This week&rsquo;s topics are:
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Machine learning projects are highly iterative. That is, you try something new, see how it does and then adjust; very much like gradient descent. Therefore you want the iteration time to be quick so that you can try as many things as quickly as possible, without affecting the final performance of the model. Part of this is setting up your datasets correctly so that you can efficiently iterate over different approaches.</p>
+<p>Machine learning projects are highly iterative. That is, you try something new, see how it does and then adjust; very much like gradient descent. Therefore, you want the iteration time to be quick so that you can try as many things as quickly as possible, without affecting the final performance of the model. Part of this is setting up your datasets correctly so that you can efficiently iterate over different approaches.</p>
 <p>If you have a data set $M$ of $|m|$ samples then you usually want to split it into three parts.</p>
 <ol>
 <li>Training set: $M_{train} \subseteq M$. The set of samples that will be used to learn the parameters of our chosen hypothesis $h(X, \theta)$, i.e. your model parameters via SGD.</li>
@@ -233,8 +233,8 @@ This week&rsquo;s topics are:
 <li>Test set: $M_{test} \subseteq M$. The set of samples that will be used the best hypothesis you&rsquo;ve found so far on completely unseen data that belongs to the same distribution as the dev set.</li>
 </ol>
 <p>Note that these three subsets are disjoint, i.e. $M_{train} \cap M_{test} \cap M_{dev} = \emptyset$</p>
-<p>Historically most researchers would split the set $M$ using a 70%/30% training and testing respectively. If using a dev set most of the time they a 60%/20%/20% split for training, dev and test. This was reasonable for datasets that have sizes in the order of 10,000. If you have a dataset $M$ with 1,000,000 training samples, then it can be reasonable to use a 98%/1%/1% training, dev and test split. You can read more about how big a sample has to be for certain statistical properties to kick in, but a number around 10,000 is considered relatively safe.</p>
-<p>One assumption is that all the training samples $m \in M$ come from the same distribution, which implies that each of the splits also belong to the same distribution. This is critical because you don&rsquo;t want to develop a model with pictures of cats and then test it on picture of dogs. A key they is to make sure that your dev and test sets come from the same distribution. Having the training set come from a different distribution is more lax, as long as the training distribution is a superset of the dev and test sets. In some cases it might be okay to not have a test set, but measuring variance will be harder.</p>
+<p>Historically most researchers would split the set $M$ using a 70%/30% training and testing respectively. If using a dev set, a 60%/20%/20% split for training, dev and test. This was reasonable for datasets that have sizes in the order of 10,000. If you have a dataset $M$ with 1,000,000 training samples, then it can be reasonable to use a 98%/1%/1% training, dev and test split. You can read more about how big a sample has to be for certain statistical properties to kick in, but a number around 10,000 is considered relatively safe.</p>
+<p>One assumption is that all the training samples $m \in M$ come from the same distribution, which implies that each of the splits also belong to the same distribution. This is critical because you don&rsquo;t want to develop a model with pictures of cats and then test it on picture of dogs. A key thing is to make sure that your dev and test sets come from the same distribution. Having the training set come from a different distribution is more lax, as long as the training distribution is a superset of the dev and test sets. In some cases it might be okay to not have a test set, but measuring variance will be harder.</p>
 <h3 id="bias-variance-tradeoff">
   Bias-Variance Tradeoff
   <a class="heading-link" href="#bias-variance-tradeoff">
@@ -242,7 +242,7 @@ This week&rsquo;s topics are:
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>The bias/variance tradeoff is a topic in machine learning and statistics. The whole idea of supervised learning is that, if you do it correctly, your model can generalize <em>beyond</em> the training set, i.e. samples it has not seen during training and still do a good job. We think that there is some parameters $\theta$ that minimize our cost function. We don&rsquo;t know what that is, and the only way to know that is to have <em>infinite</em> training samples. We need to make due with our estimate $\hat{\theta}$, which implies that $\theta \neq \hat{\theta}$. When we talk about the bias-variance tradeoff we are describing the errors, i.e. $\epsilon = \theta - \hat{\theta}$ that are produced by our model that uses our estimates of the parameters. In particular we are describing the mean and variance of the error distribution. The bias is a part of how far $\hat{\theta}$ is from $\theta$ on average, while the variance measures the spread of the errors.</p>
+<p>The bias/variance tradeoff is a topic in machine learning and statistics. The whole idea of supervised learning is that, if you do it correctly, your model can generalize <em>beyond</em> the training set, i.e. samples it has not seen during training and still do a good job. We think that there are some parameters $\theta$ that minimize our cost function. We don&rsquo;t know what that is, and the only way to know that is to have <em>infinite</em> training samples. But we need to make due with our estimate $\hat{\theta}$, which implies that $\theta \neq \hat{\theta}$. When we talk about the bias-variance tradeoff we are describing the errors, i.e. $\epsilon = \theta - \hat{\theta}$ that are produced by our model that uses our estimates of the parameters. In particular, we are describing the mean and variance of the error distribution. The bias is a part of how far $\hat{\theta}$ is from $\theta$ on average, while the variance measures the spread of the errors.</p>
 <p>It turns out that we can characterize our expected test errors even further by decomposing them into three components (skipping some math):</p>
 <ol>
 <li>Variance: $E_{x, D}\left[\left(h_D(x) - \bar{h}(x)\right)^2\right]$</li>
@@ -251,7 +251,7 @@ This week&rsquo;s topics are:
 </ol>
 <p>Keep in mind:</p>
 <ol>
-<li>Variance measures measures how much our classifier $h_D$ changes when we train it on a different training set $D$. How &ldquo;over-specialized&rdquo; is our classifier to a particular training set $D$? <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Notice that $h$ and $h_D$ are random variables, and so this measures the spread of a classifier trained on each possible sample $D$ drawn from $P^n$ versus the average classifier $\bar{h}(x)$.</li>
+<li>Variance measures how much our classifier $h_D$ changes when we train it on a different training set $D$. How &ldquo;over-specialized&rdquo; is our classifier to a particular training set $D$? <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Notice that $h$ and $h_D$ are random variables, and so this measures the spread of a classifier trained on each possible sample $D$ drawn from $P^n$ versus the average classifier $\bar{h}(x)$.</li>
 <li>Bias measures the inherent error from our classifier <em>if</em> we had infinite training data. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> How far is our estimator&rsquo;s expected value $\bar{y}(x)$ from the expected classifier?</li>
 <li>Noise measures some irreducible error, which is an intrinsic property of the data. This related to Bayes error rate, which is the <em>lowest</em> possible error rate for any classifier of <em>random</em> outcomes.</li>
 </ol>
@@ -263,11 +263,11 @@ This week&rsquo;s topics are:
 
 <p>We know that bias and variance are the components of our model&rsquo;s expected test error. But why is it a tradeoff? It turns out that <em>model complexity</em> is related to both bias and variance. A model with low complexity (always guess the same) will have high error, and the majority of the error will come from the bias term. This means that as we decrease the complexity of a model, our error will increase, but most of the increase will come from the bias term. Conversely, a model with high complexity (guessing randomly) will have high error, and the majority of the error will come from the variance term. This means that as we increase model complexity, our error will <em>also</em> increase, but most the increase will come from the variance term. Somewhere in the middle, there is a sweet spot, a combination of bias and variance that has the minimum total error.</p>
 <p>When we say that a model has high bias, we say that it&rsquo;s underfitting. It&rsquo;s too basic and not being complex enough to learn the training data, underfitting it. On the other hand, when we say that a model has high variance we say that a model is overfitting the training data, not being able to generalize beyond it, overfitting it. This is where we come back to our dataset splits.</p>
-<p>Before moving on, we have to re-introduce the irreducible error term from the previous section. For every classification task, there is some amount of error that cannot be done away with. This is also called Bayes error rate, and it&rsquo;s a theoretical limit that no classifier can surpass. Similarly there is a human-level error achieved by the best a human can do, whether a group or individual, and this is called the human-level error. The best classifier can be better or worse than human-level error but never better than Bayes error rate. For the following section we assume that the human-level error is approximately $0$ but more than the Bayes error rate.</p>
+<p>Before moving on, we have to re-introduce the irreducible error term from the previous section. For every classification task, there is some amount of error that cannot be done away with. This is also called Bayes error rate, and it&rsquo;s a theoretical limit that no classifier can surpass. Similarly, there is a human-level error achieved by the best a human can do, whether a group or individual, and this is called the human-level error. The best classifier can be better or worse than human-level error but never better than Bayes error rate. For the following section we assume that the human-level error is approximately $0$ but more than the Bayes error rate.</p>
 <p>Evaluating the performance of your model on the training and dev set can help you diagnose whether your model has high variance or high bias or both very quickly. Let $\epsilon_{train}, \epsilon_{dev}$ the error of your model on the training and dev sets respectively.</p>
 <ul>
 <li>$e_{train} = 1\%, e_{dev} = 11\%$: Our model is doing really well on the training set but much poorer on the development set. It smells of high variance since the model is not able to generalize from the training set to the dev set. It&rsquo;s therefore overfitting the training set.</li>
-<li>$e_{train} = 15\%, e_{dev} = 16\%$: Assuming that human-level error is approximately $0$, then this looks like high bias. The model is very far from human-level error on the training set, therefore it&rsquo;s not fitting our training data enough. It&rsquo;s therefore underfitting the training set. However it&rsquo;s generalizing quite well to the dev set, therefore it might have low variance.</li>
+<li>$e_{train} = 15\%, e_{dev} = 16\%$: Assuming that human-level error is approximately $0$, then this looks like high bias. The model is very far from human-level error on the training set, therefore it&rsquo;s not fitting our training data enough. It&rsquo;s therefore underfitting the training set. However, it&rsquo;s generalizing quite well to the dev set, therefore it might have low variance.</li>
 <li>$e_{train} = 15\%, e_{dev} = 30\%$: Assuming that human-level error is approximately $0$, then this looks like high bias again. But because it&rsquo;s not generalizing well, it also smells of high variance because of the discrepancy in performance between the test and dev sets.</li>
 <li>$e_{train} = 0.5\%, e_{dev} = 1\%$: Assuming that human-level error is approximately $0$, then this looks like both low bias and low variance. It&rsquo;s very close to the Bayes' error rate, and also generalizes well to the dev set.</li>
 </ul>
@@ -306,7 +306,7 @@ This week&rsquo;s topics are:
 </li>
 </ol>
 <p>Following these steps, i.e. fixing high bias before high variance is the basic recipe for machine learning.</p>
-<p>It&rsquo;s mentioned in the course that in the deep learning era, there is less of a tradeoff. The ability to have bigger models and get more data are both tools that don&rsquo;t expose the bias-variance tradeoff, so usually these are your first go tos when hitting high bias or high variance. In general training a bigger network almost never hurts, <strong>as long</strong> as you add proper regularization, keeping the model complexity from exploding.</p>
+<p>It&rsquo;s mentioned in the course that in the deep learning era, there is less of a tradeoff. The ability to have bigger models and get more data are both tools that don&rsquo;t expose the bias-variance tradeoff, so usually these are the first things to check when encountering high bias or high variance. In general training a bigger network almost never hurts, <strong>as long</strong> as you add proper regularization, keeping the model complexity from exploding.</p>
 <h2 id="regularizing-our-neural-network">
   Regularizing our Neural Network
   <a class="heading-link" href="#regularizing-our-neural-network">
@@ -328,7 +328,7 @@ This week&rsquo;s topics are:
 \mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)})
 \end{equation}
 $$</p>
-<p>We would like to add add something to the expression above that measures model complexity. One way of measuring model complexity is literally to look at the magnitude of the parameters, literally how big they are. Remember that in logistic regression we have one theta $\theta_i$ for each feature in our data. This implies that if coefficients blow up in magnitude, that is, get very big or very small, they are having a lot of effect on the output. This is simply because the relationship between parameters and features is multiplicative and additive, i.e. it&rsquo;s linear.</p>
+<p>We would like to add something to the expression above that measures model complexity. One way of measuring model complexity is literally to look at the magnitude of the parameters, literally how big they are. Remember that in logistic regression we have one theta $\theta_i$ for each feature in our data. This implies that if coefficients blow up in magnitude, that is, get very big or very small, they are having a lot of effect on the output. This is simply because the relationship between parameters and features is multiplicative and additive, i.e. it&rsquo;s linear.</p>
 <p>We can check how big the parameters are by summing over each of them, let&rsquo;s call that $|w|$:</p>
 <p>$$
 \begin{equation}
@@ -350,8 +350,8 @@ $$</p>
 \mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + ||w||_2^2
 \end{equation}
 $$</p>
-<p>Why are we ignoring the other parameter $b$? Because its a scalar and not a vector. $w \in \mathbb{R}^{N_x}$, which means $w$ has $N_x$ elements. While $b \in \mathbb{R}$, which means that $b$ has only one element. This means that if we have $N_x$ features, then $b$ has to be $N_x$ times bigger than the $w$ norm to influence the same amount. You can also think about how the space or volume of a $N_x$ dimensional hypercube grows as opposed to a $1$ dimensional line. So we usually ignore $b$.</p>
-<p>We now have a way of penalizing model complexity by assigning a higher cost to a more complex model. What would also be great is to have a way of scaling the effect of the regularization. For example we don&rsquo;t want a model with a very small $w$ because the smallest is where $w_i = 0$, we want to retain some complexity but not too much.</p>
+<p>Why are we ignoring the other parameter $b$? Because it&rsquo;s a scalar and not a vector. $w \in \mathbb{R}^{N_x}$, which means $w$ has $N_x$ elements. While $b \in \mathbb{R}$, which means that $b$ has only one element. This means that if we have $N_x$ features, then $b$ has to be $N_x$ times bigger than the $w$ norm to influence the same amount. You can also think about how the space or volume of a $N_x$ dimensional hypercube grows as opposed to a $1$ dimensional line. So we usually ignore $b$.</p>
+<p>We now have a way of penalizing model complexity by assigning a higher cost to a more complex model. What would also be great is to have a way of scaling the effect of the regularization. For example, we don&rsquo;t want a model with a very small $w$ because the smallest is where $w_i = 0$, we want to retain some complexity but not too much.</p>
 <p>We do this by introducing a hyperparameter $\lambda$ called the regularization parameter, which is a scalar that scales the regularization effect:</p>
 <p>$$
 \begin{equation}
@@ -365,13 +365,13 @@ $$</p>
 \mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \frac{\lambda}{m}||w||_2^2
 \end{equation}
 $$</p>
-<p>Finally for differentiation reasons, we add an easy way to cancel some terms:</p>
+<p>Finally, for differentiation reasons, we add an easy way to cancel some terms:</p>
 <p>$$
 \begin{equation}
 \mathcal{J}(w, b) = \frac{1}{m} \sum_{i = 1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)}) + \frac{\lambda}{2m}||w||_2^2
 \end{equation}
 $$</p>
-<p>Think about what happens to $w$ after we introduce this term to our cost function. It means it will prefer smaller parameters than bigger ones, and if it has to chose between two big ones, it will chose the one that is the least costly. In other words the model will let some parameters be large as long as they earn their keep (in terms of model performance) and decrease the features that are not that relevant. In this sense, regularization can be thought of as a type of feature selection. With the L2 norm the parameters that don&rsquo;t earn their keep approach zero, but never quite get to be zero.</p>
+<p>Think about what happens to $w$ after we introduce this term to our cost function. It means it will prefer smaller parameters than bigger ones, and if it has to chose between two big ones, it will choose the one that is the least costly. In other words the model will let some parameters be large as long as they earn their keep (in terms of model performance) and decrease the features that are not that relevant. In this sense, regularization can be thought of as a type of feature selection. With the L2 norm the parameters that don&rsquo;t earn their keep approach zero, but never quite get to be zero.</p>
 <p>But the L2 norm is not the only norm. What if you use some other norm? Another popular norm is the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l001.htm">L1-Norm</a>:</p>
 <p>$$
 ||x||_1 = \sum_{j=1}^{N_x} |x_i|
@@ -383,7 +383,7 @@ $$</p>
 \end{equation}
 $$</p>
 <p>Unlike the L2-norm, the L1-norm does actually send the parameters that don&rsquo;t earn their keep to zero. This means that $w$ will end up being <em>sparser</em>. Which implies that the L1-norm works as a sort of model compression. In practice however, the L2 norm is used more commonly so that should be your first go to.</p>
-<p>We mentioned the Frobenius-norm as the generalization of the L2-norm to higher dimensions. The L2-norm works in logistic regression precisely because $w$ is a vector. When we have matrices of parameters, $W^{[l]}$ as is the case for a neural network, we need to use the grown-up&rsquo;s norm. The Frobenius-norm is a reasonable extension, instead of summing over a vector&rsquo;s single dimension, you sum over both dimensions in a matrix:</p>
+<p>We mentioned the Frobenius norm as the generalization of the L2-norm to higher dimensions. The L2-norm works in logistic regression precisely because $w$ is a vector. When we have matrices of parameters, $W^{[l]}$ as is the case for a neural network, we need to use the grown-up&rsquo;s norm. The Frobenius norm is a reasonable extension, instead of summing over a vector&rsquo;s single dimension, you sum over both dimensions in a matrix:</p>
 <p>$$
 ||W^{[l]}||_F = \sqrt{\sum_{i=1}^{n^{[l - 1]}}\sum_{j=1}^{n^{[l]}}w_{ij}^{[l]}}
 $$</p>
@@ -415,7 +415,7 @@ $$</p>
 </h3>
 <p>We went over how regularization is equivalent to penalizing model complexity, and how model complexity can be measured by the magnitude of the parameters of your model, which is the mechanism through which we implement regularization. The intuition here is that parameters with high values assign <em>high sensitivity</em> to the features being multiplied by those parameters. The high sensitivity is what results in the high variance, and by penalizing the magnitude of the parameters is how we reduce overfitting.</p>
 <p>Another great way of thinking about it is to think about what happens in the activation functions when the values are big or small.</p>
-<p>Remember that $Z^{[l]} = W^{[l]}A^{[l-1]} + b^{[l]}$. This, we pass through our activation function $g^{[l]}$ so that we get $A^{[l]} = g^{[l]}(Z^{[l]})$. Taking as an example the sigmoid activation function $\sigma(x)$, think about what happens when the inputs $Z^{[l]}$ are small. How can $Z^{[l]}$ be small? If we set $\lambda$ to be really big, then most of our $W^{[l]}$ will be small, therefore making $Z^{[l]}$ small as well. When we pass small values, that is values close to $0$ to the sigmoid function, the outputs are approximately <em>linear</em>. It is only when $|x| \geq 2$ that $\sigma(x)$ (approximately) becomes non-linear. So in a way, setting $W{[l]}$ to be small <em>undoes</em> all the non-linear magic that you got from adding more layers to your network.</p>
+<p>Remember that $Z^{[l]} = W^{[l]}A^{[l-1]} + b^{[l]}$. This, we pass through our activation function $g^{[l]}$ so that we get $A^{[l]} = g^{[l]}(Z^{[l]})$. Taking as an example the sigmoid activation function $\sigma(x)$, think about what happens when the inputs $Z^{[l]}$ are small. How can $Z^{[l]}$ be small? If we set $\lambda$ to be huge, then most of our $W^{[l]}$ will be small, therefore making $Z^{[l]}$ small as well. When we pass small values, that is values close to $0$ to the sigmoid function, the outputs are approximately <em>linear</em>. It is only when $|x| \geq 2$ that $\sigma(x)$ (approximately) becomes non-linear. So in a way, setting $W{[l]}$ to be small <em>undoes</em> all the non-linear magic that you got from adding more layers to your network.</p>
 <h3 id="dropout-regularization">
   Dropout Regularization
   <a class="heading-link" href="#dropout-regularization">
@@ -425,7 +425,7 @@ $$</p>
 </h3>
 <p>It turns out that measuring the &ldquo;size&rdquo; of your parameters is not the only way to measure model complexity. Conversely, minimizing the size of your parameters is also not the only way to punish model complexity. Dropout achieves a similar result by doing something more intuitive to some.</p>
 <p>In a nutshell, dropout <em>randomly</em> deletes some fraction of nodes in each hidden layer on each forward-backward pass. Since on each forward-backwards pass you are &ldquo;turning off&rdquo; some hidden units, the model trained on each iteration is literally smaller. The random component of the dropout guarantees that all parts of the model are affected equally on expectation. So what do we mean exactly by &ldquo;deleting&rdquo; nodes? We mean setting them to 0. It really is that simple.</p>
-<p>More formally, there is some probability $p$ that represents probability for <em>a single hidden unit</em> to be kept untouched. $p$ is referred to as the <em>keep probability</em>. Conversely, $1 - p$ is the &ldquo;dropout&rdquo; probability. Notice that the events are <em>independent</em> from each other. That is each <em>hidden unit</em>, i.e. each node is dropped independently from all the other units in that layer, and also from other layers.</p>
+<p>More formally, there is some probability $p$ that represents probability for <em>a single hidden unit</em> to be kept untouched. $p$ is referred to as the <em>keep probability</em>. Conversely, $1 - p$ is the &ldquo;dropout&rdquo; probability. Notice that the events are <em>independent</em> of each other. That is each <em>hidden unit</em>, i.e. each node is dropped independently relative to all the other units in that layer, and also from other layers.</p>
 <p>Say that you have a layer with $50$ hidden units, and that $p = 0.8$, so that you will be dropping out $1 - 0.8 = 0.2$ of the units in a hidden layer. So on expectation you will be dropping $50 * 0.2 = 10$ nodes. Let&rsquo;s also think that this layer is $l = 3$. Let&rsquo;s think about how this will affect the next layer.</p>
 <p>The next layer&rsquo;s computation will be:</p>
 <p>$$
@@ -433,7 +433,7 @@ $$</p>
 Z^{[4]} = W^{[4]}A^{[3]} + b^{[4]}
 \end{equation}
 $$</p>
-<p>where $A^{[3]}$ is the output of the layer with $50$ hidden units and we shut down $20\%$ of them. This means that $A^{[3]}$ is reduced by $20\%$, which also implies that $Z^{[4]}$ is reduced by $20\%$ because $Z^{[4]}$ is just a linear combination of $A^{[3]}$. In order to avoid this problem propagating throughout our network making everything small, we need to roughly &ldquo;refund&rdquo; the lost value to $A^{[3]}$ before passing it to the next layer. We do this simply by:</p>
+<p>Where $A^{[3]}$ is the output of the layer with $50$ hidden units, and we shut down $20\%$ of them. This means that $A^{[3]}$ is reduced by $20\%$, which also implies that $Z^{[4]}$ is reduced by $20\%$ because $Z^{[4]}$ is just a linear combination of $A^{[3]}$. In order to avoid this problem propagating throughout our network making everything small, we need to roughly &ldquo;refund&rdquo; the lost value to $A^{[3]}$ before passing it to the next layer. We do this simply by:</p>
 <p>$$
 \begin{equation}
 A^{[3]*} = \frac{A^{[3]}}{p}
@@ -446,7 +446,7 @@ Z^{[4]} = W^{[4]}A^{[3]*} + b^{[4]}
 \end{equation}
 $$</p>
 <p>Will make $Z^{[4]}$ be <em>roughly</em> the same as it was originally. This scaling technique is called <a href="https://machinelearning.wtf/terms/inverted-dropout/">inverted dropout</a>.</p>
-<p>The intuition behind this rescaling is that when you set some hidden-units to zero, you are shifting the expected value of $A^{[3]}$, which is an issue when you do testing. Because when you evaluate your network with the test set, you <strong>do not do any dropout</strong>, the difference in expected values becomes a problem. Therefore the rescaling ameliorates the scaling issue between training and testing.</p>
+<p>The intuition behind this rescaling is that when you set some hidden-units to zero, you are shifting the expected value of $A^{[3]}$, which is an issue when you do testing. Because when you evaluate your network with the test set, you <strong>do not do any dropout</strong>, the difference in expected values becomes a problem. Therefore, the rescaling ameliorates the scaling issue between training and testing.</p>
 <p>Finally, you can apply a different value of $p$ to different layers, so that you have a vector $p$ where $p^{[l]}$ is the probability of keeping units in hidden layer $l$. This faces you with a tradeoff of having more hyperparameters, so it should be used wisely.</p>
 <h3 id="understanding-dropout">
   Understanding Dropout
@@ -457,7 +457,7 @@ $$</p>
 </h3>
 <p>So why does dropout behave like regularization? It seems crazy to &ldquo;kill&rdquo; some nodes at random, it&rsquo;s the very definition of chaotic evil. It turns out that by doing this, the model will learn not to rely on any specific feature, because it might not be there the next time. The model will respond to dropout by <em>spreading</em> out the weights across the network, effectively reducing their magnitude. This is why dropout can be thought of as regularization.</p>
 <blockquote>
-<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, where by randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
+<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
 </blockquote>
 <h3 id="other-regularization-methods">
   Other Regularization Methods
@@ -466,8 +466,8 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Another regularization method is that of data augmentation. For example if you have images as your training data, you might think about applying some geometric distortions (flipping, scaling, etc). This works as regularization by injecting more variance into your training set, making your model smarter by making it harder for it to put all its eggs in one basket (focusing too much on some parameters).</p>
-<p>Another method is early stopping. This amounts to regularization because early stopping might amount to stopping training <em>before</em> $W{[l]}$ gets &ldquo;too big&rdquo;. What is too big? You won&rsquo;t know. The problem with early stopping is that it conflates two processes that should be orthogonal (independent): doing well on your training samples and <em>not</em> overfitting. There&rsquo;s more information about orthogonizing your goals in the next course.</p>
+<p>Another regularization method is that of data augmentation. For example if you have images as your training data, you might think about applying some geometric distortions (flipping, scaling, etc.). This works as regularization by injecting more variance into your training set, making your model smarter by making it harder for it to put all its eggs in one basket (focusing too much on some parameters).</p>
+<p>Another method is early stopping. This amounts to regularization because early stopping might amount to stopping training <em>before</em> $W{[l]}$ gets &ldquo;too big&rdquo;. What is too big? You won&rsquo;t know. The problem with early stopping is that it conflates two processes that should be orthogonal (independent): doing well on your training samples and <em>not</em> overfitting. There&rsquo;s more information about orthogonalizing your goals in the next course.</p>
 <h2 id="setting-up-our-optimization-problem">
   Setting up our Optimization Problem
   <a class="heading-link" href="#setting-up-our-optimization-problem">
@@ -492,24 +492,24 @@ $$</p>
 z = \frac{x - \mu}{\sigma}
 \end{equation}
 $$</p>
-<p>where $\mu$ is the mean of the population and $\sigma$ is the standard deviation of the population. Because we don&rsquo;t know those values and we usually estimate them, we usually work with z-scores, which are the sample analogues:</p>
+<p>Where $\mu$ is the mean of the population and $\sigma$ is the standard deviation of the population. Because we don&rsquo;t know those values, and we usually estimate them, we usually work with z-scores, which are the sample analogues:</p>
 <p>$$
 \begin{equation}
 z = \frac{x - \bar{x}}{S}
 \end{equation}
 $$</p>
-<p>where $\bar{x}$ is the sample mean and $S$ is the sample standard deviation. If your features are normally distributed, then the transformed variables will approximately mean zero and standard deviation of one.</p>
+<p>Where $\bar{x}$ is the sample mean and $S$ is the sample standard deviation. If your features are normally distributed, then the transformed variables will approximately mean zero and standard deviation of one.</p>
 <p>The process is intuitive, for each observation we first ask: how far is this observation from the sample mean. Whatever that distance is, positive or negative, we scale it by the standard deviation. So that the result is: an observation is $z$ standard deviations from the mean.</p>
 <p>But why do this? The purpose of this process is to convert <em>different</em> random variables that have <em>different</em> scales and shifts, into the same units. The units will be standard deviations for that particular random variable. So that $z_i$ will tell you how many standard deviations observation $i$ is from the mean. Positive values will be above the mean and negative values will be below the mean. Using this approach we can negate the effects of having different features with wildly different unit scales and shapes.</p>
-<p>When you normalize your training set, you want to use <a href="#normalizing-inputs">standardization</a> on each of your features separately. However when you are testing, you want to use the same $\bar{x}$ and $S$ that you calculated during training. You don&rsquo;t want to scale and shift your training data separately from your testing data. You want the opposite, you want your training and testing data to go through <em>the same</em> transformations.</p>
-<p>How is this related to optimization? How does normalizing scales and shifts in our features affect our optimization? It all has do to with gradient descent and how the updates are made.</p>
+<p>When you normalize your training set, you want to use <a href="#normalizing-inputs">standardization</a> on each of your features separately. However, when you are testing, you want to use the same $\bar{x}$ and $S$ that you calculated during training. You don&rsquo;t want to scale and shift your training data separately from your testing data. You want the opposite, you want your training and testing data to go through <em>the same</em> transformations.</p>
+<p>How is this related to optimization? How does normalizing scales and shifts in our features affect our optimization? It all has to do with gradient descent and how the updates are made.</p>
 <figure><img src="/images/04_25.jpg"
          alt="Gradient Descent with and without features scaling" width="50%"/><figcaption>
             <p><a href="https://livebook.manning.com/book/deep-learning-for-vision-systems/chapter-4/v-3/79">Gradient Descent with and without features scaling</a></p>
         </figcaption>
 </figure>
 
-<p>The contour plot above shows an imaginary two dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features' scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
+<p>The contour plot above shows an imaginary two-dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features' scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
 <h2 id="vanishing-and-exploding-gradients">
   Vanishing and Exploding Gradients
   <a class="heading-link" href="#vanishing-and-exploding-gradients">
@@ -533,7 +533,7 @@ $$</p>
 \hat{y} = W^{[l]L}x
 $$</p>
 <p>That is the $W^{[l]}$ is multiplied by itself $L$ times. In our case this amounts to $1.5^L$, which literally grows exponentially with the number of layers. Imagine now that instead of $1.5$ on the diagonal of $W^{[l]}$ we have a number less than 0, i.e. $0.5$. With the same problem setup, now the values will be $0.5^L$ which is an expression that <em>shrinks</em> exponentially in the number of layers.</p>
-<p>In either case, this is a huge problem. With exploding gradients, the gradient descent steps are gigantic, and with vanishing gradients the gradient descent steps are tiny. Either way, converging the the minimum of our cost function will take a long, long time. We tackle this issue by being more careful in the way that we initialize our parameters.</p>
+<p>In either case, this is a huge problem. With exploding gradients, the gradient descent steps are gigantic, and with vanishing gradients the gradient descent steps are tiny. Either way, converging the minimum of our cost function will take a long, long time. We tackle this issue by being more careful in the way that we initialize our parameters.</p>
 <h2 id="weight-initialization">
   Weight Initialization
   <a class="heading-link" href="#weight-initialization">

@@ -26,7 +26,7 @@ This week&amp;rsquo;s topics are:
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
 This week&amp;rsquo;s topics are:
- Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
+ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
     </item>
     
     <item>

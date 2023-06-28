@@ -257,7 +257,7 @@ This week&rsquo;s topics are:
 <p>If using Adam the defaults of $\beta_1 = 0.9, \beta_2 = 0.999, \epsilon=10^{-8}$ usually work fine.</p>
 </blockquote>
 <p>Now we know where to focus first. But how do we actually search and evaluate values?</p>
-<p>In the earlier generation of machine learning algorithms, researchers would usually use <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid search</a>. Grid search is an exhaustive search over a manually specified subset of the hyperparameter space, usually using cross validation. It&rsquo;s called a grid because if you imagine having two hyperparameters $h_1, h_2$, and some range of values <em>and</em> a step-size for each of the ranges $r_1, r_2$, then you can imagine a grid or matrix where each cell is a combination of $h_1, h_2$ over each of their ranges. For example you might say, I want to search a value for $\alpha$ in the interval $[0.001, 0.1]$, and I will draw some <em>equidistant</em> samples in that range and evaluate all the values. Notice that the &ldquo;grid&rdquo; becomes a matrix, or $n$-dimensional tensor as you add more hyperparameters; this is really bad because the volume of the search space increases exponentially with each additional dimension or hyperparameter.</p>
+<p>In the earlier generation of machine learning algorithms, researchers would usually use <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid search</a>. Grid search is an exhaustive search over a manually specified subset of the hyperparameter space, usually using cross validation. It&rsquo;s called a grid because if you imagine having two hyperparameters $h_1, h_2$, and some range of values <em>and</em> a step-size for each of the ranges $r_1, r_2$, then you can imagine a grid or matrix where each cell is a combination of $h_1, h_2$ over each of their ranges. For example, you might say, I want to search a value for $\alpha$ in the interval $[0.001, 0.1]$, and I will draw some <em>equidistant</em> samples in that range and evaluate all the values. Notice that the &ldquo;grid&rdquo; becomes a matrix, or $n$-dimensional tensor as you add more hyperparameters; this is terrible because the volume of the search space increases exponentially with each additional dimension or hyperparameter.</p>
 <h4 id="random-search">
   Random Search
   <a class="heading-link" href="#random-search">
@@ -290,9 +290,9 @@ This week&rsquo;s topics are:
 <p>So we know that we should sample the hyperparameter space at random. However, this doesn&rsquo;t necessarily mean to do it uniformly at random. The reason for this is that the <em>search scale</em> for each hyperparameter matters a lot. Being able to communicate the desired scale to the random sampling process is crucial for efficient search.</p>
 <p>For some hyperparameters, such as the size of a hidden-layer $l$, $n^{[l]}$, it might be reasonable to sample uniformly at random. Say that you want to search for $n^{[l]}$ over the range $[50, 100]$. Then values like $89, 57, 62, 89, 74$ might be reasonable (actually sampled at random).</p>
 <blockquote>
-<p>Remember that a continuous uniform distribution has a PDF of $\frac{1}{b-a}$ where $a,b$ are the minimum and maximum values. Therefore every value in the range $[a, b]$ has the same probability of being realized.</p>
+<p>Remember that a continuous uniform distribution has a PDF of $\frac{1}{b-a}$ where $a,b$ are the minimum and maximum values. Therefore, every value in the range $[a, b]$ has the same probability of being realized.</p>
 </blockquote>
-<p>This will not work for a hyperparameter like $\alpha$ however. Say that we suspect that a good $\alpha$ value is in the range $[0.0001, 1]$ and we sample uniformly at random. Since every value has the same likelihood of being drawn, this means that values between $[0.1, 1]$ will be sampled with $90\%$ probability. What about the interval $[0.0001, 0.1)$? These values have only a $10\%$ probability of being drawn. This is terrible because we are <em>equally</em> interested in values in both ranges.</p>
+<p>This will not work for a hyperparameter like $\alpha$, however. Say that we suspect that a good $\alpha$ value is in the range $[0.0001, 1]$, and we sample uniformly at random. Since every value has the same likelihood of being drawn, this means that values between $[0.1, 1]$ will be sampled with $90\%$ probability. What about the interval $[0.0001, 0.1)$? These values have only a $10\%$ probability of being drawn. This is terrible because we are <em>equally</em> interested in values in both ranges.</p>
 <p>This is why it makes more sense to sample for $\alpha$ values on the <strong>log scale</strong> as opposed to the <strong>linear scale</strong>. When we search over the linear scale and sample uniformly at random, we will spend $10\%$ of our effort searching over $[0.0001, 0.1)$ and $90\%$ of our effort searching over $[0.1, 1]$. On the other hand, when using a log-scale and sampling uniformly at random, we will spend an <em>equal</em> amount of effort searching over $[0.0001, 0.001), [0.001, 0.01), [0.01, 0.1), [0.1, 1]$.</p>
 <h4 id="python-implementation">
   Python Implementation
@@ -321,8 +321,8 @@ array([<span style="color:#ff0;font-weight:bold">2.31880438e-01</span>, <span st
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Andrew mentions that there are two ways that hyperparameter tuning happens in practice: pandas vs. caviar. No, it&rsquo;s not related to the pandas Python package. It&rsquo;s related to how the animal, the giant panda, has offspring. Pandas usually have very few offspring and therefore put a lot of effort into the upbringing of each (don&rsquo;t think too heavily on the veracity of this statement). This is contrasted to other species that lay thousands of eggs, where each egg is almost left to chance (again no offense to the regal Giant Pacific Octopus mothers whom sometimes give their life for their precious 120,000 to 400,000 eggs).</p>
-<p>The idea is that sometimes your model is too big and you cannot afford to train multiple instances of your model, so must babysit it like a little panda. That is, adjusting the hyperparameters over longer periods of time. On the other hand, the caviar approach is where you can afford to train multiple models in parallel with different hyperparameters and then pick the winner.</p>
+<p>Andrew mentions that there are two ways that hyperparameter tuning happens in practice: pandas vs. caviar. No, it&rsquo;s not related to the pandas Python package. It&rsquo;s related to how the animal, the giant panda, has offspring. Pandas usually have very few offspring and therefore put a lot of effort into the upbringing of each (don&rsquo;t think too heavily on the veracity of this statement). This is contrasted to other species that lay thousands of eggs, where each egg is almost left to chance (again no offense to the regal Giant Pacific Octopus mothers whom sometimes give their lives for their precious 120,000 to 400,000 eggs).</p>
+<p>The idea is that sometimes your model is too big, and you cannot afford to train multiple instances of your model, so must babysit it like a little panda. That is, adjusting the hyperparameters over longer periods of time. On the other hand, the caviar approach is where you can afford to train multiple models in parallel with different hyperparameters and then pick the winner.</p>
 <h2 id="batch-normalization">
   Batch Normalization
   <a class="heading-link" href="#batch-normalization">
@@ -330,9 +330,9 @@ array([<span style="color:#ff0;font-weight:bold">2.31880438e-01</span>, <span st
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>You might remember how we mentioned that <a href="/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#normalizing-inputs">normalizing your inputs</a> could help our optimization run faster. The issue with this is that even though our input layer is getting  normalized values, the outputs of each layer $l$, $A^{[l]}$ are no longer normalized. Batch normalization is applying the same reasoning but on each <em>layer</em>.</p>
+<p>You might remember how we mentioned that <a href="/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#normalizing-inputs">normalizing your inputs</a> could help our optimization run faster. The issue with this is that even though our input layer is getting normalized values, the outputs of each layer $l$, $A^{[l]}$ are no longer normalized. Batch normalization is applying the same reasoning but on each <em>layer</em>.</p>
 <blockquote>
-<p>Batch normalization doesn&rsquo;t have anything to do with batch or mini-batch gradient descent and can be implement under both approaches.</p>
+<p>Batch normalization doesn&rsquo;t have anything to do with batch or mini-batch gradient descent and can be implemented under both approaches.</p>
 </blockquote>
 <p>A key thing is that we won&rsquo;t normalize $A^{[l]}$ but $Z^{[l]}$ instead. Let&rsquo;s go over the steps.</p>
 <h3 id="normalizing-activations-in-a-network">
@@ -354,14 +354,14 @@ $$</p>
 Z^{[l]}_{norm} = \frac{Z^{[l]} - \bar{Z}^{[l]}}{S^{[l]} + \epsilon}
 \end{equation}
 $$</p>
-<p>where $\bar{Z}^{[l]}$ is the sample mean of $Z^{[l]}$ and $S^{[l]}$ is the sample standard deviation of $Z^{[l]}$.</p>
-<p>Finally we compute $\tilde{Z}^{[l]}$ by:</p>
+<p>Where $\bar{Z}^{[l]}$ is the sample mean of $Z^{[l]}$ and $S^{[l]}$ is the sample standard deviation of $Z^{[l]}$.</p>
+<p>Finally, we compute $\tilde{Z}^{[l]}$ by:</p>
 <p>$$
 \begin{equation}
 \tilde{Z}^{[l]} = \gamma^{[l]} Z^{[l]}_{norm} + \beta^{[l]}
 \end{equation}
 $$</p>
-<p>There should be nothing new until the last step; we just standardized $Z^{[l]}$. But what is this new $\tilde{Z}^{[l]}$? It&rsquo;s simply a rescaled and reshifted version of $Z_{norm}^{[l]}$. Remember that standardizing samples of random variable will make them have approximately mean $0$ and variance $1$ if the random variable is normally distributed. Maybe this particular center and spread is not what&rsquo;s best for our model. Remember what happens in <a href="posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#why-does-regularization-reduce-overfitting">regularization</a> when $Z_i^{[l]} \approx 0, \forall i$ and $g^{[l]} = \sigma(x)$; maybe centering our $Z^{[l]}$ around $0$ makes our neural network approximately linear.</p>
+<p>There should be nothing new until the last step; we just standardized $Z^{[l]}$. But what is this new $\tilde{Z}^{[l]}$? It&rsquo;s simply a rescaled and re-shifted version of $Z_{norm}^{[l]}$. Remember that standardizing samples of random variable will make them have approximately mean $0$ and variance $1$ if the random variable is normally distributed. Maybe this particular center and spread is not what&rsquo;s best for our model. Remember what happens in <a href="posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#why-does-regularization-reduce-overfitting">regularization</a> when $Z_i^{[l]} \approx 0, \forall i$ and $g^{[l]} = \sigma(x)$; maybe centering our $Z^{[l]}$ around $0$ makes our neural network approximately linear.</p>
 <p>Having $\gamma^{[l]}, \beta^{[l]}$ allows us to shift and scale $Z^{[l]}_{norm}$ in a way that improves the performance of our model. Yes, this means that $\gamma^{[l]}, \beta^{[l]}$ are new parameters that we can learn via our garden variety gradient descent.</p>
 <p>Think about what happens when $\gamma^{[l]} = S^{[l]} + \epsilon$ and $\beta^{[l]} = \bar{Z}^{[l]}$. In this case the last step <em>undoes</em> the normalization! This is not relevant to the actual implementation but simply to highlight that the learnable parameters are as powerful as standardizing.</p>
 <h3 id="fitting-batch-norm-into-a-neural-network">
@@ -373,9 +373,9 @@ $$</p>
 </h3>
 <p>So now we have $\gamma^{[l]}, \beta^{[l]}$ for each of our hidden layers $l$. Remember that $\beta^{[l]}$ is different from $b^{[l]}$ and also different from the $\beta$ parameter used in gradient descent with momentum. We can learn these parameters in the same way we have been learning $W^{[l]}, b^{[l]}$; that is updating them on each step of gradient descent. We can <em>even</em> use EWMA methods such as momentum, RMSProp or Adam. One of the amazing things about these approaches is that they&rsquo;re generalizable.</p>
 <blockquote>
-<p>When using <em>mini-batch</em> gradient descent, we use the mean and standard deviation of <em>each mini-batch</em> to standardized. However, the $\gamma^{[l]}, \beta^{[l]}$ is the same for all mini-batches within a layer $l$.</p>
+<p>When using <em>mini-batch</em> gradient descent, we use the mean and standard deviation of <em>each mini-batch</em> to standardize. However, the $\gamma^{[l]}, \beta^{[l]}$ is the same for all mini-batches within a layer $l$.</p>
 </blockquote>
-<p>A final detail mentioned in the course is that, when using batch normalization, the parameters $b^{[l]}$ are redundant because they are subtracted when standardizing. Therefore you can drop $b^{[l]}, \forall l$ from the set of learnable parameters and simply focus on $\beta^{[l]}$.</p>
+<p>A final detail mentioned in the course is that, when using batch normalization, the parameters $b^{[l]}$ are redundant because they are subtracted when standardizing. Therefore, you can drop $b^{[l]}, \forall l$ from the set of learnable parameters and simply focus on $\beta^{[l]}$.</p>
 <h3 id="why-does-batch-norm-work">
   Why does Batch Norm work?
   <a class="heading-link" href="#why-does-batch-norm-work">
@@ -384,8 +384,8 @@ $$</p>
   </a>
 </h3>
 <p>Earlier we discussed how normalization helps the optimization by undoing weird scales in our data. Batch norm works on the exact principle, but not just on the input layer; it applies this idea to all the layers. Remember that the hidden-layers are the &ldquo;feature generation&rdquo; layers, so this also means that batch norm undoes any weird scaling issues produced by layer $l-1$ which affect layer $l$, but also layer $l+1$ and so on.</p>
-<p>Another way to think about this is to think about what happens in the following scenario. Imagine that we train a cat classifier using <em>only</em> cat pictures of cats with black fur. Assuming that our classifier performs well, it might not perform well on tasks where cats are allowed to have different fur colors than black. This is called <em>covariate shift</em> and it simply means that our training data comes from a different distribution than the testing data. What batch norm does it to weaken the coupling between layer $l$ and layers $1, 2, \dots, l$, which can be thought of as <em>internal</em> covariate shift.</p>
-<p>Finally, batch norm can act as a slight regularizer. This occurs because when using batch norm with mini-batches, there is sampling error in the estimates of the mean and variance of each mini-batch. This noise ends up having a similar effect to dropout, which can result in some slight regularization. The noise added is inversely proportional to the mini-batch size by $O\left(\frac{1}{\sqrt{n}}\right)$, so that the larger the mini-batch size the less the regularization effect.</p>
+<p>Another way to think about this is to think about what happens in the following scenario. Imagine that we train a cat classifier using <em>only</em> cat pictures of cats with black fur. Assuming that our classifier performs well, it might not perform well on tasks where cats are allowed to have different fur colors than black. This is called <em>covariate shift</em>, and it simply means that our training data comes from a different distribution than the testing data. What batch norm does it to weaken the coupling between layer $l$ and layers $1, 2, \dots, l$, which can be thought of as <em>internal</em> covariate shift.</p>
+<p>Finally, batch norm can act as a slight regularization. This occurs because when using batch norm with mini-batches, there is sampling error in the estimates of the mean and variance of each mini-batch. This noise ends up having a similar effect to dropout, which can result in some slight regularization. The noise added is inversely proportional to the mini-batch size by $O\left(\frac{1}{\sqrt{n}}\right)$, so that the larger the mini-batch size the less the regularization effect.</p>
 <h3 id="batch-norm-at-test-time">
   Batch Norm at Test Time
   <a class="heading-link" href="#batch-norm-at-test-time">
@@ -518,6 +518,7 @@ $$</p>
 <li>Multi-class classification is the generalization of logistic regression from $C=2$ to $C=K$ where $C$ is the number of classes.</li>
 <li>Programming frameworks for deep learning are vast and many. Choose one that has a good community and support.</li>
 </ul>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">here</a>.</p>
 
       </div>
 

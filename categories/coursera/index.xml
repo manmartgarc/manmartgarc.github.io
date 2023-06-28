@@ -6,13 +6,24 @@
     <description>Recent content in Coursera on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Structuring ML Projects: Week 2 | ML Strategy</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</link>
+      <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</guid>
+      <description>This is the second week of the third course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week&amp;rsquo;s topics are:
+ Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?</description>
+    </item>
+    
     <item>
       <title>Structuring ML Projects: Week 1 | ML Strategy</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week-01/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</link>
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week-01/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</guid>
       <description>This is the first week of the third course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
 This week&amp;rsquo;s topics are:
  Introduction to ML Strategy  Why ML Strategy Orthogonalization   Setting Up our Goal  Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?</description>
@@ -46,7 +57,7 @@ This week&amp;rsquo;s topics are:
       <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
-      <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+      <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&amp;rsquo;s topics are:
  Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?</description>
     </item>
@@ -70,7 +81,7 @@ This week&amp;rsquo;s topics are:
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
 This week&amp;rsquo;s topics are:
- Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&amp;rsquo;s time to refine notation and to disambiguate some of the concepts introduced in week 2.</description>
+ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary   OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
     </item>
     
     <item>

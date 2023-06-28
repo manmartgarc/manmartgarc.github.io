@@ -35,7 +35,7 @@ This week&amp;rsquo;s topics are:
       <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
-      <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week where you will benefit a lot from doing the programming exercises.
+      <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&amp;rsquo;s topics are:
  Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?</description>
     </item>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Structuring ML Projects: Week 2 | ML Strategy · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the second week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week&rsquo;s topics are:
+ Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Structuring ML Projects: Week 2 | ML Strategy"/>
+<meta name="twitter:description" content="This is the second week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week&rsquo;s topics are:
+ Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?"/>
+
+<meta property="og:title" content="Structuring ML Projects: Week 2 | ML Strategy" />
+<meta property="og:description" content="This is the second week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week&rsquo;s topics are:
+ Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-27T00:00:00+00:00" />
+
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.92.2" />
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">
+              Structuring ML Projects: Week 2 | ML Strategy
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-06-27T00:00:00Z">
+                June 27, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              17-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning/">Deep Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/structuring-ml-projects/">Structuring ML Projects</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the second week of the <a href="https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning">third course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#error-analysis">Error Analysis</a>
+<ul>
+<li><a href="#carrying-out-error-analysis">Carrying out Error Analysis</a></li>
+<li><a href="#cleaning-up-incorrectly-labeled-data">Cleaning up Incorrectly Labeled Data</a></li>
+<li><a href="#build-our-first-system-quickly-then-iterate">Build our First System Quickly, then Iterate</a></li>
+</ul>
+</li>
+<li><a href="#mismatched-training-and-devtest-sets">Mismatched Training and Dev/Test Sets</a>
+<ul>
+<li><a href="#training-and-testing-on-different-distributions">Training and Testing on Different Distributions</a></li>
+<li><a href="#bias-and-variance-with-mismatched-data-distributions">Bias and Variance with Mismatched Data Distributions</a></li>
+<li><a href="#addressing-data-mismatch">Addressing Data Mismatch</a></li>
+</ul>
+</li>
+<li><a href="#learning-from-multiple-tasks">Learning from Multiple Tasks</a>
+<ul>
+<li><a href="#transfer-learning">Transfer Learning</a></li>
+<li><a href="#multitask-learning">Multitask Learning</a></li>
+</ul>
+</li>
+<li><a href="#end-to-end-deep-learning">End-to-end Deep Learning</a>
+<ul>
+<li><a href="#what-is-end-to-end-deep-learning">What is End-to-end Deep Learning?</a></li>
+<li><a href="#whether-to-use-end-to-end-deep-learning">Whether to use End-to-end Deep Learning</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<h2 id="error-analysis">
+  Error Analysis
+  <a class="heading-link" href="#error-analysis">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="carrying-out-error-analysis">
+  Carrying out Error Analysis
+  <a class="heading-link" href="#carrying-out-error-analysis">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>One of the things that we can do when our model is performing worse than human-level performance is to carry out error analysis. Error analysis is just a fancy name to trying to ascertain what the sources of errors are. This is critical because if we can quickly come up with a &ldquo;ceiling&rdquo; or upper-bound on the improvement of a particular strategy.</p>
+<p>Let&rsquo;s say that our metric is accuracy and that our classifier is achieving $90\%$ accuracy on the dev set. One thing that can help is to take a look at the samples where the algorithm is not performing correctly. Say for example that our classifier is a cat classifier; and that for some breeds of dogs it&rsquo;s not performing that well. Whether to focus on this problem is key to iterate fast.</p>
+<p>The main idea is to look at what proportion of the errors are coming from mislabeled dogs. If we grab $\approx 100$ mislabeled examples from the <em>dev set</em>, we need to count up how many are dogs. If only $5\%$ of the $100$ mislabeled examples are dogs, then even it we get them all wrong we would reduce our error down to $9.5\%$. Maybe this is not worth it. Of course this might be different if $50\%$ or more of our mislabeled examples are dogs.</p>
+<p>We can extend this idea and evaluate multiple sources of errors in parallel. We simply grab our $100$ mislabeled examples from the dev set and tag each example as belonging to either one or more categories of issues. Then we calculate which of the categories is the highest and try to focus on that.</p>
+<p>The key takeaway from error analysis is to figure out what approach has the biggest bang for our buck; and it&rsquo;s usually the most prevalent one in our errors.</p>
+<h3 id="cleaning-up-incorrectly-labeled-data">
+  Cleaning up Incorrectly Labeled Data
+  <a class="heading-link" href="#cleaning-up-incorrectly-labeled-data">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>If we suspect, or can even confirm, that our training set has mislabeled samples, then it might because for concern. There is a lot of literature in econometrics that investigates <a href="https://en.wikipedia.org/wiki/Observational_error">measurement or observational error</a> and the effect this has on causal inference. Since we are not that interested in causal inference but on prediction instead, we won&rsquo;t go too much into the details. However, a key concept from the field is characterizing the &ldquo;issues&rdquo; in our data. The most important thing is whether the issues are random or systematic. For example, if mislabeled examples are random with respect to other features, then it&rsquo;s as good as we can hope for. However, if all the mislabeled examples are related to black cats, then it&rsquo;s definitely an issue.</p>
+<p>The key is that if our mislabeled examples are in our training set, and if the mislabeling is occurring at random, then we can rely on our model being robust to the mislabeling.</p>
+<p>We can implement the same approach described in the <a href="#carrying-out-error-analysis">previous section</a> and add a tag where the source of error is incorrectly labeled data. We might consider engaging in the usually costly process of relabeling if a majority of the errors come from mislabeled data. A key thing is to make sure that <em>both</em> the dev and test set go through the same changes, i.e. we don&rsquo;t want to fix labels on the dev set but not on the test set. Whether the training set comes from a different distribution than the dev/test set is a topic covered in the <a href="#mismatched-training-and-devtest-sets">following section</a>.</p>
+<h3 id="build-our-first-system-quickly-then-iterate">
+  Build our First System Quickly, then Iterate
+  <a class="heading-link" href="#build-our-first-system-quickly-then-iterate">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This should be pretty intuitive: following the same guidelines from agile development, we should get a baseline running as fast as possible; usually meaning a simple baseline. Being able to diagnose the first round of errors quickly, and then engaging in bias/variance and error analysis allows us to iterate quickly. Many projects fail to even leave the ground due to unjustifiable (sometimes theoretical) complexity before even trying the first ideas.</p>
+<h2 id="mismatched-training-and-devtest-sets">
+  Mismatched Training and Dev/Test Sets
+  <a class="heading-link" href="#mismatched-training-and-devtest-sets">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="training-and-testing-on-different-distributions">
+  Training and Testing on Different Distributions
+  <a class="heading-link" href="#training-and-testing-on-different-distributions">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We have repeatedly worried about having the dev and test set come from different distributions. How bad is it that our training set comes from a different distribution from our dev and test set? Let&rsquo;s go over the example shown in the course.</p>
+<blockquote>
+<p>Why would we want to have different distributions between training and dev/test sets? Because doing this might allow we to use a lot more data.</p>
+</blockquote>
+<p>Say that we have our cat app, where users can upload pictures, and we can classify them as a cat or not. Say that we scraped the web for cat images, and we have $200,000$ such images, called $D_{old}$; all of which are pretty high quality. These images were used for our original train/dev/test splits. However, now our users upload their own images of cats, which are usually blurry and of lesser quality; we have $10,000$ of these user-generated images, called $D_{new}$. How can we incorporate this new data, which comes from a different distribution than our original $200,000$ samples, into our pipeline? Let&rsquo;s go over the different options:</p>
+<ol>
+<li>Mix $D_{old}$ and $D_{new}$ into a single dataset $(210,000)$ samples. Shuffle them and split again:
+<ul>
+<li>Good: This is good because now thrice our train/dev/test splits come from the same distribution.</li>
+<li>Bad: This is bad (more bad than good) because our $10,000$ are very rare across our splits. On expectation about $4.7\%$ the data in each split contain the new data.</li>
+</ul>
+</li>
+<li>Put $50\%$ of the new data into the training set $(205,000)$ and keep the other half $(5,000)$ as dev/test sets $2,500$ each.
+<ul>
+<li>Good: This better reflects where we want to &ldquo;aim&rdquo; with our model. We want to do good on the images that our users upload.</li>
+<li>Bad: Our training set comes from a different distribution than the dev/test sets. But this is not as bad as not &ldquo;aiming&rdquo; where we actually want to.</li>
+</ul>
+</li>
+</ol>
+<p>The key takeaway here is three-fold:</p>
+<ol>
+<li>Always make sure that our test/dev splits come from the same distribution.</li>
+<li>Our dev/test set should reflect the main application of our model. In our case it&rsquo;s doing well on images that our users upload and not on random images from the web.</li>
+<li>Having a train set that comes from a different distribution than our dev/test sets can be justified in cases like the example above.</li>
+</ol>
+<p>The last point has a particular caveat, which is discussed next.</p>
+<h3 id="bias-and-variance-with-mismatched-data-distributions">
+  Bias and Variance with Mismatched Data Distributions
+  <a class="heading-link" href="#bias-and-variance-with-mismatched-data-distributions">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>If our training set distribution is different from our dev/test distribution, then our the bias/variance analysis we have been discussed will not be correct anymore. Let&rsquo;s revisit the bias/variance analysis.</p>
+<p>Assume that human-level error $\approx 0$, and that our cat classifier has the following performance:</p>
+<ul>
+<li>When train/dev come from the same distribution:
+<ul>
+<li>Training error: $1\%$</li>
+<li>Dev error: $10\%$</li>
+</ul>
+</li>
+</ul>
+<p>In the case that our training and dev sets come from the same distribution, we might diagnose this with a variance problem. We are overfitting the training data, and we are not able to generalize to unseen data. However, we cannot apply the same reasoning when the training and dev sets come from different distributions. We cannot say if the error is coming from a variance problem, i.e. not being able to generalize, or from the fact that the dev set comes from a different distribution than the training set. These two things are no longer orthogonal when our training and dev sets come from different distributions.</p>
+<p>It turns out that further splitting our data can help us determine which one of the two issues is driving our dev error. We can generate a new split, called the <em>training-dev</em> split, which is separate from the train, dev and test sets. The key is that the training-dev set must come <strong>from the same</strong> distribution as the training set. This means that both the training and training-dev set come from the same distribution, which can be different from the distribution from which the dev/test sets come from. We can extend our bias/variance analysis over all these splits to better understand our model&rsquo;s performance.</p>
+<p>Let&rsquo;s revisit the example above but with a made up train-dev error:</p>
+<ul>
+<li>When train/train-dev come from same distribution and dev comes from another distribution:
+<ul>
+<li>Training error: $1\%$</li>
+<li>Train-dev error: $9\%$</li>
+<li>Dev error: $10\%$</li>
+</ul>
+</li>
+</ul>
+<p>What does it mean that our model is performing well on the training set but not that well on the train-dev set? The only difference is that our model has not seen the train-dev set. Remember that the train and train-dev sets come from the <em>same</em> distribution. This must mean that we have a variance problem, since the model is not able to generalize to unseen data. Why is it not a bias problem? Because our training error is very close to human-level performance. What about the difference between the train-dev error and the dev error?</p>
+<p>Let&rsquo;s look at a similar example:</p>
+<ul>
+<li>When train/train-dev come from same distribution and dev comes from another distribution:
+<ul>
+<li>Training error: $1\%$</li>
+<li>Train-dev error: $1.5\%$</li>
+<li>Dev error: $10\%$</li>
+</ul>
+</li>
+</ul>
+<p>It doesn&rsquo;t look like we either a bias nor variance problem. Not a bias problem because our model is performing very close to human-level performance on the training set. Not a variance problem because the gap between our training and train-dev error is very close. What about the gap in performance between the train-dev and the dev set? This is error is a <em>data mismatch</em> error, because the difference between the train-dev set and the dev set is that they come from different distributions. It&rsquo;s not even that our classifier cannot generalize, but that we are simply evaluating its performance on a task that it wasn&rsquo;t trained to perform good on.</p>
+<p>So in general, the <em>difference</em> in performance between the data splits will give we us sense of where the issue lies:</p>
+<ul>
+<li>Human-level error: We are assuming that this is approximately equal to Bayes error rate.</li>
+<li>Training error: The difference between training error and human-level error is the amount of avoidable bias. If this is high, then we have a bias problem.</li>
+<li>Train-dev error: The difference between the train-dev error and the training error is the amount measuring the inability of our model to generalize to unseen data. If this is high, then we have a variance problem.</li>
+<li>Dev error: The difference between the dev error and the train-dev error is the error attributable to <em>data mismatch</em>. Remember, the main difference between the dev set and the train-dev set is that they come from different distributions. Which means that this is beyond its ability to generalize. We will see ways of tackling this in the <a href="#addressing-data-mismatch">next section</a>.</li>
+<li>Test error: The difference between test error and dev error is the amount to which our model is overfitting the dev set. Remember that both our dev and test sets should come from the same distribution, so the difference between the two is equivalent to the difference between the train and training-dev set errors. It&rsquo;s a lack of generalization, or a variance problem.</li>
+</ul>
+<p>The key takeaway is that there are cases when we might desire having a mismatched training and dev/test set distributions. Usually, having more data will help our model perform better; especially if not doing means throwing away a lot of data. However, by doing this we are introducing a new kind of error: data mismatch error. When our training set comes from a different distribution than our dev/test sets, our traditional bias/variance problem will be biased or &ldquo;off&rdquo; by some amount. This &ldquo;off&rdquo; amount will come from the <strong>data mismatch</strong>; that is the degree to which our training set and dev/test sets come from different distributions. This error should be totally expected. What can we expect by training a model to classify cats using pictures of lions and then evaluating them taxonomic drawings of lions?</p>
+<h3 id="addressing-data-mismatch">
+  Addressing Data Mismatch
+  <a class="heading-link" href="#addressing-data-mismatch">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>If our training and dev/test sets come from different distributions and our <a href="#bias-and-variance-with-mismatched-data-distributions">improved bias/variance</a> analysis indicates that we have a data mismatch issue, what can we do?</p>
+<p>Unfortunately there are no systematic ways of addressing this problem. At the end of the day, we have data that comes from two different distributions. However, there are a couple of things to do that might help us <em>describe</em> the difference in distributions.</p>
+<p>The first thing to do is to carry out error analysis and try to understand how the two distributions are different. Notice that this is not an empirical approach, and it might be problematic for high-dimensional data, as more things can be different.</p>
+<p>Another thing to do is to make training data &ldquo;more similar&rdquo; or to get more data that comes from the distribution of the dev/test sets.</p>
+<p>There are some data synthesis techniques that are discussed in the course in a very shallow manner, but I think that these come with a lot of issues if we are not experts.</p>
+<h2 id="learning-from-multiple-tasks">
+  Learning from Multiple Tasks
+  <a class="heading-link" href="#learning-from-multiple-tasks">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="transfer-learning">
+  Transfer Learning
+  <a class="heading-link" href="#transfer-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Time for transfer learning. It&rsquo;s possible that we might have heard this in the past since it has become very popular in the generative AI field. The concept is pretty simple: imagine that we trained a cat classifier. It might be the case that the model that we learned, or even parts of it, could be used successfully for another computer vision task; such as generating medical diagnosis from medical images.</p>
+<p>The main idea is that if we trained some model on data $X_{cats}, Y_{cats}$, which in our case is images and labels of cat pictures, then we can use this model to perform classification on another domain, with another data $X_{medicine}, Y_{medicine}$. The first step, training on the cat classification task is called <em>pre-training</em>. The second stage, training on medical images, is called <em>fine-tuning</em>.</p>
+<p>Practically, we carry out pre-training the same way we would do any other application. However, for fine-tuning, we have two approaches. The approach we take depends on the amount of data that we have for fine-tuning, relative to pre-training.</p>
+<p>If we have a lot of medical images, we might retrain the entire network. We wouldn&rsquo;t start with random weights but from the starting point of our pre-trained model. If we don&rsquo;t have that much data, we can simply retrain the last layer of our network, the output layer, during the fine-tuning. In either case, the output layer will be retrained from scratch, that is: we initialize the output layer to random weights and retrain it via fine-tuning. The difference in approaches is simply whether we <em>only</em> train the output layer, or retrain the entire network.</p>
+<p>Why and how can this work? We might imagine that within a domain, say image recognition, any neural network that we train for different applications, such as cat classification or medical diagnosis, have a huge overlap. Remember that neural networks amount of feature generation, and the abstract features between two similar applications will have a lot of overlap. This is why a model trained on cat classification might work well for medical diagnosis, because a lot of the low-level features, such as recognizing shapes, borders, etc., will carry over from one domain to the other.</p>
+<p>So when does transfer learning make sense? An obvious reason we might think of is when we have don&rsquo;t have a lot of data for a particular task. In our example, we might have a lot of data for cat recognition, but not so much for medical imaging. Transfer learning makes sense when we can pre-train on a lot of data, and fine-tune for a specific application, where we have less data than that which is available for pre-training.</p>
+<p>More specifically, transfer learning makes sense when:</p>
+<ol>
+<li>Both tasks have the same inputs, e.g. images.</li>
+<li>We have a lot more data for pre-training than fine-tuning.</li>
+<li>Abstract/low level features learned during pre-training could be helpful for fine-tuning.</li>
+</ol>
+<p>The use of many large language models (LLMs) use transfer learning today. Huge models are trained with vast data scraped and curated from the internet. These models are gigantic and therefore contain a lot of the generalizable information that&rsquo;s needed to parse and represent language. These models can then be fine-tuned for different applications such as finance, customer support or making memes.</p>
+<h3 id="multitask-learning">
+  Multitask Learning
+  <a class="heading-link" href="#multitask-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Multitask learning is a similar approach to transfer learning. Similar in the sense where two different tasks might benefit from having shared low-level features. The difference between transfer learning and multitask learning is that instead of having two models: pre-training and fine-tuning; multitask learning has one model that does many things.</p>
+<p>The example in the course is that of object recognition in an autonomous driving system. In this scenario we want a system that recognizes stop signs, pedestrians, and many other objects related to driving. It turns out that we can approach this problem similarly to a softmax classifier. However, the key difference is that our loss function will sum across the tasks, instead of only the label for that sample, as in the case of a classifier. There are more technical details in the course, but they are very shallow.</p>
+<p>The key takeaway is that instead of having $N$ models when we have $N$ tasks, we can approach the $N$ tasks with a single model. The core idea is that all the tasks share a lot of the feature representations. If this is not the case, then multitask learning is not a sound way to go. We also, perhaps intuitively by now, need to have about the same amount of data for each task if we expect the model to perform equally across each task. In practice, transfer learning is used a lot more than multitask learning. This is due to a combination of the availability of data for a given task, and the fact that different parties can do the pre-training and fine-tuning separately.</p>
+<h2 id="end-to-end-deep-learning">
+  End-to-end Deep Learning
+  <a class="heading-link" href="#end-to-end-deep-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="what-is-end-to-end-deep-learning">
+  What is End-to-end Deep Learning?
+  <a class="heading-link" href="#what-is-end-to-end-deep-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>End-to-end deep learning is in a way a commodification of deep learning applications. If we take a deep learning application that is composed of several steps (models) and replace it with a single step (model), then this would be called end-to-end deep learning. It came as a response to complicated and hand-crafted processes. If we think of speech recognition as an example, then an end-to-end approach would be to go directly from audio to a transcript. This is in juxtaposition to a process where we go from audio, to features, to phonemes, etc.</p>
+<p>The key takeaway is that end-to-end requires <em>a lot</em> of data in general, depending on how efficient the non-end-to-end process is. An example of success is machine translation. Originally the process of machine translation was composed of many steps. Today, however, larger and larger transformer models can be trained directly on the task of translation.</p>
+<h3 id="whether-to-use-end-to-end-deep-learning">
+  Whether to use End-to-end Deep Learning
+  <a class="heading-link" href="#whether-to-use-end-to-end-deep-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The good thing about end-to-end learning is that we don&rsquo;t need to rely that much on manual feature engineering. In a way, this process is more <em>transparent</em> when compared to a heavily engineered process. This is why we need more data. On the other hand, many hand-designed components are the result of intense research; potentially giving us large efficiency gains. Whether to use end-to-end deep learning depends on if you can keep the baby and throw away the bathwater, which is not always possible. Finally, end-to-end approaches are a lot more data hungry. Therefore, depending on the amount of data available to us, it might not even be a feasible approach.</p>
+<h2 id="summary">
+  Summary
+  <a class="heading-link" href="#summary">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>Error analysis can help us pinpoint the weaknesses of our approach.
+<ul>
+<li>Depending on the analysis, it might be worth it to fix mislabeled data.</li>
+<li>Staying agile, and iterating quickly is the secret sauce.</li>
+</ul>
+</li>
+<li>Having mismatched training and dev/sets change the way we can interpret the bias/variance tradeoff.
+<ul>
+<li>The mismatch is a new source of error.</li>
+<li>There are not many systematic ways of addressing data mismatch, short of just getting more data.</li>
+</ul>
+</li>
+<li>Many tasks share commonalities:
+<ul>
+<li>Transfer learning helps you leverage the commonalities in a pre-trained model, and narrow down the application via fine-tuning.</li>
+<li>Multitask learning allows you to train a <em>single</em> model that does many things.</li>
+</ul>
+</li>
+<li>End-to-end deep learning can be useful, but it requires a lot more data than hand-crafted, compositional approaches.</li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

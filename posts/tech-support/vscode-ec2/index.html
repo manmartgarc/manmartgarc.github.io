@@ -196,7 +196,7 @@
   </a>
 </h2>
 <p>AWS' <code>t3.nano</code> comes with 0.5 GB of memory; and if you <code>Remote-SSH</code> into your instance, it will most likely be okay, and you will be able to edit files and do a lot of things. Until you install some extensions to make your life <em>considerably</em> easier.</p>
-<p>For me it&rsquo;s Microsoft&rsquo;s <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">Pylance</a>, which offers a feature-rich support for Python in VSCode. Add to that some on-save linter or static checker, and now your machine will be either hanging or close to hanging.</p>
+<p>For me, it&rsquo;s Microsoft&rsquo;s <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">Pylance</a>, which offers a feature-rich support for Python in VSCode. Add to that some on-save linter or static checker, and now your machine will be either hanging or close to hanging.</p>
 <h2 id="the-solution">
   The solution
   <a class="heading-link" href="#the-solution">
@@ -204,7 +204,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Thankfully, you can give your remote instance a well-deserved break and offload some of the cost of running extensions to your local machine. The distinction is that there are <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds">two kinds of extensions</a>; UI Extensions and Workspace Extensions, and you can change an extension&rsquo;s kind in your settings. Found this on the repo <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds"><code>vscode-remote-release</code></a>.</p>
+<p>Thankfully, you can give your remote instance a well-deserved break and offload some cost of running extensions to your local machine. The distinction is that there are <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds">two kinds of extensions</a>; UI Extensions and Workspace Extensions, and you can change an extension&rsquo;s kind in your settings. Found this on the repo <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#architecture-and-extension-kinds"><code>vscode-remote-release</code></a>.</p>
 <p>Basically in your <code>settings.json</code>, you can set these <a href="https://code.visualstudio.com/api/advanced-topics/remote-extensions#incorrect-execution-location">settings</a>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="font-weight:bold">&#34;remote.extensionKind&#34;</span>: {

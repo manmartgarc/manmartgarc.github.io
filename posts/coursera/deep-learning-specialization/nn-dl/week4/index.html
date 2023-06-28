@@ -221,7 +221,7 @@ Z^{[l]} = g^{[l]}(W^{[l]}A^{[l - 1]} + b^{[l]})
 \end{equation}
 $$</p>
 <p>Remembering that the input layer is usually denoted $A^{[0]} = X$.</p>
-<p>This is pretty much all there is to making deeper networks.The caveat however, is that this applies to fully-connected layers or feed-forward neural networks. In the fourth course, we will go over different architectures which try to represent information in more novel ways.</p>
+<p>This is pretty much all there is to deeper networks. The caveat however, is that this applies to fully-connected layers or feed-forward neural networks. In the fourth course, we will go over different architectures which try to represent information in more novel ways.</p>
 <h2 id="getting-your-matrix-dimensions-right">
   Getting your matrix dimensions right
   <a class="heading-link" href="#getting-your-matrix-dimensions-right">
@@ -256,7 +256,7 @@ $$</p>
 $$</p>
 <p>Notice that adding $b^{[l]}$ to the product $W^{[l]}A^{[l-1]}$ is done via broadcasting with NumPy!</p>
 <blockquote>
-<p>A note about taking derivatives is that the derivatives should be the sime dimensions as the arrays.</p>
+<p>A note about taking derivatives is that the derivatives should be the same dimensions as the arrays.</p>
 </blockquote>
 <h2 id="why-deep-representations">
   Why deep representations?
@@ -265,7 +265,7 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>We have been mentioning how deep neural networks amount to automatic feature generation, and how this is was what really set deep neural networks apart from other contemporaneous models. Therefore a key thing is that they do not just need to be &ldquo;big&rdquo;, but they need to be deep, i.e. have hidden layers. How many? Keep reading.</p>
+<p>We have been mentioning how deep neural networks amount to automatic feature generation, and how this is what really set deep neural networks apart from other contemporaneous models. Therefore, a key thing is that they do not just need to be &ldquo;big&rdquo;, but they need to be deep, i.e. have hidden layers. How many? Keep reading.</p>
 <p>The basic idea is that as you run the features through your network, they are combined into more abstract features. The example used in the course is going from raw audio to phonemes, from phonemes to words, from words to sentences; and of course the magic is that you, the programmer, don&rsquo;t to know what these are, but the machinery figures them out by itself by optimization.</p>
 <p>An important idea mentioned in the course is that of the relationship between depth and height, that is the number of hidden units. First think of neural networks as trying to learn a function $f(x)$ that maps a vector $x \mapsto y$. Now, there are some functions that you can estimate using &ldquo;small&rdquo; $L$-layer neural networks. However, if you want to use a shallower network and keep the same level of performance in the estimation, you will need to use <em>exponentially</em> more hidden units.</p>
 <p>More precisely, if you have $n$ features, and you want to compute the <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or (XOR)</a> of all the features, you will need a network which has a <em>depth</em> in the order of $O(\log n)$, where $n$ is also the number of nodes in your network. On the other hand, if you&rsquo;re forced to use a shallow network, i.e. logistic regression, you will need $O(2^n)$ nodes. In summary, adding layers to your network is much more computationally efficient than growing the size of a hidden layer. Authors Mhaskar, Liao and Poggio show this at much more detail in their <a href="https://arxiv.org/pdf/1603.00988.pdf">paper</a>.</p>
@@ -279,7 +279,7 @@ $$</p>
 <p>The parameters $W^{[l]}, b^{[l]}$ are the things you derive via training. On the other hand hyperparameters are fixed during training and must be set before training.</p>
 <p>A good way to think about the difference between parameters and hyperparameters comes from <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf">Tamara Broderick</a>&rsquo;s slides. In machine learning we usually want to evaluate a hypothesis $h(x)$ that maps $x \mapsto y$. A hypothesis can belong to a hypothesis class. A hypothesis class $H$ used by a learning algorithm is the set of all classifiers considered by it. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> For example a linear classifier considers all classifiers whose decision boundary is linear. During training the algorithm will search <em>within</em> the hypothesis class for a <em>particular</em> hypothesis that minimizes the cost. Hyperparameters are related to the hypothesis class, while parameters are related to a particular hypothesis.</p>
 <p>Hyperparameters are usually selected via hyperparameter tuning, which is the topic of the next course.</p>
-<p>Some of the hyperparameters in neural networks are:</p>
+<p>Some hyperparameters in neural networks are:</p>
 <ul>
 <li>Learning rate $\alpha$: the step-size of gradient descent.</li>
 <li>Number of iterations: how many times will the model observe the entire training set.</li>
@@ -287,7 +287,7 @@ $$</p>
 <li>Size of hidden layers.</li>
 <li>Which activation functions and on which layers.</li>
 </ul>
-<p>As you can probably see, there are a lot hyperparameters to search over, especially considering the size of the set of all combinations.</p>
+<p>As you can probably see, there are a lot of hyperparameters to search over, especially considering the size of the set of all combinations.</p>
 <h2 id="summary">
   Summary
   <a class="heading-link" href="#summary">
@@ -314,7 +314,7 @@ $$</p>
 <p>Hyperparameter tuning is hard.</p>
 <ul>
 <li>As your data changes, you might need to update your hyperparameters.</li>
-<li>There are many ways to to hyperparameter tuning, across the computational spectrum.</li>
+<li>There are many ways to hyperparameter tuning, across the computational spectrum.</li>
 <li>Neural nets have a lot of hyperparameters compared to other machine learning algorithms.</li>
 </ul>
 </li>
