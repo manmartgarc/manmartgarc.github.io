@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Convolutional Neural Networks on Manuel Martinez</title>
+    <link>https://manmartgarc.github.io/categories/convolutional-neural-networks/</link>
+    <description>Recent content in Convolutional Neural Networks on Manuel Martinez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/convolutional-neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convolutional Neural Networks: Week 1 | Foundations of CNNs</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</link>
+      <pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
+      <description>This is the first week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+This week&amp;rsquo;s topics are:
+ Computer Vision Convolution  Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters   Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN  Defining the Notation and Dimensions   Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?</description>
+    </item>
+    
+  </channel>
+</rss>
