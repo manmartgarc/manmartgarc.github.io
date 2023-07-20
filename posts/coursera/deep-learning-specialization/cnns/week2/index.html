@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Convolutional Neural Networks: Week 2 | Case Studies · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the second week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
+This week&rsquo;s topics are:
+ Case Studies  Classic Networks  LeNet5 AlexNet VGG16   ResNets  Why do ResNets Work?   Networks in Networks | 1x1 Convolutions Inception Network  Inception Network Architecture   MobileNet  Depth-wise Convolution Point-wise Convolution MobileNet Architecture     Practical Advice for Using ConvNets  Transfer Learning Data Augmentation   Summary  Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Convolutional Neural Networks: Week 2 | Case Studies"/>
+<meta name="twitter:description" content="This is the second week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
+This week&rsquo;s topics are:
+ Case Studies  Classic Networks  LeNet5 AlexNet VGG16   ResNets  Why do ResNets Work?   Networks in Networks | 1x1 Convolutions Inception Network  Inception Network Architecture   MobileNet  Depth-wise Convolution Point-wise Convolution MobileNet Architecture     Practical Advice for Using ConvNets  Transfer Learning Data Augmentation   Summary  Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas."/>
+
+<meta property="og:title" content="Convolutional Neural Networks: Week 2 | Case Studies" />
+<meta property="og:description" content="This is the second week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
+This week&rsquo;s topics are:
+ Case Studies  Classic Networks  LeNet5 AlexNet VGG16   ResNets  Why do ResNets Work?   Networks in Networks | 1x1 Convolutions Inception Network  Inception Network Architecture   MobileNet  Depth-wise Convolution Point-wise Convolution MobileNet Architecture     Practical Advice for Using ConvNets  Transfer Learning Data Augmentation   Summary  Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-07-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-19T00:00:00+00:00" />
+
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.92.2" />
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">
+              Convolutional Neural Networks: Week 2 | Case Studies
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-07-19T00:00:00Z">
+                July 19, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              18-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning/">Deep Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/convolutional-neural-networks/">Convolutional Neural Networks</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the second week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/">fourth course</a> of DeepLarning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#case-studies">Case Studies</a>
+<ul>
+<li><a href="#classic-networks">Classic Networks</a>
+<ul>
+<li><a href="#lenet5">LeNet5</a></li>
+<li><a href="#alexnet">AlexNet</a></li>
+<li><a href="#vgg16">VGG16</a></li>
+</ul>
+</li>
+<li><a href="#resnets">ResNets</a>
+<ul>
+<li><a href="#why-do-resnets-work">Why do ResNets Work?</a></li>
+</ul>
+</li>
+<li><a href="#networks-in-networks--1x1-convolutions">Networks in Networks | 1x1 Convolutions</a></li>
+<li><a href="#inception-network">Inception Network</a>
+<ul>
+<li><a href="#inception-network-architecture">Inception Network Architecture</a></li>
+</ul>
+</li>
+<li><a href="#mobilenet">MobileNet</a>
+<ul>
+<li><a href="#depth-wise-convolution">Depth-wise Convolution</a></li>
+<li><a href="#point-wise-convolution">Point-wise Convolution</a></li>
+<li><a href="#mobilenet-architecture">MobileNet Architecture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#practical-advice-for-using-convnets">Practical Advice for Using ConvNets</a>
+<ul>
+<li><a href="#transfer-learning">Transfer Learning</a></li>
+<li><a href="#data-augmentation">Data Augmentation</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<h2 id="case-studies">
+  Case Studies
+  <a class="heading-link" href="#case-studies">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We should obviously keep up with the computer vision literature if we are interested in implementing new ideas. However, since CNNs have so many hyperparameters and settings, it&rsquo;s essential to pay attention to the empirically justified advances occurring in the field. Since so many computer vision tasks are similar, many of the core ideas of new approaches can be applied, sometimes identically and sometimes with minor editions, to new applications. Finally, in the age of big data and cheap compute, we can get away with virtually free-riding on somebody else&rsquo;s compute by using their pre-trained model. Let&rsquo;s start with the &ldquo;classic&rdquo; networks that hit the field from the late 90s through the early 10s.</p>
+<h3 id="classic-networks">
+  Classic Networks
+  <a class="heading-link" href="#classic-networks">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h4 id="lenet5">
+  LeNet5
+  <a class="heading-link" href="#lenet5">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>LeNet5 is a CNN architecture introduce by LeCun et al. in 1998; the paper is <a href="https://ieeexplore.ieee.org/document/726791">here</a>. The application is the recognition of handwritten digits. This paper was one of the first ones that made a serious splash in the field. Because of this, some design decisions made by the authors were made without the benefit of a lush and active field as it is today. For example, the usage of non ReLU activation functions, using average pooling instead of max pooling are things you don&rsquo;t really see today. However, obviously, there are some key ideas that the authors introduced.</p>
+<p>A big idea here is that of progressively reducing the height and width of the input volume in each layer, while simultaneously increasing the depth. That is $n_H, n_W$ go down the layers while $n_C$ goes up. Another idea here is to slap fully connected layers, two consecutive ones in this paper, before a softmax layer for the classification. The last four layers in LeNet5 go from $5 \times 5 \times 16$ convolutional layer to a $120$ hidden unit fully connected layer, and then into a $84$ hidden unit fully connected layer, and then finally into a softmax layer with $10$ classes. LeNet5&rsquo;s architecture has about $60,000$ parameters, which is miniscule compared to modern approaches, and even to AlexNet.</p>
+<h4 id="alexnet">
+  AlexNet
+  <a class="heading-link" href="#alexnet">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>This architecture was introduced by Krizhevsky, et al. at the ImageNet competition in 2012; the paper is <a href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">here</a>. AlexNet is very similar to LeNet5, but it&rsquo;s much bigger, with around $60$ million parameters, about $1,000$ times bigger. The authors dealt with the increased computational complexity by implementing parallel GPU training, using ReLU activation functions and also utilizing <a href="https://paperswithcode.com/method/local-response-normalization">local response normalization</a>; a normalization technique applied point-wise across the channels of a volume, which is not very commonly used today.</p>
+<h4 id="vgg16">
+  VGG16
+  <a class="heading-link" href="#vgg16">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>This architecture was introduced by <a href="https://arxiv.org/abs/1409.1556">Simonyan and Zisserman</a> in 2015. Compared to <a href="#alexnet">AlexNet</a> where there are many convolutional layers with different filter sizes and strides, the authors focused on network depth. By using the same hyperparameters for filter sizes, stride and padding across many layers, they were able to train a deeper network, of around 16 to 19 layers. The network is still very big relative to AlexNet and LeNet5, with around $138$ million parameters.</p>
+<h3 id="resnets">
+  ResNets
+  <a class="heading-link" href="#resnets">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We move away from &ldquo;classic&rdquo; networks by introducing a key component: the skip connection. <a href="https://arxiv.org/abs/1512.03385">He, et al.</a> introduce residual networks, or ResNets, which use skip connections for improving performance. A skip connection is simple, the activations for layer $l$ are summed to the activation of layer $l+2$, so that the activation formula for $l+2$ is:</p>
+<p>$$
+a^{[l+2]} = g^{[l+2]}(z^{[l+2]} + a^{[l]})
+$$</p>
+<p>To read more about the author&rsquo;s rationale for coming up with this idea, you can read the original paper. However, there are some key results that arise from using skip connections.</p>
+<p>In theory, adding more layers to a plain vanilla network could only help with respect to the training error. More complexity means less error. However, in reality, adding more layers usually hurts the performance of our optimization algorithm. The network depth offers diminishing returns, and even negative returns after some point, in terms of the performance on the training error. Skip connections make the relationship between depth and training error performance to decrease monotonically, allowing us to training much deeper networks, usually 100 layers, without having the tradeoff between depth and training set performance.</p>
+<h4 id="why-do-resnets-work">
+  Why do ResNets Work?
+  <a class="heading-link" href="#why-do-resnets-work">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>The key idea as to why ResNets have the almost magical property of undoing the link between depth and training set performance, is that they allow the network to efficiently learn the identity function. Remember that the identify function is a function that always returns the input value. Intuitively, this means that in the worst case, using skip connections will be as bad as not using them. In practice, using skip connections is actually better because we add more model complexity without facing the &ldquo;cost&rdquo; of adding more complexity when we don&rsquo;t use skip connections.</p>
+<p>Mathematically, think about the following. We already established that a skip connection simply adds the activations of two layers back, to the activations of the current layer:</p>
+<p>$$
+a^{[l+2]} = g^{[l+2]}(z^{[l+2]} + a^{[l]})
+$$</p>
+<p>We can expand $z^{[l+2]}$:</p>
+<p>$$
+a^{[l+2]} = g^{[l+2]}(W^{[l+2]}a^{[l+1]}+b^{[l+2]} + a^{[l]})
+$$</p>
+<p>If $W^{[l+2]}, b^{[l+2]} = 0$, then:</p>
+<p>$$
+\begin{aligned}
+a^{[l+2]} &amp;= g^{[l+2]}(a^{[l]}) \\
+a^{[l+2]} &amp;= a^{[l]}
+\end{aligned}
+$$</p>
+<p>This means that if adding an extra layer actually hurts the network, the network can learn parameters that &ldquo;undo&rdquo; the additional layer! You might be thinking how come the last two equalities hold, and they hold because $g^{[l]} \ \forall l \rightarrow \text{ReLU}$. That is, we use ReLU as the activation function for all layers. Since ReLU is the identity function when the input is greater than $0$, then it&rsquo;s the same; pretty neat.</p>
+<blockquote>
+<p>This only works if the input dimensions are the same in the networks with skip connections. If this is not the case, you can add a convolution step to make sure that the dimensions align without any performance costs.</p>
+</blockquote>
+<h3 id="networks-in-networks--1x1-convolutions">
+  Networks in Networks | 1x1 Convolutions
+  <a class="heading-link" href="#networks-in-networks--1x1-convolutions">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This idea is pretty cool, and it&rsquo;s used in a lot of other architectures that will be discussed later in this week&rsquo;s content. You might already have thought about this: what happens if we convolve a filter of size $1$, that is $f=1$, and use a &ldquo;same&rdquo; padding? <a href="https://arxiv.org/abs/1312.4400">Lin et al.</a> propose this approach and call it a &ldquo;network in network&rdquo; approach. Let&rsquo;s think about this in the basic case: when the number of channels $n_C = 1$. If the number of channels $n_C=1$ then convolving a matrix with a $1\times1$ filter is equivalent to matrix-scalar multiplication; we just multiply every entry $M[i, j]$ the scalar value in the filter, to get $M^*[i, j] = M[i,j] \times f_0$. But what happens if the number of channels is not one? What happens if we have some volume as an input?</p>
+<p>Say that we have an input volume with dimensions $6 \times 6 \times 32$, and we convolve it with a filter of dimensions $1 \times 1 \times 32$. After applying a ReLU to the convolution, each entry in the feature map will be the ReLU applied to a dot product. Specifically, the dot product between the filter and a $1 \times 1$ surface in the input volume. We can think of the $1 \times 1 \times 32$ filter as a rod or column, which is dotted with each &ldquo;rod&rdquo; in the input value, where the length of the rod spans the channels dimension. Because each entry in the feature map is the dot product and a non-linearity, this is equivalent to a linear function, which is equivalent to what each layer on a neural network does; hence the name: network in network.</p>
+<p>Okay, but why use it? Beyond having the ability to represent a hidden layer across the channels dimension of the input in a CNN context, there is another powerful application of this approach: dimensionality reduction. If we have a $28 \times 28 \times 192$ input, and we convolve it with $32$ different $1 \times 1$ filters, then we will get a $28 \times 28 \times 32$ output. Notice that the dimensionality reduction occurs only in the channel dimension and not the height and width of the input volume. The idea of &ldquo;shrinking&rdquo; or &ldquo;compressing&rdquo; the input volume is a key idea of inception networks.</p>
+<h3 id="inception-network">
+  Inception Network
+  <a class="heading-link" href="#inception-network">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><a href="https://arxiv.org/abs/1409.4842">Szegedy, et al.</a> use the idea of $1 \times 1$ convolutions to compose a new type of layer: the inception layer. The idea is used as a solution to a problem introduced by inception layers. Inception layers allow us to use multiple convolutional operations within a layer and stack the results. Let&rsquo;s say that we have input dimensions $28 \times 28 \times 192$, and we want to use multiple filter sizes: $1 \times 1, 3 \times 3, 5 \times 5$. Additionally, we also want to use a max-pooling layer to the input. Why do this? We don&rsquo;t know which filter to use ex ante, so we&rsquo;d like to try them all. Let&rsquo;s say that we use:</p>
+<ul>
+<li>$64$, $1 \times 1$ filters. Giving us an output of $28 \times 28 \times 64$.</li>
+<li>$128$, $3 \times 3$ filters. Giving us an output of $28 \times 28 \times 128$.</li>
+<li>$32$, $5 \times 5$ filters. Giving us an output of $28 \times 28 \times 32$</li>
+<li>$32$ max pool filters with padding to get a &ldquo;same&rdquo; convolution. Giving us an output of $28 \times 28 \times 32$.</li>
+</ul>
+<p>Notice that the heights and widths match up, so that we can actually stack all of these outputs together into a $28 \times 28 \times 256$ volume.</p>
+<p>The problem, of course, is computational cost. Focusing on the $5 \times 5$ filters, when using $32$ filters, we need to do a lot of multiplications and summations. Each of the $32$ filters have dimensions $5 \times 5 \times 192$. The feature map has dimensions $28 \times 28 \times 32$. For each of these entries we need to compute $5 \times 5 \times 192 = 4800$ multiplications, and we have $28 \times 28 \times 32 = 25,088$ of these; for a total of $4800 \times 25,088 = 120,422,400$, or around $120$ million operations. And these are just the $5 \times 5$ filters! Here is where the $1 \times 1$ convolutions can be helpful as dimensionality reduction.</p>
+<p>Before doing the convolution operations, we &ldquo;compress&rdquo; the input using $1 \times 1$ convolutions. If the input is $28 \times 28 \times 192$, and we use $16$, $1 \times 1$ filters, we will get an output with dimensions $28 \times 28 \times 16$. The process of &ldquo;compressing&rdquo; is called the <em>bottleneck</em> layer. How many operations are we doing now? There are two steps now: the bottleneck layer and the convolutional layer.</p>
+<p>The bottleneck layer takes a $28 \times 28 \times 192$ input and convolves it with $16$ different $1 \times 1 \times 192$ filters. The feature map dimensions should be $28 \times 28 \times 16$ and each of these numbers is the result of $1 \times 1 \times 192 = 192$ multiplications. For a total of $28 \times 28 \times 16 \times 192 = 2,408,448$ or around $2.4$ million. The second part takes a $28 \times 28 \times 16$ input and convolves it with $32$ different $5 \times 5 \times 16$ filters. The feature map dimensions should be $28 \times 28 \times 32$ and each of these numbers is the result of $5 \times 5 \times 16 = 400$ multiplications. For a total of $28 \times 28 \times 32 \times 400 = 10,035,200$ or around $10$ million. Adding both we get around $12.4$ million, which is much less than the original $120$ million. Of course, the number of filters in the bottleneck layer regulates the computational ratio between the two approaches. We now have a way to increase dimensionality reduction to reduce computational cost.</p>
+<h4 id="inception-network-architecture">
+  Inception Network Architecture
+  <a class="heading-link" href="#inception-network-architecture">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>The authors then use inception layers as building blocks of the network, using consecutive inception layers and a very deep network, interspersed with max-pooling blocks to regulate the volume dimensions. Another interesting idea is that they add more than just one softmax layer at the end of the network. They also put some <em>before</em> the final layer. What this does, is that it keeps the inception layers from getting too crazy and forgetting that their job should be the classification. We don&rsquo;t use the output from these inner softmax layers for the final classification, but we put them there solely to &ldquo;ground&rdquo; the optimization process.</p>
+<h3 id="mobilenet">
+  MobileNet
+  <a class="heading-link" href="#mobilenet">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>As we can probably know by know, CNNs offer big computational savings compared to fully connected neural networks. However, most architectures in the <a href="#classic-networks">classic</a> section still hover around $200$ million parameters or more. The ideas behind mobile net were fueled by the computational constraint in mobile devices, such as cellphones or tables; where most devices are still below the double-digit RAM gigabytes. Think even on security cameras; there are clear benefits on running classification models locally on embedded systems instead of relying on networking. One of the key ideas used by <a href="https://arxiv.org/abs/1704.04861">Howard, et al.</a> is that of depthwise-separable convolutions.</p>
+<p>Let&rsquo;s start by reviewing normal convolutions. Imagine that we have a $6 \times 6 \times 3$ input volume, and we convolve it with a $3 \times 3$ filter. Each filter is also a volume, a $3 \times 3 \times 3$ volume. The output feature map will have a dimension of $4 \times 4 \times n_C$ where $n_C$ is the number of filters; we get this number using our trusty formula from the first week. Imagine that we use $5$ such $3 \times 3 \times 3$ filters. To calculate the computational cost we multiply the number of filter parameters times the number of filter positions times the number of filters:</p>
+<p>$$
+\text{Computational Cost} = \text{\# filter parameters} \times \text{\# filter positions} \times \text{\# of filters}
+$$</p>
+<p>In our case each filter has $3 \times 3 \times 3 = 27$ parameters, there are $4 \times 4$ filter positions, one for each entry in the feature map output, and we have $5$ such filters. Totaling $3 \times 3 \times 3 \times 4 \times 4 \times 5 = 27 \times 16 \times 5 = 2196$ multiply operations. Using depthwise-separable convolutions we can reduce this number. Depthwise-separable convolutions factor regular convolutions into two operations: depth-wise convolution, and point-wise convolution. Let&rsquo;s start with depth-wise convolution.</p>
+<h4 id="depth-wise-convolution">
+  Depth-wise Convolution
+  <a class="heading-link" href="#depth-wise-convolution">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Depth-wise convolution is the same as regular convolution, but instead of convolving an input volume with a filter that is also a volume, we convolve it as many 2D filters as there are channels in the input. If our input volume has dimensions $6 \times 6 \times 3$, then we will do depth-wise convolution with $3$ different $3 \times 3$ filters <em>separately</em> on each channel. We use $3$ filters because $n_C = 3$. In our case the computational cost is:</p>
+<p>$$
+\begin{aligned}
+\text{Computational Cost} &amp;= \text{\# filter parameters} \times \text{\# filter positions} \times \text{\# of filters} \\
+\text{Computational Cost} &amp;= (3 \times 3) \times (4 \times 4) \times 3 \\
+\text{Computational Cost} &amp;= 9 \times 16 \times 3 \\
+\text{Computational Cost} &amp;= 432
+\end{aligned}
+$$</p>
+<p>About $20\%$ of the original computational cost, but we&rsquo;re not done yet. We got an output of $4 \times 4 \times 3$, and we want an output of $4 \times 4 \times 5$ since we were originally using $5$ filters. We go from a $4 \times 4 \times 3$ input to a $4 \times 4 \times 5$ output feature map via point-wise convolution.</p>
+<h4 id="point-wise-convolution">
+  Point-wise Convolution
+  <a class="heading-link" href="#point-wise-convolution">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Point-wise convolution is where the <a href="#networks-in-networks--1x1-convolutions">$1 \times 1$ convolution</a> idea comes back. Our input is of dimension $4 \times 4 \times 3$, but we want a $4 \times \times 4 \times 5$ output; we can get that by stacking $5$ different $1 \times 1 \times 3$ filters in a volume. That is, convolving our $4 \times 4 \times 3$ input with $5$ different $1 \times 1 \times 3$ filters, we will get an output with dimensions $4 \times 4 \times 5$. Instead of projecting our features to lower dimensional space as it&rsquo;s the case in dimensionality reduction, we are doing the opposite; we are linearly combining the features into more of them. The computational cost of point-wise convolution is:</p>
+<p>$$
+\begin{aligned}
+\text{Computational Cost} &amp;= \text{\# filter parameters} \times \text{\# filter positions} \times \text{\# of filters} \\
+\text{Computational Cost} &amp;= (1 \times 1 \times 3) \times (4 \times 4) \times 5 \\
+\text{Computational Cost} &amp;= 3 \times 16 \times 5 \\
+\text{Computational Cost} &amp;= 240
+\end{aligned}
+$$</p>
+<p>About $10\%$ of the original computation cost, and this time we are done. We went from $2196$ to $240 + 432 = 672$ multiply operations, which is a lot better. Depth-wise separable convolutions end up being around $10$ times cheaper than regular convolutions. If you&rsquo;re thinking that such a computational boon does not come free of charge, then you are right. We are able to get cheaper computation by making a key assumption: the space (width and height) is statistically independent (orthogonal) of the channels (depth). That might sound like a bold assumption in the computer vision field. Intuitively, color is not orthogonal from shapes. However, in practice, it works extremely well in terms of model performance; whereby many applications are willing to pay a small accuracy hit for $10$ times cheaper compute.</p>
+<h4 id="mobilenet-architecture">
+  MobileNet Architecture
+  <a class="heading-link" href="#mobilenet-architecture">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>The original MobileNet (v1) used $13$ depthwise-separable convolution layers with a pooling, fully connected and softmax layers with great success. The network offered about the same performance as networks with normal convolutional layers for about a tenth of the computational price. This of course, was not enough, hence the second version v2 uses a more sophisticated approach.</p>
+<p>MobileNet v2 composes more steps into each convolutional layer. First we add skip-connections, the same way we did in <a href="#resnets">ResNets</a>. However, we also add two additional steps: <em>expansion</em> before depthwise-separable convolution, and then <em>projection</em> afterwards. How do we expand and project? Using <a href="#networks-in-networks--1x1-convolutions">$1 \times 1$ convolutions</a> of course!</p>
+<p><a href="https://arxiv.org/abs/1801.04381">Sandler, et al.</a> borrow the bottleneck approach from <a href="#inception-network">inception</a> networks, which constitute the expansion and projection. Say that we start with a $n \times n \times 3$ input. Before doing depthwise-separable convolution, we expand this volume, using $18$ different $1 \times 1$ filters ($18$ is just a number picked). We get an output of $n \times n \times 18$. This step constitutes expansion. Now, we do depthwise-separable convolution on the $n \times n \times 18$ volume, and we get a $n \times n \times 18$ output (again $18$ is just a number picked). Finally, project the volume into lower dimensional space via point-wise convolution, using $3$ different $1 \times 1$ filters ($3$ is just a number that matches the input channels) getting a $n \times n \times 3$ output. This step constitutes projection.</p>
+<p>This is pretty nifty, we get some volume, and we expand it, linearly combining its features to generate new ones. Afterwards we do the <em>cheap</em> version of convolution, using depthwise-separable convolution, learning new features from the expanded ones. Finally, we apply dimensionality reduction via projection, to keep memory usage low. So by using expansion, we allow the network to learn a richer function; and by using projection we keep the memory usage low. In practice the MobileNet v2 paper uses this &ldquo;bottleneck&rdquo; block (expansion, depthwise-separable convolution and projection) 17 times before running through the usual pooling, fully connected and softmax layers.</p>
+<h2 id="practical-advice-for-using-convnets">
+  Practical Advice for Using ConvNets
+  <a class="heading-link" href="#practical-advice-for-using-convnets">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="transfer-learning">
+  Transfer Learning
+  <a class="heading-link" href="#transfer-learning">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>As we&rsquo;ve seen, networks get pretty big and computational expensive. Many papers release their models as open-source software via public repositories in version control systems. You can use transfer learning, covered in <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">Structuring Machine Learning Models | Week 2</a>. The key idea is to &ldquo;freeze&rdquo; all the layers expect the last one from a pre-trained model, and retrain the last layer using our own data. Sometimes you can freeze fewer layers, let&rsquo;s say the first $90\%$ of the layers, although this number is not set in stone. Think about what each layer is doing: freezing the earlier layers, means reusing the lower-level features from the pre-trained model, while freezing the latter layers means freezing the higher-level features from the pre-trained model. At which point in the feature hierarchy is the optimal overlap between the pre-trained model and our application depends on each application and pre-trained model combination.</p>
+<h3 id="data-augmentation">
+  Data Augmentation
+  <a class="heading-link" href="#data-augmentation">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Data augmentation means generating new training samples from our original training samples via some process. Within the context of computer vision, this is usually done via mirroring and random cropping. Color shifting is also possible via tools like <a href="https://machinelearning.wtf/terms/pca-color-augmentation/">PCA Color Augmentation</a> which was a technique used in the <a href="#alexnet">AlexNet</a> paper. There are also computational approaches that implement data augmentation concurrently with training. Concurrency in scientific computing is a huge field, and it makes sense to show up in any computationally intensive applications.</p>
+<h2 id="summary">
+  Summary
+  <a class="heading-link" href="#summary">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>Classical CNN approaches share:
+<ul>
+<li>Lowering spatial dimensions as we go through the layers of a network.</li>
+<li>Increase channel dimensions as we go through the layers of a network.</li>
+<li>They get pretty big.</li>
+</ul>
+</li>
+<li>Skip connections allow us to:
+<ul>
+<li>Train deeper networks without killing our optimization process.</li>
+</ul>
+</li>
+<li>$1 \times 1$ convolutions are a powerful idea that allow us to:
+<ul>
+<li>Linearly combine the channels of a volume into higher dimensional space.</li>
+<li>Linearly combine the channels of a volume into lower dimensional space.</li>
+<li>Do a bunch of convolutions with different filters, stack them together and project them down, keeping down computational cost.</li>
+</ul>
+</li>
+<li>Depthwise-separable Convolutions allow us to:
+<ul>
+<li>Do (approximately) the same as regular convolutions for about $10\%$ of the computational price.</li>
+</ul>
+</li>
+<li>Big models exist out there:
+<ul>
+<li>Use transfer learning to hit the ground running</li>
+</ul>
+</li>
+<li>We should always use data augmentation, if not to get more data, to reduce our model&rsquo;s variance.</li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

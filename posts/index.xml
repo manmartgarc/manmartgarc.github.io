@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convolutional Neural Networks: Week 2 | Case Studies</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</link>
+      <pubDate>Wed, 19 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
+      <description>This is the second week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
+This week&amp;rsquo;s topics are:
+ Case Studies  Classic Networks  LeNet5 AlexNet VGG16   ResNets  Why do ResNets Work?   Networks in Networks | 1x1 Convolutions Inception Network  Inception Network Architecture   MobileNet  Depth-wise Convolution Point-wise Convolution MobileNet Architecture     Practical Advice for Using ConvNets  Transfer Learning Data Augmentation   Summary  Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.</description>
+    </item>
+    
     <item>
       <title>Convolutional Neural Networks: Week 1 | Foundations of CNNs</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</link>
