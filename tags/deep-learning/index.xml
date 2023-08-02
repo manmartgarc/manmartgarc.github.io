@@ -6,11 +6,11 @@
     <description>Recent content in deep learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Convolutional Neural Networks: Week 3 | Detection Algorithms</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</link>
-      <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 01 Aug 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
       <description>This is the third week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.

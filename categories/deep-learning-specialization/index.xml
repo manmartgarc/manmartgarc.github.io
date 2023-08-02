@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Coursera on Manuel Martinez</title>
-    <link>https://manmartgarc.github.io/categories/coursera/</link>
-    <description>Recent content in Coursera on Manuel Martinez</description>
+    <title>Deep Learning Specialization on Manuel Martinez</title>
+    <link>https://manmartgarc.github.io/categories/deep-learning-specialization/</link>
+    <description>Recent content in Deep Learning Specialization on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/deep-learning-specialization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Convolutional Neural Networks: Week 3 | Detection Algorithms</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</link>
