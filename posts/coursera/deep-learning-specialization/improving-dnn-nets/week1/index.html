@@ -14,24 +14,23 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
- Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?">
+Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning"/>
 <meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
- Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?"/>
+Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?"/>
 
 <meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning" />
 <meta property="og:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
- Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?" />
+Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-06-18T00:00:00+00:00" />
-
 
 
 
@@ -76,7 +75,7 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.115.4">
 
 
 
@@ -252,7 +251,7 @@ This week&rsquo;s topics are:
 <p>Keep in mind:</p>
 <ol>
 <li>Variance measures how much our classifier $h_D$ changes when we train it on a different training set $D$. How &ldquo;over-specialized&rdquo; is our classifier to a particular training set $D$? <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Notice that $h$ and $h_D$ are random variables, and so this measures the spread of a classifier trained on each possible sample $D$ drawn from $P^n$ versus the average classifier $\bar{h}(x)$.</li>
-<li>Bias measures the inherent error from our classifier <em>if</em> we had infinite training data. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> How far is our estimator&rsquo;s expected value $\bar{y}(x)$ from the expected classifier?</li>
+<li>Bias measures the inherent error from our classifier <em>if</em> we had infinite training data. <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> How far is our estimator&rsquo;s expected value $\bar{y}(x)$ from the expected classifier?</li>
 <li>Noise measures some irreducible error, which is an intrinsic property of the data. This related to Bayes error rate, which is the <em>lowest</em> possible error rate for any classifier of <em>random</em> outcomes.</li>
 </ol>
 <figure><img src="/images/bullseye.png"
@@ -269,7 +268,7 @@ This week&rsquo;s topics are:
 <li>$e_{train} = 1\%, e_{dev} = 11\%$: Our model is doing really well on the training set but much poorer on the development set. It smells of high variance since the model is not able to generalize from the training set to the dev set. It&rsquo;s therefore overfitting the training set.</li>
 <li>$e_{train} = 15\%, e_{dev} = 16\%$: Assuming that human-level error is approximately $0$, then this looks like high bias. The model is very far from human-level error on the training set, therefore it&rsquo;s not fitting our training data enough. It&rsquo;s therefore underfitting the training set. However, it&rsquo;s generalizing quite well to the dev set, therefore it might have low variance.</li>
 <li>$e_{train} = 15\%, e_{dev} = 30\%$: Assuming that human-level error is approximately $0$, then this looks like high bias again. But because it&rsquo;s not generalizing well, it also smells of high variance because of the discrepancy in performance between the test and dev sets.</li>
-<li>$e_{train} = 0.5\%, e_{dev} = 1\%$: Assuming that human-level error is approximately $0$, then this looks like both low bias and low variance. It&rsquo;s very close to the Bayes' error rate, and also generalizes well to the dev set.</li>
+<li>$e_{train} = 0.5\%, e_{dev} = 1\%$: Assuming that human-level error is approximately $0$, then this looks like both low bias and low variance. It&rsquo;s very close to the Bayes&rsquo; error rate, and also generalizes well to the dev set.</li>
 </ul>
 <p>The key assumption is that human-level error is approximately $0$, which implies that Bayes error has to be between $0$ and the human-level error. If for example the Bayes error rate is $15\%$ then the second case would not be high variance, because we are actually close to the best possible classifier.</p>
 <p>If you&rsquo;re wondering about how you can simultaneously underfit and overfit your training data, think about this:</p>
@@ -509,7 +508,7 @@ $$</p>
         </figcaption>
 </figure>
 
-<p>The contour plot above shows an imaginary two-dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features' scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
+<p>The contour plot above shows an imaginary two-dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features&rsquo; scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
 <h2 id="vanishing-and-exploding-gradients">
   Vanishing and Exploding Gradients
   <a class="heading-link" href="#vanishing-and-exploding-gradients">
@@ -616,20 +615,20 @@ $$</p>
 </li>
 </ul>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html">Bias-Variance Tradeoff | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html">Bias-Variance Tradeoff | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
+<li id="fn:2">
 <p><a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">Norm | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
+<li id="fn:3">
 <p><a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">Normalization | Wikipedia</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -710,7 +709,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
   
 
   

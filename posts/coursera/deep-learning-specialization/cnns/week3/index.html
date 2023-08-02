@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Convolutional Neural Networks: Week 3 | Detection Algorithms · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the third week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
+This week&rsquo;s topics are:
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Convolutional Neural Networks: Week 3 | Detection Algorithms"/>
+<meta name="twitter:description" content="This is the third week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
+This week&rsquo;s topics are:
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image."/>
+
+<meta property="og:title" content="Convolutional Neural Networks: Week 3 | Detection Algorithms" />
+<meta property="og:description" content="This is the third week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
+This week&rsquo;s topics are:
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-07-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-31T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.115.4">
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/">
+              Convolutional Neural Networks: Week 3 | Detection Algorithms
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-07-31T00:00:00Z">
+                July 31, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              18-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning/">Deep Learning</a>
+      <span class="separator">•</span>
+    <a href="/categories/convolutional-neural-networks/">Convolutional Neural Networks</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the third week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/">fourth course</a> of DeepLarning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#object-localization">Object Localization</a></li>
+<li><a href="#landmark-detection">Landmark Detection</a></li>
+<li><a href="#object-detection">Object Detection</a>
+<ul>
+<li><a href="#sliding-windows-detection">Sliding Windows Detection</a></li>
+<li><a href="#convolutional-implementation-of-sliding-windows">Convolutional Implementation of Sliding Windows</a>
+<ul>
+<li><a href="#turning-fully-connected-layers-into-convolutional-layers">Turning fully connected layers into convolutional layers</a></li>
+<li><a href="#implementing-sliding-windows-convolutionally">Implementing sliding windows convolutionally</a></li>
+</ul>
+</li>
+<li><a href="#bounding-box-predictions">Bounding Box Predictions</a>
+<ul>
+<li><a href="#intersection-over-union">Intersection Over Union</a></li>
+<li><a href="#non-max-suppression">Non-max Suppression</a></li>
+<li><a href="#anchor-boxes">Anchor Boxes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#semantic-segmentation">Semantic Segmentation</a>
+<ul>
+<li><a href="#transpose-convolutions">Transpose Convolutions</a></li>
+<li><a href="#u-net-architecture">U-Net Architecture</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<h2 id="object-localization">
+  Object Localization
+  <a class="heading-link" href="#object-localization">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">previously</a> discussed how we can train a classifier using images with CNNs. The new kink is the localization of the object in the image.</p>
+<p>In image classification we would train a CNN with a softmax layer at the end, which outputs the probability distribution of some sample $i$ belonging to one of the class set distributions. We will extend this naturally by adding to this final layer some units that are not under the softmax function. Specifically, we will add four hidden units in the output: $b_x, b_y, b_h, b_w$ which will describe the center point of a bounding box around the object $(b_x, b_y)$ and the bounding box&rsquo;s height and width $(b_h, b_w)$.</p>
+<p>We will literally cram all these things into the final layer so that our output $\hat{y}$ will be an estimate of $y$ as follows:</p>
+<p>$$
+y = \begin{bmatrix}
+p_c \\
+b_x \\
+b_y \\
+b_h \\
+b_w \\
+c_1 \\
+c_2 \\
+\vdots \\
+c_K
+\end{bmatrix}
+$$</p>
+<p>Where $p_c$ is the probability that the image contains <em>any</em> object. $b_x, b_y, b_h, b_w$ represent the bounding box for the object. Finally, $c_1, c_2, \dots, c_K$ represent the element-wise softmax output for each of the $K$ classes.</p>
+<p>Using this formulation for the output, we can easily write a loss function $\mathcal{L}(\hat{y}, y)$ which uses squared deviations for all the elements in the output vector. In practice, we use squared deviations for all the output elements except the class probabilities, where we use the usual cross-entropy loss in the case of multi-class problems.</p>
+<p>Thus, we have a way to train a neural network to perform object classification and localization, as long as we can provide it with an annotated training set with objects and bounding boxes.</p>
+<h2 id="landmark-detection">
+  Landmark Detection
+  <a class="heading-link" href="#landmark-detection">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The idea of having a neural network output some real-numbered value output that describes the location of things in the input is very powerful. The idea works because essentially the neural network is performing a regression task for those particular real-valued input and outputs, in our case the coordinates for the bounding boxes. Landmark detection is all about this.</p>
+<p>In landmark detection we annotate many &ldquo;landmarks&rdquo;, each of which is a pair of 2D coordinates in the image. If you&rsquo;ve ever seen footage of actors in goofy black costumes with trackers mounted on its surface, you&rsquo;ve seen the idea of landmarks. For example, if we have a data set consisting of faces, and we annotate some number of landmarks on each face, say 128, we can train a neural network to generate landmarks from unseen data. This can be useful in face recognition, where the idea (basically) is to compare two landmarks of faces.</p>
+<p>Another idea is that of pose detection, which is more related to the situation described above with actors in costumes with trackers. This is very useful in sports science and analytics, and video games as well.</p>
+<p>The idea is very similar, in addition to annotating our training set with the landmarks, we need to edit the final layer in the neural network to output its regression estimates of each landmark. If we have $128$ landmarks, then:</p>
+<p>$$
+y = \begin{bmatrix}
+p_c \\
+l_1 \\
+l_2 \\
+\vdots \\
+l_{128}
+\end{bmatrix}
+$$</p>
+<p>Where $p_c$ still represents the probability that the image contains an object, but $l_1, \dots, l_128$ represent the neural network&rsquo;s predictions of the landmarks.</p>
+<blockquote>
+<p>A key thing is that each landmark, say $l_1$ represents the same &ldquo;position&rdquo; in the image across many training samples. If we are doing face recognition, and $l_1$ is a landmark on the bottom of the bridge of the nose, it must be the same across all training samples for it to work.</p>
+</blockquote>
+<h2 id="object-detection">
+  Object Detection
+  <a class="heading-link" href="#object-detection">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Object detection is the next step up from object classification with localization; and it occurs when there can be many objects in a single image, and we are interested in the location of all those objects in the image. We combine both previous concepts: <a href="#object-localization">localization</a> and <a href="#landmark-detection">landmark detection</a>.</p>
+<h3 id="sliding-windows-detection">
+  Sliding Windows Detection
+  <a class="heading-link" href="#sliding-windows-detection">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This approach is the repeated application of classification and localization not in the image as a whole, but in subsets of the image, typically grids. If we divide our input image into cells in a grid, we can run each grid, representing a subset of the image, through the model and generate an output like the one in <a href="#object-detection">object detection</a>. That is, for each grid, we will get a vector. If we divide our image into a $19\times19$ grid, then we will have an output of size $19 \times 19 \times N$ where $N$ is the dimension of $\hat{y}$.</p>
+<p>If you&rsquo;re thinking that this approach is not computationally efficient, you are right. This issue makes this approach usually unfeasible. Another issue is the granularity of the grid, how much is enough? As we make the grid finer grained, how do we deal with overlapping bounding boxes for an object that spans many grid cells? Not to mention the higher computational cost of a more finely grained grid. If we go with a coarser grid, we might hurt performance because depending on the size ratio between the objects and the grids, we might get a grid having all the objects in the image; and thus hurt performance.</p>
+<p>All these problems are tackled in an approach called <a href="https://arxiv.org/abs/1506.02640">You Only Look Once (YOLO)</a>, a seminal paper by Redmond, et al. Let&rsquo;s start with the computational cost.</p>
+<h3 id="convolutional-implementation-of-sliding-windows">
+  Convolutional Implementation of Sliding Windows
+  <a class="heading-link" href="#convolutional-implementation-of-sliding-windows">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h4 id="turning-fully-connected-layers-into-convolutional-layers">
+  Turning fully connected layers into convolutional layers
+  <a class="heading-link" href="#turning-fully-connected-layers-into-convolutional-layers">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>When we run our classification and localization model on each cell grid, we are running a training sample through a vanilla CNN where some convolutional layers are followed by fully connected layers and then finally into a softmax for predicting the class probabilities. There is a way to convert the latter fully connected layers into convolutional layers, which we will use to reduce computation. The key thing to remember is that each cell in the feature map output is the result of running our model in a subset of the image, that is a grid.</p>
+<p>In the vanilla implementation, let&rsquo;s say that we have the following architecture:</p>
+<ol>
+<li>We start with a $14 \times 14 \times 3$ input.</li>
+<li>Run it through a convolutional layer with $16$ different $5 \times 5$ filters.</li>
+<li>We get a $10 \times 10 \times 16$ output.</li>
+<li>We run this through $16$ different $2 \times 2$ filters in a max pooling layer.</li>
+<li>Get a $5 \times 5 \times 16$ output.</li>
+<li>We run this through a $400$ fully connected layer.</li>
+<li>We run this through another $400$ unit, fully connected layer.</li>
+<li>Finally, we have a $K$ dimensional, let&rsquo;s say $4$ output from the softmax layer.</li>
+</ol>
+<p>It turns out that we can replace steps $6, 7$ and $8$ with convolutional layers. The key idea is that we can take the $5 \times 5 \times 16$ output from layer $4$, and convolve it with $400$ different $5 \times 5$ filters, to get a $1 \times 1 \times 400$ output feature map. Since the filter size is $5 \times 5$, and the filter must match the channels of the input, each filter will be of size $5 \times 5 \times 16$, the same as the input. Each of these filters has randomly initialized weights which the network can learn. This means that we are allowing the network to learn $400$ different linear combinations of the $5 \times 5 \times 16$ input through optimization with respect to our supervised learning goal.</p>
+<p>Notice also that a $400$ fully connected layer will have $(400, 5 \times 5 \times 16) = (400, 400)$ weight matrix dimensions, for a total of $160,400$ parameters including the biases. This is the same as the convolutional implementation since each filter is $5 \times 5 \times 16$, and we have $400$ of them. The key idea is not yet computational savings, but a mathematical equivalence between fully connected layers and convolutional layers.</p>
+<h4 id="implementing-sliding-windows-convolutionally">
+  Implementing sliding windows convolutionally
+  <a class="heading-link" href="#implementing-sliding-windows-convolutionally">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Let&rsquo;s summarize our network after converting the fully connected layers into convolutional layers:</p>
+<ol>
+<li>We start with a $14 \times 14 \times 3$ input.</li>
+<li>Run it through a <code>CONV</code> layer with $16$ different $5 \times 5$ filters.</li>
+<li>We get a $10 \times 10 \times 16$ volume.</li>
+<li>We run this through $16$ different $2 \times 2$ filters in a max pooling layer.</li>
+<li>Get a $5 \times 5 \times 16$ output</li>
+<li>We run this through a convolutional layer with $400$ different $5 \times 5$ filters.</li>
+<li>We get a $1 \times 1 \times 400$ output.</li>
+<li>We run this through a convolutional layer with $400$ different $1 \times 1$ filters.</li>
+<li>Get a $1 \times 1 \times 400$ output.</li>
+<li>Finally, run this through $K$ different $1 \times 1$ filters to get a $1 \times 1 \times K$ output, where $K$ is the number of classes.</li>
+</ol>
+<p>Nothing different so far, except that we turned our fully connected layers into convolutional layers.</p>
+<p>Remember that in the sliding window implementation, we must run each grid subset of each training sample through the <em>entire</em> network to produce one grid cell in the output. If we have a $20 \times 20$ grid, we must run it $400$ times for each training sample; and this is why its computational unfeasible.</p>
+<p>Also remember, that if our grid size does not tile the image perfectly, we must add some padding on the right and bottom sides of our image, so that the grid does not go out of bounds. This last idea turns out to be the key to generating all the output grids with a <em>single</em> pass of each training sample through our network. This is why we bothered converting fully connected layers to convolutional layers. Because in each of the passes, for each grid cell, there are a lot of parameters that are shared. However, fully connected layers cannot reuse these parameters. We know that convolutional layers work by parameter sharing.</p>
+<p>Let&rsquo;s say for example that in our $14 \times 14 \times 3$ example, we choose to use sliding window of size $13 \times 13$ with a stride $s = 2$. The output should be $2 \times 2 \times K$. In this case, we would have to run our network for times, one for each output grid cell, on each training sample. It turns out that we can add the padding in the beginning, making our image $16 \times 16 \times 3$ and run it through the same &ldquo;fully&rdquo; convolutional network to get a $2 \times 2 \times 4$ output which is mathematically equivalent to running each grid cell separately. Here is how it looks:</p>
+<ol>
+<li>We start with a $16 \times 16 \times 3$ input.</li>
+<li>Run it through a <code>CONV</code> layer with $16$ different $5 \times 5$ filters.</li>
+<li>We get a $12 \times 12 \times 16$ volume.</li>
+<li>We run this through $16$ different $2 \times 2$ filters in a max pooling layer.</li>
+<li>Get a $6 \times 6 \times 16$ output</li>
+<li>We run this through a convolutional layer with $400$ different $5 \times 5$ filters.</li>
+<li>We get a $2 \times 2 \times 400$ output.</li>
+<li>We run this through a convolutional layer with $400$ different $1 \times 1$ filters.</li>
+<li>Get a $2 \times 2 \times 400$ output.</li>
+<li>Finally, run this through $K$ different $1 \times 1$ filters to get a $2 \times 2 \times K$ output.</li>
+</ol>
+<p>With this approach, we ran all the output grids in one pass through the network. In the output, each cell corresponds to one sliding window position. Depending on the number of sliding windows we want to use, we can pad the input differently. This is how we get more efficient computation.</p>
+<h3 id="bounding-box-predictions">
+  Bounding Box Predictions
+  <a class="heading-link" href="#bounding-box-predictions">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We know have a way to run many grids at the same time in a single pass through our network. However, our bounding boxes are still limited to being defined by the grid we defined; which is a problem. Predefining the grid size limits our model&rsquo;s ability to recognize objects that are bigger than our chosen grid, span multiple ones, or are not really square. Another issue is what to do with overlapping grids. What if two objects are in the same grid? What if our object spans two grids? We need to deal with this.</p>
+<p>We first deal with multiple objects in the same image. In the YOLO algorithm, the authors use the <a href="#object-localization">object localization</a> approach to represent the inputs. They also use the <a href="#convolutional-implementation-of-sliding-windows">convolutional implementation of sliding window</a> to generate some grid of outputs. Each cell in the output has the same dimensions as each $\hat{y}$ in the object localization approach. If $K = 3$, that is if we have tree classes, then our each cell in the output will have $5 + K = 8$ elements:</p>
+<p>$$
+y = \begin{bmatrix}
+p_c \\
+b_x \\
+b_y \\
+b_h \\
+b_w \\
+c_1 \\
+c_2 \\
+c_3
+\end{bmatrix}
+$$</p>
+<p>For example, if we have a $100 \times 100 \times 3$ image, and we want to use a $3 \times 3$ grid, we can design a fully convolutional neural network to output a $3 \times 3 \times 5 + K$, in this case $3 \times 3 \times 8$. We are back to running object localization with a sliding window, but now in a convolutional manner. Notice also that because of the way that we have defined the input, we only get one bounding box per grid. We still have not solved the issue of multiple objects in the same grid, but we have solved the issue of an object spanning multiple grids by assigning the object&rsquo;s midpoint to the grid which contains its midpoint. The key idea here is that of using convolutional sliding windows and assigning each object to the center point of each grid, we can get bounding box predictions for each grid if there is an object detected in it, and also which object it is. In practice, the finer-grained grid we use, the lower the chance of having two objects in the same grid; therefore a finer-grained grid than $3 \times 3$ is used in practice.</p>
+<p>Another key idea relates to the specification of the bounding boxes. Using $b_x, b_y, b_h, b_w$ is usually normalized to be relative to each grid the object is assigned to. $0 \leq b_x, b_y \leq 1$ since they describe the object&rsquo;s center relative to the size of the grid. On the other hand $b_h, b_w$ could be greater than one if the object&rsquo;s bounding box spans multiple grids. The units are again relative to the size of the grid, so a $b_w$ value of $1.5$ means one and a half grids wide. Next we will solve what happens when we have overlapping bounding boxes due to overlapping grids.</p>
+<h4 id="intersection-over-union">
+  Intersection Over Union
+  <a class="heading-link" href="#intersection-over-union">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Intersection over union (IoU) is the approach that we will use for two main things: evaluating our bounding box predictions, that is comparing our prediction to the manually annotated bounding boxes, but also to resolve overlapping bounding boxes for the same object.</p>
+<p>IoU is similar to the <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard Index</a>, meaning, it&rsquo;s the quotient between the intersection and the union of two sets. In our case, we are interested in the intersection and union of a pair of bounding boxes.</p>
+<p>In the case of evaluation, we can say that if our predicted bounding box has an IoU $\geq 0.5$ that it&rsquo;s correct; sometimes we can use a higher threshold also.</p>
+<h4 id="non-max-suppression">
+  Non-max Suppression
+  <a class="heading-link" href="#non-max-suppression">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>We will reuse the IoU idea to implement non-max suppression. The idea is very straight forward: we first drop all the bounding boxes that have some $p_c \leq 0.6$, that is, we are not very sure that an object is there. Then we pick the bounding box with the highest $p_c$ and consider that as our prediction. Afterwards, we will discard any remaining box with $\text{IoU} \geq 0.5$ relative to the box we chose in the previous step. This is done across all grids.</p>
+<h4 id="anchor-boxes">
+  Anchor Boxes
+  <a class="heading-link" href="#anchor-boxes">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Anchor boxes are yet another tool that is used in the YOLO algorithm. The idea is to predefine some have more than just one possible shape for bounding boxes. For example if our example has both tall and skinny rectangles representing pedestrians, and wide and short rectangles representing cars, we might want to use two anchor boxes.</p>
+<p>In practice, for every anchor box we add, our output $\hat{y}$ will grow twice as big. That is, if our output was originally $3 \times 3 \times 5 + K$, now it will be $3 \times 3 \times 5 + K \times 2$ if we use $2$ anchor boxes.</p>
+<p>Anchor boxes help us resolve when two <em>different</em> objects are assigned to the same grid midpoint, and we could resolve as many objects assigned to the same grid cell as we have anchor boxes.</p>
+<h2 id="semantic-segmentation">
+  Semantic Segmentation
+  <a class="heading-link" href="#semantic-segmentation">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Semantic segmentation can be thought of as pixel-level object classification. This is very widely used in autonomous vehicles applications, where the system might want to know where the road starts and ends. Unlike using bounding boxes, where the contours of an object are not exact, semantic segmentation gives us exact object regions in the picture. The approach to solve this problem uses a new architecture, called U-Nets. The original motivation was medical imaging, where precisely locating tumors or body anatomy within medical images was necessary.</p>
+<p>How can we approach this problem? We could run a CNN classifier for each pixel, but as we saw with the sliding window approach, this is very inefficient. Even using convolutional sliding windows, how can we prevent our output from shrinking in spatial dimensions, as it&rsquo;s always the case with CNNs? U-Nets solve this problem but implementing a new operation, the <a href="#transpose-convolutions">transpose convolution</a>. After reducing the spatial dimensions and growing depth via CNNs, we can use transpose convolutions to &ldquo;blow up&rdquo; the volume back to the original spatial dimensions, while reducing the depth dimension.</p>
+<figure><img src="/images/unet-1.png"
+         alt="Intuition behind U-Nets" width="75%"/><figcaption>
+            <p><a href="https://www.coursera.org/learn/convolutional-neural-networks">Intuition behind U-Nets</a></p>
+        </figcaption>
+</figure>
+
+<p>U-Nets can also be thought of as an autoencoder, where the downsampling part, done by the convolutional layers is an encoder, and the upsampling part, done by transpose convolutional layers is a decoder. Let&rsquo;s dive in on how transpose convolutions work to upsample a volume.</p>
+<h3 id="transpose-convolutions">
+  Transpose Convolutions
+  <a class="heading-link" href="#transpose-convolutions">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>As we mentioned, the key idea behind the transpose convolution is to convolve an input with a filter and generate an output that is bigger than the input.</p>
+<p>Let&rsquo;s say that we have a $2 \times 2$ input, and we&rsquo;d like to get a $4 \times 4$ output. To get this desired output size, we have to use a $3 \times 3$ filter with padding $p = 1$ and a stride $s = 2$. The basic idea is that we multiply each scalar in the input by the entire filter, element wise, and place the resulting 9 values in the output. As we move the filter in the output, we simply add the values that overlap. There is a great explanation of the transpose convolution <a href="https://d2l.ai/chapter_computer-vision/transposed-conv.html">here</a>.</p>
+<h3 id="u-net-architecture">
+  U-Net Architecture
+  <a class="heading-link" href="#u-net-architecture">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The basic idea here is that we use regular convolutions to generate and learn our features, usually reducing the spatial dimensions and adding channels. After this, we blow up the intermediate feature map back into the original dimensions with transpose convolutions. But this is not all.</p>
+<p>Another key idea is to use skip-connections, something we have seen before. By using skip connections, from the earlier layers where the spatial information is richer, into the later layers, where the spatial information is poorer, but contextual information is richer, we are able to keep the spatial information from degenerating as we go deeper into the network. This key detail is what helps us reconstruct the spatial information into the output, but also use the contextual information used to classify each pixel.</p>
+<figure><img src="/images/unet-2.png"
+         alt="A standard U-Net" width="75%"/><figcaption>
+            <p><a href="https://www.coursera.org/learn/convolutional-neural-networks">A standard U-Net</a></p>
+        </figcaption>
+</figure>
+
+<p>The picture shows why the name U-Net. Notice also that the blocks are the volumes seen from the channel perspective. That is a wider block has more channels than a thinner block. Let&rsquo;s start with the first, leftmost, half of the network: the downsampling part:</p>
+<ol>
+<li>We start with our input image of a car.</li>
+<li>We run the input through two convolutional layers, <strong>keeping</strong> the spatial dimensions the same, i.e. using a &ldquo;same&rdquo; padding, but adding some filters. These are the black arrows.</li>
+<li>Then we apply a max pooling operation, and reduce the spatial dimensions by some factor. This is the red downwards arrow.</li>
+<li>We repeat these two operations until we reach the bottom of the picture.</li>
+</ol>
+<p>In the bottom of the picture, we have shrunk the spatial dimensions but increased the number of channels by quite a bit, as is usual in CNNs. Our volume has presumably the information needed to classify each pixel, but we have lost the spatial information in the downsampling process. This is where transpose convolutions and skip connections enter the picture.</p>
+<p>As we go back up into the right half of the picture we will do the following:</p>
+<ol>
+<li>Start from our down sampled volume, and apply a transpose convolution to increase the number of spatial dimensions but also reduce the number of filters.</li>
+<li>We concatenate, via the skip connection, the output from the layer before last the max pool operation is applied.</li>
+<li>We apply regular convolutions to this volume, keeping the dimensions the same.</li>
+<li>Repeat this operation until we reach our original spatial dimensions.</li>
+</ol>
+<p>In practice, we usually reduce the spatial dimensions by a factor of 2, and then blow them back up by a factor of two every time until we are back to the original spatial dimensions.</p>
+<h2 id="summary">
+  Summary
+  <a class="heading-link" href="#summary">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ol>
+<li>Object Localization: Describing the position of an object in an image using bounding boxes.</li>
+<li>Landmark Detection: Using neural networks to output real-numbered values that describe the location of landmarks in an image.</li>
+<li>Object Detection: Identifying multiple objects in a single image and dealing with overlapping bounding boxes using techniques like Sliding Windows Detection and Anchor Boxes.</li>
+<li>Semantic Segmentation: Performing pixel-level object classification, and using U-Net architecture with transpose convolutions and skip connections to maintain spatial information during upsampling.</li>
+</ol>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

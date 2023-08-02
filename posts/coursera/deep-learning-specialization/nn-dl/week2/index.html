@@ -14,24 +14,23 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&rsquo;s topics are:
- Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier.">
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics"/>
 <meta name="twitter:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&rsquo;s topics are:
- Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier."/>
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier."/>
 
 <meta property="og:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics" />
 <meta property="og:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&rsquo;s topics are:
- Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier." />
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-06-14T00:00:00+00:00" />
-
 
 
 
@@ -76,7 +75,7 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.115.4">
 
 
 
@@ -307,27 +306,27 @@ $$</p>
 </h2>
 <p>This section shows you how to actually code these things from scratch in a relatively efficient manner. I say relatively, because in practice (or production to borrow a fancy term), you will almost never code these things up from scratch. Don&rsquo;t reinvent the wheel (unless you think the wheel is obsolete). You will most likely implement a neural network using a mature software package such as PyTorch or Tensorflow. There are still key ideas that are important to discuss.</p>
 <p><a href="https://en.wikipedia.org/wiki/Array_programming">Vectorization</a> or array programming, simply means applying a <em>single</em> operation to <em>many</em> pieces of data, it&rsquo;s a $1:M$ operation where $M$ is the size of an array. For example, this is a $1 : 1$ operation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; <span style="color:#0ff;font-weight:bold">&#34;w&#34;</span>.upper()
-<span style="color:#0ff;font-weight:bold">&#34;W&#34;</span>
-</code></pre></div><p>A $1:M$ operation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>.join(<span style="color:#fff;font-weight:bold">map</span>(<span style="color:#fff;font-weight:bold">str</span>.upper, <span style="color:#0ff;font-weight:bold">&#34;Hello, World!&#34;</span>))
-<span style="color:#0ff;font-weight:bold">&#34;HELLO, WORLD!&#34;</span>
-</code></pre></div><p>In Python, strings are <em>sequences</em> of characters, therefore they are iterable. What the code above does is it applies the <code>str.upper</code> method to all the elements of a string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#a5d6ff">&#34;w&#34;</span><span style="color:#ff7b72;font-weight:bold">.</span>upper()
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;W&#34;</span>
+</span></span></code></pre></div><p>A $1:M$ operation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#a5d6ff">&#34;&#34;</span><span style="color:#ff7b72;font-weight:bold">.</span>join(map(str<span style="color:#ff7b72;font-weight:bold">.</span>upper, <span style="color:#a5d6ff">&#34;Hello, World!&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;HELLO, WORLD!&#34;</span>
+</span></span></code></pre></div><p>In Python, strings are <em>sequences</em> of characters, therefore they are iterable. What the code above does is it applies the <code>str.upper</code> method to all the elements of a string.</p>
 <p>This is <em>technically</em> vectorization, but in general, the term vectorization usually refers to math and linear algebra operations. If we have two vectors $x, y$ both of size $3$, and we want to calculate the dot product between the two, we would have to write a loop:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>]
-y = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>]
-total = <span style="color:#ff0;font-weight:bold">0</span>
-<span style="color:#fff;font-weight:bold">for</span> left, right in <span style="color:#fff;font-weight:bold">zip</span>(x, y):
-    total += left * right
-<span style="color:#fff;font-weight:bold">print</span>(total)
-<span style="color:#ff0;font-weight:bold">14</span>
-</code></pre></div><p>Compare this with the NumPy version:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>])
-y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>])
-total = x @ y  <span style="color:#007f7f"># @ is the dot operator</span>
-<span style="color:#fff;font-weight:bold">print</span>(total)
-<span style="color:#ff0;font-weight:bold">14</span>
-</code></pre></div><p>You might think, oh well, it&rsquo;s just syntactic sugar hiding the loop from us. But it&rsquo;s much more than that. I suggest you time your code using much larger vectors and see how they measure up. Without getting bogged down into the details of how NumPy actually works, this is related to how NumPy uses pre-compiled C libraries to perform arithmetic and linear algebra operations. There&rsquo;s a conversion cost to go from Python objects to NumPy (which uses C under the hood), but once you converted them, the speed-ups are tremendous. Here is more information about <a href="https://numpy.org/doc/stable/user/whatisnumpy.html#why-is-numpy-fast">why is NumPy fast</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> [<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>]
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> [<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>]
+</span></span><span style="display:flex;"><span>total <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> left, right <span style="color:#ff7b72;font-weight:bold">in</span> zip(x, y):
+</span></span><span style="display:flex;"><span>    total <span style="color:#ff7b72;font-weight:bold">+=</span> left <span style="color:#ff7b72;font-weight:bold">*</span> right
+</span></span><span style="display:flex;"><span>print(total)
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">14</span>
+</span></span></code></pre></div><p>Compare this with the NumPy version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>])
+</span></span><span style="display:flex;"><span>total <span style="color:#ff7b72;font-weight:bold">=</span> x <span style="color:#ff7b72;font-weight:bold">@</span> y  <span style="color:#8b949e;font-style:italic"># @ is the dot operator</span>
+</span></span><span style="display:flex;"><span>print(total)
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">14</span>
+</span></span></code></pre></div><p>You might think, oh well, it&rsquo;s just syntactic sugar hiding the loop from us. But it&rsquo;s much more than that. I suggest you time your code using much larger vectors and see how they measure up. Without getting bogged down into the details of how NumPy actually works, this is related to how NumPy uses pre-compiled C libraries to perform arithmetic and linear algebra operations. There&rsquo;s a conversion cost to go from Python objects to NumPy (which uses C under the hood), but once you converted them, the speed-ups are tremendous. Here is more information about <a href="https://numpy.org/doc/stable/user/whatisnumpy.html#why-is-numpy-fast">why is NumPy fast</a>.</p>
 <p>This concept even goes down to the hardware level and is present generally in computer architecture and design. Older machines usually subscribed to a single-instruction single-data (SISD) architecture. Where one instruction is applied to one piece of data in a CPU cycle. However, with <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">single-instruction multiple-data (SIMD)</a>, you can apply a single instruction to multiple pieces of data in parallel. In a very general sense, this is why GPUs are so powerful in performing the same task (dot product) to arrays of things (images).</p>
 <h2 id="broadcasting">
   Broadcasting
@@ -339,16 +338,16 @@ total = x @ y  <span style="color:#007f7f"># @ is the dot operator</span>
 <p>The term broadcasting describes how NumPy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations, so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations. There are, however, cases where broadcasting is a bad idea because it leads to inefficient use of memory that slows computation. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>I copied and pasted the definition above from the NumPy documentation because I&rsquo;ve seen the term broadcasting be misunderstood by people. The idea is very basic: if you have a vectorized operation with arrays of different sizes in NumPy, it will &ldquo;pad&rdquo; the smaller one to match the bigger one.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>])
-y = np.array([<span style="color:#ff0;font-weight:bold">1</span>])
-<span style="color:#fff;font-weight:bold">print</span>(x + y)
-[<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>, <span style="color:#ff0;font-weight:bold">6</span>]
-</code></pre></div><p>Here we have that $x$ is a $5$ dimensional vector, while $y$ is a $1$ dimensional vector. We used the vectorized sum operator, which should perform an element-wise addition. That is, adding $y_0$ to every element $x_i$. But $y$ is smaller than $x$! So actually the $y$ vector is <em>broadcasted</em> (or padded) over the $x$ vector so that under the hood this is actually happening:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>])
-y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>])
-<span style="color:#fff;font-weight:bold">print</span>(x + y)
-[<span style="color:#ff0;font-weight:bold">2</span> <span style="color:#ff0;font-weight:bold">3</span> <span style="color:#ff0;font-weight:bold">4</span> <span style="color:#ff0;font-weight:bold">5</span> <span style="color:#ff0;font-weight:bold">6</span>]
-</code></pre></div><p>Which brings us back to vectorization. This is the most basic example of broadcasting, and there are some times when the dimensions of the arrays are incompatible, such as matrix multiplication. You can rely on NumPy complaining when this occurs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">4</span>, <span style="color:#a5d6ff">5</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>])
+</span></span><span style="display:flex;"><span>print(x <span style="color:#ff7b72;font-weight:bold">+</span> y)
+</span></span><span style="display:flex;"><span>[<span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">4</span>, <span style="color:#a5d6ff">5</span>, <span style="color:#a5d6ff">6</span>]
+</span></span></code></pre></div><p>Here we have that $x$ is a $5$ dimensional vector, while $y$ is a $1$ dimensional vector. We used the vectorized sum operator, which should perform an element-wise addition. That is, adding $y_0$ to every element $x_i$. But $y$ is smaller than $x$! So actually the $y$ vector is <em>broadcasted</em> (or padded) over the $x$ vector so that under the hood this is actually happening:</p>
+<div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">4</span>, <span style="color:#a5d6ff">5</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>])
+</span></span><span style="display:flex;"><span>print(x <span style="color:#ff7b72;font-weight:bold">+</span> y)
+</span></span><span style="display:flex;"><span>[<span style="color:#a5d6ff">2</span> <span style="color:#a5d6ff">3</span> <span style="color:#a5d6ff">4</span> <span style="color:#a5d6ff">5</span> <span style="color:#a5d6ff">6</span>]
+</span></span></code></pre></div><p>Which brings us back to vectorization. This is the most basic example of broadcasting, and there are some times when the dimensions of the arrays are incompatible, such as matrix multiplication. You can rely on NumPy complaining when this occurs.</p>
 <h2 id="summary">
   Summary
   <a class="heading-link" href="#summary">
@@ -377,14 +376,14 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
 <li>Broadcasting: In NumPy, when two arrays have different shapes, the smaller is broadcasted over the larger.</li>
 </ol>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#broadcasting">Broadcasting</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -465,7 +464,7 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
   
 
   
