@@ -6,11 +6,11 @@
     <description>Recent content in machine learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</link>
-      <pubDate>Thu, 03 Aug 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
       <description>This is the fourth and last week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
