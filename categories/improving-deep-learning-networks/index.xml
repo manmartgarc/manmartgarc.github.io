@@ -15,7 +15,7 @@
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</guid>
       <description>This is the third and last week of the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera.
 This week&amp;rsquo;s topics are:
-Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Summary Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.</description>
+Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
       <description>This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&amp;rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Summary Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
     </item>
     
     <item>

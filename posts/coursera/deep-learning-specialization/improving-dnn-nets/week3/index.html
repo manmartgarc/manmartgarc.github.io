@@ -14,19 +14,19 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the third and last week of the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera.
 This week&rsquo;s topics are:
-Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Summary Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.">
+Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks"/>
 <meta name="twitter:description" content="This is the third and last week of the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera.
 This week&rsquo;s topics are:
-Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Summary Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters."/>
+Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters."/>
 
 <meta property="og:title" content="Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks" />
 <meta property="og:description" content="This is the third and last week of the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera.
 This week&rsquo;s topics are:
-Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Summary Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters." />
+Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-21T00:00:00+00:00" />
@@ -75,7 +75,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 
 
 
-<meta name="generator" content="Hugo 0.115.4">
+<meta name="generator" content="Hugo 0.116.1">
 
 
 
@@ -157,7 +157,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              16-minute read
+              15-minute read
             </span>
           </div>
           
@@ -218,8 +218,8 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 </ul>
 </li>
 <li><a href="#programming-frameworks">Programming Frameworks</a></li>
-<li><a href="#summary">Summary</a></li>
 </ul>
+<hr>
 <h2 id="hyperparameter-tuning">
   Hyperparameter Tuning
   <a class="heading-link" href="#hyperparameter-tuning">
@@ -491,32 +491,6 @@ $$</p>
 <p>Okay, never program your deep learning framework from scratch unless you are an expert trying to squeeze the latest bits of performance in some kind of specialized hardware. Just go with your favorite deep learning framework package. Hopefully go with one that has a vibrant, active community where you can get support and learn how to use the framework.</p>
 <p>Most of the frameworks differ in their approaches and they ultimately end up being equivalent. Like many other packages, measuring the &ldquo;best&rdquo; is hard because the &ldquo;best&rdquo; package is not just the fastest, but the easiest to use, the one with the best community and support, etc.</p>
 <p>The key thing that all frameworks share is that they solve the problem of automatic differentiation. That is you can define some data, some kind of optimizer, some kind of cost function, and then automatically differentiate the cost function with respect to some parameters. For the purposes of the course, all frameworks should be thought of as equivalent. The course goes over a <em>very</em> simple TensorFlow example, but I decided to ignore it since TensorFlow&rsquo;s documentation has better introductory examples in my opinion.</p>
-<h2 id="summary">
-  Summary
-  <a class="heading-link" href="#summary">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<ul>
-<li>Hyperparameter tuning is the process of finding suitable hyperparameter values for a neural network.
-<ul>
-<li>The tuning process involves identifying important hyperparameters and searching for optimal values.</li>
-<li>Random search is recommended over grid search for hyperparameter optimization.</li>
-<li>Coarse-to-fine grained search involves narrowing down the search range after an initial exploration.</li>
-<li>Using an appropriate scale when searching for hyperparameters is important, and sampling on a log scale is often preferred for certain hyperparameters.</li>
-<li>Comparison between the &ldquo;pandas&rdquo; and &ldquo;caviar&rdquo;: babysitting a model vs training many models in parallel.</li>
-</ul>
-</li>
-<li>Batch normalization is a technique to normalize the activations in a neural network.
-<ul>
-<li>It involves normalizing the inputs of each layer using the sample mean and standard deviation.</li>
-<li>Batch normalization helps with optimization and can be applied under both batch and mini-batch gradient descent approaches.</li>
-</ul>
-</li>
-<li>Multi-class classification is the generalization of logistic regression from $C=2$ to $C=K$ where $C$ is the number of classes.</li>
-<li>Programming frameworks for deep learning are vast and many. Choose one that has a good community and support.</li>
-</ul>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">here</a>.</p>
 
       </div>

@@ -6,7 +6,18 @@
     <description>Recent content in deep learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</link>
+      <pubDate>Thu, 03 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
+      <description>This is the fourth and last week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+This week&amp;rsquo;s topics are as follows:
+Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer?</description>
+    </item>
+    
     <item>
       <title>Convolutional Neural Networks: Week 3 | Detection Algorithms</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</link>
@@ -15,7 +26,7 @@
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
       <description>This is the third week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
 This week&amp;rsquo;s topics are:
-Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.</description>
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.</description>
     </item>
     
     <item>
@@ -26,7 +37,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
       <description>This is the second week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
 This week&amp;rsquo;s topics are:
-Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? Networks in Networks | 1x1 Convolutions Inception Network Inception Network Architecture MobileNet Depth-wise Convolution Point-wise Convolution MobileNet Architecture Practical Advice for Using ConvNets Transfer Learning Data Augmentation Summary Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.</description>
+Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? Networks in Networks | 1x1 Convolutions Inception Network Inception Network Architecture MobileNet Depth-wise Convolution Point-wise Convolution MobileNet Architecture Practical Advice for Using ConvNets Transfer Learning Data Augmentation Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.</description>
     </item>
     
     <item>
@@ -70,7 +81,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</guid>
       <description>This is the third and last week of the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera.
 This week&amp;rsquo;s topics are:
-Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Summary Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.</description>
+Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.</description>
     </item>
     
     <item>
@@ -81,7 +92,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
       <description>This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&amp;rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Summary Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
     </item>
     
     <item>
@@ -103,7 +114,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
       <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&amp;rsquo; weeks ideas into $L$-layered networks.
 This week&amp;rsquo;s topics are:
-Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Summary Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
+Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -114,7 +125,7 @@ Deep L-Layer neural network Getting your matrix dimensions right Why deep repres
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
 This week&amp;rsquo;s topics are:
-Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization Summary OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
+Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
     </item>
     
     <item>
@@ -125,7 +136,7 @@ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Ou
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
       <description>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&amp;rsquo;s topics are:
-Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Summary Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
     </item>
     
     <item>

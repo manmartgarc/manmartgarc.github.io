@@ -14,19 +14,19 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the third week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
 This week&rsquo;s topics are:
-Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.">
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Convolutional Neural Networks: Week 3 | Detection Algorithms"/>
 <meta name="twitter:description" content="This is the third week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
 This week&rsquo;s topics are:
-Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image."/>
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image."/>
 
 <meta property="og:title" content="Convolutional Neural Networks: Week 3 | Detection Algorithms" />
 <meta property="og:description" content="This is the third week of the fourth course of DeepLarning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
 This week&rsquo;s topics are:
-Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Summary Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image." />
+Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-01T00:00:00+00:00" />
@@ -75,7 +75,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
 
 
 
-<meta name="generator" content="Hugo 0.115.4">
+<meta name="generator" content="Hugo 0.116.1">
 
 
 
@@ -213,8 +213,8 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
 <li><a href="#u-net-architecture">U-Net Architecture</a></li>
 </ul>
 </li>
-<li><a href="#summary">Summary</a></li>
 </ul>
+<hr>
 <h2 id="object-localization">
   Object Localization
   <a class="heading-link" href="#object-localization">
@@ -455,20 +455,7 @@ $$</p>
 <li>Repeat this operation until we reach our original spatial dimensions.</li>
 </ol>
 <p>In practice, we usually reduce the spatial dimensions by a factor of 2, and then blow them back up by a factor of two every time until we are back to the original spatial dimensions.</p>
-<h2 id="summary">
-  Summary
-  <a class="heading-link" href="#summary">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<ol>
-<li>Object Localization: Describing the position of an object in an image using bounding boxes.</li>
-<li>Landmark Detection: Using neural networks to output real-numbered values that describe the location of landmarks in an image.</li>
-<li>Object Detection: Identifying multiple objects in a single image and dealing with overlapping bounding boxes using techniques like Sliding Windows Detection and Anchor Boxes.</li>
-<li>Semantic Segmentation: Performing pixel-level object classification, and using U-Net architecture with transpose convolutions and skip connections to maintain spatial information during upsampling.</li>
-</ol>
-<p>Next week&rsquo;s post is <a href="">here</a>.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">here</a>.</p>
 
       </div>
 

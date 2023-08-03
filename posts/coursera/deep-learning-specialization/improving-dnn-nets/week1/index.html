@@ -75,7 +75,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
 
 
 
-<meta name="generator" content="Hugo 0.115.4">
+<meta name="generator" content="Hugo 0.116.1">
 
 
 
@@ -157,7 +157,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              26-minute read
+              25-minute read
             </span>
           </div>
           
@@ -207,7 +207,6 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
 <li><a href="#normalizing-inputs">Normalizing Inputs</a></li>
 <li><a href="#vanishing-and-exploding-gradients">Vanishing and Exploding Gradients</a></li>
 <li><a href="#weight-initialization">Weight Initialization</a></li>
-<li><a href="#summary">Summary</a></li>
 </ul>
 <hr>
 <h2 id="setting-up-our-machine-learning-problem">
@@ -553,64 +552,6 @@ $$</p>
 <li>In the case that $g^{[l]}(x) = \text{tanh}(x)$, then $s = \sqrt{\frac{1}{n^{[l-1]}}}$, which is also called <a href="https://cs230.stanford.edu/section/4/">Xavier initialization</a>.
 <ul>
 <li>Another variant for $\text{tanh}(x)$ is $s = \sqrt{\frac{2}{n^{[l-1]} + n^{[l]}}}$</li>
-</ul>
-</li>
-</ul>
-<h2 id="summary">
-  Summary
-  <a class="heading-link" href="#summary">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<ul>
-<li>Splitting our data efficiently can make us iterate faster:
-<ul>
-<li>Split into train/dev or train/dev/test.</li>
-<li>The dev and test sets <em>must</em> come from the same distribution.</li>
-<li>If we have a lot of data, we can ignore the 60/20/20 split, and use something like 98/1/1</li>
-</ul>
-</li>
-<li>Bias and variance are both perpetual enemies that must be fought:
-<ul>
-<li>Both of these concepts are components of our model&rsquo;s errors.</li>
-<li>We must understand what the Bayes error rate is for our problem.</li>
-<li>We must understand what human-level performance is for our problem.</li>
-<li>Bias describes how far away we are on average from the average model.
-<ul>
-<li>We can decrease bias by increasing the complexity of our model.</li>
-</ul>
-</li>
-<li>Variance describes how spread out our errors are from the average model.
-<ul>
-<li>We can decrease variance by decreasing the complexity of our model.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Regularization is a tool we can use increase bias and decrease variance:
-<ul>
-<li>Usually we use a norm of our model&rsquo;s parameters. Punishing parameters with high magnitudes.</li>
-<li>Dropout is a tool that randomly shuts off hidden units, and it amounts to regularization.
-<ul>
-<li>You only apply dropout when training and not when testing. To avoid scaling issues you use inverted dropout.</li>
-</ul>
-</li>
-<li>There are other regularization tools but L2-norm and dropout are the most common ones.</li>
-</ul>
-</li>
-<li>There are ways in which we can help out gradient descent:
-<ul>
-<li>Normalizing (standardizing) the features can help reshape the cost function so that there is no unduly effect from one feature that simply has bigger units.
-<ul>
-<li>This can help gradient descent converge a lot faster.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Our gradients can vanish or explode if we are not careful:
-<ul>
-<li>Initializing our weights in a sensible way can help our gradients from becoming to small, approaching $0$, or to big, approaching $\infty$.</li>
 </ul>
 </li>
 </ul>

@@ -75,7 +75,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 
 
 
-<meta name="generator" content="Hugo 0.115.4">
+<meta name="generator" content="Hugo 0.116.1">
 
 
 
@@ -157,7 +157,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              11-minute read
+              10-minute read
             </span>
           </div>
           
@@ -211,7 +211,6 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <li><a href="#improving-your-model-performance">Improving your Model Performance</a></li>
 </ul>
 </li>
-<li><a href="#summary">Summary</a></li>
 </ul>
 <hr>
 <h2 id="introduction-to-ml-strategy">
@@ -413,36 +412,6 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <li>Try getting more data</li>
 <li>Add more regularization</li>
 <li>Try a specialized NN architecture and/or improve hyperparameters</li>
-</ul>
-<h2 id="summary">
-  Summary
-  <a class="heading-link" href="#summary">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<ul>
-<li>We need to have a systematic strategy for improving our model:
-<ul>
-<li>Orthogonalization allows us to change settings without having an effect on many other things.</li>
-</ul>
-</li>
-<li>Having a single evaluation metric will help us compare different approaches quicker:
-<ul>
-<li>We can have optimizing and satisficing metrics. Usually one optimizing and many satisficing metrics.</li>
-<li>Our train/dev/test splits are important. Doing it correctly allows us to compare different approaches.</li>
-<li>The sizes of the dev and test sets are dependent on your data size. You can use a smaller proportion if you have a lot of data.</li>
-<li>Make sure our dev/test sets come from the same distribution</li>
-<li>Stay agile and change dev/test sets and your metrics if your model is not doing something that you want.</li>
-</ul>
-</li>
-<li>Human-level performance is an important piece of information:
-<ul>
-<li>It&rsquo;s an upper bound on Bayes error rate.</li>
-<li>It can help us know if we need to focus on reducing avoidable bias or variance.</li>
-</ul>
-</li>
-<li>Try to focus on solving avoidable bias first and then worry about variance.</li>
 </ul>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">here</a>.</p>
 

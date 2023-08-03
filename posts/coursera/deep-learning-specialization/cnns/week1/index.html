@@ -75,7 +75,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
 
 
 
-<meta name="generator" content="Hugo 0.115.4">
+<meta name="generator" content="Hugo 0.116.1">
 
 
 
@@ -157,7 +157,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              22-minute read
+              21-minute read
             </span>
           </div>
           
@@ -208,8 +208,8 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
 <li><a href="#pooling-layers">Pooling Layers</a></li>
 <li><a href="#full-cnn-example">Full CNN Example</a></li>
 <li><a href="#why-convolutions">Why Convolutions?</a></li>
-<li><a href="#summary">Summary</a></li>
 </ul>
+<hr>
 <h2 id="computer-vision">
   Computer Vision
   <a class="heading-link" href="#computer-vision">
@@ -606,33 +606,6 @@ $$</p>
 <li>Parameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to <a href="https://en.wikipedia.org/wiki/Translational_symmetry">translational invariance</a>, the idea that a CNN is robust to shifted or distorted images.</li>
 <li>Sparsity of connections: Each output value depends only on a few inputs. This is a mark of low-complexity, and it might have an effect similar to regularization; therefore helping avoid overfitting.</li>
 </ol>
-<h2 id="summary">
-  Summary
-  <a class="heading-link" href="#summary">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<ul>
-<li>CNNs took the computer vision field by storm.</li>
-<li>Convolution means slightly different things to mathematicians and machine learning researchers.
-<ul>
-<li>In our context, it means applying a kernel filter to an image.</li>
-<li>There are many kernels and filters: blurring, edge detection and more.</li>
-<li>The whole point of CNNs is that we use optimization to <em>learn</em> the filters.</li>
-<li>We can use padding to avoid shrinking our images when using valid convolution.</li>
-<li>We can also use strides to reduce the output sizes.</li>
-</ul>
-</li>
-<li>Keeping track of the dimensions can be tricky, fortunately there is one formula to rule them all.</li>
-<li>CNNs follow well-established architectures:
-<ul>
-<li>Convolutional layers followed by pooling layers.</li>
-<li>Feature map dimensions usually goes down deeper in the network.</li>
-<li>Feature map channels usually goes up deeper in the network.</li>
-</ul>
-</li>
-</ul>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>

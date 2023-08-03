@@ -14,19 +14,19 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.
 This week&rsquo;s topics are:
-Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Summary Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;.">
+Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 4 | Deep Neural Networks"/>
 <meta name="twitter:description" content="Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.
 This week&rsquo;s topics are:
-Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Summary Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;."/>
+Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;."/>
 
 <meta property="og:title" content="Neural Networks and Deep Learning: Week 4 | Deep Neural Networks" />
 <meta property="og:description" content="Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&rsquo; weeks ideas into $L$-layered networks.
 This week&rsquo;s topics are:
-Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Summary Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;." />
+Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &ldquo;shallow&rdquo; or &ldquo;deep&rdquo;." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-16T00:00:00+00:00" />
@@ -75,7 +75,7 @@ Deep L-Layer neural network Getting your matrix dimensions right Why deep repres
 
 
 
-<meta name="generator" content="Hugo 0.115.4">
+<meta name="generator" content="Hugo 0.116.1">
 
 
 
@@ -157,7 +157,7 @@ Deep L-Layer neural network Getting your matrix dimensions right Why deep repres
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              6-minute read
+              5-minute read
             </span>
           </div>
           
@@ -191,7 +191,6 @@ Deep L-Layer neural network Getting your matrix dimensions right Why deep repres
 <li><a href="#getting-your-matrix-dimensions-right">Getting your matrix dimensions right</a></li>
 <li><a href="#why-deep-representations">Why deep representations?</a></li>
 <li><a href="#parameters-and-hyperparameters">Parameters and Hyperparameters</a></li>
-<li><a href="#summary">Summary</a></li>
 </ul>
 <hr>
 <h2 id="deep-l-layer-neural-network">
@@ -287,37 +286,6 @@ $$</p>
 <li>Which activation functions and on which layers.</li>
 </ul>
 <p>As you can probably see, there are a lot of hyperparameters to search over, especially considering the size of the set of all combinations.</p>
-<h2 id="summary">
-  Summary
-  <a class="heading-link" href="#summary">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<ul>
-<li>
-<p>Matrix dimensions are important when debugging.</p>
-<ul>
-<li>When using vanilla gradient descent, the dimensions of $Z^{[l]}$ are $(n^{[l]}, m)$ where $n$ is the number of hidden units in hidden layer $l$ and $m$ is the number of examples in your training dataset.</li>
-</ul>
-</li>
-<li>
-<p>Deeper networks are smarter:</p>
-<ul>
-<li>Adding hidden layers amount to more feature generation.</li>
-<li>You don&rsquo;t have to think about which features the network picks up, it will do so while optimizing the cost function.</li>
-<li>You can learn functions with a deeper network that a shallow network cannot learn.</li>
-</ul>
-</li>
-<li>
-<p>Hyperparameter tuning is hard.</p>
-<ul>
-<li>As your data changes, you might need to update your hyperparameters.</li>
-<li>There are many ways to hyperparameter tuning, across the computational spectrum.</li>
-<li>Neural nets have a lot of hyperparameters compared to other machine learning algorithms.</li>
-</ul>
-</li>
-</ul>
 <p>The first week of the next course&rsquo;s post can be found <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
