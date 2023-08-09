@@ -6,14 +6,25 @@
     <description>Recent content in Coursera on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 02 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/coursera/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sequence Models: Week 1 | Recurrent Neural Networks</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
+      <description>This is the first week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&amp;rsquo;s get started.
+This week&amp;rsquo;s topics are:
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?</description>
+    </item>
+    
     <item>
       <title>Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</link>
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
-      <description>This is the fourth and last week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+      <description>This is the fourth and last week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
 This week&amp;rsquo;s topics are as follows:
 Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer?</description>
     </item>
@@ -24,7 +35,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
       <pubDate>Tue, 01 Aug 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
-      <description>This is the third week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
+      <description>This is the third week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
 This week&amp;rsquo;s topics are:
 Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.</description>
     </item>
@@ -35,7 +46,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
       <pubDate>Wed, 19 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
-      <description>This is the second week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
+      <description>This is the second week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
 This week&amp;rsquo;s topics are:
 Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? Networks in Networks | 1x1 Convolutions Inception Network Inception Network Architecture MobileNet Depth-wise Convolution Point-wise Convolution MobileNet Architecture Practical Advice for Using ConvNets Transfer Learning Data Augmentation Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.</description>
     </item>
@@ -46,7 +57,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
       <pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
-      <description>This is the first week of the fourth course of DeepLarning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+      <description>This is the first week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week&amp;rsquo;s topics are:
 Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?</description>
     </item>

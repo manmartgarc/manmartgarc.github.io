@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sequence Models on Manuel Martinez</title>
+    <link>https://manmartgarc.github.io/categories/sequence-models/</link>
+    <description>Recent content in Sequence Models on Manuel Martinez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/sequence-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sequence Models: Week 1 | Recurrent Neural Networks</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
+      <description>This is the first week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&amp;rsquo;s get started.
+This week&amp;rsquo;s topics are:
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?</description>
+    </item>
+    
+  </channel>
+</rss>

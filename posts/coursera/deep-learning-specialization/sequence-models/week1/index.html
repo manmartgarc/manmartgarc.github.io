@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Sequence Models: Week 1 | Recurrent Neural Networks · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the first week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&rsquo;s get started.
+This week&rsquo;s topics are:
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sequence Models: Week 1 | Recurrent Neural Networks"/>
+<meta name="twitter:description" content="This is the first week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&rsquo;s get started.
+This week&rsquo;s topics are:
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?"/>
+
+<meta property="og:title" content="Sequence Models: Week 1 | Recurrent Neural Networks" />
+<meta property="og:description" content="This is the first week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&rsquo;s get started.
+This week&rsquo;s topics are:
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-08-08T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.117.0">
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">
+              Sequence Models: Week 1 | Recurrent Neural Networks
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-08-08T00:00:00Z">
+                August 8, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              18-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
+      <span class="separator">•</span>
+    <a href="/categories/sequence-models/">Sequence Models</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the first week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/">fifth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&rsquo;s get started.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#why-sequence-models">Why Sequence Models?</a></li>
+<li><a href="#notation">Notation</a>
+<ul>
+<li><a href="#representing-words">Representing Words</a></li>
+</ul>
+</li>
+<li><a href="#recurrent-neural-network">Recurrent Neural Network</a>
+<ul>
+<li><a href="#forward-propagation">Forward Propagation</a></li>
+<li><a href="#different-types-of-rnns">Different Types of RNNs</a></li>
+<li><a href="#language-model-and-sequence-generation">Language Model and Sequence Generation</a></li>
+<li><a href="#vanishing-gradients-with-rnns">Vanishing Gradients with RNNs</a></li>
+</ul>
+</li>
+<li><a href="#gated-recurrent-unit">Gated Recurrent Unit</a></li>
+<li><a href="#long-short-term-memory">Long Short-Term Memory</a></li>
+<li><a href="#bidirectional-rnn">Bidirectional RNN</a></li>
+</ul>
+<h2 id="why-sequence-models">
+  Why Sequence Models?
+  <a class="heading-link" href="#why-sequence-models">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we&rsquo;d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:</p>
+<ul>
+<li>Vanilla neural networks require all training samples $X$ to be of the same length. What happens when we want to use text as input and each sample can have different length? Sure we can pad, but I hope you&rsquo;re convinced that&rsquo;s not a great idea from the get go.</li>
+<li>Vanilla neural networks treat every feature $x^{(i)}_i$ as independent. The whole point of time-series is that they have two components: time-invariant and time-variant components. We definitely want to exploit the temporal structure of our data, which the vanilla models won&rsquo;t allow us to.</li>
+<li>Vanilla neural networks with dense layers explode very quickly in their size. We need some approach, similar to that of CNNs, where parameters are shared to have a feasible approach in terms of computation.</li>
+</ul>
+<p>Before we get to the thick of it, let&rsquo;s define the notation used in the course and disambiguate some terminology as well.</p>
+<h2 id="notation">
+  Notation
+  <a class="heading-link" href="#notation">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Our input will be, as usual, some vector of features. We denote each time step with $t$, so that $x^{&lt;t&gt;}$ is the $t_{th}$ element in our input vector. We also denote the $i_{th}$ training example as $x^{(i)}$, so that $x^{(i)&lt;t&gt;}$ denotes the $i_{th}$ training example&rsquo;s $t_{th}$ time step. Similarly, we will also denote the <em>size</em> of our input with the variable $T_x$. All of this applies also to our labels $y$. Sometimes $T_x = T_y$, and sometimes it&rsquo;s not. We will discuss these variations under the <a href="#different-types-of-rnns">different types of RNNs</a>.</p>
+<h3 id="representing-words">
+  Representing Words
+  <a class="heading-link" href="#representing-words">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Since a lot of sequence models deal with words, we need a handy way of representing words and even sentences. We need to start by defining a <em>vocabulary</em>. A vocabulary is simply the <em>set</em> of all words in our <a href="https://en.wikipedia.org/wiki/Text_corpus">corpus</a>. A corpus is natural-language processing equivalent to a dataset. If we are training a model on data scraped from news sites, then all the news articles we scraped will make our corpus.</p>
+<p>Since we have a set of all words in our corpus, more precisely <a href="https://nlp.stanford.edu/IR-book/html/htmledition/tokenization-1.html">tokens</a> in our corpus, we can assign each word a number. This number is the position of the word in our vocabulary. For example, the word <code>aaron</code> might be in position $2$, while the word <code>zulu</code> might be in position $10,000$. This is assuming that our vocabulary is sorted and that it&rsquo;s size, or cardinality is $10,000$.</p>
+<p>We can now transform every word in a sentence into a <a href="https://en.wikipedia.org/wiki/One-hot">one-hot vector</a>. This simply means creating a vector of size equal to our vocabulary, that is $10,000$ and fill it with zeros. Next, we get the <em>index</em> of a word from our vocabulary, and set that index&rsquo;s element in our vector to $1$. So that every word is represented by a $10,000$ dimensional vector where all the entries are $0$ except for the position that maps to a word in our vocabulary. More precisely, we can represent each element in our input $x^{&lt;t&gt;}$ as a one-hot vector. Thus, a sentence can be represented by a matrix, where we concatenate each word. If we have a sentence with $20$ words, then our representation will be of dimensions $(10000, 20)$.</p>
+<p>Since we can also represent some output sequence $y$ in the same fashion, we will use supervised learning to learn a mapping that goes from $x \to y$.</p>
+<p>As we mentioned before, there are two main issues with using a standard neural network approach with sequence data.</p>
+<ol>
+<li>Input and outputs can be of different lengths between them and also across training examples.</li>
+<li>Does not share features across different positions of the sequence. Every element is processed independently of another, which is a pretty bad approach since we are dealing with data that is intrinsically linked in time.</li>
+</ol>
+<p>We can solve both these issues using a <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">surprisingly simple model</a>, a recurrent neural network (RNN).</p>
+<h2 id="recurrent-neural-network">
+  Recurrent Neural Network
+  <a class="heading-link" href="#recurrent-neural-network">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>RNNs is an architectural approach that allows us to express our desire to share parameters, and also to generalize input and output lengths. Let&rsquo;s define that.</p>
+<p>At each <em>step</em> an RNN will take some input $x^{&lt;t&gt;}$, combine it with the activations (hidden state) from the <em>previous</em> time step $a^{&lt;t-1&gt;}$, and generate $a^{&lt;t&gt;}$. It will use $a^{&lt;t&gt;}$ to generate some output $\hat{y}^{&lt;t&gt;}$ and also pass $a^{&lt;t&gt;}$ to the next layer $l^{&lt;t+1&gt;}$ to repeat the process again. This means that at each time step we are putting in an input, combining it with the activations from the previous layer and generating an output; so on and so forth until we reach the end of the time steps. Andrew mentions that a lot of the diagrams from RNNs, and later GRUs and LSTM networks, are hard to understand. In that spirit I will focus more on the equations because they are clearer to me.</p>
+<p>A key thing to take note of is that we are <em>sharing</em> parameters across all time steps. There are three important parameter matrices: $W_{ax}$, $W_{aa}$ and $W_{ay}$. In the notation of the course, the subscripts $W_{ax}$ denote that this particular $W$ is being used to generate $a$, and it&rsquo;s using $x$. This means that $W_{ax}$ is used to combine the inputs $x^{&lt;t&gt;}$ and generate $a^{&lt;t&gt;}$. Similarly, $W_{aa}$ is also used to generate $a^{&lt;t&gt;}$, but it uses $a^{&lt;t-1&gt;}$, the activations from the previous time step. This will become clearer once we go over the equations. However, just keep in mind that we have three knobs (parameter matrices):</p>
+<ol>
+<li>$W_{ax}$: regulates how each $x^{&lt;t&gt;}$ affects the activations $a^{&lt;t&gt;}$.</li>
+<li>$W_{aa}$: regulates how the activations from the <em>previous</em> layer $a^{&lt;t-1&gt;}$ affect our current activations $a^{&lt;t&gt;}$.</li>
+<li>$W_{ay}$: regulates how the activations $a^{&lt;t&gt;}$ are combined into the current output $\hat{y}^{&lt;t&gt;}$.</li>
+</ol>
+<p>Notice that these three matrices are <em>reused</em> at every time step. This means that our parameters will not grow or shrink with respect to the length of our output or input sequences.</p>
+<p>Also notice the main point of RNNs: as long as $t &gt; 1$ then the output $y^{&lt;k&gt;}$ will be computed using all time steps $t_1, \dots, t_k$. That is, the future is affected by the past (but not the other way around). If you&rsquo;re interested doing away with the arrow of time, you can use <a href="#bidirectional-rnn">bidirectional RNNs</a>, but that comes later.</p>
+<h3 id="forward-propagation">
+  Forward Propagation
+  <a class="heading-link" href="#forward-propagation">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Let&rsquo;s finally define the equations that govern the forward pass in an RNN and hopefully do away with ambiguities in the writing.</p>
+<p>We said that at every time step, an RNN combines the hidden state from the previous time step with the current inputs to generate an output. How do we get started? That is, what do at $t = 0$? We initialize the hidden state, $a^{&lt;t&gt;}$ to be the zero vector, therefore $a^{&lt;0&gt;} = \vec{0}$. Thus, we can define the general form of the forward propagation equation:</p>
+<p>$$
+\begin{aligned}
+a^{&lt;t&gt;} &amp;= g_a (W_{aa} a^{&lt;t - 1&gt;} + W_{ax} x^{&lt;t&gt;} + b_a) \\
+\hat{y}^{&lt;t&gt;} &amp;= g_y (W_{ya} a^{&lt;t&gt;} + b_y)
+\end{aligned}
+$$</p>
+<p>Notice the activation functions $g_a, g_y$ might be different. In practice, we use the $\tanh$ for $g_a$ and the sigmoid for $g_y$ in the case of classification.</p>
+<p>These two operations are all that&rsquo;s going in an RNN, repeated for every time step of the output. As mentioned before, keep in mind that $T_x = T_y$ for now.</p>
+<p>Another thing done in the course is to simplify the notation of the equation above, by concatenating $W_{aa}$ and $W_{ax}$ together. For example, if $W_{aa}$&rsquo;s dimensions are $(100, 100)$ and $W_{ax}$&rsquo;s dimensions are $(100, 10000)$, then we can concatenate these into $W_a$. So that:</p>
+<p>$$
+\underset{(100, 10100)}{W_a} = \left[\underset{(100, 100)}{W_{aa}} | \underset{(100, 10000)}{W_{ax}}\right]
+$$</p>
+<p>Similarly, we can stack $a^{&lt;t-1&gt;}$ and $x^{&lt;t&gt;}$ to match the dimensions of $W_a$. So that:</p>
+<p>$$
+\underset{(10100, 1)}{\left[ a^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right]} = \begin{bmatrix}
+\underset{(100, 1)}{a^{&lt;t-1&gt;}} \\
+\hline \\
+\underset{(10000, 1)}{x^{&lt;t&gt;}}
+\end{bmatrix}
+$$</p>
+<p>This way we can simplify the activation function to:</p>
+<p>$$
+a^{&lt;t&gt;} = g_a (W_a \left[ a^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_a)
+$$</p>
+<p>Which is what we&rsquo;ll use through the rest of the week. Notice that this is just a notational trick and also to keep all hidden state parameters together into a single matrix. We are not adding or removing any parameters by doing this notational refinement.</p>
+<h3 id="different-types-of-rnns">
+  Different Types of RNNs
+  <a class="heading-link" href="#different-types-of-rnns">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>It turns out that setting $T_x = T_y$ is pretty restrictive. We can have different types of RNNs that have different sizes for their input and output. We have the following:</p>
+<ul>
+<li><strong>Many-to-one approach:</strong> In sentiment classification we take a sequence and want a single output. We do this by editing the usual RNN approach. Instead of having an output at every time step, $\hat{y}^{&lt;t&gt;}$, we only have one at the end. A key thing is that we still keep the hidden state going through each time step like a regular RNN.</li>
+<li><strong>One-to-many approach:</strong> In a case like music generation, we might input a single thing, such as a chord, and would like to generate a sequence based on this. This is the mirror opposite of the many-to-one approach. We still have one output at each time step $\hat{y}^{&lt;t&gt;}$, but we only have one input at the first time step.</li>
+<li><strong>Many-to-many approach:</strong> In this approach, we have two cases:
+<ul>
+<li>$T_x = T_y$: This is the usual approach. Each RNN unit takes in an input and produces an output.</li>
+<li>$T_x \neq T_y$: This approach is usually used in machine translation. The idea is that you first have an encoder, and then a decoder. The encoder takes the inputs and learns an encoding of the inputs, still passing the hidden-state forward in time. While the decoder generates the outputs.</li>
+</ul>
+</li>
+</ul>
+<p>Here is an image from the course:</p>
+<figure><img src="/images/rnn-1.png"
+         alt="Types of RNNs" width="75%"/><figcaption>
+            <p><a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning">Types of RNNs</a></p>
+        </figcaption>
+</figure>
+
+<h3 id="language-model-and-sequence-generation">
+  Language Model and Sequence Generation
+  <a class="heading-link" href="#language-model-and-sequence-generation">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Language modeling is a probabilistic model of natural language that can generate probabilities of a series of words, based on text corpora in one or multiple languages it was trained on. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> This means that for a given sentence, our a language model should be able to estimate the probability of that sentence occurring in our corpus. Notice that we can estimate probabilities for sentences that were not seen during training.</p>
+<p>If we have a sentence such as &ldquo;Cats average 15 hours of sleep a day.&rdquo;, then we can model each token as a one-hot vector. Our tokens will be <code>[cats, average, 15, hours, of, sleep, a, day, &lt;eos&gt;]</code>, where <code>&lt;eos&gt;</code> is a special token that denotes the end of sentence. This is useful, because we want our model to be able to learn when it&rsquo;s likely for a sentence to end. We can see how the RNN approach can be used almost directly to estimate the probabilities of this sentence.</p>
+<p>Imagine that we train an RNN with the same settings as <a href="#representing-words">before</a>, and that we trained it on a large English corpus. Also keep in mind that we want to set $x^{&lt;t&gt;} = y^{&lt;t-1&gt;}$. What happens in the first time step? We just set $x^{&lt;1&gt;}$ to be $\vec{0}$. If we run this through the first RNN unit, we will get a softmax output over the entire vocabulary. That is, $P(x) \forall x \in V$ where $V$ is our vocabulary. We can grab the most likely word, or sample the vocabulary used the softmax probabilities, and generate $x^{&lt;2&gt;}$ from what we just estimated from $y^{&lt;1&gt;}$, so on and so forth.</p>
+<p>The important idea behind this is that, using an RNN like this amounts to calculating the conditional probabilities for each of the words in the sentence. For example, $y^{&lt;1&gt;} = P(y^{&lt;1&gt;})$, $y^{&lt;2&gt;} = P(y^{&lt;2&gt;} | y^{&lt;1&gt;})$ and so on. When training the neural network, we use the following loss function:</p>
+<p>$$
+J\left(\hat{y}^{&lt;t&gt;}, y^{&lt;t&gt;}\right) = - \sum_{i=1}^m y_i^{&lt;t&gt;} \log \hat{y}_i^{&lt;t&gt;}
+$$</p>
+<p>Which is the cross-entropy loss we are already familiar with. Therefore, our cost function is just the sum over all time steps:</p>
+<p>$$
+\mathcal{L} = \sum_{t=1}^{T_y} J^{&lt;t&gt;}\left(\hat{y}^{&lt;t&gt;}, y^{&lt;t&gt;}\right)
+$$</p>
+<p>This means that the model learns how to assign probabilities to sentences using conditional probability. For example the second output $\hat{y}^{&lt;2&gt;} = P(y^{&lt;1&gt;}) P(y^{&lt;2&gt;} | y^{&lt;1&gt;})$, the third output gives us $\hat{y}^{&lt;3&gt;} = P(y^{&lt;3&gt;} | y^{&lt;1&gt;}, y^{&lt;2&gt;})$. Since we are computing the loss with the sum of cross entropy, we are multiplying all these probabilities (summing in log space) to get the conditional probability of all these words together, given the ones that came before. This is why we can use an RNN as a language model. Even more so, we can generate novel sequences by using the output from one time step into the next step. Notice that we didn&rsquo;t do this just now, we passed the <em>target label</em> from the previous time step to the next input time step.</p>
+<h3 id="vanishing-gradients-with-rnns">
+  Vanishing Gradients with RNNs
+  <a class="heading-link" href="#vanishing-gradients-with-rnns">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>It turns out that vanilla RNNs suffer greatly from vanishing gradient problems. This might not be surprising since each RNN unit is like a layer, and therefore part of the chain rule when we do back propagation. In English, this means that the network is not very good at capturing <em>long-term dependencies</em> in a sequence. For example, in the sentence &ldquo;The cat, which already ate an apple, was full&rdquo;, when compared to &ldquo;The cats, which already ate an apple, were full&rdquo; has a long-term dependency. If it&rsquo;s not clear, the dependency is between the pair $(\text{cat}, \text{was})$, and $(\text{cats}, \text{were})$. We still have not gotten to bidirectional RNNs, so the network is only scanning from left to right. This means that our optimization algorithm will have a harder and harder time updating the weights of the elements in the sequence that are further from the output towards the beginning of the sequence. This is what we mean by vanishing gradients in this problem.</p>
+<p>In practice, a vanilla RNN implementation has high local dependencies. This means that some output at time step $t$ will be greatly influenced by the activations from the neighboring time steps before, but not much, if at all, by the ones further behind. This is of course, a problem. We want our language model to realize that seeing either <code>cat</code> or <code>cats</code> should affect the probabilities in the rest of the prediction, and also to memorize this fact as it keeps going down the sequence.</p>
+<p>We can also have exploding gradients in some cases, which we can ameliorate with gradient clipping. That is, we restrict the gradient values to be within some arbitrary range chosen by us.</p>
+<h2 id="gated-recurrent-unit">
+  Gated Recurrent Unit
+  <a class="heading-link" href="#gated-recurrent-unit">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The Gated Recurrent Unit (GRU) is an improvement over vanilla RNNs that deals with the problem we just discussed, that of vanishing gradients, and therefore the lack of long-term dependency recognition. Before we define the GRU approach, let&rsquo;s go back to how the regular RNN calculated the activations for some time step $t$:</p>
+<p>$$
+a^{&lt;t&gt;} = \tanh (W_a \left[ a^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_a)
+$$</p>
+<p>Where we simply replaced $g_a$ to use the $\tanh$ activation function. Let&rsquo;s talk about what $W_a$ is doing. The part that&rsquo;s multiplied with $a^{&lt;t-1&gt;}$ are the parameters that regulate how much the hidden state influences the activation, while the part that&rsquo;s multiplied with $x^{&lt;t&gt;}$ are the parameters that regulate how much each new input sequence influences the activation. That is, in a vanilla RNN each activation is a combination of the hidden state from the previous time step, and the current time step&rsquo;s input.</p>
+<p>What the GRU does, is that it allows us to parametrize the mixture between hidden states and the activation; this is on top of $W_a$. The mechanism that performs the mixture is the gate, which is where the name comes from. The gate can be full, closed or anything in between, think sigmoid. When it&rsquo;s open, the mixture from the past is heavy, when it&rsquo;s closed, the mixture from the past is light. Let&rsquo;s clarify this with math.</p>
+<p>Let&rsquo;s say that $c$ is a memory cell, and that in this case $c^{&lt;t&gt;} = a^{&lt;t&gt;}$. We will also define a <em>candidate</em> memory cell $\tilde{c}^{&lt;t&gt;}$:</p>
+<p>$$
+\tilde{c}^{&lt;t&gt;} = \tanh (W_c \left[ c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_c)
+$$</p>
+<p>So far it&rsquo;s the same as before but with other variable names. Now, we introduce the <em>update</em> gate:</p>
+<p>$$
+\Gamma_u = \sigma (W_u \left[ c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_u)
+$$</p>
+<p>Let&rsquo;s keep in mind some properties of $\Gamma_u$:</p>
+<ul>
+<li>$W_u$ are the parameters that we learn by optimization.</li>
+<li>The sigmoid guarantees values between $0$ and $1$.</li>
+<li>The gate has the same dimensions as the hidden state $c^{&lt;t-1&gt;}$. This means that element-wise multiplication can be used.</li>
+<li>This is similar to applying a mask, but instead of a binary one, a continuous one because of the sigmoid activation.</li>
+<li>If the value of the gate at some position is close to $0$, then the product is close to $0$ which dampens the effect of the previous hidden state into the next time stamp.</li>
+<li>On the other hand, we can heighten the hidden state&rsquo;s effect into the next time stamp.</li>
+</ul>
+<p>We&rsquo;d like to add this gate to the $c^{&lt;t&gt;}$ equation. We can do this by:</p>
+<p>$$
+c^{&lt;t&gt;} = \Gamma_u \tilde{c}^{&lt;t&gt;} + (1 - \Gamma_u) c^{&lt;t-1&gt;}
+$$</p>
+<p>So that at every activation, we are generating the candidate, and applying the gate over it; thus generating the final activations for the current unit. This means that a GRU not only learns how to mix the past and the present, but also how some tokens or inputs can be &ldquo;context switches&rdquo;; and also how some are not context switches. This means that the model can learn longer-term structural information over a sequence. If there&rsquo;s a token that conditions the rest of the sequence, then the model can learn to update or open the gate. Otherwise, it can learn to keep the gate shut, thus enlarging or diminishing the effect from the past.</p>
+<p>A key thing to note is the element-wise application of the gate. This means that the gate operates at the dimension level, instead of the input level. This means that the network can selectively update some dimensions more aggressively than other dimensions.</p>
+<p>It turns out that the actual GRU unit has two gates, instead of one; but it&rsquo;s literally the same principle. The full GRU equations are:</p>
+<p>$$
+\begin{aligned}
+\Gamma_r &amp;= \sigma (W_r \left[ c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_r) \\
+\tilde{c}^{&lt;t&gt;} &amp;= \tanh (W_c \left[\Gamma_r c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_c) \\
+\Gamma_u &amp;= \sigma (W_u \left[ c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_u) \\
+c^{&lt;t&gt;} &amp;= \Gamma_u \tilde{c}^{&lt;t&gt;} + (1 - \Gamma_u) c^{&lt;t-1&gt;}
+\end{aligned}
+$$</p>
+<p>The gate $\Gamma_r$ is the &ldquo;relevance&rdquo; gate. It&rsquo;s a parameter that regulates how relevant the previous memory cell $c^{&lt;t-1&gt;}$ is in the next time step. While $\Gamma_u$ is the &ldquo;update&rdquo; gate. A parameter that regulates how relevant our candidate memory cell is relative to the previous memory cell.</p>
+<blockquote>
+<p>Note that in the literature $c$ and $\tilde{c}$ are usually referred as $h$ and $\tilde{h}$. Similarly, $\Gamma_u$ and $\Gamma_r$ are referred to as $u$ and $r$ respectively.</p>
+</blockquote>
+<h2 id="long-short-term-memory">
+  Long Short-Term Memory
+  <a class="heading-link" href="#long-short-term-memory">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Long Short-Term Memory (LSTM) units are the extension of the GRU idea, even though LSTMs were published earlier. Let&rsquo;s start by reviewing the equations for GRUs since the LSTM is a small extension of them.</p>
+<p>For the GRU we have:</p>
+<ul>
+<li>Candidate for replacing the current memory cell: $\tilde{c}^{&lt;t&gt;} = \tanh (W_c \left[\Gamma_r c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_c)$</li>
+<li>The relevance gate: $\Gamma_r = \sigma (W_r \left[ c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_r)$</li>
+<li>The update gate: $\Gamma_u = \sigma (W_u \left[ c^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_u)$</li>
+<li>The current memory cell: $c^{&lt;t&gt;} = \Gamma_u \tilde{c}^{&lt;t&gt;} + (1 - \Gamma_u) c^{&lt;t-1&gt;}$
+<ul>
+<li>Which is a mixture of the current memory cell and the candidate memory cell mixed by the update gate.</li>
+</ul>
+</li>
+<li>$a^{&lt;t&gt;} = c^{&lt;t&gt;}$
+<ul>
+<li>This is something that will change in the LSTM.</li>
+</ul>
+</li>
+</ul>
+<p>In the LSTM we get rid of $\Gamma_r$, but we introduce two other gates: $\Gamma_f$ and $\Gamma_o$, the forget gate and output gate respectively.</p>
+<p>For the LSTM we have:</p>
+<p>$$
+\tilde{c}^{&lt;t&gt;} = \tanh (W_c \left[a^{&lt;t-1&gt;}, x^{&lt;t&gt;}\right] + b_c)
+$$</p>
+<p>Notice how we are back to using $a^{&lt;t&gt;}$ instead of $c^{&lt;t&gt;}$, and also that we dropped $\Gamma_r$ which we will redefine in a second.</p>
+<p>The update gate remains the same, albeit with the input change:</p>
+<p>$$
+\Gamma_u = \sigma \left(W_u[a^{&lt;t-1&gt;}, x^{&lt;t&gt;}] + b_u\right)
+$$</p>
+<p>We dropped $\Gamma_r$ but only to redefine it more explicitly as $\Gamma_f$, the forget gate:</p>
+<p>$$
+\Gamma_f = \sigma \left(W_f[a^{&lt;t-1&gt;}, x^{&lt;t&gt;}] + b_f\right)
+$$</p>
+<p>We will add yet another gate, same as the others, $\Gamma_o$ the output gate:</p>
+<p>$$
+\Gamma_o = \sigma \left(W_o[a^{&lt;t-1&gt;}, x^{&lt;t&gt;}] + b_o\right)
+$$</p>
+<p>The current memory cell will now use both $\Gamma_u$ and $\Gamma_f$ instead of $\Gamma_u$ and $(1 - \Gamma_u)$:</p>
+<p>$$
+c^{&lt;t&gt;} = \Gamma_u \tilde{c}^{&lt;t&gt;} + \Gamma_f c^{&lt;t-1&gt;}
+$$</p>
+<p>Finally, we use the output gate $\Gamma_o$ to generate the final activations:</p>
+<p>$$
+a^{&lt;t&gt;} = \Gamma_o c^{&lt;t&gt;}
+$$</p>
+<p>What does the LSTM get us for the extra size? It gets us more complexity and adaptability. By using more gates, and by keeping the hidden state and the output separate, we are subdividing the tasks more finely than in the GRU; therefore being able to achieve greater specialization.</p>
+<h2 id="bidirectional-rnn">
+  Bidirectional RNN
+  <a class="heading-link" href="#bidirectional-rnn">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Bidirectional RNNs (BRRNs) are simply running time forward and backward before doing a prediction. That is, before generating the first output, we&rsquo;ve seen the entire sequence. By keeping two hidden states, one for forward in time, and the other for backwards in time, and then combining both these states with the input, we can use information from the future to make a prediction now. Computationally it&rsquo;s almost two times as expensive as a single RNN.</p>
+<p>In practice many people use bidirectional GRUs or LSTMs to also allow the model to parametrize the mixture over longer periods of time.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Language_model">Language Model | Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
