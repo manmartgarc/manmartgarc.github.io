@@ -6,7 +6,18 @@
     <description>Recent content in Sequence Models on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/sequence-models/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/sequence-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sequence Models: Week 2 | NLP &amp; Word Embeddings</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</link>
+      <pubDate>Thu, 10 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</guid>
+      <description>This is the second week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
+This week&amp;rsquo;s topics are:
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words.</description>
+    </item>
+    
     <item>
       <title>Sequence Models: Week 1 | Recurrent Neural Networks</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>

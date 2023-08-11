@@ -205,6 +205,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
 <li><a href="#long-short-term-memory">Long Short-Term Memory</a></li>
 <li><a href="#bidirectional-rnn">Bidirectional RNN</a></li>
 </ul>
+<hr>
 <h2 id="why-sequence-models">
   Why Sequence Models?
   <a class="heading-link" href="#why-sequence-models">
@@ -458,6 +459,7 @@ $$</p>
 </h2>
 <p>Bidirectional RNNs (BRRNs) are simply running time forward and backward before doing a prediction. That is, before generating the first output, we&rsquo;ve seen the entire sequence. By keeping two hidden states, one for forward in time, and the other for backwards in time, and then combining both these states with the input, we can use information from the future to make a prediction now. Computationally it&rsquo;s almost two times as expensive as a single RNN.</p>
 <p>In practice many people use bidirectional GRUs or LSTMs to also allow the model to parametrize the mixture over longer periods of time.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
