@@ -6,7 +6,18 @@
     <description>Recent content in deep learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 12 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sequence Models: Week 4 | Transformers</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</link>
+      <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</guid>
+      <description>This is the fourth and last week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
+This week&amp;rsquo;s topics are:
+Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&amp;rsquo;s hidden states with the current one.</description>
+    </item>
+    
     <item>
       <title>Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</link>

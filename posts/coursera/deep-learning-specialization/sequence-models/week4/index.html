@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Sequence Models: Week 4 | Transformers · Manuel Martinez
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
+This week&rsquo;s topics are:
+Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sequence Models: Week 4 | Transformers"/>
+<meta name="twitter:description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
+This week&rsquo;s topics are:
+Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one."/>
+
+<meta property="og:title" content="Sequence Models: Week 4 | Transformers" />
+<meta property="og:description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
+This week&rsquo;s topics are:
+Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-08-13T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.117.0">
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Manuel Martinez
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/">
+              Sequence Models: Week 4 | Transformers
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-08-13T00:00:00Z">
+                August 13, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              9-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa fa-folder" aria-hidden="true"></i>
+    <a href="/categories/coursera/">Coursera</a>
+      <span class="separator">•</span>
+    <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
+      <span class="separator">•</span>
+    <a href="/categories/sequence-models/">Sequence Models</a></div>
+
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">machine learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/deep-learning/">deep learning</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the fourth and last week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/">fifth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.</p>
+<p>This week&rsquo;s topics are:</p>
+<ul>
+<li><a href="#transformer-network-intuition">Transformer Network Intuition</a></li>
+<li><a href="#self-attention">Self-Attention</a></li>
+<li><a href="#multi-head-attention">Multi-Head Attention</a></li>
+<li><a href="#transformer-network-architecture">Transformer Network Architecture</a></li>
+<li><a href="#more-information">More Information</a></li>
+</ul>
+<hr>
+<h2 id="transformer-network-intuition">
+  Transformer Network Intuition
+  <a class="heading-link" href="#transformer-network-intuition">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We started with RNNs (known as part of the <a href="https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;t=1436s">prehistoric era now</a>), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one. To solve some issues with vanilla RNNs, we introduced GRUs and LSTMs; both more flexible and more complex than simple RNNs. However, one of the things that they all share in common is that the <em>input</em> must be processed sequentially, i.e. one token at a time. This is a problem with large models, where we want to parallelize computation as much as possible. <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl&rsquo;s Law</a> gives us a theoretical speed up limit based on the fraction of parallelizable compute in a computer program. Unfortunately, since the entire model is sequential the speed-ups are miniscule. The transformer architecture allows us to process <em>the entire</em> input at once, and in parallel; allowing us to train much more complex models which in turn generate richer feature representations of our sequences.</p>
+<p>The transformer architecture combines the <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">attention model</a> with a CNN architecture. The idea is to use the attention model&rsquo;s ability to recognize relevance between pairs of tokens, with the computational efficiency of CNNs; which can be parallelized quite easily. Let&rsquo;s dive into the two main components of the transformer architecture.</p>
+<h2 id="self-attention">
+  Self-Attention
+  <a class="heading-link" href="#self-attention">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Self-attention is the same idea as attention when we used RNNs. However, since our model is not sequential anymore, we need to calculate the attention in one go. Let&rsquo;s remember that attention is simply some value that describes how relevant a pair of tokens $&lt;t,t&rsquo;&gt;$ are with respect to generating some output. In the RNN case, we learned some embedding $e^{&lt;t,t&rsquo;&gt;}$ as a function of the previous step&rsquo;s post-attention hidden state and each token $t&rsquo;$ pre-attention hidden state. We no longer have previous hidden states since we are doing it all in one go. Let&rsquo;s see how this implemented.</p>
+<p>The first thing to take into account is that since our model is not sequential anymore, we have lost the temporal structure we got from using RNNs. This means that we will have to come up with a way to encode positions, which we will call the positional encodings. For now, just think that we have two things: our word embeddings from the input, and some positional encoding that encodes the position of each word in the sentence.</p>
+<figure><img src="/images/trans-1.png"
+         alt="MIT Introduction to Deep Learning" width="75%"/><figcaption>
+            <p><a href="http://introtodeeplearning.com/slides/6S191_MIT_DeepLearning_L2.pdf">MIT Introduction to Deep Learning</a></p>
+        </figcaption>
+</figure>
+
+<p>Notice that in the figure, we add the positional encoding to the word embeddings; therefore imbuing the embedding with positional information which was absent before.</p>
+<p>Now we need to come up with a way to define attention. We can think of attention as a way for input nodes to <a href="https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;t=672s">communicate with each other</a>. How can we imbue each node to talk with each other? We will define three things for each node in the input:</p>
+<ol>
+<li>Key $k^{&lt;t&gt;}$: What do I have?</li>
+<li>Query $q^{&lt;t&gt;}$: What am I looking for?</li>
+<li>Value $v^{&lt;t&gt;}$: What do I publicly reveal/broadcast to others? <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+</ol>
+<p>Let&rsquo;s define mathematically attention first, and then we will go over what each of these vectors represent:</p>
+<p>$$
+A^{&lt;t&gt;}(q^{&lt;t&gt;}, K, V) = \sum_{t&rsquo;=1}^{T_x} \frac{\exp(q^{&lt;t&gt;}k^{&lt;t&rsquo;&gt;})}{\sum_{j=1}^{T_x}\exp(q^{&lt;t&gt;}k^{&lt;j&gt;})} v^{&lt;t&rsquo;&gt;}
+$$</p>
+<p>Let&rsquo;s use as an example, the input sentence <em>Jane visite l&rsquo;Afrique en septembre.</em>, and let&rsquo;s focus on $x^{&lt;3&gt;} = \text{l&rsquo;Afrique}$ and calculate $A^{&lt;3&gt;}$.</p>
+<p>First, $q^{&lt;3&gt;}, k^{&lt;3&gt;}, v^{&lt;3&gt;}$ are generated with three weight matrices $W^Q, W^K, W^V$ which are learnable parameters:</p>
+<p>$$
+\begin{aligned}
+q^{&lt;3&gt;} &amp;= W^Q x^{&lt;3&gt;} \\
+k^{&lt;3&gt;} &amp;= W^K x^{&lt;3&gt;} \\
+v^{&lt;3&gt;} &amp;= W^V x^{&lt;3&gt;}
+\end{aligned}
+$$</p>
+<p>To compute $A^{&lt;3&gt;}$ we will allow $x^{&lt;3&gt;}$ to communicate to all other tokens what it&rsquo;s looking for: $q^{&lt;3&gt;}$. Each of the tokens will respond with $k^{&lt;t&rsquo;&gt;}$, answering what they have. This is the key part: if the dot product between $q^{&lt;3&gt;}$ and $k^{&lt;t&rsquo;&gt;}$ is high, it means that $k^{&lt;t&rsquo;&gt;}$ has what $q^{&lt;3&gt;}$ is looking for; we are simply looking for a similarity between the query and key vectors. We will allow each token to communicate with all others, and then normalize their contributions with a softmax. We also use $v^{&lt;t&rsquo;&gt;}$ to weight the contribution, allowing token $t&rsquo;$ to not just say that it has what someone else is looking for, but what it is, regardless of what someone else is looking for. Finally, we sum all of these up into $A^{&lt;3&gt;}$. Let&rsquo;s revisit these steps in more detail again.</p>
+<p>Remember that we are doing all of this in one go, therefore we need to do this in a vectorized way using matrix multiplication. Let&rsquo;s redefine attention with matrices:</p>
+<p>$$
+\text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_K}}V \right)
+$$</p>
+<p>We get each of these matrices by multiplying the positional embeddings with each of the $W^Q, W^K, W^V$ matrices:</p>
+<figure><img src="/images/trans-2.png"
+         alt="MIT Introduction to Deep Learning" width="75%"/><figcaption>
+            <p><a href="http://introtodeeplearning.com/slides/6S191_MIT_DeepLearning_L2.pdf">MIT Introduction to Deep Learning</a></p>
+        </figcaption>
+</figure>
+
+<p>Let&rsquo;s break down the matrix version of the attention formula. Let&rsquo;s focus on this term:</p>
+<p>$$
+\frac{QK^T}{\sqrt{d_K}}
+$$</p>
+<p>This term is calculating the <em>pair-wise</em> similarity between queries and keys for all the inputs:</p>
+<figure><img src="/images/trans-3.png"
+         alt="MIT Introduction to Deep Learning" width="75%"/><figcaption>
+            <p><a href="http://introtodeeplearning.com/slides/6S191_MIT_DeepLearning_L2.pdf">MIT Introduction to Deep Learning</a></p>
+        </figcaption>
+</figure>
+
+<p>This means that we will have a matrix with the dimensions of our maximum input size, where each row and column corresponds to a position of the input. Along the diagonal, we will have the similarity between each token and itself. We would like to normalize the values to sum up to one (across some specific dimension!); we can use our trusty softmax to do that. We therefore get:</p>
+<p>$$
+\text{attention weighting} = \text{softmax} \left( \frac{QK^T}{\sqrt{d_K}} \right)
+$$</p>
+<figure><img src="/images/trans-4.png"
+         alt="MIT Introduction to Deep Learning" width="75%"/><figcaption>
+            <p><a href="http://introtodeeplearning.com/slides/6S191_MIT_DeepLearning_L2.pdf">MIT Introduction to Deep Learning</a></p>
+        </figcaption>
+</figure>
+
+<p>This matrix encodes which token is relevant for every token in the output. We know to which token to pay attention to, but <em>what</em> about that token do we pay attention to? This is what $V$ encodes. Multiplying the previous with $V$ allows us to extract features with high attention. We finally get to:</p>
+<p>$$
+\text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_K}}V \right)
+$$</p>
+<figure><img src="/images/trans-5.png"
+         alt="MIT Introduction to Deep Learning" width="75%"/><figcaption>
+            <p><a href="http://introtodeeplearning.com/slides/6S191_MIT_DeepLearning_L2.pdf">MIT Introduction to Deep Learning</a></p>
+        </figcaption>
+</figure>
+
+<p>If we do this for every token in our output and get $A^{&lt;t&gt;} \forall t \in T_x$ we will get an attention embedding for all the inputs. This constitutes a single <em>head</em>. It turns out that we will use a <em>head</em> similar to how we use a <em>filter</em> in the context of CNNs. This is the part that we can run in parallel, on top of the vectorization of the $A^{&lt;t&gt;}$ calculation. By using different heads, we allow the model to focus on different features when generating the queries, keys and values. That is we can learn to pay attention to different things, as many things as we have heads. This means that if we have $5$ heads, we will have $W_1^Q, W_1^K, W_1^V, \dots, W_5^Q, W_5^K, W_5^V$. This is called multi-head attention.</p>
+<h2 id="multi-head-attention">
+  Multi-Head Attention
+  <a class="heading-link" href="#multi-head-attention">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Similar to how we can stack filters in a CNN to learn different features, we will stack multiple heads to learn different attention representations for each token pair. We know that attention a single-head attention is defined as:</p>
+<p>$$
+\text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_K}}V \right)
+$$</p>
+<p>We will index each head with the subscript $i$ so that:</p>
+<p>$$
+\text{head}_i = \text{Attention}(W_i^Q, W_i^K, W_i^V)
+$$</p>
+<p>This allows us to define multi-head attention as:</p>
+<p>$$
+\text{MultiHead}(Q, K, V) = \text{concat}(\text{head}_1, \text{head}_2, \dots, \text{head}_h)W_o
+$$</p>
+<p>Notice that $W_o$ is another matrix with learnable parameters, which allows us to dial up or down the signal coming from the multi-head component.</p>
+<p>We said that the transformer architecture allows for parallelization before, and this is exactly the part that runs in parallel. That is, every head runs the communication (attention) scheme in parallel.</p>
+<h2 id="transformer-network-architecture">
+  Transformer Network Architecture
+  <a class="heading-link" href="#transformer-network-architecture">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Alright, let&rsquo;s do a quick recap:</p>
+<ul>
+<li>We have dealt with the loss of temporal structure by using positional encodings.</li>
+<li>We have defined a way which allows nodes to communicate with each other, and learn to which of their friends to pay attention to.</li>
+<li>We have done this $h$ times, the number of heads, to allow the nodes to ask different combinations of questions and answers: What do you mean? Where are you? Etc.</li>
+</ul>
+<p>The output of this is some encoding of the input that has all this information clumped together into a super rich embedding of the inputs. This is what we call the encoder part:</p>
+<figure><img src="/images/trans-6.png"
+         alt="Attention is All You Need" width="50%"/><figcaption>
+            <p><a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a></p>
+        </figcaption>
+</figure>
+
+<p>The three arrows in the encoder part (left) that go into the Multi-Head Attention component are the three query, keys and values matrices $Q, K, V$ for each of the heads. Remember, we learn $Q, K, V$ via optimization; and we have as many of these representations as we have heads. An additional step shown in the figure is that we add a skip connection with normalization; similar to how we implemented skip-connections in U-Nets.</p>
+<p>What about the decoder? The decoder will take the inputs, but shifted to the right for each context length, and learn new $Q, K, V$ representations from the training labels. In machine translation, these are $Q, K, V$ in English instead of French. It will then be able to get its own questions $Q$ in English, and allow it to reach out into the encoder for finding keys and values. This is sometimes called the cross-attention module. After this, we run the embeddings through a feed-forward layer to select the most important features and generate the softmax probabilities for the next token in the prediction.</p>
+<h2 id="more-information">
+  More Information
+  <a class="heading-link" href="#more-information">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I personally feel like the transformer content was an afterthought in the course. Compared to other content, the transformer content was very shallow and short. There are many amazing communicators that talk about transformers, here are some that I found helpful:</p>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Andrej Karpathy | Let&rsquo;s build GPT: from scratch, in code, spelled out.</a></li>
+<li><a href="https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;t=672s">CS25 I Stanford Seminar - Transformers United 2023: Introduction to Transformers w/ Andrej Karpathy</a></li>
+<li><a href="https://youtu.be/ySEx_Bqxvvo?t=2893">MIT 6.S191: Recurrent Neural Networks, Transformers, and Attention</a></li>
+<li><a href="https://www.youtube.com/watch?v=t45S_MwAcOw">Transformer models and BERT model: Overview</a></li>
+<li><a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a></li>
+</ol>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;t=672s">CS25 | Stanford Seminar</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2023
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NJLM0F56ZC');
+</script>
+
+
+  
+</body>
+
+</html>
