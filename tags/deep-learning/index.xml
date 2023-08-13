@@ -6,7 +6,18 @@
     <description>Recent content in deep learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism</title>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</link>
+      <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</guid>
+      <description>This is the third week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
+This week&amp;rsquo;s topics are:
+Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?</description>
+    </item>
+    
     <item>
       <title>Sequence Models: Week 2 | NLP &amp; Word Embeddings</title>
       <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</link>
