@@ -5,7 +5,7 @@
     <link>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</link>
     <description>Recent content in Neural Networks and Deep Learning on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>Fri, 16 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Neural Networks and Deep Learning: Week 4 | Deep Neural Networks</title>
@@ -13,9 +13,9 @@
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
-      <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&amp;rsquo; weeks ideas into $L$-layered networks.
+      <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&#39; weeks ideas into $L$-layered networks.
 This week&amp;rsquo;s topics are:
-Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
+ Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters   Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@ Deep L-Layer neural network Getting your matrix dimensions right Why deep repres
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
 This week&amp;rsquo;s topics are:
-Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
+ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization   OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Ou
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
       <description>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&amp;rsquo;s topics are:
-Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+ Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ Binary Classification Logistic Regression Logistic Function Gradient Descent Com
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
-      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
+      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
     </item>
     
   </channel>

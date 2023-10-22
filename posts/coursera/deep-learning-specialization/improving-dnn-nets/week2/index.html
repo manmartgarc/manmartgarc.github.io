@@ -14,23 +14,24 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.">
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms"/>
 <meta name="twitter:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course."/>
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course."/>
 
 <meta property="og:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms" />
 <meta property="og:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course." />
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-19T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-06-19T00:00:00+00:00" />
+
 
 
 
@@ -75,7 +76,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 
 
 
-<meta name="generator" content="Hugo 0.117.0">
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -210,7 +211,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 <p>The process described above is called <em>batch</em> gradient descent, that is a batch is our <em>entire</em> training set $M_{train}$. The name <em>batch</em> gradient descent is an artifact of history, so just take it as it is. Remember that <em>batch</em> gradient descent is the gradient descent version that uses all of our training samples.</p>
 <p>As we might imagine, <em>mini-batch</em> gradient descent is running gradient descent on smaller batches of our data. Formally a mini-batch is a subset of our training samples and labels, $X, Y$. We refer to batch $t$ by the tuple $(X^{\{t\}}, Y^{\{t\}})$. For example if we have $m = 5,000,000$ training samples. We might generate $5,000$ mini-batches of $1,000$ samples each. If the dimensions of $X$ are $(N_x, m)$, then the dimensions of $X^{\{t\}}$ should be $(N_x, 1000)$, and those of $Y^{\{t\}}$ should be $(1, 1000)$.</p>
 <p>The whole idea is that instead of using $X, Y$ when running gradient descent, we loop over every batch $X^{\{t\}}, Y^{\{t\}}$. On each iteration we run the vectorized implementation of our network&rsquo;s forward propagation over each batch, in this case $1,000$ samples. After this, we run the back propagation and update the parameters based on the gradients with respect to the cost function over each batch. One pass over <em>all</em> our batches is called an <em>epoch</em>. So far, this is nothing new, just chunking gradient descent to have finer-grained chunks.</p>
-<p>But why does this work? Imagine that we set our batch to be $m_b = 1$, that is, on each iteration we will simply look at one training sample and run gradient descent. If the sample we use on each iteration is <em>random</em>, then this process is called <em>stochastic</em> gradient descent. It turns out that on every iteration, gradient descent will take a step independent of other samples in our data, so the &ldquo;path down the mountain&rdquo; of gradient descent will look like a blind-wandering, kinda like Brownian motion. Think of a drunk version of gradient descent. It will also be slower because we loose the optimization that arises from vectorization, but still faster than batch gradient descent. On the other hand, imagine that $m_b = m$ so that we have a single batch, our entire data set. Now we are back to batch gradient descent, and each iteration step of gradient descent is taken by averaging each of the samples&rsquo; contribution to the gradient. The &ldquo;path down the mountain&rdquo; looks much more purposeful and directed, because we have a larger sample. The tradeoff is in the amount of noise that results from smaller samples sizes as we decrease our batch size. Somewhere in between $m_b = 1$ and $m_b = m$ there is a sweet spot that allows us to iterative fast but without much random meandering.</p>
+<p>But why does this work? Imagine that we set our batch to be $m_b = 1$, that is, on each iteration we will simply look at one training sample and run gradient descent. If the sample we use on each iteration is <em>random</em>, then this process is called <em>stochastic</em> gradient descent. It turns out that on every iteration, gradient descent will take a step independent of other samples in our data, so the &ldquo;path down the mountain&rdquo; of gradient descent will look like a blind-wandering, kinda like Brownian motion. Think of a drunk version of gradient descent. It will also be slower because we loose the optimization that arises from vectorization, but still faster than batch gradient descent. On the other hand, imagine that $m_b = m$ so that we have a single batch, our entire data set. Now we are back to batch gradient descent, and each iteration step of gradient descent is taken by averaging each of the samples' contribution to the gradient. The &ldquo;path down the mountain&rdquo; looks much more purposeful and directed, because we have a larger sample. The tradeoff is in the amount of noise that results from smaller samples sizes as we decrease our batch size. Somewhere in between $m_b = 1$ and $m_b = m$ there is a sweet spot that allows us to iterative fast but without much random meandering.</p>
 <p>If our data set is small $m \leq 2000$ then running batch gradient descent should be close to optimal in terms of speed. Otherwise, using mini-batch gradient descent will usually be faster. Batch sizes is really a hyperparameter that we might search for, however, usually it&rsquo;s some multiple of $2^n$, such as $64, 128, 256, 512$. Usually we select this based on amount of memory on our machine in the case that we cannot fit all our data in memory at once.</p>
 <blockquote>
 <p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p>
@@ -361,17 +362,17 @@ $$</p>
 </figure>
 
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">here</a>.</p>
-<div class="footnotes" role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1">
+<li id="fn:1" role="doc-endnote">
 <p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp">RMSProp | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2">
+<li id="fn:2" role="doc-endnote">
 <p><a href="https://optimization.cbe.cornell.edu/index.php?title=Adam">Adam | Cornell University</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>
+</section>
 
       </div>
 
@@ -452,7 +453,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
   
 
   

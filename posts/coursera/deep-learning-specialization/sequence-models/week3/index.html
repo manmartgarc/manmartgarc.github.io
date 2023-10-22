@@ -14,23 +14,24 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week&rsquo;s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?">
+ Sequence to Sequence Architectures  Basic Seq2Seq Models Picking the Most Likely Sentence  Why not Greedy Search?">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism"/>
 <meta name="twitter:description" content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week&rsquo;s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?"/>
+ Sequence to Sequence Architectures  Basic Seq2Seq Models Picking the Most Likely Sentence  Why not Greedy Search?"/>
 
 <meta property="og:title" content="Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism" />
 <meta property="og:description" content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week&rsquo;s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?" />
+ Sequence to Sequence Architectures  Basic Seq2Seq Models Picking the Most Likely Sentence  Why not Greedy Search?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-08-12T00:00:00+00:00" />
+
 
 
 
@@ -75,7 +76,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
 
 
 
-<meta name="generator" content="Hugo 0.117.0">
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -233,7 +234,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
         </figcaption>
 </figure>
 
-<p>Notice that the encoder, in green, can use any type of RNN, GRU or even LSTM to learn some encoding of the <em>entire</em> input; that is, before generating any predictions we have seen the entire input and generated some encoding. From this learned encoding, the decoder part in purple, will generate each output $\hat{y}^{&lt;t&gt;}$, using the previous&rsquo; steps prediction for the next one until reaching the $T_y$ time step.</p>
+<p>Notice that the encoder, in green, can use any type of RNN, GRU or even LSTM to learn some encoding of the <em>entire</em> input; that is, before generating any predictions we have seen the entire input and generated some encoding. From this learned encoding, the decoder part in purple, will generate each output $\hat{y}^{&lt;t&gt;}$, using the previous' steps prediction for the next one until reaching the $T_y$ time step.</p>
 <p>A very similar architecture works very well for image captioning, that is generating captions for an image. The idea is to have some trained CNN, something like AlexNet, and change the last layer; which in AlexNet is a softmax. We do this by replacing the softmax with some RNN, GRU or LSTM for generating the sequence of captions. Notice that this is very similar to the previous approach. The difference is that the CNN is acting as an encoder, while the sequence model is acting as the decoder.</p>
 <p>Whatever approach we take, a question remains: how do we pick the most likely sequence? Can we cast this problem into a conditional probability one like we did before?</p>
 <h3 id="picking-the-most-likely-sentence">
@@ -363,7 +364,7 @@ $$</p>
 <p>Let&rsquo;s consider what happens in very long sequences, say a paragraph, when we try to apply machine translation with the encoder-decoder architecture. The encoder will memorize the entire thing, which is pretty long, and then pass it into the decoder. Think instead, how a human translator would tackle the problem of translating a whole paragraph. The translator might start with the first few sentences, translate them, and then move on. Even more so, the translator can read the entire paragraph before starting to translate, using the latter context of the paragraph to guide the beginning of the translation.</p>
 <p>The encoder will try its best to encode as much useful information in the encoding, but as sentence length grows, this task gets harder and harder. In practice, the encoder-decoder architecture&rsquo;s performance suffers as sentence length grows because of this. The attention approach is a remedy for this issue; the performance is not hurt as sentence length grows.</p>
 <p>In the attention model, we no longer have an encoder-decoder architecture. Instead, we have a bidirectional RNN (choose your flavor) called the pre-attention RNN. Hooked to each of the outputs of the pre-attention bidirectional RNN, we will have a uni-directional RNN (choose your flavor) called the post-attention RNN. The role of the pre-attention RNN is to figure out how much <em>attention</em> to pay to each of the input words when predicting some word. Since the pre-attention RNN is bidirectional, we can pay attention to the entire input sequence when generating the first prediction.</p>
-<p>We do this by learning some parameter $\alpha^{&lt;t,t&rsquo;&gt;}$. Each parameter tells us, how much attention (a value $\in [0, 1]$) we should give French word $t&rsquo;$ when generating the English word $t$. Let&rsquo;s go into more detail.</p>
+<p>We do this by learning some parameter $\alpha^{&lt;t,t'&gt;}$. Each parameter tells us, how much attention (a value $\in [0, 1]$) we should give French word $t'$ when generating the English word $t$. Let&rsquo;s go into more detail.</p>
 <h4 id="defining-the-attention-model">
   Defining the Attention Model
   <a class="heading-link" href="#defining-the-attention-model">
@@ -377,40 +378,40 @@ a^{&lt;t&gt;} = (\overrightarrow{a}^{&lt;t&gt;}, \overleftarrow{a}^{&lt;t&gt;})
 $$</p>
 <p>Which is equal to both states concatenated together.</p>
 <p>Let&rsquo;s now focus on the post-attention RNN. This part will have a hidden state $s^{&lt;t&gt;}$, which is used to generate $\hat{y}^{&lt;t&gt;}$. What is the input of this post-attention RNN? It&rsquo;s some context $c^{&lt;t&gt;}$ which is the output at step $t$ of the pre-attention bidirectional RNN. It&rsquo;s this context which defines the attention mechanism.</p>
-<p>The context will be the weighted sum of all $a^{&lt;t&gt;}$, the hidden state in the pre-attention layer, with their respective attention weights $\alpha^{&lt;t, t&rsquo;&gt;}$. We want all attention weights for a particular token $t$ to sum up to one:</p>
+<p>The context will be the weighted sum of all $a^{&lt;t&gt;}$, the hidden state in the pre-attention layer, with their respective attention weights $\alpha^{&lt;t, t'&gt;}$. We want all attention weights for a particular token $t$ to sum up to one:</p>
 <p>$$
-\sum_{t&rsquo;=1}^{T_x} \alpha^{&lt;t,t&rsquo;&gt;} = 1
+\sum_{t'=1}^{T_x} \alpha^{&lt;t,t'&gt;} = 1
 $$</p>
 <p>We can then use these weights when calculating the context, we can control the mixture of each of the input tokens as it relates to this particular&rsquo;s time step&rsquo;s prediction:</p>
 <p>$$
-c^{&lt;t&gt;} = \sum_{t&rsquo;=1}^{T_x} \alpha^{&lt;t,t&rsquo;&gt;} a^{&lt;t&rsquo;&gt;}
+c^{&lt;t&gt;} = \sum_{t'=1}^{T_x} \alpha^{&lt;t,t'&gt;} a^{&lt;t'&gt;}
 $$</p>
-<p>We should be convinced that when $\alpha^{&lt;t,t&rsquo;&gt;} = 0$ it means that $t&rsquo;$ is not that important when generating $t$, therefore the hidden state for $t&rsquo;$ is not that important, and will be weighted down in the sum.</p>
-<p>How do we calculate these attention weights $\alpha^{&lt;t,t&rsquo;&gt;}$? Let&rsquo;s be reminded that $\alpha^{&lt;t,t&rsquo;&gt;}$ defines the amount of attention $y^{&lt;t&gt;}$ should pay to $a^{&lt;t&rsquo;&gt;}$. We can define this attention as a softmax, to guarantee that the weights sum up to one as we mentioned earlier:</p>
+<p>We should be convinced that when $\alpha^{&lt;t,t'&gt;} = 0$ it means that $t'$ is not that important when generating $t$, therefore the hidden state for $t'$ is not that important, and will be weighted down in the sum.</p>
+<p>How do we calculate these attention weights $\alpha^{&lt;t,t'&gt;}$? Let&rsquo;s be reminded that $\alpha^{&lt;t,t'&gt;}$ defines the amount of attention $y^{&lt;t&gt;}$ should pay to $a^{&lt;t'&gt;}$. We can define this attention as a softmax, to guarantee that the weights sum up to one as we mentioned earlier:</p>
 <p>$$
-\alpha^{&lt;t,t&rsquo;&gt;} = \frac{\exp(e^{&lt;t,t&rsquo;&gt;})}{\sum_{t&rsquo;=1}^{T_x} \exp(e^{&lt;t,t&rsquo;&gt;})}
+\alpha^{&lt;t,t'&gt;} = \frac{\exp(e^{&lt;t,t'&gt;})}{\sum_{t'=1}^{T_x} \exp(e^{&lt;t,t'&gt;})}
 $$</p>
-<p>But where do these new terms $e^{&lt;t,t&rsquo;&gt;}$ come from? We will use a small neural network with only one hidden layer to learn these. The small network will take $s^{&lt;t-1&gt;}$ and $a^{&lt;t&rsquo;&gt;}$ to produce $e^{&lt;t,t&rsquo;&gt;}$. Let&rsquo;s keep in mind that $s^{&lt;t-1&gt;}$ is the hidden state of the post-attention layer for the previous time step, while $a^{&lt;t&rsquo;&gt;}$ is a hidden state in the pre-attention layer for the $t&rsquo;$ time step. This means that this layer will learn to combine the hidden state of the previous token in the prediction, that is how relevant the previous prediction token is to the current one, with each of the input token hidden states, that is each of the tokens in the input.</p>
-<p>It makes sense to define attention as: I have some memory of what I&rsquo;ve translated so far, and attention is the thing that relates each of the words in the input, with the memory of what I&rsquo;ve done so far. This means that $\alpha^{&lt;t,t&rsquo;&gt;}$ and $e^{&lt;t,t&rsquo;&gt;}$ will depend on $s^{&lt;t-1&gt;}$ and $a^{&lt;t&rsquo;&gt;}$ when considering $t$.</p>
+<p>But where do these new terms $e^{&lt;t,t'&gt;}$ come from? We will use a small neural network with only one hidden layer to learn these. The small network will take $s^{&lt;t-1&gt;}$ and $a^{&lt;t'&gt;}$ to produce $e^{&lt;t,t'&gt;}$. Let&rsquo;s keep in mind that $s^{&lt;t-1&gt;}$ is the hidden state of the post-attention layer for the previous time step, while $a^{&lt;t'&gt;}$ is a hidden state in the pre-attention layer for the $t'$ time step. This means that this layer will learn to combine the hidden state of the previous token in the prediction, that is how relevant the previous prediction token is to the current one, with each of the input token hidden states, that is each of the tokens in the input.</p>
+<p>It makes sense to define attention as: I have some memory of what I&rsquo;ve translated so far, and attention is the thing that relates each of the words in the input, with the memory of what I&rsquo;ve done so far. This means that $\alpha^{&lt;t,t'&gt;}$ and $e^{&lt;t,t'&gt;}$ will depend on $s^{&lt;t-1&gt;}$ and $a^{&lt;t'&gt;}$ when considering $t$.</p>
 <figure><img src="/images/attention-1.png"
          alt="Attention Mechanism" width="75%"/><figcaption>
             <p><a href="https://developer.nvidia.com/blog/introduction-neural-machine-translation-gpus-part-3/">Attention Mechanism</a></p>
         </figcaption>
 </figure>
 
-<p>In the picture, the annotation vectors are the pre-attention layer, the attention mechanism represents the layer where we estimate $\alpha^{&lt;t,t&rsquo;&gt;}$ and everything above the dotted line is the post-attention layer.</p>
+<p>In the picture, the annotation vectors are the pre-attention layer, the attention mechanism represents the layer where we estimate $\alpha^{&lt;t,t'&gt;}$ and everything above the dotted line is the post-attention layer.</p>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/">here</a>.</p>
-<div class="footnotes" role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1">
+<li id="fn:1" role="doc-endnote">
 <p><a href="https://web.stanford.edu/~jurafsky/slp3/">Jurafsky and Martin | Speech and Language Processing, 3rd Edition</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2">
+<li id="fn:2" role="doc-endnote">
 <p><a href="https://d2l.ai/chapter_recurrent-modern/beam-search.html">Dive Into Deep Learning | Beam Search</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>
+</section>
 
       </div>
 
@@ -491,7 +492,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
   
 
   

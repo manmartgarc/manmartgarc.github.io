@@ -5,7 +5,7 @@
     <link>https://manmartgarc.github.io/posts/</link>
     <description>Recent content in Posts on Manuel Martinez</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sequence Models: Week 4 | Transformers</title>
@@ -15,7 +15,7 @@
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</guid>
       <description>This is the fourth and last week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week&amp;rsquo;s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&amp;rsquo;s hidden states with the current one.</description>
+ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information   Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&amp;rsquo;s hidden states with the current one.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Ne
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</guid>
       <description>This is the third week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week&amp;rsquo;s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?</description>
+ Sequence to Sequence Architectures  Basic Seq2Seq Models Picking the Most Likely Sentence  Why not Greedy Search?</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</guid>
       <description>This is the second week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week&amp;rsquo;s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words.</description>
+ Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words.</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
       <description>This is the first week of the fifth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&amp;rsquo;s get started.
 This week&amp;rsquo;s topics are:
-Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?</description>
+ Why Sequence Models? Notation  Representing Words   Recurrent Neural Network  Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs   Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN   Why Sequence Models?</description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
       <description>This is the fourth and last week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
 This week&amp;rsquo;s topics are as follows:
-Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer?</description>
+ Face Recognition  What is Face Recognition?</description>
     </item>
     
     <item>
@@ -70,7 +70,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
       <description>This is the third week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
 This week&amp;rsquo;s topics are:
-Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.</description>
+ Object Localization Landmark Detection Object Detection  Sliding Windows Detection Convolutional Implementation of Sliding Windows  Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally   Bounding Box Predictions  Intersection Over Union Non-max Suppression Anchor Boxes     Semantic Segmentation  Transpose Convolutions U-Net Architecture     Object LocalizationLink to headingObject localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image.</description>
     </item>
     
     <item>
@@ -81,7 +81,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
       <description>This is the second week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
 This week&amp;rsquo;s topics are:
-Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? Networks in Networks | 1x1 Convolutions Inception Network Inception Network Architecture MobileNet Depth-wise Convolution Point-wise Convolution MobileNet Architecture Practical Advice for Using ConvNets Transfer Learning Data Augmentation Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.</description>
+ Case Studies  Classic Networks  LeNet5 AlexNet VGG16   ResNets  Why do ResNets Work?   Networks in Networks | 1x1 Convolutions Inception Network  Inception Network Architecture   MobileNet  Depth-wise Convolution Point-wise Convolution MobileNet Architecture     Practical Advice for Using ConvNets  Transfer Learning Data Augmentation     Case StudiesLink to headingWe should obviously keep up with the computer vision literature if we are interested in implementing new ideas.</description>
     </item>
     
     <item>
@@ -92,7 +92,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
       <description>This is the first week of the fourth course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week&amp;rsquo;s topics are:
-Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?</description>
+ Computer Vision Convolution  Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters   Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN  Defining the Notation and Dimensions   Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?</description>
     </item>
     
     <item>
@@ -103,7 +103,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</guid>
       <description>This is the second week of the third course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
 This week&amp;rsquo;s topics are:
-Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate Mismatched Training and Dev/Test Sets Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch Learning from Multiple Tasks Transfer Learning Multitask Learning End-to-end Deep Learning What is End-to-end Deep Learning?</description>
+ Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?</description>
     </item>
     
     <item>
@@ -114,7 +114,7 @@ Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data 
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</guid>
       <description>This is the first week of the third course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
 This week&amp;rsquo;s topics are:
-Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goal Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?</description>
+ Introduction to ML Strategy  Why ML Strategy Orthogonalization   Setting Up our Goal  Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</guid>
       <description>This is the third and last week of the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera.
 This week&amp;rsquo;s topics are:
-Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter TuningLink to headingWe have seen by now that neural networks have a lot of hyperparameters.</description>
+ Hyperparameter Tuning  Tuning Process  Random Search Coarse-to-fine Grained Search   Using an Appropriate Scale when Searching  Python Implementation   Hyperparameter Tuning in Practice: Pandas vs. Caviar   Batch Normalization  Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work?</description>
     </item>
     
     <item>
@@ -136,7 +136,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
       <description>This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&amp;rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
+ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.</description>
     </item>
     
     <item>
@@ -147,7 +147,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
       <description>This is the first week in the second course of DeepLearning.AI&amp;rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&amp;rsquo;s topics are:
-Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?</description>
+ Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?</description>
     </item>
     
     <item>
@@ -156,9 +156,9 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
-      <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&amp;rsquo; weeks ideas into $L$-layered networks.
+      <description>Final week of this course. Again this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous&#39; weeks ideas into $L$-layered networks.
 This week&amp;rsquo;s topics are:
-Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
+ Deep L-Layer neural network Getting your matrix dimensions right Why deep representations? Parameters and Hyperparameters   Deep L-Layer neural networkLink to headingThe number of hidden layers in a neural network determine whether it is &amp;ldquo;shallow&amp;rdquo; or &amp;ldquo;deep&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -169,7 +169,7 @@ Deep L-Layer neural network Getting your matrix dimensions right Why deep repres
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
 This week&amp;rsquo;s topics are:
-Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
+ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Output Vectorizing across multiple examples Activation functions Random Initialization   OverviewLink to headingIt&amp;rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2.</description>
     </item>
     
     <item>
@@ -180,7 +180,7 @@ Overview Neural Network Representation Computing a Neural Network&amp;rsquo;s Ou
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
       <description>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&amp;rsquo;s topics are:
-Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
+ Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&amp;rsquo;s called a classifier.</description>
     </item>
     
     <item>
@@ -189,7 +189,7 @@ Binary Classification Logistic Regression Logistic Function Gradient Descent Com
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
-      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
+      <description>Introduction to Deep LearningLink to headingThis is the first course in Coursera&amp;rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</description>
     </item>
     
     <item>
@@ -198,7 +198,7 @@ Binary Classification Logistic Regression Logistic Function Gradient Descent Com
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</guid>
-      <description>VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&amp;rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</description>
+      <description>VSCode is very popularLink to headingA lot of people like VSCode, 74% of respondents in StackOverflow&amp;rsquo;s 2022 Developer Survey said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.</description>
     </item>
     
     <item>

@@ -14,23 +14,24 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week&rsquo;s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one.">
+ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information   Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sequence Models: Week 4 | Transformers"/>
 <meta name="twitter:description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week&rsquo;s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one."/>
+ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information   Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one."/>
 
 <meta property="og:title" content="Sequence Models: Week 4 | Transformers" />
 <meta property="og:description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week&rsquo;s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one." />
+ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information   Transformer Network IntuitionLink to headingWe started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-08-13T00:00:00+00:00" />
+
 
 
 
@@ -75,7 +76,7 @@ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Ne
 
 
 
-<meta name="generator" content="Hugo 0.117.0">
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -210,7 +211,7 @@ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Ne
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Self-attention is the same idea as attention when we used RNNs. However, since our model is not sequential anymore, we need to calculate the attention in one go. Let&rsquo;s remember that attention is simply some value that describes how relevant a pair of tokens $&lt;t,t&rsquo;&gt;$ are with respect to generating some output. In the RNN case, we learned some embedding $e^{&lt;t,t&rsquo;&gt;}$ as a function of the previous step&rsquo;s post-attention hidden state and each token $t&rsquo;$ pre-attention hidden state. We no longer have previous hidden states since we are doing it all in one go. Let&rsquo;s see how this implemented.</p>
+<p>Self-attention is the same idea as attention when we used RNNs. However, since our model is not sequential anymore, we need to calculate the attention in one go. Let&rsquo;s remember that attention is simply some value that describes how relevant a pair of tokens $&lt;t,t'&gt;$ are with respect to generating some output. In the RNN case, we learned some embedding $e^{&lt;t,t'&gt;}$ as a function of the previous step&rsquo;s post-attention hidden state and each token $t'$ pre-attention hidden state. We no longer have previous hidden states since we are doing it all in one go. Let&rsquo;s see how this implemented.</p>
 <p>The first thing to take into account is that since our model is not sequential anymore, we have lost the temporal structure we got from using RNNs. This means that we will have to come up with a way to encode positions, which we will call the positional encodings. For now, just think that we have two things: our word embeddings from the input, and some positional encoding that encodes the position of each word in the sentence.</p>
 <figure><img src="/images/trans-1.png"
          alt="MIT Introduction to Deep Learning" width="75%"/><figcaption>
@@ -227,7 +228,7 @@ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Ne
 </ol>
 <p>Let&rsquo;s define mathematically attention first, and then we will go over what each of these vectors represent:</p>
 <p>$$
-A^{&lt;t&gt;}(q^{&lt;t&gt;}, K, V) = \sum_{t&rsquo;=1}^{T_x} \frac{\exp(q^{&lt;t&gt;}k^{&lt;t&rsquo;&gt;})}{\sum_{j=1}^{T_x}\exp(q^{&lt;t&gt;}k^{&lt;j&gt;})} v^{&lt;t&rsquo;&gt;}
+A^{&lt;t&gt;}(q^{&lt;t&gt;}, K, V) = \sum_{t'=1}^{T_x} \frac{\exp(q^{&lt;t&gt;}k^{&lt;t'&gt;})}{\sum_{j=1}^{T_x}\exp(q^{&lt;t&gt;}k^{&lt;j&gt;})} v^{&lt;t'&gt;}
 $$</p>
 <p>Let&rsquo;s use as an example, the input sentence <em>Jane visite l&rsquo;Afrique en septembre.</em>, and let&rsquo;s focus on $x^{&lt;3&gt;} = \text{l&rsquo;Afrique}$ and calculate $A^{&lt;3&gt;}$.</p>
 <p>First, $q^{&lt;3&gt;}, k^{&lt;3&gt;}, v^{&lt;3&gt;}$ are generated with three weight matrices $W^Q, W^K, W^V$ which are learnable parameters:</p>
@@ -238,7 +239,7 @@ k^{&lt;3&gt;} &amp;= W^K x^{&lt;3&gt;} \\
 v^{&lt;3&gt;} &amp;= W^V x^{&lt;3&gt;}
 \end{aligned}
 $$</p>
-<p>To compute $A^{&lt;3&gt;}$ we will allow $x^{&lt;3&gt;}$ to communicate to all other tokens what it&rsquo;s looking for: $q^{&lt;3&gt;}$. Each of the tokens will respond with $k^{&lt;t&rsquo;&gt;}$, answering what they have. This is the key part: if the dot product between $q^{&lt;3&gt;}$ and $k^{&lt;t&rsquo;&gt;}$ is high, it means that $k^{&lt;t&rsquo;&gt;}$ has what $q^{&lt;3&gt;}$ is looking for; we are simply looking for a similarity between the query and key vectors. We will allow each token to communicate with all others, and then normalize their contributions with a softmax. We also use $v^{&lt;t&rsquo;&gt;}$ to weight the contribution, allowing token $t&rsquo;$ to not just say that it has what someone else is looking for, but what it is, regardless of what someone else is looking for. Finally, we sum all of these up into $A^{&lt;3&gt;}$. Let&rsquo;s revisit these steps in more detail again.</p>
+<p>To compute $A^{&lt;3&gt;}$ we will allow $x^{&lt;3&gt;}$ to communicate to all other tokens what it&rsquo;s looking for: $q^{&lt;3&gt;}$. Each of the tokens will respond with $k^{&lt;t'&gt;}$, answering what they have. This is the key part: if the dot product between $q^{&lt;3&gt;}$ and $k^{&lt;t'&gt;}$ is high, it means that $k^{&lt;t'&gt;}$ has what $q^{&lt;3&gt;}$ is looking for; we are simply looking for a similarity between the query and key vectors. We will allow each token to communicate with all others, and then normalize their contributions with a softmax. We also use $v^{&lt;t'&gt;}$ to weight the contribution, allowing token $t'$ to not just say that it has what someone else is looking for, but what it is, regardless of what someone else is looking for. Finally, we sum all of these up into $A^{&lt;3&gt;}$. Let&rsquo;s revisit these steps in more detail again.</p>
 <p>Remember that we are doing all of this in one go, therefore we need to do this in a vectorized way using matrix multiplication. Let&rsquo;s redefine attention with matrices:</p>
 <p>$$
 \text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_K}}V \right)
@@ -340,14 +341,14 @@ $$</p>
 <li><a href="https://www.youtube.com/watch?v=t45S_MwAcOw">Transformer models and BERT model: Overview</a></li>
 <li><a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a></li>
 </ol>
-<div class="footnotes" role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1">
+<li id="fn:1" role="doc-endnote">
 <p><a href="https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;t=672s">CS25 | Stanford Seminar</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>
+</section>
 
       </div>
 
@@ -428,7 +429,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
   
 
   

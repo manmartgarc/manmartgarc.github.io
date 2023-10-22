@@ -14,23 +14,24 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week&rsquo;s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words.">
+ Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words.">
 <meta name="keywords" content="blog,developer,personal">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sequence Models: Week 2 | NLP &amp; Word Embeddings"/>
 <meta name="twitter:description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week&rsquo;s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words."/>
+ Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words."/>
 
 <meta property="og:title" content="Sequence Models: Week 2 | NLP &amp; Word Embeddings" />
 <meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week&rsquo;s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words." />
+ Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-10T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-08-10T00:00:00+00:00" />
+
 
 
 
@@ -75,7 +76,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 
 
 
-<meta name="generator" content="Hugo 0.117.0">
+<meta name="generator" content="Hugo 0.92.2" />
 
 
 
@@ -462,7 +463,7 @@ $$</p>
   </a>
 </h3>
 <p>Okay, enough about embeddings. How can we use them? The same way we use one-hot encodings! Let&rsquo;s walk through the steps from a basic NN to using an RNN.</p>
-<p>We could take a review, such as &ldquo;This desert is excellent&rdquo; and want to classify it into five classes, the reviews&rsquo; stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.</p>
+<p>We could take a review, such as &ldquo;This desert is excellent&rdquo; and want to classify it into five classes, the reviews' stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.</p>
 <p>We can simply plug-and-play an RNN using the same embeddings, and generate a prediction at the end, exactly like the many-to-one RNN approach. This will work a lot better for reviews that say things like: &ldquo;A great waste of my very, good, excellent time&rdquo;. The former model might score this review highly because of the presence of positive sentiment words, but an RNN might be more adept at figuring out that &ldquo;waste&rdquo; negates all the other positive words.</p>
 <h3 id="de-biasing-word-embeddings">
   De-biasing Word Embeddings
@@ -477,14 +478,14 @@ $$</p>
 <p>Is there a way we could de-bias training data so that the predictive model aligns better with our ethical and moral compass? For the case of machine translation, a group of authors did just that.</p>
 <p>With our knowledge of embeddings it&rsquo;s pretty intuitive to understand the basics of the approach by <a href="https://arxiv.org/abs/1607.06520">Bolukbasi, et al.</a> in <em>Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</em>. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as <em>man</em> and <em>woman</em> and averaging the bias across all such pairs we find. The bias for the pair <code>(male, female)</code> for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.</p>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">here</a>.</p>
-<div class="footnotes" role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1">
+<li id="fn:1" role="doc-endnote">
 <p><a href="https://en.wikipedia.org/wiki/Dot_product">Dot-Product | Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>
+</section>
 
       </div>
 
@@ -565,7 +566,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.27afce394fb6284f521b3fbc9f6a8326342333c3092267f3944d770489876fed.js" integrity="sha256-J6/OOU&#43;2KE9SGz&#43;8n2qDJjQjM8MJImfzlE13BImHb&#43;0="></script>
+  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
   
 
   
