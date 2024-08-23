@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
 This week&rsquo;s topics are:
- Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?">
+Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning"/>
-<meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
-This week&rsquo;s topics are:
- Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?"/>
 
-<meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning" />
-<meta property="og:description" content="This is the first week in the second course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
-This week&rsquo;s topics are:
- Setting up our Machine Learning problem  Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning   Regularizing our Neural Network  Regularization Why Does Regularization Reduce Overfitting?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-18T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning">
+  <meta name="twitter:description" content="This is the first week in the second course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
+This week’s topics are:
+Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning">
+  <meta property="og:description" content="This is the first week in the second course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
+This week’s topics are:
+Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-18T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-06-18T00:00:00Z">
                 June 18, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               25-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/improving-deep-learning-networks/">Improving Deep Learning Networks</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -185,42 +196,42 @@ This week&rsquo;s topics are:
 
       <div class="post-content">
         
-        <p>This is the first week in the <a href="https://www.coursera.org/learn/deep-neural-network">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.</p>
+        <p>This is the first week in the <a href="https://www.coursera.org/learn/deep-neural-network"  class="external-link" target="_blank" rel="noopener">second course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#setting-up-our-machine-learning-problem">Setting up our Machine Learning problem</a>
+<li><a href="#setting-up-our-machine-learning-problem" >Setting up our Machine Learning problem</a>
 <ul>
-<li><a href="#train--dev--test-sets">Train / Dev / Test sets</a></li>
-<li><a href="#bias-variance-tradeoff">Bias-Variance Tradeoff</a></li>
-<li><a href="#basic-recipe-for-machine-learning">Basic Recipe for Machine Learning</a></li>
+<li><a href="#train--dev--test-sets" >Train / Dev / Test sets</a></li>
+<li><a href="#bias-variance-tradeoff" >Bias-Variance Tradeoff</a></li>
+<li><a href="#basic-recipe-for-machine-learning" >Basic Recipe for Machine Learning</a></li>
 </ul>
 </li>
-<li><a href="#regularizing-our-neural-network">Regularizing our Neural Network</a>
+<li><a href="#regularizing-our-neural-network" >Regularizing our Neural Network</a>
 <ul>
-<li><a href="#regularization">Regularization</a></li>
-<li><a href="#why-does-regularization-reduce-overfitting">Why Does Regularization Reduce Overfitting?</a></li>
-<li><a href="#dropout-regularization">Dropout Regularization</a></li>
-<li><a href="#understanding-dropout">Understanding Dropout</a></li>
-<li><a href="#other-regularization-methods">Other Regularization Methods</a></li>
+<li><a href="#regularization" >Regularization</a></li>
+<li><a href="#why-does-regularization-reduce-overfitting" >Why Does Regularization Reduce Overfitting?</a></li>
+<li><a href="#dropout-regularization" >Dropout Regularization</a></li>
+<li><a href="#understanding-dropout" >Understanding Dropout</a></li>
+<li><a href="#other-regularization-methods" >Other Regularization Methods</a></li>
 </ul>
 </li>
-<li><a href="#setting-up-our-optimization-problem">Setting up our Optimization Problem</a></li>
-<li><a href="#normalizing-inputs">Normalizing Inputs</a></li>
-<li><a href="#vanishing-and-exploding-gradients">Vanishing and Exploding Gradients</a></li>
-<li><a href="#weight-initialization">Weight Initialization</a></li>
+<li><a href="#setting-up-our-optimization-problem" >Setting up our Optimization Problem</a></li>
+<li><a href="#normalizing-inputs" >Normalizing Inputs</a></li>
+<li><a href="#vanishing-and-exploding-gradients" >Vanishing and Exploding Gradients</a></li>
+<li><a href="#weight-initialization" >Weight Initialization</a></li>
 </ul>
 <hr>
 <h2 id="setting-up-our-machine-learning-problem">
   Setting up our Machine Learning problem
   <a class="heading-link" href="#setting-up-our-machine-learning-problem">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="train--dev--test-sets">
   Train / Dev / Test sets
   <a class="heading-link" href="#train--dev--test-sets">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -237,7 +248,7 @@ This week&rsquo;s topics are:
 <h3 id="bias-variance-tradeoff">
   Bias-Variance Tradeoff
   <a class="heading-link" href="#bias-variance-tradeoff">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -251,13 +262,13 @@ This week&rsquo;s topics are:
 <p>Keep in mind:</p>
 <ol>
 <li>Variance measures how much our classifier $h_D$ changes when we train it on a different training set $D$. How &ldquo;over-specialized&rdquo; is our classifier to a particular training set $D$? <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Notice that $h$ and $h_D$ are random variables, and so this measures the spread of a classifier trained on each possible sample $D$ drawn from $P^n$ versus the average classifier $\bar{h}(x)$.</li>
-<li>Bias measures the inherent error from our classifier <em>if</em> we had infinite training data. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> How far is our estimator&rsquo;s expected value $\bar{y}(x)$ from the expected classifier?</li>
+<li>Bias measures the inherent error from our classifier <em>if</em> we had infinite training data. <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> How far is our estimator&rsquo;s expected value $\bar{y}(x)$ from the expected classifier?</li>
 <li>Noise measures some irreducible error, which is an intrinsic property of the data. This related to Bayes error rate, which is the <em>lowest</em> possible error rate for any classifier of <em>random</em> outcomes.</li>
 </ol>
 <figure><img src="/images/bullseye.png"
-         alt="Graphical Illustration of bias and variance" width="50%"/><figcaption>
-            <p><a href="http://scott.fortmann-roe.com/docs/BiasVariance.html">Graphical Illustration of bias and variance</a></p>
-        </figcaption>
+    alt="Graphical Illustration of bias and variance" width="50%"><figcaption>
+      <p><a href="http://scott.fortmann-roe.com/docs/BiasVariance.html"  class="external-link" target="_blank" rel="noopener">Graphical Illustration of bias and variance</a></p>
+    </figcaption>
 </figure>
 
 <p>We know that bias and variance are the components of our model&rsquo;s expected test error. But why is it a tradeoff? It turns out that <em>model complexity</em> is related to both bias and variance. A model with low complexity (always guess the same) will have high error, and the majority of the error will come from the bias term. This means that as we decrease the complexity of a model, our error will increase, but most of the increase will come from the bias term. Conversely, a model with high complexity (guessing randomly) will have high error, and the majority of the error will come from the variance term. This means that as we increase model complexity, our error will <em>also</em> increase, but most the increase will come from the variance term. Somewhere in the middle, there is a sweet spot, a combination of bias and variance that has the minimum total error.</p>
@@ -268,20 +279,20 @@ This week&rsquo;s topics are:
 <li>$e_{train} = 1\%, e_{dev} = 11\%$: Our model is doing really well on the training set but much poorer on the development set. It smells of high variance since the model is not able to generalize from the training set to the dev set. It&rsquo;s therefore overfitting the training set.</li>
 <li>$e_{train} = 15\%, e_{dev} = 16\%$: Assuming that human-level error is approximately $0$, then this looks like high bias. The model is very far from human-level error on the training set, therefore it&rsquo;s not fitting our training data enough. It&rsquo;s therefore underfitting the training set. However, it&rsquo;s generalizing quite well to the dev set, therefore it might have low variance.</li>
 <li>$e_{train} = 15\%, e_{dev} = 30\%$: Assuming that human-level error is approximately $0$, then this looks like high bias again. But because it&rsquo;s not generalizing well, it also smells of high variance because of the discrepancy in performance between the test and dev sets.</li>
-<li>$e_{train} = 0.5\%, e_{dev} = 1\%$: Assuming that human-level error is approximately $0$, then this looks like both low bias and low variance. It&rsquo;s very close to the Bayes' error rate, and also generalizes well to the dev set.</li>
+<li>$e_{train} = 0.5\%, e_{dev} = 1\%$: Assuming that human-level error is approximately $0$, then this looks like both low bias and low variance. It&rsquo;s very close to the Bayes&rsquo; error rate, and also generalizes well to the dev set.</li>
 </ul>
 <p>The key assumption is that human-level error is approximately $0$, which implies that Bayes error has to be between $0$ and the human-level error. If for example the Bayes error rate is $15\%$ then the second case would not be high variance, because we are actually close to the best possible classifier.</p>
 <p>If you&rsquo;re wondering about how you can simultaneously underfit and overfit your training data, think about this:</p>
 <figure><img src="/images/highbv.png"
-         alt="High Bias and High Variance" width="50%"/><figcaption>
-            <p><a href="https://www.coursera.org/learn/deep-neural-network">High Bias and High Variance</a></p>
-        </figcaption>
+    alt="High Bias and High Variance" width="50%"><figcaption>
+      <p><a href="https://www.coursera.org/learn/deep-neural-network"  class="external-link" target="_blank" rel="noopener">High Bias and High Variance</a></p>
+    </figcaption>
 </figure>
 
 <h3 id="basic-recipe-for-machine-learning">
   Basic Recipe for Machine Learning
   <a class="heading-link" href="#basic-recipe-for-machine-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -309,14 +320,14 @@ This week&rsquo;s topics are:
 <h2 id="regularizing-our-neural-network">
   Regularizing our Neural Network
   <a class="heading-link" href="#regularizing-our-neural-network">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="regularization">
   Regularization
   <a class="heading-link" href="#regularization">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -334,8 +345,8 @@ $$</p>
 |w| = \sum_{j=1}^{N_x} w_j
 \end{equation}
 $$</p>
-<p>The issue with the above is that some $w_j$ might be positive and others might be negative, undoing each of their effects in the summation. The solution to this problem is to use a <a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">norm</a>. A norm is a function that maps the real or complex numbers into the non-negative real numbers. An important geometrical idea related to linear algebra is that the norm is a generalization of distance from the origin: it&rsquo;s proportional to scaling, it doesn&rsquo;t violate a form of the triangle inequality, and is zero only at the origin. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> We would also like to generalize this to more dimensions, which is handy when our parameters is not just a vector but matrices that describe some vector space that has some &ldquo;size&rdquo;. When talking about the norm of a matrix, the term <a href="https://en.wikipedia.org/wiki/Matrix_norm">Matrix norm</a> is used, and the euclidean norm equivalent is called the <a href="https://en.wikipedia.org/wiki/Matrix_norm#Frobenius_norm">Frobenius norm</a>. It has a different name because you have to do some work before generalizing from one to many dimensions and some brilliant mathematicians figured it out.</p>
-<p>One of the most common norms is to take the squares to only get positive numbers. This is called the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l002.htm">L2 Norm</a>, or Euclidean norm for being related the definition of distance in Euclidean geometry, remember the guy Pythagoras?. It&rsquo;s denoted $||w||_2$. When working with the square of the L2 norm, its denoted $||w||_2^2$. It&rsquo;s defined by:</p>
+<p>The issue with the above is that some $w_j$ might be positive and others might be negative, undoing each of their effects in the summation. The solution to this problem is to use a <a href="https://en.wikipedia.org/wiki/Norm_%28mathematics%29"  class="external-link" target="_blank" rel="noopener">norm</a>. A norm is a function that maps the real or complex numbers into the non-negative real numbers. An important geometrical idea related to linear algebra is that the norm is a generalization of distance from the origin: it&rsquo;s proportional to scaling, it doesn&rsquo;t violate a form of the triangle inequality, and is zero only at the origin. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> We would also like to generalize this to more dimensions, which is handy when our parameters is not just a vector but matrices that describe some vector space that has some &ldquo;size&rdquo;. When talking about the norm of a matrix, the term <a href="https://en.wikipedia.org/wiki/Matrix_norm"  class="external-link" target="_blank" rel="noopener">Matrix norm</a> is used, and the euclidean norm equivalent is called the <a href="https://en.wikipedia.org/wiki/Matrix_norm#Frobenius_norm"  class="external-link" target="_blank" rel="noopener">Frobenius norm</a>. It has a different name because you have to do some work before generalizing from one to many dimensions and some brilliant mathematicians figured it out.</p>
+<p>One of the most common norms is to take the squares to only get positive numbers. This is called the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l002.htm"  class="external-link" target="_blank" rel="noopener">L2 Norm</a>, or Euclidean norm for being related the definition of distance in Euclidean geometry, remember the guy Pythagoras?. It&rsquo;s denoted $||w||_2$. When working with the square of the L2 norm, its denoted $||w||_2^2$. It&rsquo;s defined by:</p>
 <p>$$
 ||w||_2 = \sqrt{\sum_{j=1}^{N_x} w_j^2} = \sqrt{w^Tw}
 $$</p>
@@ -371,7 +382,7 @@ $$</p>
 \end{equation}
 $$</p>
 <p>Think about what happens to $w$ after we introduce this term to our cost function. It means it will prefer smaller parameters than bigger ones, and if it has to chose between two big ones, it will choose the one that is the least costly. In other words the model will let some parameters be large as long as they earn their keep (in terms of model performance) and decrease the features that are not that relevant. In this sense, regularization can be thought of as a type of feature selection. With the L2 norm the parameters that don&rsquo;t earn their keep approach zero, but never quite get to be zero.</p>
-<p>But the L2 norm is not the only norm. What if you use some other norm? Another popular norm is the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l001.htm">L1-Norm</a>:</p>
+<p>But the L2 norm is not the only norm. What if you use some other norm? Another popular norm is the <a href="https://archive.lib.msu.edu/crcmath/math/math/l/l001.htm"  class="external-link" target="_blank" rel="noopener">L1-Norm</a>:</p>
 <p>$$
 ||x||_1 = \sum_{j=1}^{N_x} |x_i|
 $$</p>
@@ -408,7 +419,7 @@ $$</p>
 <h3 id="why-does-regularization-reduce-overfitting">
   Why Does Regularization Reduce Overfitting?
   <a class="heading-link" href="#why-does-regularization-reduce-overfitting">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -418,7 +429,7 @@ $$</p>
 <h3 id="dropout-regularization">
   Dropout Regularization
   <a class="heading-link" href="#dropout-regularization">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -444,24 +455,24 @@ $$</p>
 Z^{[4]} = W^{[4]}A^{[3]*} + b^{[4]}
 \end{equation}
 $$</p>
-<p>Will make $Z^{[4]}$ be <em>roughly</em> the same as it was originally. This scaling technique is called <a href="https://machinelearning.wtf/terms/inverted-dropout/">inverted dropout</a>.</p>
+<p>Will make $Z^{[4]}$ be <em>roughly</em> the same as it was originally. This scaling technique is called <a href="https://machinelearning.wtf/terms/inverted-dropout/"  class="external-link" target="_blank" rel="noopener">inverted dropout</a>.</p>
 <p>The intuition behind this rescaling is that when you set some hidden-units to zero, you are shifting the expected value of $A^{[3]}$, which is an issue when you do testing. Because when you evaluate your network with the test set, you <strong>do not do any dropout</strong>, the difference in expected values becomes a problem. Therefore, the rescaling ameliorates the scaling issue between training and testing.</p>
 <p>Finally, you can apply a different value of $p$ to different layers, so that you have a vector $p$ where $p^{[l]}$ is the probability of keeping units in hidden layer $l$. This faces you with a tradeoff of having more hyperparameters, so it should be used wisely.</p>
 <h3 id="understanding-dropout">
   Understanding Dropout
   <a class="heading-link" href="#understanding-dropout">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <p>So why does dropout behave like regularization? It seems crazy to &ldquo;kill&rdquo; some nodes at random, it&rsquo;s the very definition of chaotic evil. It turns out that by doing this, the model will learn not to rely on any specific feature, because it might not be there the next time. The model will respond to dropout by <em>spreading</em> out the weights across the network, effectively reducing their magnitude. This is why dropout can be thought of as regularization.</p>
 <blockquote>
-<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
+<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/"  class="external-link" target="_blank" rel="noopener">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
 </blockquote>
 <h3 id="other-regularization-methods">
   Other Regularization Methods
   <a class="heading-link" href="#other-regularization-methods">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -470,7 +481,7 @@ $$</p>
 <h2 id="setting-up-our-optimization-problem">
   Setting up our Optimization Problem
   <a class="heading-link" href="#setting-up-our-optimization-problem">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -478,13 +489,13 @@ $$</p>
 <h2 id="normalizing-inputs">
   Normalizing Inputs
   <a class="heading-link" href="#normalizing-inputs">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <p>Normalization is one of those topics that means different things to different people. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> Let&rsquo;s disambiguate the term and also talk about why normalizing our inputs might be helpful for our optimization process.</p>
 <p>As the name implies, normalization is the process of making something normal. Of course, there are many ways of making something &ldquo;normal&rdquo;, and we haven&rsquo;t even defined what &ldquo;normal&rdquo; is. Let&rsquo;s focus on one of the ways to normalize things.</p>
-<p>In the context of statistics, normalization usually refers to <em>standardizing</em>, which is where we calculate a <a href="https://en.wikipedia.org/wiki/Standard_score"><em>standard score</em></a> for a random variable $X$. It&rsquo;s called the <em>standard</em> score because its units are standard deviations.</p>
+<p>In the context of statistics, normalization usually refers to <em>standardizing</em>, which is where we calculate a <a href="https://en.wikipedia.org/wiki/Standard_score"  class="external-link" target="_blank" rel="noopener"><em>standard score</em></a> for a random variable $X$. It&rsquo;s called the <em>standard</em> score because its units are standard deviations.</p>
 <p>Standardizing a random variable $X$ is pretty easy and intuitive:</p>
 <p>$$
 \begin{equation}
@@ -500,19 +511,19 @@ $$</p>
 <p>Where $\bar{x}$ is the sample mean and $S$ is the sample standard deviation. If your features are normally distributed, then the transformed variables will approximately mean zero and standard deviation of one.</p>
 <p>The process is intuitive, for each observation we first ask: how far is this observation from the sample mean. Whatever that distance is, positive or negative, we scale it by the standard deviation. So that the result is: an observation is $z$ standard deviations from the mean.</p>
 <p>But why do this? The purpose of this process is to convert <em>different</em> random variables that have <em>different</em> scales and shifts, into the same units. The units will be standard deviations for that particular random variable. So that $z_i$ will tell you how many standard deviations observation $i$ is from the mean. Positive values will be above the mean and negative values will be below the mean. Using this approach we can negate the effects of having different features with wildly different unit scales and shapes.</p>
-<p>When you normalize your training set, you want to use <a href="#normalizing-inputs">standardization</a> on each of your features separately. However, when you are testing, you want to use the same $\bar{x}$ and $S$ that you calculated during training. You don&rsquo;t want to scale and shift your training data separately from your testing data. You want the opposite, you want your training and testing data to go through <em>the same</em> transformations.</p>
+<p>When you normalize your training set, you want to use <a href="#normalizing-inputs" >standardization</a> on each of your features separately. However, when you are testing, you want to use the same $\bar{x}$ and $S$ that you calculated during training. You don&rsquo;t want to scale and shift your training data separately from your testing data. You want the opposite, you want your training and testing data to go through <em>the same</em> transformations.</p>
 <p>How is this related to optimization? How does normalizing scales and shifts in our features affect our optimization? It all has to do with gradient descent and how the updates are made.</p>
 <figure><img src="/images/04_25.jpg"
-         alt="Gradient Descent with and without features scaling" width="50%"/><figcaption>
-            <p><a href="https://livebook.manning.com/book/deep-learning-for-vision-systems/chapter-4/v-3/79">Gradient Descent with and without features scaling</a></p>
-        </figcaption>
+    alt="Gradient Descent with and without features scaling" width="50%"><figcaption>
+      <p><a href="https://livebook.manning.com/book/deep-learning-for-vision-systems/chapter-4/v-3/79"  class="external-link" target="_blank" rel="noopener">Gradient Descent with and without features scaling</a></p>
+    </figcaption>
 </figure>
 
-<p>The contour plot above shows an imaginary two-dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features' scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
+<p>The contour plot above shows an imaginary two-dimensional cost function $J(F_1, F_2)$. Notice that if we have a pair of unscaled features and one of the features&rsquo; scale is larger than the other, then the cost function will look squished. Gradient descent will take many tiny steps because it&rsquo;s considering <em>both</em> features at the same time. Since one feature is big and the other one small, the same step size is big in one but small on the other. This means that the larger feature will dominate the update. However, if you scale your features with standardization for example, then the cost function might look like the one on the right. Since all features are in a standard scale, no feature will dominate the update, allowing for less oscillation, and therefore faster convergence.</p>
 <h2 id="vanishing-and-exploding-gradients">
   Vanishing and Exploding Gradients
   <a class="heading-link" href="#vanishing-and-exploding-gradients">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -536,7 +547,7 @@ $$</p>
 <h2 id="weight-initialization">
   Weight Initialization
   <a class="heading-link" href="#weight-initialization">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -550,27 +561,27 @@ $$</p>
 <p>The choice is $s$ depends on $g^{[l]}(x)$, the activation function for layer $l$:</p>
 <ul>
 <li>In the case that $g^{[l]}(x) = \text{ReLU}(x)$, then $s = \sqrt{\frac{2}{n^{[l-1]}}}$.</li>
-<li>In the case that $g^{[l]}(x) = \text{tanh}(x)$, then $s = \sqrt{\frac{1}{n^{[l-1]}}}$, which is also called <a href="https://cs230.stanford.edu/section/4/">Xavier initialization</a>.
+<li>In the case that $g^{[l]}(x) = \text{tanh}(x)$, then $s = \sqrt{\frac{1}{n^{[l-1]}}}$, which is also called <a href="https://cs230.stanford.edu/section/4/"  class="external-link" target="_blank" rel="noopener">Xavier initialization</a>.
 <ul>
 <li>Another variant for $\text{tanh}(x)$ is $s = \sqrt{\frac{2}{n^{[l-1]} + n^{[l]}}}$</li>
 </ul>
 </li>
 </ul>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/" >here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html">Bias-Variance Tradeoff | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html"  class="external-link" target="_blank" rel="noopener">Bias-Variance Tradeoff | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">Norm | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p><a href="https://en.wikipedia.org/wiki/Norm_%28mathematics%29"  class="external-link" target="_blank" rel="noopener">Norm | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">Normalization | Wikipedia</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:3">
+<p><a href="https://en.wikipedia.org/wiki/Normalization_%28statistics%29"  class="external-link" target="_blank" rel="noopener">Normalization | Wikipedia</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -605,16 +616,21 @@ $$</p>
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -633,14 +649,16 @@ $$</p>
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -651,8 +669,18 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -678,6 +706,18 @@ $$</p>
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

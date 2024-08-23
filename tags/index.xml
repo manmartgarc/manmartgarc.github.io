@@ -4,53 +4,44 @@
     <title>Tags on Manuel Martinez</title>
     <link>https://manmartgarc.github.io/tags/</link>
     <description>Recent content in Tags on Manuel Martinez</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://manmartgarc.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>deep learning</title>
+      <title>Deep Learning</title>
       <link>https://manmartgarc.github.io/tags/deep-learning/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/tags/deep-learning/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>machine learning</title>
+      <title>Machine Learning</title>
       <link>https://manmartgarc.github.io/tags/machine-learning/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/tags/machine-learning/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cloud</title>
+      <title>Cloud</title>
       <link>https://manmartgarc.github.io/tags/cloud/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/tags/cloud/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>remote</title>
+      <title>Remote</title>
       <link>https://manmartgarc.github.io/tags/remote/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/tags/remote/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>vscode</title>
+      <title>Vscode</title>
       <link>https://manmartgarc.github.io/tags/vscode/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/tags/vscode/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

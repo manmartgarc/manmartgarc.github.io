@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Structuring ML Projects: Week 1 | ML Strategy · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
 This week&rsquo;s topics are:
- Introduction to ML Strategy  Why ML Strategy Orthogonalization   Setting Up our Goal  Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?">
+Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goal Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Structuring ML Projects: Week 1 | ML Strategy"/>
-<meta name="twitter:description" content="This is the first week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
-This week&rsquo;s topics are:
- Introduction to ML Strategy  Why ML Strategy Orthogonalization   Setting Up our Goal  Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?"/>
 
-<meta property="og:title" content="Structuring ML Projects: Week 1 | ML Strategy" />
-<meta property="og:description" content="This is the first week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
-This week&rsquo;s topics are:
- Introduction to ML Strategy  Why ML Strategy Orthogonalization   Setting Up our Goal  Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-23T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-23T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Structuring ML Projects: Week 1 | ML Strategy">
+  <meta name="twitter:description" content="This is the first week of the third course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week’s topics are:
+Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goal Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Structuring ML Projects: Week 1 | ML Strategy">
+  <meta property="og:description" content="This is the first week of the third course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week’s topics are:
+Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goal Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-23T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-06-23T00:00:00Z">
                 June 23, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               10-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/structuring-ml-projects/">Structuring ML Projects</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -185,31 +196,31 @@ This week&rsquo;s topics are:
 
       <div class="post-content">
         
-        <p>This is the first week of the <a href="https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning">third course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.</p>
+        <p>This is the first week of the <a href="https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning"  class="external-link" target="_blank" rel="noopener">third course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#introduction-to-ml-strategy">Introduction to ML Strategy</a>
+<li><a href="#introduction-to-ml-strategy" >Introduction to ML Strategy</a>
 <ul>
-<li><a href="#why-ml-strategy">Why ML Strategy</a></li>
-<li><a href="#orthogonalization">Orthogonalization</a></li>
+<li><a href="#why-ml-strategy" >Why ML Strategy</a></li>
+<li><a href="#orthogonalization" >Orthogonalization</a></li>
 </ul>
 </li>
-<li><a href="#setting-up-our-goal">Setting Up our Goal</a>
+<li><a href="#setting-up-our-goal" >Setting Up our Goal</a>
 <ul>
-<li><a href="#single-number-evaluation-metric">Single Number Evaluation Metric</a></li>
-<li><a href="#satisficing-and-optimizing-metrics">Satisficing and Optimizing Metrics</a></li>
-<li><a href="#traindevtest-distributions">Train/Dev/Test Distributions</a></li>
-<li><a href="#size-of-dev-and-test-sets">Size of Dev and Test Sets</a></li>
-<li><a href="#when-to-change-devtest-sets-and-metrics">When to Change Dev/Test Sets and Metrics?</a></li>
+<li><a href="#single-number-evaluation-metric" >Single Number Evaluation Metric</a></li>
+<li><a href="#satisficing-and-optimizing-metrics" >Satisficing and Optimizing Metrics</a></li>
+<li><a href="#traindevtest-distributions" >Train/Dev/Test Distributions</a></li>
+<li><a href="#size-of-dev-and-test-sets" >Size of Dev and Test Sets</a></li>
+<li><a href="#when-to-change-devtest-sets-and-metrics" >When to Change Dev/Test Sets and Metrics?</a></li>
 </ul>
 </li>
-<li><a href="#comparing-to-human-level-performance">Comparing to Human-Level Performance</a>
+<li><a href="#comparing-to-human-level-performance" >Comparing to Human-Level Performance</a>
 <ul>
-<li><a href="#why-human-level-performance">Why Human-level performance?</a></li>
-<li><a href="#avoidable-bias">Avoidable Bias</a></li>
-<li><a href="#understanding-human-level-performance">Understanding Human-level Performance</a></li>
-<li><a href="#surpassing-human-level-performance">Surpassing Human-level Performance</a></li>
-<li><a href="#improving-your-model-performance">Improving your Model Performance</a></li>
+<li><a href="#why-human-level-performance" >Why Human-level performance?</a></li>
+<li><a href="#avoidable-bias" >Avoidable Bias</a></li>
+<li><a href="#understanding-human-level-performance" >Understanding Human-level Performance</a></li>
+<li><a href="#surpassing-human-level-performance" >Surpassing Human-level Performance</a></li>
+<li><a href="#improving-your-model-performance" >Improving your Model Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -217,14 +228,14 @@ This week&rsquo;s topics are:
 <h2 id="introduction-to-ml-strategy">
   Introduction to ML Strategy
   <a class="heading-link" href="#introduction-to-ml-strategy">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="why-ml-strategy">
   Why ML Strategy
   <a class="heading-link" href="#why-ml-strategy">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -232,7 +243,7 @@ This week&rsquo;s topics are:
 <h3 id="orthogonalization">
   Orthogonalization
   <a class="heading-link" href="#orthogonalization">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -249,14 +260,14 @@ This week&rsquo;s topics are:
 <h2 id="setting-up-our-goal">
   Setting Up our Goal
   <a class="heading-link" href="#setting-up-our-goal">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="single-number-evaluation-metric">
   Single Number Evaluation Metric
   <a class="heading-link" href="#single-number-evaluation-metric">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -270,17 +281,17 @@ This week&rsquo;s topics are:
 <p>Remember that precision tells you the proportion of true positives out of true positives and false positives, while recall tells you the proportion of true positives out of true positives and false negatives.</p>
 </blockquote>
 <p>You might have an application where recall is more important than precision: classifying flight-risk when setting bails. In this case your single metric would be recall. However, if you&rsquo;re not sure, how can you compare classifiers $A$ and $B$?</p>
-<p>In this case we can combine precision and recall into the <a href="https://en.wikipedia.org/wiki/F-score#Definition">F1-score</a> which is the harmonic mean of both precision and recall.</p>
+<p>In this case we can combine precision and recall into the <a href="https://en.wikipedia.org/wiki/F-score#Definition"  class="external-link" target="_blank" rel="noopener">F1-score</a> which is the harmonic mean of both precision and recall.</p>
 <p>Another example is wanting to implement a model that performs good over different geographical regions. If you have $K$ geographical regions you might have $K$ different evaluation metrics, one for each region. The solution here is to take the average and compare the average of each classifier across all regions and pick the best one.</p>
 <p>They key take away here is to have a single evaluation metric, and also to have a dev set. With these two things you can quickly iterate over different approaches and pick the best performing one.</p>
 <h3 id="satisficing-and-optimizing-metrics">
   Satisficing and Optimizing Metrics
   <a class="heading-link" href="#satisficing-and-optimizing-metrics">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p><a href="https://en.wikipedia.org/wiki/Satisficing">Satisficing</a> is a decision-making strategy introduced by the legendary Herbert A. Simon in 1947. It differs from optimizing metrics by the fact that satisficing metrics don&rsquo;t have to be the <em>best</em> but just <em>good enough</em> instead.</p>
+<p><a href="https://en.wikipedia.org/wiki/Satisficing"  class="external-link" target="_blank" rel="noopener">Satisficing</a> is a decision-making strategy introduced by the legendary Herbert A. Simon in 1947. It differs from optimizing metrics by the fact that satisficing metrics don&rsquo;t have to be the <em>best</em> but just <em>good enough</em> instead.</p>
 <p>In our setting, an optimizing metric might be the performance of our classifier. Whereas latency or training time might be a satisficing metric. Being able to clearly think of which goals are which will help us to iterate faster.</p>
 <blockquote>
 <p>We could also have our model performance to be a satisficing metric: we are okay with some number of bad predictions over some period of time.</p>
@@ -289,7 +300,7 @@ This week&rsquo;s topics are:
 <h3 id="traindevtest-distributions">
   Train/Dev/Test Distributions
   <a class="heading-link" href="#traindevtest-distributions">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -297,17 +308,17 @@ This week&rsquo;s topics are:
 <h3 id="size-of-dev-and-test-sets">
   Size of Dev and Test Sets
   <a class="heading-link" href="#size-of-dev-and-test-sets">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>This was <a href="/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#train--dev--test-sets">covered before</a> as well.</p>
+<p>This was <a href="/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#train--dev--test-sets" >covered before</a> as well.</p>
 <p>The key takeaway is to make sure that our test set is <em>big enough</em> to reduce the probability that the result obtained is not due to random chance. This could be a lot less than $30\%$ of your data if you have a lot of data.</p>
 <p>In some settings not having a test set might be okay, but it will never be better than having a test set.</p>
 <h3 id="when-to-change-devtest-sets-and-metrics">
   When to Change Dev/Test Sets and Metrics?
   <a class="heading-link" href="#when-to-change-devtest-sets-and-metrics">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -318,14 +329,14 @@ This week&rsquo;s topics are:
 <h2 id="comparing-to-human-level-performance">
   Comparing to Human-Level Performance
   <a class="heading-link" href="#comparing-to-human-level-performance">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="why-human-level-performance">
   Why Human-level performance?
   <a class="heading-link" href="#why-human-level-performance">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -339,7 +350,7 @@ This week&rsquo;s topics are:
 <h3 id="avoidable-bias">
   Avoidable Bias
   <a class="heading-link" href="#avoidable-bias">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -362,7 +373,7 @@ This week&rsquo;s topics are:
 <h3 id="understanding-human-level-performance">
   Understanding Human-level Performance
   <a class="heading-link" href="#understanding-human-level-performance">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -375,7 +386,7 @@ This week&rsquo;s topics are:
 <h3 id="surpassing-human-level-performance">
   Surpassing Human-level Performance
   <a class="heading-link" href="#surpassing-human-level-performance">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -384,7 +395,7 @@ This week&rsquo;s topics are:
 <h3 id="improving-your-model-performance">
   Improving your Model Performance
   <a class="heading-link" href="#improving-your-model-performance">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -414,7 +425,7 @@ This week&rsquo;s topics are:
 <li>Add more regularization</li>
 <li>Try a specialized NN architecture and/or improve hyperparameters</li>
 </ul>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">here</a>.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" >here</a>.</p>
 
       </div>
 
@@ -449,16 +460,21 @@ This week&rsquo;s topics are:
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -477,14 +493,16 @@ This week&rsquo;s topics are:
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -495,8 +513,18 @@ This week&rsquo;s topics are:
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -522,6 +550,18 @@ This week&rsquo;s topics are:
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

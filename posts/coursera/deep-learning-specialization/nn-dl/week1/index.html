@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -12,20 +13,26 @@
 
 
 <meta name="author" content="Manuel Martinez">
-<meta name="description" content="Introduction to Deep LearningLink to headingThis is the first course in Coursera&rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
+<meta name="description" content="Introduction to Deep Learning Link to heading This is the first course in Coursera&rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning"/>
-<meta name="twitter:description" content="Introduction to Deep LearningLink to headingThis is the first course in Coursera&rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so."/>
 
-<meta property="og:title" content="Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning" />
-<meta property="og:description" content="Introduction to Deep LearningLink to headingThis is the first course in Coursera&rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-13T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning">
+  <meta name="twitter:description" content="Introduction to Deep Learning Link to heading This is the first course in Coursera’s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning">
+  <meta property="og:description" content="Introduction to Deep Learning Link to heading This is the first course in Coursera’s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-13T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -33,12 +40,14 @@
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -48,7 +57,7 @@
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -58,6 +67,7 @@
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -70,13 +80,12 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -87,7 +96,7 @@
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -95,31 +104,33 @@
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -145,19 +156,19 @@
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-06-13T00:00:00Z">
                 June 13, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               3-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -165,13 +176,13 @@
     <a href="/categories/neural-networks-and-deep-learning/">Neural Networks and Deep Learning</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -182,41 +193,41 @@
         <h2 id="introduction-to-deep-learning">
   Introduction to Deep Learning
   <a class="heading-link" href="#introduction-to-deep-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>This is the first course in Coursera&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a>. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</p>
+<p>This is the first course in Coursera&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a>. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#introduction-to-deep-learning">Introduction to Deep Learning</a></li>
+<li><a href="#introduction-to-deep-learning" >Introduction to Deep Learning</a></li>
 </ul>
 <hr>
 <p>In the most basic sense, neural networks are a particular approach to machine learning, a process in which a computer learns to perform some task by analyzing training examples. They have their not so humble origins in people trying to understand and model the human brain, particularly the way in which humans learn and store information. Learning and information representation are one of the things that make deep learning powerful. But before we get to deep learning, we need to at least define learning.</p>
 <p>Glossing over the definition for what learning is, let&rsquo;s say for now that learning amounts to being able to &ldquo;reconstruct&rdquo; some part of our data from the other parts (like supervised learning). Learning this reconstruction is what learning is within the context of machine learning.</p>
-<p>So we said that neural networks are a particular approach to the machine learning problem. This approach uses a daisy-chain of building blocks called the <a href="https://en.wikipedia.org/wiki/Perceptron#:~:text=In%20the%20context%20of%20neural,a%20more%20complicated%20neural%20network">perceptron</a>. Think of the perceptron as a <em>single-layer neural network</em>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Deep neural networks have many such layers of perceptrons. Usually the input and output are called the input and output layers, while everything in between are called hidden layers.</p>
+<p>So we said that neural networks are a particular approach to the machine learning problem. This approach uses a daisy-chain of building blocks called the <a href="https://en.wikipedia.org/wiki/Perceptron#:~:text=In%20the%20context%20of%20neural,a%20more%20complicated%20neural%20network"  class="external-link" target="_blank" rel="noopener">perceptron</a>. Think of the perceptron as a <em>single-layer neural network</em>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Deep neural networks have many such layers of perceptrons. Usually the input and output are called the input and output layers, while everything in between are called hidden layers.</p>
 <figure><img src="/images/neural-net.png"
-         alt="Simplified view of a feedforward artificial neural network"/><figcaption>
-            <p><a href="https://en.wikipedia.org/wiki/Neural_network">Simplified view of a feedforward artificial neural network</a></p>
-        </figcaption>
+    alt="Simplified view of a feedforward artificial neural network"><figcaption>
+      <p><a href="https://en.wikipedia.org/wiki/Neural_network"  class="external-link" target="_blank" rel="noopener">Simplified view of a feedforward artificial neural network</a></p>
+    </figcaption>
 </figure>
 
-<p>It turns out a single perceptron is not that flexible or generalizable, just like a single neuron is not that great at writing literature. However, and this is the important part, if you daisy-chain a bunch of them, and add some magic sauce (non-linearities) they are <em>extremely</em> generalizable. The magic of deep neural networks comes from the hidden layers. The hidden layers do something very important, which amounts to feature generation. For example if you have a dataset with some data, then the algorithm will learn how to combine the existing features into new features. And not just any features, but features that are relevant to learning the particular task. This is one of the key differences between deep learning and previous machine learning approaches. It does this by <a href="https://en.wikipedia.org/wiki/Linear_combination#:~:text=In%20mathematics%2C%20a%20linear%20combination,a%20and%20b%20are%20constants">linearly combining</a> the outputs from previous layers, down the layers, until the output layer.</p>
+<p>It turns out a single perceptron is not that flexible or generalizable, just like a single neuron is not that great at writing literature. However, and this is the important part, if you daisy-chain a bunch of them, and add some magic sauce (non-linearities) they are <em>extremely</em> generalizable. The magic of deep neural networks comes from the hidden layers. The hidden layers do something very important, which amounts to feature generation. For example if you have a dataset with some data, then the algorithm will learn how to combine the existing features into new features. And not just any features, but features that are relevant to learning the particular task. This is one of the key differences between deep learning and previous machine learning approaches. It does this by <a href="https://en.wikipedia.org/wiki/Linear_combination#:~:text=In%20mathematics%2C%20a%20linear%20combination,a%20and%20b%20are%20constants"  class="external-link" target="_blank" rel="noopener">linearly combining</a> the outputs from previous layers, down the layers, until the output layer.</p>
 <p>Going back to learning, generally there are two main paradigms for learning (and a couple of others):</p>
 <ol>
-<li><a href="https://en.wikipedia.org/wiki/Supervised_learning">Supervised Learning</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Unsupervised_learning">Unsupervised Learning</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Supervised_learning"  class="external-link" target="_blank" rel="noopener">Supervised Learning</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Unsupervised_learning"  class="external-link" target="_blank" rel="noopener">Unsupervised Learning</a></li>
 </ol>
 <p>At this point it&rsquo;s not terribly important to know the exact difference, other than two things. Supervised learning is so called because you use labeled data. Labeled data are pairs of features (covariates) and their associated label. Features could be the picture of a cat and the label is whether it&rsquo;s a cat or not, which is called classification. You could also predict the price of a house based on a house&rsquo;s features, and this is called regression. In either case explaining the performance of the algorithm is very straightforward: we are close/far from perfectly predicting (recombining) our target from the training samples. On the other hand, with unsupervised learning, there are no labels in the data, so you cannot objectively measure how the algorithm is doing based on labels. Unsupervised learning does use cost functions, but they are not usually related to the labels in the data. These are commonly clustering or partitioning algorithms. The course focuses on supervised learning.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/" >here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Perceptron#:~:text=In%20the%20context%20of%20neural,a%20more%20complicated%20neural%20network.">Wikipedia | Perceptron</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Perceptron#:~:text=In%20the%20context%20of%20neural,a%20more%20complicated%20neural%20network."  class="external-link" target="_blank" rel="noopener">Wikipedia | Perceptron</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -251,16 +262,21 @@
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -279,14 +295,16 @@
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -297,8 +315,18 @@
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -324,6 +352,18 @@
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

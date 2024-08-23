@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Convolutional Neural Networks: Week 1 | Foundations of CNNs · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week&rsquo;s topics are:
- Computer Vision Convolution  Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters   Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN  Defining the Notation and Dimensions   Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
+Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs"/>
-<meta name="twitter:description" content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
-This week&rsquo;s topics are:
- Computer Vision Convolution  Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters   Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN  Defining the Notation and Dimensions   Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?"/>
 
-<meta property="og:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs" />
-<meta property="og:description" content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
-This week&rsquo;s topics are:
- Computer Vision Convolution  Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters   Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN  Defining the Notation and Dimensions   Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-07-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-07-11T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
+  <meta name="twitter:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+This week’s topics are:
+Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
+  <meta property="og:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+This week’s topics are:
+Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-11T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-07-11T00:00:00Z">
                 July 11, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               21-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/convolutional-neural-networks/">Convolutional Neural Networks</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -185,36 +196,36 @@ This week&rsquo;s topics are:
 
       <div class="post-content">
         
-        <p>This is the first week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.</p>
+        <p>This is the first week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#computer-vision">Computer Vision</a></li>
-<li><a href="#convolution">Convolution</a>
+<li><a href="#computer-vision" >Computer Vision</a></li>
+<li><a href="#convolution" >Convolution</a>
 <ul>
-<li><a href="#convolution-in-continuous-land">Convolution in continuous land</a></li>
-<li><a href="#convolution-in-discrete-land">Convolution in discrete land</a></li>
-<li><a href="#back-to-edge-detection">Back to Edge Detection</a></li>
-<li><a href="#learning-the-filters">Learning the Filters</a></li>
+<li><a href="#convolution-in-continuous-land" >Convolution in continuous land</a></li>
+<li><a href="#convolution-in-discrete-land" >Convolution in discrete land</a></li>
+<li><a href="#back-to-edge-detection" >Back to Edge Detection</a></li>
+<li><a href="#learning-the-filters" >Learning the Filters</a></li>
 </ul>
 </li>
-<li><a href="#padding">Padding</a></li>
-<li><a href="#strided-convolutions">Strided Convolutions</a></li>
-<li><a href="#convolutions-over-volume">Convolutions Over Volume</a></li>
-<li><a href="#one-layer-of-a-cnn">One Layer of a CNN</a>
+<li><a href="#padding" >Padding</a></li>
+<li><a href="#strided-convolutions" >Strided Convolutions</a></li>
+<li><a href="#convolutions-over-volume" >Convolutions Over Volume</a></li>
+<li><a href="#one-layer-of-a-cnn" >One Layer of a CNN</a>
 <ul>
-<li><a href="#defining-the-notation-and-dimensions">Defining the Notation and Dimensions</a></li>
+<li><a href="#defining-the-notation-and-dimensions" >Defining the Notation and Dimensions</a></li>
 </ul>
 </li>
-<li><a href="#simple-cnn-example">Simple CNN Example</a></li>
-<li><a href="#pooling-layers">Pooling Layers</a></li>
-<li><a href="#full-cnn-example">Full CNN Example</a></li>
-<li><a href="#why-convolutions">Why Convolutions?</a></li>
+<li><a href="#simple-cnn-example" >Simple CNN Example</a></li>
+<li><a href="#pooling-layers" >Pooling Layers</a></li>
+<li><a href="#full-cnn-example" >Full CNN Example</a></li>
+<li><a href="#why-convolutions" >Why Convolutions?</a></li>
 </ul>
 <hr>
 <h2 id="computer-vision">
   Computer Vision
   <a class="heading-link" href="#computer-vision">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -225,53 +236,53 @@ This week&rsquo;s topics are:
 <h2 id="convolution">
   Convolution
   <a class="heading-link" href="#convolution">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="convolution-in-continuous-land">
   Convolution in continuous land
   <a class="heading-link" href="#convolution-in-continuous-land">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>When someone mentions convolutions they might be referring to slightly different things. In the field of math called <a href="https://en.wikipedia.org/wiki/Functional_analysis">functional analysis</a>, which is the field that uses functions as its units of inquiry, a convolution is an operation between two functions. What is an operation between two functions? Think of differentiation and integration as examples of functional operators.</p>
-<p>In this sense, a <a href="https://en.wikipedia.org/wiki/Convolution">convolution</a> is a mathematical operation between two functions $f$ and $g$ that produces a <em>third</em> function $f * g$. This third function expresses how the shape of one is modified by the other. It&rsquo;s defined as an integral:</p>
+<p>When someone mentions convolutions they might be referring to slightly different things. In the field of math called <a href="https://en.wikipedia.org/wiki/Functional_analysis"  class="external-link" target="_blank" rel="noopener">functional analysis</a>, which is the field that uses functions as its units of inquiry, a convolution is an operation between two functions. What is an operation between two functions? Think of differentiation and integration as examples of functional operators.</p>
+<p>In this sense, a <a href="https://en.wikipedia.org/wiki/Convolution"  class="external-link" target="_blank" rel="noopener">convolution</a> is a mathematical operation between two functions $f$ and $g$ that produces a <em>third</em> function $f * g$. This third function expresses how the shape of one is modified by the other. It&rsquo;s defined as an integral:</p>
 <p>$$
 (f*g) := \int_{-\infty}^{\infty} f(\tau)g(t-\tau)d\tau
 $$</p>
-<p>Perhaps more didactic, there&rsquo;s a <a href="https://en.wikipedia.org/wiki/Convolution#Visual_explanation">beautiful visual explanation</a> of what a convolution is. It involves plotting $f(t)$ and $g(t - \tau)$ along the $\tau$ axis. As $g(t - \tau)$ is shifted, the convolution $(f*g)(t)$ is plotted, which literally describes the normalized area overlap between the two functions at a particular $t$ value. The integral above is a way to compute that area as the sum of the overlaps over the sliding window.</p>
+<p>Perhaps more didactic, there&rsquo;s a <a href="https://en.wikipedia.org/wiki/Convolution#Visual_explanation"  class="external-link" target="_blank" rel="noopener">beautiful visual explanation</a> of what a convolution is. It involves plotting $f(t)$ and $g(t - \tau)$ along the $\tau$ axis. As $g(t - \tau)$ is shifted, the convolution $(f*g)(t)$ is plotted, which literally describes the normalized area overlap between the two functions at a particular $t$ value. The integral above is a way to compute that area as the sum of the overlaps over the sliding window.</p>
 <figure><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Convolution_of_box_signal_with_itself2.gif"
-         alt="An animation displaying the process and result of convolving a box signal with itself." width="50%"/><figcaption>
-            <p><a href="https://en.wikipedia.org/wiki/Convolution">An animation displaying the process and result of convolving a box signal with itself.</a></p>
-        </figcaption>
+    alt="An animation displaying the process and result of convolving a box signal with itself." width="50%"><figcaption>
+      <p><a href="https://en.wikipedia.org/wiki/Convolution"  class="external-link" target="_blank" rel="noopener">An animation displaying the process and result of convolving a box signal with itself.</a></p>
+    </figcaption>
 </figure>
 
 <figure><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Convolution_of_spiky_function_with_box2.gif"
-         alt="An animation displaying the process and result of convolving a box signal with a spiky impulse response." width="50%"/><figcaption>
-            <p><a href="https://en.wikipedia.org/wiki/Convolution">An animation displaying the process and result of convolving a box signal with a spiky impulse response.</a></p>
-        </figcaption>
+    alt="An animation displaying the process and result of convolving a box signal with a spiky impulse response." width="50%"><figcaption>
+      <p><a href="https://en.wikipedia.org/wiki/Convolution"  class="external-link" target="_blank" rel="noopener">An animation displaying the process and result of convolving a box signal with a spiky impulse response.</a></p>
+    </figcaption>
 </figure>
 
-<p>How is this at all related to image processing? Images are not represented as continuous functions, but as discrete objects, i.e., $M \times N \times C$ matrices. It turns out that the <em>discrete</em> equivalent of the integral above is called <a href="https://en.wikipedia.org/wiki/Multidimensional_discrete_convolution">multidimensional discrete convolution</a>, and this is what people refer to as convolution within the signal-processing and computer vision context.</p>
+<p>How is this at all related to image processing? Images are not represented as continuous functions, but as discrete objects, i.e., $M \times N \times C$ matrices. It turns out that the <em>discrete</em> equivalent of the integral above is called <a href="https://en.wikipedia.org/wiki/Multidimensional_discrete_convolution"  class="external-link" target="_blank" rel="noopener">multidimensional discrete convolution</a>, and this is what people refer to as convolution within the signal-processing and computer vision context.</p>
 <h3 id="convolution-in-discrete-land">
   Convolution in discrete land
   <a class="heading-link" href="#convolution-in-discrete-land">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>So similar how we convolve two functions, $f$ and $g$ to find a third function $f * g$, we want to convolve an image and a filter, or <a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">kernel</a>. That is, we want to get out some output that is in essence a filtered image. Why would we want to apply a filter to an image? It turns out that some filters, or kernels, can tell us where the <em>edges</em> are in an image. That seems like a reasonable place to start building a system that can process digital images.</p>
+<p>So similar how we convolve two functions, $f$ and $g$ to find a third function $f * g$, we want to convolve an image and a filter, or <a href="https://en.wikipedia.org/wiki/Kernel_%28image_processing%29"  class="external-link" target="_blank" rel="noopener">kernel</a>. That is, we want to get out some output that is in essence a filtered image. Why would we want to apply a filter to an image? It turns out that some filters, or kernels, can tell us where the <em>edges</em> are in an image. That seems like a reasonable place to start building a system that can process digital images.</p>
 <p>Let&rsquo;s start by defining a 2D convolution:</p>
 <p>$$
 g(x,y) = w * f(x,y) = \sum_{dx=-a}^a \sum_{dy=-b}^{b}w(dx,dy)f(x-dx, y-dy)
 $$</p>
 <p>Where $g(x,y)$ is the filtered image, $f(x,y)$ is the original image, $w$ is the filter kernel. Every element of the filter kernel is considered by $-a \leq dx \leq a$ and $-b \leq dy \leq b$ <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. In essence, this convolves a filter and an image by moving a filter over the image, calculating the sum of all the element-wise products, and setting that as the output for each element in the output matrix. A convolution takes in two matrices, and it outputs a matrix; but it&rsquo;s not matrix multiplication. This animation should help clarify what&rsquo;s going on:</p>
 <figure><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/2D_Convolution_Animation.gif"
-         alt="2D Convolution Animation." width="50%"/><figcaption>
-            <p><a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">2D Convolution Animation.</a></p>
-        </figcaption>
+    alt="2D Convolution Animation." width="50%"><figcaption>
+      <p><a href="https://en.wikipedia.org/wiki/Kernel_%28image_processing%29"  class="external-link" target="_blank" rel="noopener">2D Convolution Animation.</a></p>
+    </figcaption>
 </figure>
 
 <p>The smaller $3\times3$ matrix is the filter, or kernel, and the large matrix is our image. In this case instead of having three values representing each pixel it has one. How to convolve over many channels, or colors in this case is covered later in the course.</p>
@@ -279,7 +290,7 @@ $$</p>
 <h3 id="back-to-edge-detection">
   Back to Edge Detection
   <a class="heading-link" href="#back-to-edge-detection">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -294,9 +305,9 @@ f = \begin{bmatrix}
 $$</p>
 <p>It turns out that this filter can work as a <em>vertical</em> edge detector. Notice that it&rsquo;s negatively symmetrical about the middle column. If we convolve this filter by a $3 \times 3$ matrix of equal numbers, the output will be $0$ because the symmetry will cancel everything out. What happens if you convolve this filter with an image that has a vertical edge?</p>
 <figure><img src="/images/conv-vert.png"
-         alt="Vertical Edge Detection." width="75%"/><figcaption>
-            <p><a href="https://www.coursera.org/learn/convolutional-neural-networks/">Vertical Edge Detection.</a></p>
-        </figcaption>
+    alt="Vertical Edge Detection." width="75%"><figcaption>
+      <p><a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">Vertical Edge Detection.</a></p>
+    </figcaption>
 </figure>
 
 <p>Convolving an image with an edge with this filter will <em>bring up</em> the regions of the original image where there is a gradient of values in the horizontal dimension; thus generating an image that highlights the vertical <em>edges</em>. In this sense, we defined an <em>edge</em> as: a $3\times3$ region in the image where there are bright pixels on the left and dark pixels on the right.</p>
@@ -314,12 +325,12 @@ $$</p>
 <p>That is, a horizontal edge is a $3\times3$ region in the picture where there are brighter pixels &ldquo;above&rdquo; and darker pixels &ldquo;below&rdquo;.</p>
 <p>But who came up with these numbers? Why not choose $10$ instead of $1$? It turns out that there are a lot of different filters. Think about finding diagonal edges, how would that filter look like? But most importantly, how can we know that the filters we use are going to be relevant to our problem domain, i.e. cat classification?</p>
 <blockquote>
-<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M">Convolutions</a>.</p>
+<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA"  class="external-link" target="_blank" rel="noopener">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M"  class="external-link" target="_blank" rel="noopener">Convolutions</a>.</p>
 </blockquote>
 <h3 id="learning-the-filters">
   Learning the Filters
   <a class="heading-link" href="#learning-the-filters">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -337,7 +348,7 @@ $$</p>
 <h2 id="padding">
   Padding
   <a class="heading-link" href="#padding">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -369,7 +380,7 @@ $$</p>
 <h2 id="strided-convolutions">
   Strided Convolutions
   <a class="heading-link" href="#strided-convolutions">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -396,16 +407,16 @@ $$</p>
 <h2 id="convolutions-over-volume">
   Convolutions Over Volume
   <a class="heading-link" href="#convolutions-over-volume">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <p>By now we should have a pretty good grasp on 2D convolution. We have an image, and we convolve it with a filter, and we get some output. We can use padding or a stride different from one, but these are details, and we know how to calculate the dimensions of the output, which is one of the key things to keep in mind; in the same way that it&rsquo;s very important to keep in mind the dimensions of any neural net. Yet a snag remains, our images are not 2D, but 3D. Our $64\times64\times3$ cat image is a cube. How can we do a convolution over volume?</p>
 <p>It turns out that instead of using a square filter, we use a cube filter. That is, if our image is $6\times6\times3$, then we need the number of channels, $3$, to match the number of channels in our filter. Therefore, our filter will have dimensions $3\times3\times3$ if we choose a $3\times3$ filter. Here is an illustration:</p>
 <figure><img src="https://production-media.paperswithcode.com/methods/Screen_Shot_2020-07-05_at_10.03.11_PM_KEC4Hm0.png"
-         alt="3D Convolution | Papers With Code." width="50%"/><figcaption>
-            <p><a href="https://paperswithcode.com/method/3d-convolution">3D Convolution | Papers With Code.</a></p>
-        </figcaption>
+    alt="3D Convolution | Papers With Code." width="50%"><figcaption>
+      <p><a href="https://paperswithcode.com/method/3d-convolution"  class="external-link" target="_blank" rel="noopener">3D Convolution | Papers With Code.</a></p>
+    </figcaption>
 </figure>
 
 <p>This means that each entry in the output feature map is the element-wise product sum of 27 pairs of numbers; 27 from the image and 27 from the filter, since $3 \times 3 \times 3 = 27$. An important thing to notice is that the number of channels in the output is $1$, and not $3$ as the input or filter.</p>
@@ -418,7 +429,7 @@ $$</p>
 <h2 id="one-layer-of-a-cnn">
   One Layer of a CNN
   <a class="heading-link" href="#one-layer-of-a-cnn">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -429,7 +440,7 @@ $$</p>
 <h3 id="defining-the-notation-and-dimensions">
   Defining the Notation and Dimensions
   <a class="heading-link" href="#defining-the-notation-and-dimensions">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -476,7 +487,7 @@ $$</p>
 <h2 id="simple-cnn-example">
   Simple CNN Example
   <a class="heading-link" href="#simple-cnn-example">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -494,16 +505,16 @@ $$</p>
 <h2 id="pooling-layers">
   Pooling Layers
   <a class="heading-link" href="#pooling-layers">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <p>Pooling layers reduce some layers output&rsquo;s dimension by applying an aggregating procedure, usually taking the max or average over some region in the output. This is good for two main reasons: smaller outputs are more computationally efficient. However, unlike the output shrinking from filters, the aggregating procedures can <em>boost</em> certain features down the network.</p>
 <p>A pooling layer works similar to a convolutional layer. An example of $2\times2$ max pooling is shown here:</p>
 <figure><img src="https://d2l.ai/_images/pooling.svg"
-         alt="Max-pooling with a $2\times2$ shape" width="50%"/><figcaption>
-            <p><a href="https://d2l.ai/chapter_convolutional-neural-networks/pooling.html">Max-pooling with a $2\times2$ shape</a></p>
-        </figcaption>
+    alt="Max-pooling with a $2\times2$ shape" width="50%"><figcaption>
+      <p><a href="https://d2l.ai/chapter_convolutional-neural-networks/pooling.html"  class="external-link" target="_blank" rel="noopener">Max-pooling with a $2\times2$ shape</a></p>
+    </figcaption>
 </figure>
 
 <p>Each of the outputs in the feature map is simply the maximum value in the input&rsquo;s region overlaid by the filter. We can still use our trusty formula to calculate the output sizes.</p>
@@ -511,11 +522,11 @@ $$</p>
 <h2 id="full-cnn-example">
   Full CNN Example
   <a class="heading-link" href="#full-cnn-example">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>This example goes over a CNN architecture similar to that of <a href="https://en.wikipedia.org/wiki/LeNet#Structure">LeNet-5</a>, a legendary architecture proposed by Yan LeCun in 1998. The network was implemented to do character recognition originally.</p>
+<p>This example goes over a CNN architecture similar to that of <a href="https://en.wikipedia.org/wiki/LeNet#Structure"  class="external-link" target="_blank" rel="noopener">LeNet-5</a>, a legendary architecture proposed by Yan LeCun in 1998. The network was implemented to do character recognition originally.</p>
 <p>The architecture is as follows:</p>
 <ol>
 <li>Input: $32\times32\times3$</li>
@@ -598,27 +609,27 @@ $$</p>
 <h2 id="why-convolutions">
   Why Convolutions?
   <a class="heading-link" href="#why-convolutions">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <p>Unfortunately, there is no single reason as to why convolutions work so well. However, there are two probable reasons:</p>
 <ol>
-<li>Parameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to <a href="https://en.wikipedia.org/wiki/Translational_symmetry">translational invariance</a>, the idea that a CNN is robust to shifted or distorted images.</li>
+<li>Parameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to <a href="https://en.wikipedia.org/wiki/Translational_symmetry"  class="external-link" target="_blank" rel="noopener">translational invariance</a>, the idea that a CNN is robust to shifted or distorted images.</li>
 <li>Sparsity of connections: Each output value depends only on a few inputs. This is a mark of low-complexity, and it might have an effect similar to regularization; therefore helping avoid overfitting.</li>
 </ol>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/" >here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-computer-vision/#:~:text=Computer%20vision%20is%20a%20field,tasks%20that%20replicate%20human%20capabilities.">What is Computer Vision? | Microsoft</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-computer-vision/#:~:text=Computer%20vision%20is%20a%20field,tasks%20that%20replicate%20human%20capabilities."  class="external-link" target="_blank" rel="noopener">What is Computer Vision? | Microsoft</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">Kernel (image processing) | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p><a href="https://en.wikipedia.org/wiki/Kernel_%28image_processing%29"  class="external-link" target="_blank" rel="noopener">Kernel (image processing) | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -653,16 +664,21 @@ $$</p>
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -681,14 +697,16 @@ $$</p>
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -699,8 +717,18 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -726,6 +754,18 @@ $$</p>
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

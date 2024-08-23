@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Sequence Models: Week 2 | NLP &amp; Word Embeddings · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week&rsquo;s topics are:
- Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words.">
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words.">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Sequence Models: Week 2 | NLP &amp; Word Embeddings"/>
-<meta name="twitter:description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
-This week&rsquo;s topics are:
- Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words."/>
 
-<meta property="og:title" content="Sequence Models: Week 2 | NLP &amp; Word Embeddings" />
-<meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
-This week&rsquo;s topics are:
- Introduction to Word Embeddings  Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix   Word Embeddings  Learning Word Embeddings Word2Vec  Negative Sampling   GloVe Word Vectors   Applications Using Word Embeddings  Sentiment Classification De-biasing Word Embeddings     Introduction to Word EmbeddingsLink to headingWord RepresentationLink to headingWord embeddings are a way of representing words." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-08-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-08-10T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
+  <meta name="twitter:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
+This week’s topics are:
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words.">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
+  <meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
+This week’s topics are:
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-10T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-08-10T00:00:00Z">
                 August 10, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               18-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/sequence-models/">Sequence Models</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -185,33 +196,33 @@ This week&rsquo;s topics are:
 
       <div class="post-content">
         
-        <p>This is the second week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/">fifth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.</p>
+        <p>This is the second week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/"  class="external-link" target="_blank" rel="noopener">fifth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#introduction-to-word-embeddings">Introduction to Word Embeddings</a>
+<li><a href="#introduction-to-word-embeddings" >Introduction to Word Embeddings</a>
 <ul>
-<li><a href="#word-representation">Word Representation</a></li>
-<li><a href="#using-word-embeddings">Using Word Embeddings</a></li>
-<li><a href="#properties-of-word-embeddings">Properties of Word Embeddings</a></li>
-<li><a href="#cosine-similarity">Cosine Similarity</a></li>
-<li><a href="#embedding-matrix">Embedding Matrix</a></li>
+<li><a href="#word-representation" >Word Representation</a></li>
+<li><a href="#using-word-embeddings" >Using Word Embeddings</a></li>
+<li><a href="#properties-of-word-embeddings" >Properties of Word Embeddings</a></li>
+<li><a href="#cosine-similarity" >Cosine Similarity</a></li>
+<li><a href="#embedding-matrix" >Embedding Matrix</a></li>
 </ul>
 </li>
-<li><a href="#word-embeddings">Word Embeddings</a>
+<li><a href="#word-embeddings" >Word Embeddings</a>
 <ul>
-<li><a href="#learning-word-embeddings">Learning Word Embeddings</a></li>
-<li><a href="#word2vec">Word2Vec</a>
+<li><a href="#learning-word-embeddings" >Learning Word Embeddings</a></li>
+<li><a href="#word2vec" >Word2Vec</a>
 <ul>
-<li><a href="#negative-sampling">Negative Sampling</a></li>
+<li><a href="#negative-sampling" >Negative Sampling</a></li>
 </ul>
 </li>
-<li><a href="#glove-word-vectors">GloVe Word Vectors</a></li>
+<li><a href="#glove-word-vectors" >GloVe Word Vectors</a></li>
 </ul>
 </li>
-<li><a href="#applications-using-word-embeddings">Applications Using Word Embeddings</a>
+<li><a href="#applications-using-word-embeddings" >Applications Using Word Embeddings</a>
 <ul>
-<li><a href="#sentiment-classification">Sentiment Classification</a></li>
-<li><a href="#de-biasing-word-embeddings">De-biasing Word Embeddings</a></li>
+<li><a href="#sentiment-classification" >Sentiment Classification</a></li>
+<li><a href="#de-biasing-word-embeddings" >De-biasing Word Embeddings</a></li>
 </ul>
 </li>
 </ul>
@@ -219,14 +230,14 @@ This week&rsquo;s topics are:
 <h2 id="introduction-to-word-embeddings">
   Introduction to Word Embeddings
   <a class="heading-link" href="#introduction-to-word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="word-representation">
   Word Representation
   <a class="heading-link" href="#word-representation">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -242,7 +253,7 @@ This week&rsquo;s topics are:
 <li>$i_{orange} = 6257$</li>
 </ul>
 <p>So that $o_{man} = o_{5391}$ is the one-hot encoding of the word. Remember that $o_w \in \mathbb{R}^{10,000}$.</p>
-<p>How could our algorithm handle semantic meaning? The same way that we define most about anything, with matrices and linear algebra. Currently, our words live in $\mathbb{R}^{10,000}$ space. That is, they are a $10,000$ dimensional one-hot vector, where all the entries are $0$ except for one. Let&rsquo;s think about the dot-product, which is the <a href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a> of Euclidean space. Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Let&rsquo;s focus on the geometrical definition.</p>
+<p>How could our algorithm handle semantic meaning? The same way that we define most about anything, with matrices and linear algebra. Currently, our words live in $\mathbb{R}^{10,000}$ space. That is, they are a $10,000$ dimensional one-hot vector, where all the entries are $0$ except for one. Let&rsquo;s think about the dot-product, which is the <a href="https://en.wikipedia.org/wiki/Inner_product_space"  class="external-link" target="_blank" rel="noopener">inner product</a> of Euclidean space. Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Let&rsquo;s focus on the geometrical definition.</p>
 <p>If the dot-product between two vectors is $0$ then the vectors are <em>either</em> orthogonal or one of them is the zero vector $\vec{0}$. On the other hand, positive and negative values map to the angle value between them. What does it mean that two vectors are orthogonal? It means that they are perpendicular to each other. What does that mean? It depends on the application: in optics, orthogonality is related to polarization states. In statistics, orthogonal random variables are those whose covariance is $0$. What happens when we dot two one-hot vectors for different words?</p>
 <p>Since, by definition, each of the one-hot vectors is unique for every word in our dictionary, all of them will have a $1$ in a unique position. This means that the dot product between any pair $i,j$ where $i \neq j$ will be $0$. This means that the vector space defined by all of our one-hot vectors has a <em>dimension for each word</em>, since dimension are orthogonal to each other, all vectors are orthogonal to each other. Which in turn means that our representation imposes the assumption that there is <em>literally</em> no relationship between any pair of words. Even pairs such as $(\text{happy}, \text{happier})$.</p>
 <p>The question is then: how can we project the $\mathbb{R}^{10,000}$ vector space into a lower dimensional space, say $\mathbb{R}^{300}$? We could try to use dimensionality reduction techniques, such as PCA, but it will not work that well. This is because all dimensions are orthogonal, and there&rsquo;s no &ldquo;common&rdquo; information to encode the higher dimensional space into a lower dimensional space. We need something different, something learnable, we need word embeddings!</p>
@@ -299,28 +310,28 @@ This week&rsquo;s topics are:
 </tbody>
 </table>
 <p>The numbers are fictitious, but set by hand to illustrate the example. The important thing is to notice that by embedding these words in our four new dimensions we have captured semantic meaning, and now the vectors live in &ldquo;semantic&rdquo; space. This in turns, allows us to define distance, and therefore similarity. For example, we should expect our embeddings to comply with $e_{apple} - e_{queen} &gt; e_{apple} - e_{orange}$, where $e_{w}$ is the embedding vector, in our case in $\mathbb{R}^{4}$, of the word $w$. That is, the distance between the word apple and queen, should be greater than the distance between apple and orange because apples and oranges are fruits.</p>
-<p>How do we <a href="#learning-word-embeddings">learn these embeddings</a>, and how many dimensions are enough is something we go over in a bit.</p>
+<p>How do we <a href="#learning-word-embeddings" >learn these embeddings</a>, and how many dimensions are enough is something we go over in a bit.</p>
 <blockquote>
 <p>Remember that embeddings are synonymous with encodings. We want to have efficient word encodings that are much smaller but denser than our one-hot vectors; which are big but sparse.</p>
 </blockquote>
 <h3 id="using-word-embeddings">
   Using Word Embeddings
   <a class="heading-link" href="#using-word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>So how do we use these embeddings? It turns out that learning good word embeddings takes a lot of text: between $1$ and $100$ billion words in the corpus. That&rsquo;s just the data requirements, training costs are also going to be significant. Instead, we can be <a href="https://www.goodreads.com/quotes/568877-i-choose-a-lazy-person-to-do-a-hard-job">lazy</a> and use pre-trained embeddings from somewhere online. After we have these embeddings, we can employ transfer learning and fine-tune a neural network model to our task. We could even fine-tune the embeddings with our data.</p>
-<p>This approach is similar to that of <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">face encoding</a>. In the face recognition approach, we used a Siamese network to learn some $\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It&rsquo;s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.</p>
+<p>So how do we use these embeddings? It turns out that learning good word embeddings takes a lot of text: between $1$ and $100$ billion words in the corpus. That&rsquo;s just the data requirements, training costs are also going to be significant. Instead, we can be <a href="https://www.goodreads.com/quotes/568877-i-choose-a-lazy-person-to-do-a-hard-job"  class="external-link" target="_blank" rel="noopener">lazy</a> and use pre-trained embeddings from somewhere online. After we have these embeddings, we can employ transfer learning and fine-tune a neural network model to our task. We could even fine-tune the embeddings with our data.</p>
+<p>This approach is similar to that of <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/" >face encoding</a>. In the face recognition approach, we used a Siamese network to learn some $\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It&rsquo;s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.</p>
 <h3 id="properties-of-word-embeddings">
   Properties of Word Embeddings
   <a class="heading-link" href="#properties-of-word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <p>We ended up with word embeddings by wanting to have a better representation of words that capture semantic meaning. But what does &ldquo;capturing semantic meaning&rdquo; really mean, and how is that helpful? One of the things that we can do with semantics, is to reason about analogies: $a$ is to $b$ as $c$ is to $d$; this seems to be an ability that helps with NLP tasks.</p>
-<p>Let&rsquo;s say that we have some embedding $e_w \in \mathbb{R}^{300}$, since our embedding vectors are no longer orthogonal we can use linear algebra to describe the relationship between things in this new space; such as length, distance and so on. In the <a href="https://aclanthology.org/N13-1090.pdf">paper</a> that introduces this idea, the authors write in the abstract:</p>
+<p>Let&rsquo;s say that we have some embedding $e_w \in \mathbb{R}^{300}$, since our embedding vectors are no longer orthogonal we can use linear algebra to describe the relationship between things in this new space; such as length, distance and so on. In the <a href="https://aclanthology.org/N13-1090.pdf"  class="external-link" target="_blank" rel="noopener">paper</a> that introduces this idea, the authors write in the abstract:</p>
 <blockquote>
 <p>&hellip; For example, the male/female relationship is automatically learned, and with the induced vector representations, “King - Man + Woman” results in a vector very close to “Queen.”</p>
 </blockquote>
@@ -335,20 +346,20 @@ $$</p>
 <h3 id="cosine-similarity">
   Cosine Similarity
   <a class="heading-link" href="#cosine-similarity">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <p>Let&rsquo;s keep in mind that the dot product is related to the angle between two vectors. If $x \cdot y = 0$, then $x \perp y$, that is, they are either orthogonal or $x$ or $y = \vec{0}$. In the case that they are orthogonal, the angle between them is $90\degree$. What if $x \cdot y \neq 0$? It can be anything, from $(-\infty, \infty)$ except $0$. In similarity functions we always like the interval $[0, 1]$ more than $[-\infty, \infty]$. We can shrink the domain to be in the interval $[0, 1]$ usually by normalizing by something. We can use the Euclidean norm of the two vectors $x, y$ to normalize the size of the dot product. What does that product between the lengths of two vectors have to do with the dot product, and the angle between the vectors?</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Euclidean_vector#Dot_product">Euclidean dot product</a> formula is:</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Euclidean_vector#Dot_product"  class="external-link" target="_blank" rel="noopener">Euclidean dot product</a> formula is:</p>
 <p>$$
 A \cdot B = ||A|| \ ||B|| \cos{\theta}
 $$</p>
-<p>Which is where the <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> formula comes from:</p>
+<p>Which is where the <a href="https://en.wikipedia.org/wiki/Cosine_similarity"  class="external-link" target="_blank" rel="noopener">cosine similarity</a> formula comes from:</p>
 <p>$$
 S_c(A, B) := \cos{\theta} = \frac{A \cdot B}{||A|| \ ||B||}
 $$</p>
-<p>Remembering the <a href="https://en.wikipedia.org/wiki/Sine_and_cosine">sine and cosine</a> definitions: $\cos(90) = 0, \cos(0) = 1$ in angles.</p>
+<p>Remembering the <a href="https://en.wikipedia.org/wiki/Sine_and_cosine"  class="external-link" target="_blank" rel="noopener">sine and cosine</a> definitions: $\cos(90) = 0, \cos(0) = 1$ in angles.</p>
 <p>We can redefine our search problem for analogy reasoning as:</p>
 <p>$$
 \argmax_{w \in W} := S_c(e_w, e_{king} - e_{man} + e_{woman})
@@ -357,7 +368,7 @@ $$</p>
 <h3 id="embedding-matrix">
   Embedding Matrix
   <a class="heading-link" href="#embedding-matrix">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -369,14 +380,14 @@ $$</p>
 <h2 id="word-embeddings">
   Word Embeddings
   <a class="heading-link" href="#word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="learning-word-embeddings">
   Learning Word Embeddings
   <a class="heading-link" href="#learning-word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -384,15 +395,15 @@ $$</p>
 <p>We can randomly initialize $E$ and define $e_w = Eo_w$. The idea is to take each $o_w^{&lt;t&gt;}$ in our training pair and map it to $e_w^{&lt;t&gt;}$ via $E$. Finally, we use all $e_w^{&lt;t&gt;}$ into a fully connected layer that&rsquo;s run into a softmax. The idea is to correctly classify the next word using the optimization on the network parameters $\theta$, one of which is $E$ the embedding matrix, using cross-entropy loss.</p>
 <p>In practice, this means that the algorithm will learn embeddings of words with the directed goal of next token prediction. Since the quality of the embeddings is directly related to word prediction, the algorithm has full incentive to encode relations of similar words into one of the 300 features. This brings us to another important thing.</p>
 <p>So far we have been using semantic topics such as &ldquo;Man&rdquo; or &ldquo;Queen&rdquo;. We do this not because the embeddings will correspond to topics we understand, but to aid the explanation of the topic. In practice, deciphering what an embedding dimension really means is hard, and it amounts to guess work.</p>
-<p>Different extensions of this basic model generalize the pairing of examples for the supervised learning task. We can define a context $c$ and a target word $t$. We were using $c$ to be all the words leading up to $t$. But we are not required to do this. We can use a context where we use 2 words on the left and on the right of the target word, even just the last word. The Word2Vec algorithm is an extension of this idea, and it has a variation that uses <a href="#negative-sampling">Negative sampling</a> for generating the pairs. Let&rsquo;s discuss the Word2Vec approach first.</p>
+<p>Different extensions of this basic model generalize the pairing of examples for the supervised learning task. We can define a context $c$ and a target word $t$. We were using $c$ to be all the words leading up to $t$. But we are not required to do this. We can use a context where we use 2 words on the left and on the right of the target word, even just the last word. The Word2Vec algorithm is an extension of this idea, and it has a variation that uses <a href="#negative-sampling" >Negative sampling</a> for generating the pairs. Let&rsquo;s discuss the Word2Vec approach first.</p>
 <h3 id="word2vec">
   Word2Vec
   <a class="heading-link" href="#word2vec">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>In Word2Vec we keep using the supervised learning approach, but we pick just a pair of words $c, t$, the context and target respectively. Notice that these do not need to be adjacent words. In the <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">skip-gram</a> model, we pick a word $t$ and generate the content by picking a neighboring word $c$ at random. Therefore, the classification task is to classify which words are more likely to occur nearby each other. We will see a more sophisticated way of sampling in <a href="#negative-sampling">negative sampling</a> but for now let&rsquo;s keep in mind that we are still doing essentially the same as before:</p>
+<p>In Word2Vec we keep using the supervised learning approach, but we pick just a pair of words $c, t$, the context and target respectively. Notice that these do not need to be adjacent words. In the <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/"  class="external-link" target="_blank" rel="noopener">skip-gram</a> model, we pick a word $t$ and generate the content by picking a neighboring word $c$ at random. Therefore, the classification task is to classify which words are more likely to occur nearby each other. We will see a more sophisticated way of sampling in <a href="#negative-sampling" >negative sampling</a> but for now let&rsquo;s keep in mind that we are still doing essentially the same as before:</p>
 <p>$$
 o_c \to E \to e_c \to \text{softmax} \to \hat{y}
 $$</p>
@@ -405,11 +416,11 @@ $$</p>
 \mathcal{L}(\hat{y}, y) = - \sum_{i=1}^{10000} y_i \log \hat{y}_i
 $$</p>
 <p>So far so good, and this will work. But there&rsquo;s a problem: calculating the softmax for $10,000$ classes might be feasible, but what about bigger vocabularies? What about a million? It&rsquo;s no longer feasible. There are a few solutions.</p>
-<p>The hierarchical softmax is a similar approach to negative sampling, where the idea is to reduce the computational complexity of the $\text{softmax}$ function down from $O(|V|)$. The hierarchical softmax has a time complexity of $O(\log |V|)$. The approach is based on <a href="https://en.wikipedia.org/wiki/Huffman_coding">Huffman coding</a> a coding scheme used for lossless data compression. <a href="http://mccormickml.com/about/">Chris McCormick</a> has an amazing <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">tutorial</a> on his website where you can learn a lot more about word2vec. It seems that negative sampling and hierarchical softmax work in an equivalent manner, with negative sampling being more intuitive to understand.</p>
+<p>The hierarchical softmax is a similar approach to negative sampling, where the idea is to reduce the computational complexity of the $\text{softmax}$ function down from $O(|V|)$. The hierarchical softmax has a time complexity of $O(\log |V|)$. The approach is based on <a href="https://en.wikipedia.org/wiki/Huffman_coding"  class="external-link" target="_blank" rel="noopener">Huffman coding</a> a coding scheme used for lossless data compression. <a href="http://mccormickml.com/about/"  class="external-link" target="_blank" rel="noopener">Chris McCormick</a> has an amazing <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/"  class="external-link" target="_blank" rel="noopener">tutorial</a> on his website where you can learn a lot more about word2vec. It seems that negative sampling and hierarchical softmax work in an equivalent manner, with negative sampling being more intuitive to understand.</p>
 <h4 id="negative-sampling">
   Negative Sampling
   <a class="heading-link" href="#negative-sampling">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
@@ -433,7 +444,7 @@ $$</p>
 <h3 id="glove-word-vectors">
   GloVe Word Vectors
   <a class="heading-link" href="#glove-word-vectors">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -451,41 +462,41 @@ $$</p>
 <h2 id="applications-using-word-embeddings">
   Applications Using Word Embeddings
   <a class="heading-link" href="#applications-using-word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="sentiment-classification">
   Sentiment Classification
   <a class="heading-link" href="#sentiment-classification">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <p>Okay, enough about embeddings. How can we use them? The same way we use one-hot encodings! Let&rsquo;s walk through the steps from a basic NN to using an RNN.</p>
-<p>We could take a review, such as &ldquo;This desert is excellent&rdquo; and want to classify it into five classes, the reviews' stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.</p>
+<p>We could take a review, such as &ldquo;This desert is excellent&rdquo; and want to classify it into five classes, the reviews&rsquo; stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.</p>
 <p>We can simply plug-and-play an RNN using the same embeddings, and generate a prediction at the end, exactly like the many-to-one RNN approach. This will work a lot better for reviews that say things like: &ldquo;A great waste of my very, good, excellent time&rdquo;. The former model might score this review highly because of the presence of positive sentiment words, but an RNN might be more adept at figuring out that &ldquo;waste&rdquo; negates all the other positive words.</p>
 <h3 id="de-biasing-word-embeddings">
   De-biasing Word Embeddings
   <a class="heading-link" href="#de-biasing-word-embeddings">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <p>You might have heard of instances where earlier versions of machine translation approaches would translate the non-gendered words in English such as &ldquo;Doctor&rdquo; into gendered versions in the target language, such as &ldquo;Doctor&rdquo; in Spanish as opposed to &ldquo;Doctora&rdquo;, the female version of the noun. This is a reflection of the corpus the model was trained on. Algorithmic bias is a contentious topic because it reveals biases we either forgot were there or those that we do not like to be reminded of. In this case, male doctors were much more frequent than female doctors in the target translation language, and as such, the language model learned to estimate that empirical probability distribution. But this example, generally benign in its real outcomes, is probably the most benevolent example of algorithmic bias.</p>
-<p>As predictive models make their way into diverse aspects of life, the more important the outcome associated with the prediction generated by an algorithm, the more care we must take with the implicit biases in its training data. One noxious example is that of <a href="https://www.wired.com/story/algorithms-supposed-fix-bail-system-they-havent/">bail decisions</a>, an approach supported by <a href="https://cs.stanford.edu/people/jure/pubs/bail-qje17.pdf">quasi-experimental methods</a> as an improvement over judges deciding by themselves as measured by the change in the defendant&rsquo;s welfare.</p>
-<p>In economics, we differentiate taste-based discrimination from <a href="https://en.wikipedia.org/wiki/Statistical_discrimination_(economics)">statistical discrimination</a>. The former emphasizes the role of prejudice on decision-making, while the latter is more mechanical. In the absence of perfect information, people must make guesses, based on observable attributes to make rational decisions. A very interesting study of statistical discrimination occurred in the context of the &ldquo;ban the box&rdquo; (BTB) policies. BTB policies prevented employers from asking about job applicant&rsquo;s criminal records until late in the hiring process, under the idea that it was unfair for people with criminal records. The study however finds the opposite effect: with the absence of information, employers engage in statistical discrimination against demographic groups that include more ex-offenders. The <a href="https://www.journals.uchicago.edu/doi/full/10.1086/705880">study</a> finds that BTB policies decrease the probability of employment by $3.4$ percentage points for young, low-skilled black men.</p>
+<p>As predictive models make their way into diverse aspects of life, the more important the outcome associated with the prediction generated by an algorithm, the more care we must take with the implicit biases in its training data. One noxious example is that of <a href="https://www.wired.com/story/algorithms-supposed-fix-bail-system-they-havent/"  class="external-link" target="_blank" rel="noopener">bail decisions</a>, an approach supported by <a href="https://cs.stanford.edu/people/jure/pubs/bail-qje17.pdf"  class="external-link" target="_blank" rel="noopener">quasi-experimental methods</a> as an improvement over judges deciding by themselves as measured by the change in the defendant&rsquo;s welfare.</p>
+<p>In economics, we differentiate taste-based discrimination from <a href="https://en.wikipedia.org/wiki/Statistical_discrimination_%28economics%29"  class="external-link" target="_blank" rel="noopener">statistical discrimination</a>. The former emphasizes the role of prejudice on decision-making, while the latter is more mechanical. In the absence of perfect information, people must make guesses, based on observable attributes to make rational decisions. A very interesting study of statistical discrimination occurred in the context of the &ldquo;ban the box&rdquo; (BTB) policies. BTB policies prevented employers from asking about job applicant&rsquo;s criminal records until late in the hiring process, under the idea that it was unfair for people with criminal records. The study however finds the opposite effect: with the absence of information, employers engage in statistical discrimination against demographic groups that include more ex-offenders. The <a href="https://www.journals.uchicago.edu/doi/full/10.1086/705880"  class="external-link" target="_blank" rel="noopener">study</a> finds that BTB policies decrease the probability of employment by $3.4$ percentage points for young, low-skilled black men.</p>
 <p>Is there a way we could de-bias training data so that the predictive model aligns better with our ethical and moral compass? For the case of machine translation, a group of authors did just that.</p>
-<p>With our knowledge of embeddings it&rsquo;s pretty intuitive to understand the basics of the approach by <a href="https://arxiv.org/abs/1607.06520">Bolukbasi, et al.</a> in <em>Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</em>. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as <em>man</em> and <em>woman</em> and averaging the bias across all such pairs we find. The bias for the pair <code>(male, female)</code> for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>With our knowledge of embeddings it&rsquo;s pretty intuitive to understand the basics of the approach by <a href="https://arxiv.org/abs/1607.06520"  class="external-link" target="_blank" rel="noopener">Bolukbasi, et al.</a> in <em>Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</em>. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as <em>man</em> and <em>woman</em> and averaging the bias across all such pairs we find. The bias for the pair <code>(male, female)</code> for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/" >here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://en.wikipedia.org/wiki/Dot_product">Dot-Product | Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Dot_product"  class="external-link" target="_blank" rel="noopener">Dot-Product | Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -520,16 +531,21 @@ $$</p>
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -548,14 +564,16 @@ $$</p>
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -566,8 +584,18 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -593,6 +621,18 @@ $$</p>
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

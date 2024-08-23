@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the fourth and last week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
 This week&rsquo;s topics are as follows:
- Face Recognition  What is Face Recognition?">
+Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer?">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer"/>
-<meta name="twitter:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
-This week&rsquo;s topics are as follows:
- Face Recognition  What is Face Recognition?"/>
 
-<meta property="og:title" content="Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer" />
-<meta property="og:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
-This week&rsquo;s topics are as follows:
- Face Recognition  What is Face Recognition?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-08-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-08-02T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Convolutional Neural Networks: Week 4 | Face Recognition & Neural Style Transfer">
+  <meta name="twitter:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+This week’s topics are as follows:
+Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer?">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Convolutional Neural Networks: Week 4 | Face Recognition & Neural Style Transfer">
+  <meta property="og:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+This week’s topics are as follows:
+Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-02T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are as follows:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are as follows:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are as follows:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are as follows:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are as follows:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are as follows:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are as follows:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-08-02T00:00:00Z">
                 August 2, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               16-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are as follows:
     <a href="/categories/convolutional-neural-networks/">Convolutional Neural Networks</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -185,26 +196,26 @@ This week&rsquo;s topics are as follows:
 
       <div class="post-content">
         
-        <p>This is the fourth and last week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.</p>
+        <p>This is the fourth and last week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.</p>
 <p>This week&rsquo;s topics are as follows:</p>
 <ul>
-<li><a href="#face-recognition">Face Recognition</a>
+<li><a href="#face-recognition" >Face Recognition</a>
 <ul>
-<li><a href="#what-is-face-recognition">What is Face Recognition?</a></li>
-<li><a href="#one-shot-learning">One Shot Learning</a></li>
-<li><a href="#siamese-network">Siamese Network</a></li>
-<li><a href="#triplet-loss">Triplet Loss</a></li>
-<li><a href="#face-verification-and-binary-classification">Face Verification and Binary Classification</a></li>
+<li><a href="#what-is-face-recognition" >What is Face Recognition?</a></li>
+<li><a href="#one-shot-learning" >One Shot Learning</a></li>
+<li><a href="#siamese-network" >Siamese Network</a></li>
+<li><a href="#triplet-loss" >Triplet Loss</a></li>
+<li><a href="#face-verification-and-binary-classification" >Face Verification and Binary Classification</a></li>
 </ul>
 </li>
-<li><a href="#neural-style-transfer">Neural Style Transfer</a>
+<li><a href="#neural-style-transfer" >Neural Style Transfer</a>
 <ul>
-<li><a href="#what-is-neural-style-transfer">What is Neural Style Transfer?</a></li>
-<li><a href="#what-are-deep-cnns-learning">What are deep CNNs learning?</a></li>
-<li><a href="#cost-function">Cost Function</a>
+<li><a href="#what-is-neural-style-transfer" >What is Neural Style Transfer?</a></li>
+<li><a href="#what-are-deep-cnns-learning" >What are deep CNNs learning?</a></li>
+<li><a href="#cost-function" >Cost Function</a>
 <ul>
-<li><a href="#content-cost-function">Content Cost Function</a></li>
-<li><a href="#style-cost-function">Style Cost Function</a></li>
+<li><a href="#content-cost-function" >Content Cost Function</a></li>
+<li><a href="#style-cost-function" >Style Cost Function</a></li>
 </ul>
 </li>
 </ul>
@@ -214,14 +225,14 @@ This week&rsquo;s topics are as follows:
 <h2 id="face-recognition">
   Face Recognition
   <a class="heading-link" href="#face-recognition">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="what-is-face-recognition">
   What is Face Recognition?
   <a class="heading-link" href="#what-is-face-recognition">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -232,7 +243,7 @@ This week&rsquo;s topics are as follows:
 <h3 id="one-shot-learning">
   One Shot Learning
   <a class="heading-link" href="#one-shot-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -250,11 +261,11 @@ $$</p>
 \text{Different} &amp; \text{otherwise}
 \end{cases}
 $$</p>
-<p>Hopefully, when our colleague Alice walks in the door of the building, the picture taken from the device at the entrance will have the lowest difference when compared to Alice&rsquo;s picture in our database, amongst all other employees. Also, someone who is not our colleague, should not have a similarity less than $\tau$ amongst anybody else in our employee set. We will see how these kinks are ironed out when we get to <a href="#triplet-loss">triplet loss</a>. Let&rsquo;s first see how we can learn such a function as $\text{d}(\text{img}_1, \text{img}_2)$.</p>
+<p>Hopefully, when our colleague Alice walks in the door of the building, the picture taken from the device at the entrance will have the lowest difference when compared to Alice&rsquo;s picture in our database, amongst all other employees. Also, someone who is not our colleague, should not have a similarity less than $\tau$ amongst anybody else in our employee set. We will see how these kinks are ironed out when we get to <a href="#triplet-loss" >triplet loss</a>. Let&rsquo;s first see how we can learn such a function as $\text{d}(\text{img}_1, \text{img}_2)$.</p>
 <h3 id="siamese-network">
   Siamese Network
   <a class="heading-link" href="#siamese-network">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -279,7 +290,7 @@ $$</p>
 <h3 id="triplet-loss">
   Triplet Loss
   <a class="heading-link" href="#triplet-loss">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -306,11 +317,11 @@ $$</p>
 J = \sum_{i=1}^m \mathcal{L}(A^{(i)}, P^{(i)}, N^{(i)})
 $$</p>
 <p>Notice that to form the triplets, we need at least two pictures of the same person! For example, we could have a training set of $10,000$ images of $1,000$ people, some of them repeated more than once. You might be wondering, sure, but how do we make the triplets? It turns out that this is very important.</p>
-<p>If we choose $A, P, N$ triplets at random, then the constraints are easily satisfied; but our network will not perform well. We need to choose triplets that are &ldquo;hard&rdquo; to train on, i.e. $\text{d}(A, P) \approx \text{d}(A, N)$. By doing this, we are forcing the network to deal with the harder cases, where people look similar but are not the same person. The details on how to build triplets are described in the <a href="https://arxiv.org/abs/1503.03832">FaceNet</a> paper by Schroff, et al.</p>
+<p>If we choose $A, P, N$ triplets at random, then the constraints are easily satisfied; but our network will not perform well. We need to choose triplets that are &ldquo;hard&rdquo; to train on, i.e. $\text{d}(A, P) \approx \text{d}(A, N)$. By doing this, we are forcing the network to deal with the harder cases, where people look similar but are not the same person. The details on how to build triplets are described in the <a href="https://arxiv.org/abs/1503.03832"  class="external-link" target="_blank" rel="noopener">FaceNet</a> paper by Schroff, et al.</p>
 <h3 id="face-verification-and-binary-classification">
   Face Verification and Binary Classification
   <a class="heading-link" href="#face-verification-and-binary-classification">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -323,14 +334,14 @@ $$</p>
 <h2 id="neural-style-transfer">
   Neural Style Transfer
   <a class="heading-link" href="#neural-style-transfer">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="what-is-neural-style-transfer">
   What is Neural Style Transfer?
   <a class="heading-link" href="#what-is-neural-style-transfer">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -340,17 +351,17 @@ $$</p>
 <h3 id="what-are-deep-cnns-learning">
   What are deep CNNs learning?
   <a class="heading-link" href="#what-are-deep-cnns-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Before getting into neural style transfer, we must understand at a high level, how the input changes through the layers in a CNN. There is an amazing paper by <a href="https://arxiv.org/abs/1311.2901">Zeiler and Fergus, 2013</a> in which they come up with novel ways to visualize what visual features the filters are learning on each of the layers.</p>
+<p>Before getting into neural style transfer, we must understand at a high level, how the input changes through the layers in a CNN. There is an amazing paper by <a href="https://arxiv.org/abs/1311.2901"  class="external-link" target="_blank" rel="noopener">Zeiler and Fergus, 2013</a> in which they come up with novel ways to visualize what visual features the filters are learning on each of the layers.</p>
 <p>The gist of it is that the filters in the shallower (earlier) layers of the network learn to pick apart basic features in our image; think vertical lines, diagonal lines, etc. As we progress down the layers, deeper into the CNN, the filters start to learn more abstract features, such as concentric circles, colors and lines, etc. Even later on, we see that some filters specialize in certain regions of the face, noses, eyes, etc. So on and so forth.</p>
 <p>This is important to keep in mind, especially in the context of neural style transfer, because we can choose to give a unique weight to each layer in the combination of content and style.</p>
 <h3 id="cost-function">
   Cost Function
   <a class="heading-link" href="#cost-function">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -368,7 +379,7 @@ $$</p>
 <h4 id="content-cost-function">
   Content Cost Function
   <a class="heading-link" href="#content-cost-function">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
@@ -377,7 +388,7 @@ $$</p>
 J(G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)
 $$</p>
 <p>We will focus on the $J_{content}(C, G)$ component.</p>
-<p>Say that we are using a pre-trained CNN, such as VGG-19; and that we focus on some layer $l$. Keeping in mind what happens at <a href="#what-are-deep-cnns-learning">each layer</a> of a CNN, we will hedge our bets and pick some $l$ that&rsquo;s in the middle; not too deep and not too shallow. We will focus on the activations for this layer, $a^{[l]}$.</p>
+<p>Say that we are using a pre-trained CNN, such as VGG-19; and that we focus on some layer $l$. Keeping in mind what happens at <a href="#what-are-deep-cnns-learning" >each layer</a> of a CNN, we will hedge our bets and pick some $l$ that&rsquo;s in the middle; not too deep and not too shallow. We will focus on the activations for this layer, $a^{[l]}$.</p>
 <p>We will run both images, $C, G$, through $a^{[l]}$ and generate $a^{[l](C)}, a^{[l](G)}$. The idea is that if we compare $a^{[l](C)}, a^{[l](G)}$, and they are similar, then the images have similar content. This means that the filters are picking up similar activations on the features that they specialize on for that particular layer.</p>
 <p>This comparison is done by our old friend, the L2-norm of the difference:</p>
 <p>$$
@@ -388,20 +399,20 @@ $$</p>
 <h4 id="style-cost-function">
   Style Cost Function
   <a class="heading-link" href="#style-cost-function">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
 <p>Calculating the content cost is so far not that crazy; doing element-wise squared differences is a reasonable approach for the content. But how can we quantify &ldquo;style&rdquo; and compare our generated image $G$ to our style image $S$ to see how far off they are from each other? Here is where things get fascinating.</p>
 <p>The authors define &ldquo;style&rdquo; as the pair-wise correlation between the activations <em>across channels</em>. Since each channel learns a different feature, style is defined as the interaction between the features. More specifically their covariance. If one feature picks up stark lines, and another one picks up colors, then if both of these features have positive or negative covariance, then we can say that this is one of the elements of style. When we do a pair-wise comparison between all channels we get a pair-wise matrix, which we will call $G^{[l]}$, the style matrix. This matrix will tell us how each of the channels covary with each other, and this, in a sense, is the essence of style.</p>
-<p>We want to compare the style matrix for both $S$ our style image and $G$ our generated image, and repeat the comparison we did for the content image, but this time on the style matrix or <a href="https://en.wikipedia.org/wiki/Gram_matrix">Gram matrix</a> of both $G$ and $S$. Both style matrices $G^{[l](S)}$ and $G^{[l](G)}$ will be of the same dimensions: $n_C^{[l]} \times n_C^{[l]}$.</p>
-<p>Let&rsquo;s start with the style matrix of $S$. We define $a^{[l](S)}_{i,j,k}$ as <em>one</em> entry in the activations for layer $l$ using $S$ as the input. We will construct $G^{[l](S)}$ the Gram matrix of the activations. The entry $kk'$ in the $G^{[l](S)}$ is defined as:</p>
+<p>We want to compare the style matrix for both $S$ our style image and $G$ our generated image, and repeat the comparison we did for the content image, but this time on the style matrix or <a href="https://en.wikipedia.org/wiki/Gram_matrix"  class="external-link" target="_blank" rel="noopener">Gram matrix</a> of both $G$ and $S$. Both style matrices $G^{[l](S)}$ and $G^{[l](G)}$ will be of the same dimensions: $n_C^{[l]} \times n_C^{[l]}$.</p>
+<p>Let&rsquo;s start with the style matrix of $S$. We define $a^{[l](S)}_{i,j,k}$ as <em>one</em> entry in the activations for layer $l$ using $S$ as the input. We will construct $G^{[l](S)}$ the Gram matrix of the activations. The entry $kk&rsquo;$ in the $G^{[l](S)}$ is defined as:</p>
 <p>$$
-G^{[l](S)}_{kk'} = \sum_{i=1}^{n_H} \sum_{j=1}^{n_W} a^{[l](S)}_{i,j,k} a^{[l](S)}_{i,j,k'}
+G^{[l](S)}_{kk&rsquo;} = \sum_{i=1}^{n_H} \sum_{j=1}^{n_W} a^{[l](S)}_{i,j,k} a^{[l](S)}_{i,j,k&rsquo;}
 $$</p>
 <p>We will repeat the same, but for $G$, our generated image:</p>
 <p>$$
-G^{[l](G)}_{kk'} = \sum_{i=1}^{n_H} \sum_{j=1}^{n_W} a^{[l](G)}_{i,j,k} a^{[l](G)}_{i,j,k'}
+G^{[l](G)}_{kk&rsquo;} = \sum_{i=1}^{n_H} \sum_{j=1}^{n_W} a^{[l](G)}_{i,j,k} a^{[l](G)}_{i,j,k&rsquo;}
 $$</p>
 <p>Let&rsquo;s recap:</p>
 <ul>
@@ -411,7 +422,7 @@ $$</p>
 </ul>
 <p>Now, we compare the two in the same fashion we did for the content cost. The style cost is defined as:</p>
 <p>$$
-J^{[l]}_{style}(S, G) = \frac{1}{\left(2 n_H^{[l]} n_W^{[l]} n_C^{[l]} \right)^2} \sum_{k=1}^{n_C^{[l]}} \sum_{k'=1}^{n_C^{[l]}} \left( G_{kk'}^{[l](S)} - G_{kk'}^{[l](G)}\right)^2
+J^{[l]}_{style}(S, G) = \frac{1}{\left(2 n_H^{[l]} n_W^{[l]} n_C^{[l]} \right)^2} \sum_{k=1}^{n_C^{[l]}} \sum_{k&rsquo;=1}^{n_C^{[l]}} \left( G_{kk&rsquo;}^{[l](S)} - G_{kk&rsquo;}^{[l](G)}\right)^2
 $$</p>
 <p>Where again, the normalization factor in front was set by the authors.</p>
 <p>A final thing to notice about the style function: notice that&rsquo;s indexed by $l$; we calculate the style function at every layer $l$. The authors define the cost function at the network level as:</p>
@@ -424,7 +435,7 @@ $$</p>
 J(G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)
 $$</p>
 <p>That&rsquo;s it, this is the last week of the CNN course. Next course is sequential models, which, to me, are much more interesting in terms of applications. The programming exercises for this week were fantastic as well, and I heavily suggest that you do them as well.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">here</a>, and it&rsquo;s the first week in the sequence models course.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/" >here</a>, and it&rsquo;s the first week in the sequence models course.</p>
 
       </div>
 
@@ -459,16 +470,21 @@ $$</p>
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -487,14 +503,16 @@ $$</p>
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -505,8 +523,18 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -532,6 +560,18 @@ $$</p>
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

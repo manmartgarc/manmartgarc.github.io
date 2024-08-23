@@ -4,80 +4,65 @@
     <title>Categories on Manuel Martinez</title>
     <link>https://manmartgarc.github.io/categories/</link>
     <description>Recent content in Categories on Manuel Martinez</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://manmartgarc.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://manmartgarc.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Coursera</title>
       <link>https://manmartgarc.github.io/categories/coursera/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/coursera/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Deep Learning Specialization</title>
       <link>https://manmartgarc.github.io/categories/deep-learning-specialization/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/deep-learning-specialization/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Sequence Models</title>
       <link>https://manmartgarc.github.io/categories/sequence-models/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/sequence-models/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Convolutional Neural Networks</title>
       <link>https://manmartgarc.github.io/categories/convolutional-neural-networks/</link>
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/convolutional-neural-networks/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Structuring ML Projects</title>
       <link>https://manmartgarc.github.io/categories/structuring-ml-projects/</link>
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/structuring-ml-projects/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Improving Deep Learning Networks</title>
       <link>https://manmartgarc.github.io/categories/improving-deep-learning-networks/</link>
       <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/improving-deep-learning-networks/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Neural Networks and Deep Learning</title>
       <link>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</link>
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Tech Support</title>
       <link>https://manmartgarc.github.io/categories/tech-support/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://manmartgarc.github.io/categories/tech-support/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

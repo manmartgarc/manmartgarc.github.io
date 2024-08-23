@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Improving Deep Learning Networks: Week 2 | Optimization Algorithms · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&rsquo;s topics are:
- Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course.">
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course.">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms"/>
-<meta name="twitter:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
-This week&rsquo;s topics are:
- Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course."/>
 
-<meta property="og:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms" />
-<meta property="og:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
-This week&rsquo;s topics are:
- Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA)  Bias Correction   Gradient Descent with Momentum RMSProp Adam Learning Rate Decay   Mini-batch Gradient DescentLink to headingWe discussed gradient descent briefly on the second week of the first course." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-19T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-19T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms">
+  <meta name="twitter:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
+This week’s topics are:
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course.">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms">
+  <meta property="og:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
+This week’s topics are:
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-19T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-06-19T00:00:00Z">
                 June 19, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               11-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/improving-deep-learning-networks/">Improving Deep Learning Networks</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -188,30 +199,30 @@ This week&rsquo;s topics are:
         <p>This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#mini-batch-gradient-descent">Mini-batch Gradient Descent</a></li>
-<li><a href="#exponentially-weighted-moving-averages-ewma">Exponentially Weighted Moving Averages (EWMA)</a>
+<li><a href="#mini-batch-gradient-descent" >Mini-batch Gradient Descent</a></li>
+<li><a href="#exponentially-weighted-moving-averages-ewma" >Exponentially Weighted Moving Averages (EWMA)</a>
 <ul>
-<li><a href="#bias-correction">Bias Correction</a></li>
+<li><a href="#bias-correction" >Bias Correction</a></li>
 </ul>
 </li>
-<li><a href="#gradient-descent-with-momentum">Gradient Descent with Momentum</a></li>
-<li><a href="#rmsprop">RMSProp</a></li>
-<li><a href="#adam">Adam</a></li>
-<li><a href="#learning-rate-decay">Learning Rate Decay</a></li>
+<li><a href="#gradient-descent-with-momentum" >Gradient Descent with Momentum</a></li>
+<li><a href="#rmsprop" >RMSProp</a></li>
+<li><a href="#adam" >Adam</a></li>
+<li><a href="#learning-rate-decay" >Learning Rate Decay</a></li>
 </ul>
 <hr>
 <h2 id="mini-batch-gradient-descent">
   Mini-batch Gradient Descent
   <a class="heading-link" href="#mini-batch-gradient-descent">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>We discussed <a href="/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent">gradient descent</a> briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.</p>
+<p>We discussed <a href="/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent" >gradient descent</a> briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.</p>
 <p>The process described above is called <em>batch</em> gradient descent, that is a batch is our <em>entire</em> training set $M_{train}$. The name <em>batch</em> gradient descent is an artifact of history, so just take it as it is. Remember that <em>batch</em> gradient descent is the gradient descent version that uses all of our training samples.</p>
 <p>As we might imagine, <em>mini-batch</em> gradient descent is running gradient descent on smaller batches of our data. Formally a mini-batch is a subset of our training samples and labels, $X, Y$. We refer to batch $t$ by the tuple $(X^{\{t\}}, Y^{\{t\}})$. For example if we have $m = 5,000,000$ training samples. We might generate $5,000$ mini-batches of $1,000$ samples each. If the dimensions of $X$ are $(N_x, m)$, then the dimensions of $X^{\{t\}}$ should be $(N_x, 1000)$, and those of $Y^{\{t\}}$ should be $(1, 1000)$.</p>
 <p>The whole idea is that instead of using $X, Y$ when running gradient descent, we loop over every batch $X^{\{t\}}, Y^{\{t\}}$. On each iteration we run the vectorized implementation of our network&rsquo;s forward propagation over each batch, in this case $1,000$ samples. After this, we run the back propagation and update the parameters based on the gradients with respect to the cost function over each batch. One pass over <em>all</em> our batches is called an <em>epoch</em>. So far, this is nothing new, just chunking gradient descent to have finer-grained chunks.</p>
-<p>But why does this work? Imagine that we set our batch to be $m_b = 1$, that is, on each iteration we will simply look at one training sample and run gradient descent. If the sample we use on each iteration is <em>random</em>, then this process is called <em>stochastic</em> gradient descent. It turns out that on every iteration, gradient descent will take a step independent of other samples in our data, so the &ldquo;path down the mountain&rdquo; of gradient descent will look like a blind-wandering, kinda like Brownian motion. Think of a drunk version of gradient descent. It will also be slower because we loose the optimization that arises from vectorization, but still faster than batch gradient descent. On the other hand, imagine that $m_b = m$ so that we have a single batch, our entire data set. Now we are back to batch gradient descent, and each iteration step of gradient descent is taken by averaging each of the samples' contribution to the gradient. The &ldquo;path down the mountain&rdquo; looks much more purposeful and directed, because we have a larger sample. The tradeoff is in the amount of noise that results from smaller samples sizes as we decrease our batch size. Somewhere in between $m_b = 1$ and $m_b = m$ there is a sweet spot that allows us to iterative fast but without much random meandering.</p>
+<p>But why does this work? Imagine that we set our batch to be $m_b = 1$, that is, on each iteration we will simply look at one training sample and run gradient descent. If the sample we use on each iteration is <em>random</em>, then this process is called <em>stochastic</em> gradient descent. It turns out that on every iteration, gradient descent will take a step independent of other samples in our data, so the &ldquo;path down the mountain&rdquo; of gradient descent will look like a blind-wandering, kinda like Brownian motion. Think of a drunk version of gradient descent. It will also be slower because we loose the optimization that arises from vectorization, but still faster than batch gradient descent. On the other hand, imagine that $m_b = m$ so that we have a single batch, our entire data set. Now we are back to batch gradient descent, and each iteration step of gradient descent is taken by averaging each of the samples&rsquo; contribution to the gradient. The &ldquo;path down the mountain&rdquo; looks much more purposeful and directed, because we have a larger sample. The tradeoff is in the amount of noise that results from smaller samples sizes as we decrease our batch size. Somewhere in between $m_b = 1$ and $m_b = m$ there is a sweet spot that allows us to iterative fast but without much random meandering.</p>
 <p>If our data set is small $m \leq 2000$ then running batch gradient descent should be close to optimal in terms of speed. Otherwise, using mini-batch gradient descent will usually be faster. Batch sizes is really a hyperparameter that we might search for, however, usually it&rsquo;s some multiple of $2^n$, such as $64, 128, 256, 512$. Usually we select this based on amount of memory on our machine in the case that we cannot fit all our data in memory at once.</p>
 <blockquote>
 <p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p>
@@ -219,7 +230,7 @@ This week&rsquo;s topics are:
 <h2 id="exponentially-weighted-moving-averages-ewma">
   Exponentially Weighted Moving Averages (EWMA)
   <a class="heading-link" href="#exponentially-weighted-moving-averages-ewma">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -236,7 +247,7 @@ $$</p>
 <h3 id="bias-correction">
   Bias Correction
   <a class="heading-link" href="#bias-correction">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -250,7 +261,7 @@ $$</p>
 <h2 id="gradient-descent-with-momentum">
   Gradient Descent with Momentum
   <a class="heading-link" href="#gradient-descent-with-momentum">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -275,7 +286,7 @@ $$</p>
 <h2 id="rmsprop">
   RMSProp
   <a class="heading-link" href="#rmsprop">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -296,7 +307,7 @@ $$</p>
 <h2 id="adam">
   Adam
   <a class="heading-link" href="#adam">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -331,7 +342,7 @@ $$</p>
 <h2 id="learning-rate-decay">
   Learning Rate Decay
   <a class="heading-link" href="#learning-rate-decay">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -349,30 +360,30 @@ $$</p>
 <hr>
 <p>The topic of non-convex optimization is huge, wide-ranging and beautiful. A lot of the ideas presented in the course are part of ongoing research in the field. The course does a great job at describing modern approaches superficially, but there&rsquo;s many rabbit holes to go down in. To motivate this, checkout this pretty animation of how different optimizers navigate a complicated cost function:</p>
 <figure><img src="/images/pretty-opt.gif"
-         alt="Visualizing Optimization algorithm comparing convergence with similar algorithm" width="50%"/><figcaption>
-            <p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp#:~:text=RMSProp%2C%20root%20mean%20squared%20propagation,of%20gradients%20descent%20and%20RProp.">Visualizing Optimization algorithm comparing convergence with similar algorithm</a></p>
-        </figcaption>
+    alt="Visualizing Optimization algorithm comparing convergence with similar algorithm" width="50%"><figcaption>
+      <p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp#:~:text=RMSProp%2C%20root%20mean%20squared%20propagation,of%20gradients%20descent%20and%20RProp."  class="external-link" target="_blank" rel="noopener">Visualizing Optimization algorithm comparing convergence with similar algorithm</a></p>
+    </figcaption>
 </figure>
 
 <p>Also, in the case of a long valley:</p>
 <figure><img src="/images/pretty-opt-2.gif"
-         alt="Visualizing Optimization algorithm comparing convergence with similar algorithm" width="50%"/><figcaption>
-            <p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp#:~:text=RMSProp%2C%20root%20mean%20squared%20propagation,of%20gradients%20descent%20and%20RProp.">Visualizing Optimization algorithm comparing convergence with similar algorithm</a></p>
-        </figcaption>
+    alt="Visualizing Optimization algorithm comparing convergence with similar algorithm" width="50%"><figcaption>
+      <p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp#:~:text=RMSProp%2C%20root%20mean%20squared%20propagation,of%20gradients%20descent%20and%20RProp."  class="external-link" target="_blank" rel="noopener">Visualizing Optimization algorithm comparing convergence with similar algorithm</a></p>
+    </figcaption>
 </figure>
 
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/" >here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp">RMSProp | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp"  class="external-link" target="_blank" rel="noopener">RMSProp | Cornell University</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p><a href="https://optimization.cbe.cornell.edu/index.php?title=Adam">Adam | Cornell University</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p><a href="https://optimization.cbe.cornell.edu/index.php?title=Adam"  class="external-link" target="_blank" rel="noopener">Adam | Cornell University</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -407,16 +418,21 @@ $$</p>
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -435,14 +451,16 @@ $$</p>
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -453,8 +471,18 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -480,6 +508,18 @@ $$</p>
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

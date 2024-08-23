@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Neural Networks and Deep Learning: Week 2 | Neural Network Basics · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
 This week&rsquo;s topics are:
- Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier.">
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Binary Classification Link to heading Binary classification is a supervised learning approach where you train what&rsquo;s called a classifier.">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics"/>
-<meta name="twitter:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
-This week&rsquo;s topics are:
- Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier."/>
 
-<meta property="og:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics" />
-<meta property="og:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
-This week&rsquo;s topics are:
- Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting   Binary ClassificationLink to headingBinary classification is a supervised learning approach where you train what&rsquo;s called a classifier." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-14T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-14T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics">
+  <meta name="twitter:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+This week’s topics are:
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Binary Classification Link to heading Binary classification is a supervised learning approach where you train what’s called a classifier.">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Neural Networks and Deep Learning: Week 2 | Neural Network Basics">
+  <meta property="og:description" content="Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.
+This week’s topics are:
+Binary Classification Logistic Regression Logistic Function Gradient Descent Computation Graph Python and Vectorization Broadcasting Binary Classification Link to heading Binary classification is a supervised learning approach where you train what’s called a classifier.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-14T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-06-14T00:00:00Z">
                 June 14, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               12-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/neural-networks-and-deep-learning/">Neural Networks and Deep Learning</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -188,34 +199,34 @@ This week&rsquo;s topics are:
         <p>Here we kick off the second week of the first course in the specialization. This week is very technical and many of the details that are shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute to getting your hands dirty.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#binary-classification">Binary Classification</a></li>
-<li><a href="#logistic-regression">Logistic Regression</a></li>
-<li><a href="#logistic-function">Logistic Function</a></li>
-<li><a href="#gradient-descent">Gradient Descent</a></li>
-<li><a href="#computation-graph">Computation Graph</a></li>
-<li><a href="#python-and-vectorization">Python and Vectorization</a></li>
-<li><a href="#broadcasting">Broadcasting</a></li>
+<li><a href="#binary-classification" >Binary Classification</a></li>
+<li><a href="#logistic-regression" >Logistic Regression</a></li>
+<li><a href="#logistic-function" >Logistic Function</a></li>
+<li><a href="#gradient-descent" >Gradient Descent</a></li>
+<li><a href="#computation-graph" >Computation Graph</a></li>
+<li><a href="#python-and-vectorization" >Python and Vectorization</a></li>
+<li><a href="#broadcasting" >Broadcasting</a></li>
 </ul>
 <hr>
 <h2 id="binary-classification">
   Binary Classification
   <a class="heading-link" href="#binary-classification">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Binary classification is a supervised learning approach where you train what&rsquo;s called a <em>classifier</em>. The binary classifier is a model that learns how to discriminate between two classes from the features, think about cats and dogs. A key concept is that of <a href="https://en.wikipedia.org/wiki/Linear_separability">linearly separability</a>:</p>
+<p>Binary classification is a supervised learning approach where you train what&rsquo;s called a <em>classifier</em>. The binary classifier is a model that learns how to discriminate between two classes from the features, think about cats and dogs. A key concept is that of <a href="https://en.wikipedia.org/wiki/Linear_separability"  class="external-link" target="_blank" rel="noopener">linearly separability</a>:</p>
 <figure><img src="/images/linear-separable.png"
-         alt="The existence of a line separating the two types of points means that the data is linearly separable"/><figcaption>
-            <p><a href="https://en.wikipedia.org/wiki/Linear_separability">The existence of a line separating the two types of points means that the data is linearly separable</a></p>
-        </figcaption>
+    alt="The existence of a line separating the two types of points means that the data is linearly separable"><figcaption>
+      <p><a href="https://en.wikipedia.org/wiki/Linear_separability"  class="external-link" target="_blank" rel="noopener">The existence of a line separating the two types of points means that the data is linearly separable</a></p>
+    </figcaption>
 </figure>
 
-<p>This is a property of your training data, some datasets are linearly separable and others are not. You can a have a <em>linear</em> binary classifier that works perfectly if the data is linearly separable, and this is what a perceptron can do, the building blocks of neural nets. However, if you imagine a dataset where there is no line that separates the classes then you need a non-linear classifier, which is extremely common when you work with data in the wild. There are two main ways of adding non-linearities to a linear classifier: use a <a href="https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick">kernel</a> classifier, or you can add a <strong>single</strong> hidden layer to a perceptron, making it into a neural network. One of the best demonstrations of this principle is in creating a classifier that works on the <a href="https://www.youtube.com/watch?v=s7nRWh_3BtA">XOR</a> problem. It turns out that the latter is much more versatile.</p>
+<p>This is a property of your training data, some datasets are linearly separable and others are not. You can a have a <em>linear</em> binary classifier that works perfectly if the data is linearly separable, and this is what a perceptron can do, the building blocks of neural nets. However, if you imagine a dataset where there is no line that separates the classes then you need a non-linear classifier, which is extremely common when you work with data in the wild. There are two main ways of adding non-linearities to a linear classifier: use a <a href="https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick"  class="external-link" target="_blank" rel="noopener">kernel</a> classifier, or you can add a <strong>single</strong> hidden layer to a perceptron, making it into a neural network. One of the best demonstrations of this principle is in creating a classifier that works on the <a href="https://www.youtube.com/watch?v=s7nRWh_3BtA"  class="external-link" target="_blank" rel="noopener">XOR</a> problem. It turns out that the latter is much more versatile.</p>
 <h2 id="logistic-regression">
   Logistic Regression
   <a class="heading-link" href="#logistic-regression">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -230,30 +241,30 @@ $$</p>
 <li>Linear regression</li>
 <li>Logistic function</li>
 </ol>
-<p>Linear regression is a way of fitting a line (or plane, or something as you go up higher dimensions) to some data. The line (or plane, etc.) will be a line that minimizes some measurement of error, usually the euclidean distance between a point, and it&rsquo;s prediction. You can describe a line with two parameters, it&rsquo;s intercept $b$, and it&rsquo;s slope $w$. Linear regression finds $\hat{b}$ and $\hat{w}$ such that they minimize some loss or error. You can describe linear regression as a <a href="https://en.wikipedia.org/wiki/Linear_combination">linear combination</a> of your features and the parameters:</p>
+<p>Linear regression is a way of fitting a line (or plane, or something as you go up higher dimensions) to some data. The line (or plane, etc.) will be a line that minimizes some measurement of error, usually the euclidean distance between a point, and it&rsquo;s prediction. You can describe a line with two parameters, it&rsquo;s intercept $b$, and it&rsquo;s slope $w$. Linear regression finds $\hat{b}$ and $\hat{w}$ such that they minimize some loss or error. You can describe linear regression as a <a href="https://en.wikipedia.org/wiki/Linear_combination"  class="external-link" target="_blank" rel="noopener">linear combination</a> of your features and the parameters:</p>
 <p>$$
 \begin{equation}
 y_i = \mathbf{x}_i^Tw + b
 \end{equation}
 $$</p>
-<p>It turns out that under some assumptions, linear regression has a closed form solution, which simply means that you can take out a pen and do algebra and solve for a set of linear equations using <a href="https://en.wikipedia.org/wiki/Least_squares">least squares</a>. The next step will undo our ability to have a closed-form solution. If you&rsquo;re into economics you might now this and much more by heart, but to the extent of this course, it&rsquo;s enough to know that we have a way of fitting a line (linear classifier) to our data, and that it has a closed-form solution.</p>
+<p>It turns out that under some assumptions, linear regression has a closed form solution, which simply means that you can take out a pen and do algebra and solve for a set of linear equations using <a href="https://en.wikipedia.org/wiki/Least_squares"  class="external-link" target="_blank" rel="noopener">least squares</a>. The next step will undo our ability to have a closed-form solution. If you&rsquo;re into economics you might now this and much more by heart, but to the extent of this course, it&rsquo;s enough to know that we have a way of fitting a line (linear classifier) to our data, and that it has a closed-form solution.</p>
 <h2 id="logistic-function">
   Logistic Function
   <a class="heading-link" href="#logistic-function">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>We now have a way of fitting a line to our data. However, that line&rsquo;s domain, it&rsquo;s range of values, ranges over all the real numbers $\mathbb{R}$. Our linear regression could output any number, but we want probabilities. It turns out that there is a nice way to map the real numbers $\mathbb{R}$, or the interval $[-\infty, \infty]$ into the interval $(0, 1)$. You can do this with a type of <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a>, called the standard <a href="https://en.wikipedia.org/wiki/Logistic_function">logistic function</a>:</p>
+<p>We now have a way of fitting a line to our data. However, that line&rsquo;s domain, it&rsquo;s range of values, ranges over all the real numbers $\mathbb{R}$. Our linear regression could output any number, but we want probabilities. It turns out that there is a nice way to map the real numbers $\mathbb{R}$, or the interval $[-\infty, \infty]$ into the interval $(0, 1)$. You can do this with a type of <a href="https://en.wikipedia.org/wiki/Sigmoid_function"  class="external-link" target="_blank" rel="noopener">sigmoid function</a>, called the standard <a href="https://en.wikipedia.org/wiki/Logistic_function"  class="external-link" target="_blank" rel="noopener">logistic function</a>:</p>
 <p>$$
 \begin{equation}
 \sigma(x) = f(x) = \frac{1}{1+e^{-x}}
 \end{equation}
 $$</p>
 <figure><img src="/images/logistic.png"
-         alt="Standard Logistic Function"/><figcaption>
-            <p><a href="https://en.wikipedia.org/wiki/Logistic_function">Standard Logistic Function</a></p>
-        </figcaption>
+    alt="Standard Logistic Function"><figcaption>
+      <p><a href="https://en.wikipedia.org/wiki/Logistic_function"  class="external-link" target="_blank" rel="noopener">Standard Logistic Function</a></p>
+    </figcaption>
 </figure>
 
 <p>If $x$ is large, then $\sigma(x) \approx 1$, if $x$ is small, then $\sigma(x) \approx 0$, and everything in between in a <em>continuous</em> fashion. This is how we get our probabilities. Remember that any number $x^0 = 1$ so when $x = 0$ then $\sigma(0) = 0.5$</p>
@@ -263,7 +274,7 @@ $$</p>
 P(y = 1 \mid x) = \hat{y} = \sigma(\mathbf{x}_i^Tw + b)
 \end{equation}
 $$</p>
-<p>We literally just pass our linear regression estimate through a sigmoid function. It turns out that we no longer have access to a nice closed-form solution. This means that we will need to find the parameters $w, b$ via numerical optimization. Now, how do we know this amounts to estimating the probabilities? There is a lot of work done on this, under the name of <a href="https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf">maximum-likelihood estimation</a> (MLE). For now assume that what you get out are estimates of the probabilities.</p>
+<p>We literally just pass our linear regression estimate through a sigmoid function. It turns out that we no longer have access to a nice closed-form solution. This means that we will need to find the parameters $w, b$ via numerical optimization. Now, how do we know this amounts to estimating the probabilities? There is a lot of work done on this, under the name of <a href="https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf"  class="external-link" target="_blank" rel="noopener">maximum-likelihood estimation</a> (MLE). For now assume that what you get out are estimates of the probabilities.</p>
 <p>Let&rsquo;s pack our model&rsquo;s parameters $w, b$ into a single vector $\theta$, so that $\theta_0 = b, \theta_1 = w_0$, etc. Now we can have many parameters, one for each feature in our input, so that feature $i$ maps to $\theta_{i+1}$ since $b$ is an additive constant. Now our logistic regression looks like this:</p>
 <p>$$
 \begin{equation}
@@ -274,7 +285,7 @@ $$</p>
 <h2 id="gradient-descent">
   Gradient Descent
   <a class="heading-link" href="#gradient-descent">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -286,11 +297,11 @@ $$</p>
 <h2 id="computation-graph">
   Computation Graph
   <a class="heading-link" href="#computation-graph">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Since the calculus gets very messy, we might as well get a machine to do it for us. We describe this process to a machine via a <a href="https://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf">computational graph</a>; this is simply an ordering of the mathematical operations in our neural network. This particular ordering can be differentiated step by step using the basic rules of differentiation. This is nice because as our neural networks grow deeper, the computational graph also grows bigger and so more computation is required. The process described just now is called <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a>, and it&rsquo;s the core of modern deep learning software like PyTorch or TensorFlow.</p>
+<p>Since the calculus gets very messy, we might as well get a machine to do it for us. We describe this process to a machine via a <a href="https://www.cs.cornell.edu/courses/cs5740/2017sp/lectures/04-nn-compgraph.pdf"  class="external-link" target="_blank" rel="noopener">computational graph</a>; this is simply an ordering of the mathematical operations in our neural network. This particular ordering can be differentiated step by step using the basic rules of differentiation. This is nice because as our neural networks grow deeper, the computational graph also grows bigger and so more computation is required. The process described just now is called <a href="https://en.wikipedia.org/wiki/Automatic_differentiation"  class="external-link" target="_blank" rel="noopener">automatic differentiation</a>, and it&rsquo;s the core of modern deep learning software like PyTorch or TensorFlow.</p>
 <p>With a computation graph and a way to calculate the derivatives, we can unleash gradient descent on our data. The basic steps are:</p>
 <ol>
 <li>Forward propagation: Calculate the output of our model with the current $\hat{\theta}$</li>
@@ -300,63 +311,63 @@ $$</p>
 <h2 id="python-and-vectorization">
   Python and Vectorization
   <a class="heading-link" href="#python-and-vectorization">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <p>This section shows you how to actually code these things from scratch in a relatively efficient manner. I say relatively, because in practice (or production to borrow a fancy term), you will almost never code these things up from scratch. Don&rsquo;t reinvent the wheel (unless you think the wheel is obsolete). You will most likely implement a neural network using a mature software package such as PyTorch or Tensorflow. There are still key ideas that are important to discuss.</p>
-<p><a href="https://en.wikipedia.org/wiki/Array_programming">Vectorization</a> or array programming, simply means applying a <em>single</em> operation to <em>many</em> pieces of data, it&rsquo;s a $1:M$ operation where $M$ is the size of an array. For example, this is a $1 : 1$ operation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; <span style="color:#0ff;font-weight:bold">&#34;w&#34;</span>.upper()
-<span style="color:#0ff;font-weight:bold">&#34;W&#34;</span>
-</code></pre></div><p>A $1:M$ operation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>.join(<span style="color:#fff;font-weight:bold">map</span>(<span style="color:#fff;font-weight:bold">str</span>.upper, <span style="color:#0ff;font-weight:bold">&#34;Hello, World!&#34;</span>))
-<span style="color:#0ff;font-weight:bold">&#34;HELLO, WORLD!&#34;</span>
-</code></pre></div><p>In Python, strings are <em>sequences</em> of characters, therefore they are iterable. What the code above does is it applies the <code>str.upper</code> method to all the elements of a string.</p>
+<p><a href="https://en.wikipedia.org/wiki/Array_programming"  class="external-link" target="_blank" rel="noopener">Vectorization</a> or array programming, simply means applying a <em>single</em> operation to <em>many</em> pieces of data, it&rsquo;s a $1:M$ operation where $M$ is the size of an array. For example, this is a $1 : 1$ operation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#a5d6ff">&#34;w&#34;</span><span style="color:#ff7b72;font-weight:bold">.</span>upper()
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;W&#34;</span>
+</span></span></code></pre></div><p>A $1:M$ operation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#a5d6ff">&#34;&#34;</span><span style="color:#ff7b72;font-weight:bold">.</span>join(map(str<span style="color:#ff7b72;font-weight:bold">.</span>upper, <span style="color:#a5d6ff">&#34;Hello, World!&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;HELLO, WORLD!&#34;</span>
+</span></span></code></pre></div><p>In Python, strings are <em>sequences</em> of characters, therefore they are iterable. What the code above does is it applies the <code>str.upper</code> method to all the elements of a string.</p>
 <p>This is <em>technically</em> vectorization, but in general, the term vectorization usually refers to math and linear algebra operations. If we have two vectors $x, y$ both of size $3$, and we want to calculate the dot product between the two, we would have to write a loop:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>]
-y = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>]
-total = <span style="color:#ff0;font-weight:bold">0</span>
-<span style="color:#fff;font-weight:bold">for</span> left, right in <span style="color:#fff;font-weight:bold">zip</span>(x, y):
-    total += left * right
-<span style="color:#fff;font-weight:bold">print</span>(total)
-<span style="color:#ff0;font-weight:bold">14</span>
-</code></pre></div><p>Compare this with the NumPy version:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>])
-y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>])
-total = x @ y  <span style="color:#007f7f"># @ is the dot operator</span>
-<span style="color:#fff;font-weight:bold">print</span>(total)
-<span style="color:#ff0;font-weight:bold">14</span>
-</code></pre></div><p>You might think, oh well, it&rsquo;s just syntactic sugar hiding the loop from us. But it&rsquo;s much more than that. I suggest you time your code using much larger vectors and see how they measure up. Without getting bogged down into the details of how NumPy actually works, this is related to how NumPy uses pre-compiled C libraries to perform arithmetic and linear algebra operations. There&rsquo;s a conversion cost to go from Python objects to NumPy (which uses C under the hood), but once you converted them, the speed-ups are tremendous. Here is more information about <a href="https://numpy.org/doc/stable/user/whatisnumpy.html#why-is-numpy-fast">why is NumPy fast</a>.</p>
-<p>This concept even goes down to the hardware level and is present generally in computer architecture and design. Older machines usually subscribed to a single-instruction single-data (SISD) architecture. Where one instruction is applied to one piece of data in a CPU cycle. However, with <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">single-instruction multiple-data (SIMD)</a>, you can apply a single instruction to multiple pieces of data in parallel. In a very general sense, this is why GPUs are so powerful in performing the same task (dot product) to arrays of things (images).</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> [<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>]
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> [<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>]
+</span></span><span style="display:flex;"><span>total <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> left, right <span style="color:#ff7b72;font-weight:bold">in</span> zip(x, y):
+</span></span><span style="display:flex;"><span>    total <span style="color:#ff7b72;font-weight:bold">+=</span> left <span style="color:#ff7b72;font-weight:bold">*</span> right
+</span></span><span style="display:flex;"><span>print(total)
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">14</span>
+</span></span></code></pre></div><p>Compare this with the NumPy version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>])
+</span></span><span style="display:flex;"><span>total <span style="color:#ff7b72;font-weight:bold">=</span> x <span style="color:#ff7b72;font-weight:bold">@</span> y  <span style="color:#8b949e;font-style:italic"># @ is the dot operator</span>
+</span></span><span style="display:flex;"><span>print(total)
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">14</span>
+</span></span></code></pre></div><p>You might think, oh well, it&rsquo;s just syntactic sugar hiding the loop from us. But it&rsquo;s much more than that. I suggest you time your code using much larger vectors and see how they measure up. Without getting bogged down into the details of how NumPy actually works, this is related to how NumPy uses pre-compiled C libraries to perform arithmetic and linear algebra operations. There&rsquo;s a conversion cost to go from Python objects to NumPy (which uses C under the hood), but once you converted them, the speed-ups are tremendous. Here is more information about <a href="https://numpy.org/doc/stable/user/whatisnumpy.html#why-is-numpy-fast"  class="external-link" target="_blank" rel="noopener">why is NumPy fast</a>.</p>
+<p>This concept even goes down to the hardware level and is present generally in computer architecture and design. Older machines usually subscribed to a single-instruction single-data (SISD) architecture. Where one instruction is applied to one piece of data in a CPU cycle. However, with <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data"  class="external-link" target="_blank" rel="noopener">single-instruction multiple-data (SIMD)</a>, you can apply a single instruction to multiple pieces of data in parallel. In a very general sense, this is why GPUs are so powerful in performing the same task (dot product) to arrays of things (images).</p>
 <h2 id="broadcasting">
   Broadcasting
   <a class="heading-link" href="#broadcasting">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <p>The term broadcasting describes how NumPy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations, so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations. There are, however, cases where broadcasting is a bad idea because it leads to inefficient use of memory that slows computation. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>I copied and pasted the definition above from the NumPy documentation because I&rsquo;ve seen the term broadcasting be misunderstood by people. The idea is very basic: if you have a vectorized operation with arrays of different sizes in NumPy, it will &ldquo;pad&rdquo; the smaller one to match the bigger one.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>])
-y = np.array([<span style="color:#ff0;font-weight:bold">1</span>])
-<span style="color:#fff;font-weight:bold">print</span>(x + y)
-[<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>, <span style="color:#ff0;font-weight:bold">6</span>]
-</code></pre></div><p>Here we have that $x$ is a $5$ dimensional vector, while $y$ is a $1$ dimensional vector. We used the vectorized sum operator, which should perform an element-wise addition. That is, adding $y_0$ to every element $x_i$. But $y$ is smaller than $x$! So actually the $y$ vector is <em>broadcasted</em> (or padded) over the $x$ vector so that under the hood this is actually happening:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>])
-y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>])
-<span style="color:#fff;font-weight:bold">print</span>(x + y)
-[<span style="color:#ff0;font-weight:bold">2</span> <span style="color:#ff0;font-weight:bold">3</span> <span style="color:#ff0;font-weight:bold">4</span> <span style="color:#ff0;font-weight:bold">5</span> <span style="color:#ff0;font-weight:bold">6</span>]
-</code></pre></div><p>Which brings us back to vectorization. This is the most basic example of broadcasting, and there are some times when the dimensions of the arrays are incompatible, such as matrix multiplication. You can rely on NumPy complaining when this occurs.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">4</span>, <span style="color:#a5d6ff">5</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>])
+</span></span><span style="display:flex;"><span>print(x <span style="color:#ff7b72;font-weight:bold">+</span> y)
+</span></span><span style="display:flex;"><span>[<span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">4</span>, <span style="color:#a5d6ff">5</span>, <span style="color:#a5d6ff">6</span>]
+</span></span></code></pre></div><p>Here we have that $x$ is a $5$ dimensional vector, while $y$ is a $1$ dimensional vector. We used the vectorized sum operator, which should perform an element-wise addition. That is, adding $y_0$ to every element $x_i$. But $y$ is smaller than $x$! So actually the $y$ vector is <em>broadcasted</em> (or padded) over the $x$ vector so that under the hood this is actually happening:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">4</span>, <span style="color:#a5d6ff">5</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>])
+</span></span><span style="display:flex;"><span>print(x <span style="color:#ff7b72;font-weight:bold">+</span> y)
+</span></span><span style="display:flex;"><span>[<span style="color:#a5d6ff">2</span> <span style="color:#a5d6ff">3</span> <span style="color:#a5d6ff">4</span> <span style="color:#a5d6ff">5</span> <span style="color:#a5d6ff">6</span>]
+</span></span></code></pre></div><p>Which brings us back to vectorization. This is the most basic example of broadcasting, and there are some times when the dimensions of the arrays are incompatible, such as matrix multiplication. You can rely on NumPy complaining when this occurs.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/" >here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#broadcasting">Broadcasting</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#broadcasting"  class="external-link" target="_blank" rel="noopener">Broadcasting</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
       </div>
 
@@ -391,16 +402,21 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -419,14 +435,16 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -437,8 +455,18 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -464,6 +492,18 @@ y = np.array([<span style="color:#ff0;font-weight:bold">1</span>, <span style="c
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>

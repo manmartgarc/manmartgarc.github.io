@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>
+
+<head>
+  <title>
   Structuring ML Projects: Week 2 | ML Strategy · Manuel Martinez
 </title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
@@ -14,24 +15,30 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the second week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
 This week&rsquo;s topics are:
- Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?">
+Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate Mismatched Training and Dev/Test Sets Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch Learning from Multiple Tasks Transfer Learning Multitask Learning End-to-end Deep Learning What is End-to-end Deep Learning?">
 <meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Structuring ML Projects: Week 2 | ML Strategy"/>
-<meta name="twitter:description" content="This is the second week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
-This week&rsquo;s topics are:
- Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?"/>
 
-<meta property="og:title" content="Structuring ML Projects: Week 2 | ML Strategy" />
-<meta property="og:description" content="This is the second week of the third course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
-This week&rsquo;s topics are:
- Error Analysis  Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate   Mismatched Training and Dev/Test Sets  Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch   Learning from Multiple Tasks  Transfer Learning Multitask Learning   End-to-end Deep Learning  What is End-to-end Deep Learning?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-27T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Structuring ML Projects: Week 2 | ML Strategy">
+  <meta name="twitter:description" content="This is the second week of the third course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week’s topics are:
+Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate Mismatched Training and Dev/Test Sets Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch Learning from Multiple Tasks Transfer Learning Multitask Learning End-to-end Deep Learning What is End-to-end Deep Learning?">
 
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Structuring ML Projects: Week 2 | ML Strategy">
+  <meta property="og:description" content="This is the second week of the third course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
+This week’s topics are:
+Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data Build our First System Quickly, then Iterate Mismatched Training and Dev/Test Sets Training and Testing on Different Distributions Bias and Variance with Mismatched Data Distributions Addressing Data Mismatch Learning from Multiple Tasks Transfer Learning Multitask Learning End-to-end Deep Learning What is End-to-end Deep Learning?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-27T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Deep Learning">
 
 
 
@@ -39,12 +46,14 @@ This week&rsquo;s topics are:
 <link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.36f76aaf39a14ecf5c3a3c6250dcaf06c238b3d8365d17d646f95cb1874e852b.css" integrity="sha256-NvdqrzmhTs9cOjxiUNyvBsI4s9g2XRfWRvlcsYdOhSs=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +63,7 @@ This week&rsquo;s topics are:
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.216e36d3eaf6f4cdfd67dc1200c49a8169e6478102977b3e9ac51a064c57054c.css" integrity="sha256-IW420&#43;r29M39Z9wSAMSagWnmR4ECl3s&#43;msUaBkxXBUw=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -64,6 +73,7 @@ This week&rsquo;s topics are:
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
 
@@ -76,13 +86,12 @@ This week&rsquo;s topics are:
 
 
 
-<meta name="generator" content="Hugo 0.92.2" />
 
 
 
 
 
-  </head>
+</head>
 
 
 
@@ -93,7 +102,7 @@ This week&rsquo;s topics are:
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +110,33 @@ This week&rsquo;s topics are:
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about/">About</a>
+              <a class="navigation-link " href="/about/">About</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/posts/">Posts</a>
+              <a class="navigation-link " href="/posts/">Posts</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects/">Projects</a>
+              <a class="navigation-link " href="/projects/">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cv/">CV</a>
+              <a class="navigation-link " href="/cv/">CV</a>
             </li>
           
         
@@ -151,19 +162,19 @@ This week&rsquo;s topics are:
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2023-06-27T00:00:00Z">
                 June 27, 2023
               </time>
             </span>
             <span class="reading-time">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
               16-minute read
             </span>
           </div>
           
           <div class="categories">
-  <i class="fa fa-folder" aria-hidden="true"></i>
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
     <a href="/categories/coursera/">Coursera</a>
       <span class="separator">•</span>
     <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
@@ -171,13 +182,13 @@ This week&rsquo;s topics are:
     <a href="/categories/structuring-ml-projects/">Structuring ML Projects</a></div>
 
           <div class="tags">
-  <i class="fa fa-tag" aria-hidden="true"></i>
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
     <span class="tag">
-      <a href="/tags/machine-learning/">machine learning</a>
+      <a href="/tags/machine-learning/">Machine Learning</a>
     </span>
       <span class="separator">•</span>
     <span class="tag">
-      <a href="/tags/deep-learning/">deep learning</a>
+      <a href="/tags/deep-learning/">Deep Learning</a>
     </span></div>
 
         </div>
@@ -185,33 +196,33 @@ This week&rsquo;s topics are:
 
       <div class="post-content">
         
-        <p>This is the second week of the <a href="https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning">third course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Specialization</a> offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.</p>
+        <p>This is the second week of the <a href="https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning"  class="external-link" target="_blank" rel="noopener">third course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.</p>
 <p>This week&rsquo;s topics are:</p>
 <ul>
-<li><a href="#error-analysis">Error Analysis</a>
+<li><a href="#error-analysis" >Error Analysis</a>
 <ul>
-<li><a href="#carrying-out-error-analysis">Carrying out Error Analysis</a></li>
-<li><a href="#cleaning-up-incorrectly-labeled-data">Cleaning up Incorrectly Labeled Data</a></li>
-<li><a href="#build-our-first-system-quickly-then-iterate">Build our First System Quickly, then Iterate</a></li>
+<li><a href="#carrying-out-error-analysis" >Carrying out Error Analysis</a></li>
+<li><a href="#cleaning-up-incorrectly-labeled-data" >Cleaning up Incorrectly Labeled Data</a></li>
+<li><a href="#build-our-first-system-quickly-then-iterate" >Build our First System Quickly, then Iterate</a></li>
 </ul>
 </li>
-<li><a href="#mismatched-training-and-devtest-sets">Mismatched Training and Dev/Test Sets</a>
+<li><a href="#mismatched-training-and-devtest-sets" >Mismatched Training and Dev/Test Sets</a>
 <ul>
-<li><a href="#training-and-testing-on-different-distributions">Training and Testing on Different Distributions</a></li>
-<li><a href="#bias-and-variance-with-mismatched-data-distributions">Bias and Variance with Mismatched Data Distributions</a></li>
-<li><a href="#addressing-data-mismatch">Addressing Data Mismatch</a></li>
+<li><a href="#training-and-testing-on-different-distributions" >Training and Testing on Different Distributions</a></li>
+<li><a href="#bias-and-variance-with-mismatched-data-distributions" >Bias and Variance with Mismatched Data Distributions</a></li>
+<li><a href="#addressing-data-mismatch" >Addressing Data Mismatch</a></li>
 </ul>
 </li>
-<li><a href="#learning-from-multiple-tasks">Learning from Multiple Tasks</a>
+<li><a href="#learning-from-multiple-tasks" >Learning from Multiple Tasks</a>
 <ul>
-<li><a href="#transfer-learning">Transfer Learning</a></li>
-<li><a href="#multitask-learning">Multitask Learning</a></li>
+<li><a href="#transfer-learning" >Transfer Learning</a></li>
+<li><a href="#multitask-learning" >Multitask Learning</a></li>
 </ul>
 </li>
-<li><a href="#end-to-end-deep-learning">End-to-end Deep Learning</a>
+<li><a href="#end-to-end-deep-learning" >End-to-end Deep Learning</a>
 <ul>
-<li><a href="#what-is-end-to-end-deep-learning">What is End-to-end Deep Learning?</a></li>
-<li><a href="#whether-to-use-end-to-end-deep-learning">Whether to use End-to-end Deep Learning</a></li>
+<li><a href="#what-is-end-to-end-deep-learning" >What is End-to-end Deep Learning?</a></li>
+<li><a href="#whether-to-use-end-to-end-deep-learning" >Whether to use End-to-end Deep Learning</a></li>
 </ul>
 </li>
 </ul>
@@ -219,14 +230,14 @@ This week&rsquo;s topics are:
 <h2 id="error-analysis">
   Error Analysis
   <a class="heading-link" href="#error-analysis">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="carrying-out-error-analysis">
   Carrying out Error Analysis
   <a class="heading-link" href="#carrying-out-error-analysis">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -238,17 +249,17 @@ This week&rsquo;s topics are:
 <h3 id="cleaning-up-incorrectly-labeled-data">
   Cleaning up Incorrectly Labeled Data
   <a class="heading-link" href="#cleaning-up-incorrectly-labeled-data">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>If we suspect, or can even confirm, that our training set has mislabeled samples, then it might because for concern. There is a lot of literature in econometrics that investigates <a href="https://en.wikipedia.org/wiki/Observational_error">measurement or observational error</a> and the effect this has on causal inference. Since we are not that interested in causal inference but on prediction instead, we won&rsquo;t go too much into the details. However, a key concept from the field is characterizing the &ldquo;issues&rdquo; in our data. The most important thing is whether the issues are random or systematic. For example, if mislabeled examples are random with respect to other features, then it&rsquo;s as good as we can hope for. However, if all the mislabeled examples are related to black cats, then it&rsquo;s definitely an issue.</p>
+<p>If we suspect, or can even confirm, that our training set has mislabeled samples, then it might because for concern. There is a lot of literature in econometrics that investigates <a href="https://en.wikipedia.org/wiki/Observational_error"  class="external-link" target="_blank" rel="noopener">measurement or observational error</a> and the effect this has on causal inference. Since we are not that interested in causal inference but on prediction instead, we won&rsquo;t go too much into the details. However, a key concept from the field is characterizing the &ldquo;issues&rdquo; in our data. The most important thing is whether the issues are random or systematic. For example, if mislabeled examples are random with respect to other features, then it&rsquo;s as good as we can hope for. However, if all the mislabeled examples are related to black cats, then it&rsquo;s definitely an issue.</p>
 <p>The key is that if our mislabeled examples are in our training set, and if the mislabeling is occurring at random, then we can rely on our model being robust to the mislabeling.</p>
-<p>We can implement the same approach described in the <a href="#carrying-out-error-analysis">previous section</a> and add a tag where the source of error is incorrectly labeled data. We might consider engaging in the usually costly process of relabeling if a majority of the errors come from mislabeled data. A key thing is to make sure that <em>both</em> the dev and test set go through the same changes, i.e. we don&rsquo;t want to fix labels on the dev set but not on the test set. Whether the training set comes from a different distribution than the dev/test set is a topic covered in the <a href="#mismatched-training-and-devtest-sets">following section</a>.</p>
+<p>We can implement the same approach described in the <a href="#carrying-out-error-analysis" >previous section</a> and add a tag where the source of error is incorrectly labeled data. We might consider engaging in the usually costly process of relabeling if a majority of the errors come from mislabeled data. A key thing is to make sure that <em>both</em> the dev and test set go through the same changes, i.e. we don&rsquo;t want to fix labels on the dev set but not on the test set. Whether the training set comes from a different distribution than the dev/test set is a topic covered in the <a href="#mismatched-training-and-devtest-sets" >following section</a>.</p>
 <h3 id="build-our-first-system-quickly-then-iterate">
   Build our First System Quickly, then Iterate
   <a class="heading-link" href="#build-our-first-system-quickly-then-iterate">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -256,14 +267,14 @@ This week&rsquo;s topics are:
 <h2 id="mismatched-training-and-devtest-sets">
   Mismatched Training and Dev/Test Sets
   <a class="heading-link" href="#mismatched-training-and-devtest-sets">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="training-and-testing-on-different-distributions">
   Training and Testing on Different Distributions
   <a class="heading-link" href="#training-and-testing-on-different-distributions">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -296,7 +307,7 @@ This week&rsquo;s topics are:
 <h3 id="bias-and-variance-with-mismatched-data-distributions">
   Bias and Variance with Mismatched Data Distributions
   <a class="heading-link" href="#bias-and-variance-with-mismatched-data-distributions">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -339,18 +350,18 @@ This week&rsquo;s topics are:
 <li>Human-level error: We are assuming that this is approximately equal to Bayes error rate.</li>
 <li>Training error: The difference between training error and human-level error is the amount of avoidable bias. If this is high, then we have a bias problem.</li>
 <li>Train-dev error: The difference between the train-dev error and the training error is the amount measuring the inability of our model to generalize to unseen data. If this is high, then we have a variance problem.</li>
-<li>Dev error: The difference between the dev error and the train-dev error is the error attributable to <em>data mismatch</em>. Remember, the main difference between the dev set and the train-dev set is that they come from different distributions. Which means that this is beyond its ability to generalize. We will see ways of tackling this in the <a href="#addressing-data-mismatch">next section</a>.</li>
+<li>Dev error: The difference between the dev error and the train-dev error is the error attributable to <em>data mismatch</em>. Remember, the main difference between the dev set and the train-dev set is that they come from different distributions. Which means that this is beyond its ability to generalize. We will see ways of tackling this in the <a href="#addressing-data-mismatch" >next section</a>.</li>
 <li>Test error: The difference between test error and dev error is the amount to which our model is overfitting the dev set. Remember that both our dev and test sets should come from the same distribution, so the difference between the two is equivalent to the difference between the train and training-dev set errors. It&rsquo;s a lack of generalization, or a variance problem.</li>
 </ul>
 <p>The key takeaway is that there are cases when we might desire having a mismatched training and dev/test set distributions. Usually, having more data will help our model perform better; especially if not doing means throwing away a lot of data. However, by doing this we are introducing a new kind of error: data mismatch error. When our training set comes from a different distribution than our dev/test sets, our traditional bias/variance problem will be biased or &ldquo;off&rdquo; by some amount. This &ldquo;off&rdquo; amount will come from the <strong>data mismatch</strong>; that is the degree to which our training set and dev/test sets come from different distributions. This error should be totally expected. What can we expect by training a model to classify cats using pictures of lions and then evaluating them taxonomic drawings of lions?</p>
 <h3 id="addressing-data-mismatch">
   Addressing Data Mismatch
   <a class="heading-link" href="#addressing-data-mismatch">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>If our training and dev/test sets come from different distributions and our <a href="#bias-and-variance-with-mismatched-data-distributions">improved bias/variance</a> analysis indicates that we have a data mismatch issue, what can we do?</p>
+<p>If our training and dev/test sets come from different distributions and our <a href="#bias-and-variance-with-mismatched-data-distributions" >improved bias/variance</a> analysis indicates that we have a data mismatch issue, what can we do?</p>
 <p>Unfortunately there are no systematic ways of addressing this problem. At the end of the day, we have data that comes from two different distributions. However, there are a couple of things to do that might help us <em>describe</em> the difference in distributions.</p>
 <p>The first thing to do is to carry out error analysis and try to understand how the two distributions are different. Notice that this is not an empirical approach, and it might be problematic for high-dimensional data, as more things can be different.</p>
 <p>Another thing to do is to make training data &ldquo;more similar&rdquo; or to get more data that comes from the distribution of the dev/test sets.</p>
@@ -358,14 +369,14 @@ This week&rsquo;s topics are:
 <h2 id="learning-from-multiple-tasks">
   Learning from Multiple Tasks
   <a class="heading-link" href="#learning-from-multiple-tasks">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="transfer-learning">
   Transfer Learning
   <a class="heading-link" href="#transfer-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -385,7 +396,7 @@ This week&rsquo;s topics are:
 <h3 id="multitask-learning">
   Multitask Learning
   <a class="heading-link" href="#multitask-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -395,14 +406,14 @@ This week&rsquo;s topics are:
 <h2 id="end-to-end-deep-learning">
   End-to-end Deep Learning
   <a class="heading-link" href="#end-to-end-deep-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
 <h3 id="what-is-end-to-end-deep-learning">
   What is End-to-end Deep Learning?
   <a class="heading-link" href="#what-is-end-to-end-deep-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -411,12 +422,12 @@ This week&rsquo;s topics are:
 <h3 id="whether-to-use-end-to-end-deep-learning">
   Whether to use End-to-end Deep Learning
   <a class="heading-link" href="#whether-to-use-end-to-end-deep-learning">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
 <p>The good thing about end-to-end learning is that we don&rsquo;t need to rely that much on manual feature engineering. In a way, this process is more <em>transparent</em> when compared to a heavily engineered process. This is why we need more data. On the other hand, many hand-designed components are the result of intense research; potentially giving us large efficiency gains. Whether to use end-to-end deep learning depends on if you can keep the baby and throw away the bathwater, which is not always possible. Finally, end-to-end approaches are a lot more data hungry. Therefore, depending on the amount of data available to us, it might not even be a feasible approach.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">here</a>.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/" >here</a>.</p>
 
       </div>
 
@@ -451,16 +462,21 @@ This week&rsquo;s topics are:
 </script>
         
         
+        
+        
+
+        
+        
       </footer>
     </article>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
-    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
   
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
-    integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
-    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body,
       {
         delimiters: [
@@ -479,14 +495,16 @@ This week&rsquo;s topics are:
   <section class="container">
     ©
     
-    2023
+      2023 -
+    
+    2024
      Manuel Martinez 
     ·
     
       Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
     ·
     
-    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
 </footer>
@@ -497,8 +515,18 @@ This week&rsquo;s topics are:
 
   
   
-  <script src="/js/coder.min.feb19891e099ae3b6acdd502ba6e51d722353e69bb0f9478ed80a05450af78d2.js" integrity="sha256-/rGYkeCZrjtqzdUCum5R1yI1Pmm7D5R47YCgVFCveNI="></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
+
+  
+
+  
+
+
+  
+  
+
+
 
   
 
@@ -524,6 +552,18 @@ This week&rsquo;s topics are:
   gtag('config', 'G-NJLM0F56ZC');
 </script>
 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </body>
