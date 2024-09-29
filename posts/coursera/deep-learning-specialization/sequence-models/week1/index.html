@@ -15,7 +15,34 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&rsquo;s get started.
 This week&rsquo;s topics are:
-Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?">
+
+Why Sequence Models?
+Notation
+
+Representing Words
+
+
+Recurrent Neural Network
+
+Forward Propagation
+Different Types of RNNs
+Language Model and Sequence Generation
+Vanishing Gradients with RNNs
+
+
+Gated Recurrent Unit
+Long Short-Term Memory
+Bidirectional RNN
+
+
+
+  Why Sequence Models?
+  
+    
+    Link to heading
+  
+
+Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we&rsquo;d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:">
 <meta name="keywords" content="blog,developer,personal">
 <meta name="fediverse:creator" content="" />
 
@@ -24,14 +51,14 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
   <meta name="twitter:title" content="Sequence Models: Week 1 | Recurrent Neural Networks">
   <meta name="twitter:description" content="This is the first week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let’s get started.
 This week’s topics are:
-Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?">
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models? Link to heading Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we’d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 1 | Recurrent Neural Networks">
   <meta property="og:description" content="This is the first week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let’s get started.
 This week’s topics are:
-Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models?">
+Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models? Link to heading Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we’d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -576,9 +603,6 @@ $$</p>
 
 
   
-  
-
-
 
   
 

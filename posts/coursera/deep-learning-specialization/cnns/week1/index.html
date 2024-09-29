@@ -15,7 +15,38 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week&rsquo;s topics are:
-Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
+
+Computer Vision
+Convolution
+
+Convolution in continuous land
+Convolution in discrete land
+Back to Edge Detection
+Learning the Filters
+
+
+Padding
+Strided Convolutions
+Convolutions Over Volume
+One Layer of a CNN
+
+Defining the Notation and Dimensions
+
+
+Simple CNN Example
+Pooling Layers
+Full CNN Example
+Why Convolutions?
+
+
+
+  Computer Vision
+  
+    
+    Link to heading
+  
+
+If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
 <meta name="keywords" content="blog,developer,personal">
 <meta name="fediverse:creator" content="" />
 
@@ -24,14 +55,14 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
   <meta name="twitter:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
   <meta name="twitter:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week’s topics are:
-Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
+Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision Link to heading If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
   <meta property="og:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week’s topics are:
-Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions?">
+Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision Link to heading If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -546,64 +577,64 @@ $$</p>
 </ul>
 <p>Here is table with the dimensions for each layer and also the number of parameters. Verifying the number is a great exercise to test our understanding:</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th><strong>Activation shape</strong></th>
-<th><strong>Activation size</strong></th>
-<th><strong># Parameters</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Input</td>
-<td>(32, 32, 3)</td>
-<td>3,072</td>
-<td>0</td>
-</tr>
-<tr>
-<td>CONV1 $(f=5, s=1)$</td>
-<td>(28, 28, 6)</td>
-<td>4,704</td>
-<td>456</td>
-</tr>
-<tr>
-<td>POOL1 $(f=2, s=2)$</td>
-<td>(14, 14, 6)</td>
-<td>1,176</td>
-<td>0</td>
-</tr>
-<tr>
-<td>CONV2 $(f=5, s=1)$</td>
-<td>(10, 10, 16)</td>
-<td>1,600</td>
-<td>2416</td>
-</tr>
-<tr>
-<td>POOL2 $(f=2, s=2)$</td>
-<td>(5, 5, 16)</td>
-<td>400</td>
-<td>0</td>
-</tr>
-<tr>
-<td>FC3</td>
-<td>(120, 1)</td>
-<td>120</td>
-<td>48,120</td>
-</tr>
-<tr>
-<td>FC4</td>
-<td>(84, 1)</td>
-<td>84</td>
-<td>10,164</td>
-</tr>
-<tr>
-<td>Softmax</td>
-<td>(10, 1)</td>
-<td>10</td>
-<td>850</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"><strong>Activation shape</strong></th>
+          <th style="text-align: left"><strong>Activation size</strong></th>
+          <th style="text-align: left"><strong># Parameters</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Input</td>
+          <td style="text-align: left">(32, 32, 3)</td>
+          <td style="text-align: left">3,072</td>
+          <td style="text-align: left">0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONV1 $(f=5, s=1)$</td>
+          <td style="text-align: left">(28, 28, 6)</td>
+          <td style="text-align: left">4,704</td>
+          <td style="text-align: left">456</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">POOL1 $(f=2, s=2)$</td>
+          <td style="text-align: left">(14, 14, 6)</td>
+          <td style="text-align: left">1,176</td>
+          <td style="text-align: left">0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONV2 $(f=5, s=1)$</td>
+          <td style="text-align: left">(10, 10, 16)</td>
+          <td style="text-align: left">1,600</td>
+          <td style="text-align: left">2416</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">POOL2 $(f=2, s=2)$</td>
+          <td style="text-align: left">(5, 5, 16)</td>
+          <td style="text-align: left">400</td>
+          <td style="text-align: left">0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FC3</td>
+          <td style="text-align: left">(120, 1)</td>
+          <td style="text-align: left">120</td>
+          <td style="text-align: left">48,120</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FC4</td>
+          <td style="text-align: left">(84, 1)</td>
+          <td style="text-align: left">84</td>
+          <td style="text-align: left">10,164</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Softmax</td>
+          <td style="text-align: left">(10, 1)</td>
+          <td style="text-align: left">10</td>
+          <td style="text-align: left">850</td>
+      </tr>
+  </tbody>
 </table>
 <p>Notice how the activation sizes decrease through the layers. Also notice how around 94% of all the parameters in the network are part of the fully connected layers. This network has a grand total of $62,006$ parameters. Which is a lot less than hundreds of millions.</p>
 <h2 id="why-convolutions">
@@ -726,9 +757,6 @@ $$</p>
 
 
   
-  
-
-
 
   
 

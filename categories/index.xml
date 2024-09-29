@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Manuel Martinez</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Sep 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://manmartgarc.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech Support</title>
+      <link>https://manmartgarc.github.io/categories/tech-support/</link>
+      <pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://manmartgarc.github.io/categories/tech-support/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Coursera</title>
       <link>https://manmartgarc.github.io/categories/coursera/</link>
@@ -55,13 +62,6 @@
       <link>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</link>
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
       <guid>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tech Support</title>
-      <link>https://manmartgarc.github.io/categories/tech-support/</link>
-      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/categories/tech-support/</guid>
       <description></description>
     </item>
   </channel>

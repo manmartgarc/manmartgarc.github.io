@@ -15,7 +15,22 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the fourth and last week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week&rsquo;s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network Intuition Link to heading We started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one.">
+
+Transformer Network Intuition
+Self-Attention
+Multi-Head Attention
+Transformer Network Architecture
+More Information
+
+
+
+  Transformer Network Intuition
+  
+    
+    Link to heading
+  
+
+We started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&rsquo;s hidden states with the current one. To solve some issues with vanilla RNNs, we introduced GRUs and LSTMs; both more flexible and more complex than simple RNNs. However, one of the things that they all share in common is that the input must be processed sequentially, i.e. one token at a time. This is a problem with large models, where we want to parallelize computation as much as possible. Amdahl&rsquo;s Law gives us a theoretical speed up limit based on the fraction of parallelizable compute in a computer program. Unfortunately, since the entire model is sequential the speed-ups are miniscule. The transformer architecture allows us to process the entire input at once, and in parallel; allowing us to train much more complex models which in turn generate richer feature representations of our sequences.">
 <meta name="keywords" content="blog,developer,personal">
 <meta name="fediverse:creator" content="" />
 
@@ -24,14 +39,14 @@ Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Ne
   <meta name="twitter:title" content="Sequence Models: Week 4 | Transformers">
   <meta name="twitter:description" content="This is the fourth and last week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week’s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network Intuition Link to heading We started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step’s hidden states with the current one.">
+Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network Intuition Link to heading We started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step’s hidden states with the current one. To solve some issues with vanilla RNNs, we introduced GRUs and LSTMs; both more flexible and more complex than simple RNNs. However, one of the things that they all share in common is that the input must be processed sequentially, i.e. one token at a time. This is a problem with large models, where we want to parallelize computation as much as possible. Amdahl’s Law gives us a theoretical speed up limit based on the fraction of parallelizable compute in a computer program. Unfortunately, since the entire model is sequential the speed-ups are miniscule. The transformer architecture allows us to process the entire input at once, and in parallel; allowing us to train much more complex models which in turn generate richer feature representations of our sequences.">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 4 | Transformers">
   <meta property="og:description" content="This is the fourth and last week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. The main topic for this week are transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.
 This week’s topics are:
-Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network Intuition Link to heading We started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step’s hidden states with the current one.">
+Transformer Network Intuition Self-Attention Multi-Head Attention Transformer Network Architecture More Information Transformer Network Intuition Link to heading We started with RNNs (known as part of the prehistoric era now), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step’s hidden states with the current one. To solve some issues with vanilla RNNs, we introduced GRUs and LSTMs; both more flexible and more complex than simple RNNs. However, one of the things that they all share in common is that the input must be processed sequentially, i.e. one token at a time. This is a problem with large models, where we want to parallelize computation as much as possible. Amdahl’s Law gives us a theoretical speed up limit based on the fraction of parallelizable compute in a computer program. Unfortunately, since the entire model is sequential the speed-ups are miniscule. The transformer architecture allows us to process the entire input at once, and in parallel; allowing us to train much more complex models which in turn generate richer feature representations of our sequences.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -456,9 +471,6 @@ $$</p>
 
 
   
-  
-
-
 
   
 

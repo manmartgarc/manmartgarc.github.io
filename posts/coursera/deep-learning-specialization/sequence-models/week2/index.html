@@ -15,7 +15,50 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week&rsquo;s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words.">
+
+Introduction to Word Embeddings
+
+Word Representation
+Using Word Embeddings
+Properties of Word Embeddings
+Cosine Similarity
+Embedding Matrix
+
+
+Word Embeddings
+
+Learning Word Embeddings
+Word2Vec
+
+Negative Sampling
+
+
+GloVe Word Vectors
+
+
+Applications Using Word Embeddings
+
+Sentiment Classification
+De-biasing Word Embeddings
+
+
+
+
+
+  Introduction to Word Embeddings
+  
+    
+    Link to heading
+  
+
+
+  Word Representation
+  
+    
+    Link to heading
+  
+
+Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&rsquo;s go over how this is possible.">
 <meta name="keywords" content="blog,developer,personal">
 <meta name="fediverse:creator" content="" />
 
@@ -24,14 +67,14 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
   <meta name="twitter:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
   <meta name="twitter:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week’s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words.">
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible.">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
   <meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
 This week’s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words.">
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -259,55 +302,55 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 <p>The question is then: how can we project the $\mathbb{R}^{10,000}$ vector space into a lower dimensional space, say $\mathbb{R}^{300}$? We could try to use dimensionality reduction techniques, such as PCA, but it will not work that well. This is because all dimensions are orthogonal, and there&rsquo;s no &ldquo;common&rdquo; information to encode the higher dimensional space into a lower dimensional space. We need something different, something learnable, we need word embeddings!</p>
 <p>Say that we define $4$ dimensions: <code>Gender</code>, <code>Royal</code>, <code>Age</code>, <code>Food</code>. We&rsquo;d like to map each of our $\mathbb{R}^{10,000}$ one-hot vectors into $\mathbb{R}^{4}$. We can do this by hand. Let&rsquo;s map the words we had before into these by hand:</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center"><strong>Man</strong></th>
-<th style="text-align:center"><strong>Woman</strong></th>
-<th style="text-align:center"><strong>King</strong></th>
-<th style="text-align:center"><strong>Queen</strong></th>
-<th style="text-align:center"><strong>Apple</strong></th>
-<th style="text-align:center"><strong>Orange</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>Gender</strong></td>
-<td style="text-align:center">-1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">-0.95</td>
-<td style="text-align:center">0.97</td>
-<td style="text-align:center">0.00</td>
-<td style="text-align:center">0.01</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>Royal</strong></td>
-<td style="text-align:center">0.01</td>
-<td style="text-align:center">0.02</td>
-<td style="text-align:center">0.93</td>
-<td style="text-align:center">0.95</td>
-<td style="text-align:center">-0.01</td>
-<td style="text-align:center">0.00</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>Age</strong></td>
-<td style="text-align:center">0.03</td>
-<td style="text-align:center">0.02</td>
-<td style="text-align:center">0.7</td>
-<td style="text-align:center">0.69</td>
-<td style="text-align:center">0.03</td>
-<td style="text-align:center">-0.02</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>Food</strong></td>
-<td style="text-align:center">0.09</td>
-<td style="text-align:center">0.01</td>
-<td style="text-align:center">0.02</td>
-<td style="text-align:center">0.01</td>
-<td style="text-align:center">0.95</td>
-<td style="text-align:center">0.97</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"></th>
+          <th style="text-align: center"><strong>Man</strong></th>
+          <th style="text-align: center"><strong>Woman</strong></th>
+          <th style="text-align: center"><strong>King</strong></th>
+          <th style="text-align: center"><strong>Queen</strong></th>
+          <th style="text-align: center"><strong>Apple</strong></th>
+          <th style="text-align: center"><strong>Orange</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>Gender</strong></td>
+          <td style="text-align: center">-1</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">-0.95</td>
+          <td style="text-align: center">0.97</td>
+          <td style="text-align: center">0.00</td>
+          <td style="text-align: center">0.01</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Royal</strong></td>
+          <td style="text-align: center">0.01</td>
+          <td style="text-align: center">0.02</td>
+          <td style="text-align: center">0.93</td>
+          <td style="text-align: center">0.95</td>
+          <td style="text-align: center">-0.01</td>
+          <td style="text-align: center">0.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Age</strong></td>
+          <td style="text-align: center">0.03</td>
+          <td style="text-align: center">0.02</td>
+          <td style="text-align: center">0.7</td>
+          <td style="text-align: center">0.69</td>
+          <td style="text-align: center">0.03</td>
+          <td style="text-align: center">-0.02</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>Food</strong></td>
+          <td style="text-align: center">0.09</td>
+          <td style="text-align: center">0.01</td>
+          <td style="text-align: center">0.02</td>
+          <td style="text-align: center">0.01</td>
+          <td style="text-align: center">0.95</td>
+          <td style="text-align: center">0.97</td>
+      </tr>
+  </tbody>
 </table>
 <p>The numbers are fictitious, but set by hand to illustrate the example. The important thing is to notice that by embedding these words in our four new dimensions we have captured semantic meaning, and now the vectors live in &ldquo;semantic&rdquo; space. This in turns, allows us to define distance, and therefore similarity. For example, we should expect our embeddings to comply with $e_{apple} - e_{queen} &gt; e_{apple} - e_{orange}$, where $e_{w}$ is the embedding vector, in our case in $\mathbb{R}^{4}$, of the word $w$. That is, the distance between the word apple and queen, should be greater than the distance between apple and orange because apples and oranges are fruits.</p>
 <p>How do we <a href="#learning-word-embeddings" >learn these embeddings</a>, and how many dimensions are enough is something we go over in a bit.</p>
@@ -593,9 +636,6 @@ $$</p>
 
 
   
-  
-
-
 
   
 

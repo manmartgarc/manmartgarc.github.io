@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Lambda Functions with Go and CDK · Manuel Martinez
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="
+  Introduction
+  
+    
+    Link to heading
+  
+
+AWS Lambda is a serverless computing service that lets you run code without provisioning or managing servers. Lambdas are very flexible because you can run them on a schedule, in response to events or even as an API endpoint that respond to an HTTP request. In this post, we&rsquo;ll look at how to create a Lambda function using Go and the AWS Cloud Development Kit (CDK) - with a focus on using CDK to speed up the development process and improve operational efficiency.">
+<meta name="keywords" content="blog,developer,personal">
+<meta name="fediverse:creator" content="" />
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lambda Functions with Go and CDK">
+  <meta name="twitter:description" content=" Introduction Link to heading AWS Lambda is a serverless computing service that lets you run code without provisioning or managing servers. Lambdas are very flexible because you can run them on a schedule, in response to events or even as an API endpoint that respond to an HTTP request. In this post, we’ll look at how to create a Lambda function using Go and the AWS Cloud Development Kit (CDK) - with a focus on using CDK to speed up the development process and improve operational efficiency.">
+
+<meta property="og:url" content="https://manmartgarc.github.io/posts/tech-support/go-lambda/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Lambda Functions with Go and CDK">
+  <meta property="og:description" content=" Introduction Link to heading AWS Lambda is a serverless computing service that lets you run code without provisioning or managing servers. Lambdas are very flexible because you can run them on a schedule, in response to events or even as an API endpoint that respond to an HTTP request. In this post, we’ll look at how to create a Lambda function using Go and the AWS Cloud Development Kit (CDK) - with a focus on using CDK to speed up the development process and improve operational efficiency.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-09-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-09-23T00:00:00+00:00">
+    <meta property="article:tag" content="Aws">
+    <meta property="article:tag" content="Cloud">
+    <meta property="article:tag" content="Go">
+    <meta property="article:tag" content="Cdk">
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/tech-support/go-lambda/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
+      Manuel Martinez
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/tech-support/go-lambda/">
+              Lambda Functions with Go and CDK
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-09-23T00:00:00Z">
+                September 23, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              8-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/tech-support/">Tech Support</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/aws/">Aws</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/cloud/">Cloud</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/go/">Go</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/cdk/">Cdk</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h2 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><a href="https://aws.amazon.com/lambda/"  class="external-link" target="_blank" rel="noopener">AWS Lambda</a> is a serverless computing service that lets you run code without provisioning or managing servers. Lambdas are very flexible because you can run them on a <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-run-lambda-schedule.html"  class="external-link" target="_blank" rel="noopener">schedule</a>, in response to <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"  class="external-link" target="_blank" rel="noopener">events</a> or even as an <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html"  class="external-link" target="_blank" rel="noopener">API endpoint</a> that respond to an HTTP request. In this post, we&rsquo;ll look at how to create a Lambda function using Go and the AWS Cloud Development Kit (CDK) - with a focus on using CDK to speed up the development process and improve operational efficiency.</p>
+<h2 id="aws-lambda">
+  AWS Lambda
+  <a class="heading-link" href="#aws-lambda">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I will try my best not to regurgitate the <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"  class="external-link" target="_blank" rel="noopener">AWS Lambda documentation</a> here. In a nutshell, the whole point of the Lambda service is to run code without having to worry about the underlying compute infrastructure; normally EC2 or Fargate. Lambdas can scale automatically, and you only <a href="https://aws.amazon.com/lambda/pricing/?did=ap_card&amp;trk=ap_card"  class="external-link" target="_blank" rel="noopener">pay for what you use</a>.</p>
+<blockquote>
+<p>If you&rsquo;re wondering how and where your code is run, read more about <a href="https://firecracker-microvm.github.io/"  class="external-link" target="_blank" rel="noopener">Firecracker</a> on this <a href="https://aws.amazon.com/blogs/aws/firecracker-lightweight-virtualization-for-serverless-computing/"  class="external-link" target="_blank" rel="noopener">blog post</a> by AWS.</p>
+</blockquote>
+<p>All of this flexibility comes with trade-offs. Currently, Lambda executions are limited in time to 15 minutes, and the maximum memory you can allocate is 10 GB; and I say currently because these limits have been increased in the past and will most likely increase in the feature. This is all to say that if you want to run a long-running process or a memory-intensive task, you will probably have a bad time. Even more so, if you want to run a stateful process, you will have to maintain state somewhere else, function&rsquo;s execution environment (scope) is virtually stateless and ephemeral. Lambdas are designed to run short-lived, stateless, scalable, and hopefully idempotent processes; you can see best practices <a href="https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"  class="external-link" target="_blank" rel="noopener">here</a>.</p>
+<h3 id="lambda-runtimes">
+  Lambda Runtimes
+  <a class="heading-link" href="#lambda-runtimes">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Lambda supports a variety of <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"  class="external-link" target="_blank" rel="noopener">runtimes</a>, including Node.js, Python, Ruby, Java, .NET, and OS-only runtime. Excluding .NET, all the language-specific runtimes are for languages that are interpreted or run on a virtual machine, these are called managed runtimes.</p>
+<p>For example, Java source code is first compiled into Java byte code, which is then interpreted by the Java Virtual Machine (JVM) which then translates the byte code into machine code instructions which depend on the CPU architecture; this is why there are different JVMs for different architectures. You can even <a href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html"  class="external-link" target="_blank" rel="noopener">customize</a> some JVM settings like the memory allocation and the garbage collection strategy.</p>
+<p>When you run a Java Lambda, the Lambda service spins up a container that contains the JVM and your code; then the JVM executes the Java byte code. The process is virtually the same for other languages like Python, Ruby, and Node.js; the Lambda service spins up a container that contains the interpreter and your code, and then the interpreter executes your code. This whole lifecycle is described <a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/execution-environments.html"  class="external-link" target="_blank" rel="noopener">here</a>, and it&rsquo;s important to understand if we are very concerned about cost and performance optimization.</p>
+<p>What about ahead-of-time compiled languages like Go, C++ or Rust? These languages are compiled into machine code that can be executed directly by the CPU, which means that there is no need for an interpreter or a virtual machine. Because there&rsquo;s less work to do when launching the runtime environment, the <a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/execution-environments.html#cold-start-latency"  class="external-link" target="_blank" rel="noopener">cold start</a> time for Go and Rust Lambdas is much faster than for interpreted languages. For these languages you don&rsquo;t use a managed runtime, but an <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-provided.html"  class="external-link" target="_blank" rel="noopener">OS-only runtime</a> instead.</p>
+<p>There&rsquo;s an <a href="https://maxday.github.io/lambda-perf/"  class="external-link" target="_blank" rel="noopener">amazing ongoing benchmark</a> setup by <a href="https://maxday.dev/"  class="external-link" target="_blank" rel="noopener">Maxime David</a> where you can see the cold start, memory usage, and execution time for different runtimes and languages.</p>
+<h3 id="choosing-a-runtime">
+  Choosing a Runtime
+  <a class="heading-link" href="#choosing-a-runtime">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>As always, design decisions are all about trade-offs. Depending on your team&rsquo;s proficiency, you might choose a language everyone is familiar with but at the cost of lower performance and higher costs for the service since this would allow you to save on developer time. On the other hand, you might choose a language that is more performant and cost-effective but at the cost of developer time and possibly maintenance.</p>
+<p>Let&rsquo;s assume our focus is on performance and cost-effectiveness. The options are Go, C++ or Rust. Let&rsquo;s drop C++ out of the race right away because <em>the</em> <a href="https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/"  class="external-link" target="_blank" rel="noopener">White House</a> told us to be good citizens and use only memory-safe languages. This leaves us with Go and Rust.</p>
+<p>The biggest difference between Go and Rust is that Go is garbage collected and Rust is not. This means that Go has a runtime that manages memory for you, while Rust requires you to manage memory yourself (not by <code>malloc</code> but by its own, beautiful, <a href="https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html"  class="external-link" target="_blank" rel="noopener">ownership model</a>). The garbage collector in Go can introduce latency and overhead, which can affect performance. Rust, on the other hand, has no garbage collector, which means that you have more control over memory management and can write more efficient code. Also, both languages can be statically or dynamically linked, which can affect the size of the binary and the cold start time; although Go is statically linked by default.</p>
+<h2 id="aws-cdk">
+  AWS CDK
+  <a class="heading-link" href="#aws-cdk">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The <a href="https://docs.aws.amazon.com/cdk/v2/guide/home.html"  class="external-link" target="_blank" rel="noopener">AWS Cloud Development Kit (AWS CDK)</a> is an open-source software development framework which allows you to define your infrastructure as code (IaC) and also helps you manage its lifecycle.</p>
+<p>If you ever wanted to run a loop and create a bunch of buckets, queues, or whatever resource you can think of, you can do it with CDK. Even more powerful is to use CDK with an OOP language, where you can better define your service&rsquo;s domain. Using the right OOP approach your service can be more maintainable, scalable, and testable. At the end of the day, CDK is just a middle-layer between you and the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html"  class="external-link" target="_blank" rel="noopener">CloudFormation</a> service, which is the service that actually creates the resources.</p>
+<p>We will use the TypeScript CDK library to create a stack and this stack is the one where we will deploy our Go Lambda function.</p>
+<h3 id="setting-up-the-cdk">
+  Setting up the CDK
+  <a class="heading-link" href="#setting-up-the-cdk">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Follow the instructions <a href="https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html"  class="external-link" target="_blank" rel="noopener">here</a> to install the CDK CLI and create a new project. Once you have your project set up, you can start creating your stack.</p>
+<blockquote>
+<p>You can see the final repository <a href="https://github.com/manmartgarc/cdk-lambda-go"  class="external-link" target="_blank" rel="noopener">here</a></p>
+</blockquote>
+<h3 id="creating-the-lambda-function">
+  Creating the Lambda Function
+  <a class="heading-link" href="#creating-the-lambda-function">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> { GoFunction } <span style="color:#ff7b72">from</span> <span style="color:#a5d6ff">&#39;@aws-cdk/aws-lambda-go-alpha&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#ff7b72">as</span> cdk <span style="color:#ff7b72">from</span> <span style="color:#a5d6ff">&#39;aws-cdk-lib&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> { AttributeType, Table } <span style="color:#ff7b72">from</span> <span style="color:#a5d6ff">&#39;aws-cdk-lib/aws-dynamodb&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> { Construct } <span style="color:#ff7b72">from</span> <span style="color:#a5d6ff">&#39;constructs&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">export</span> <span style="color:#ff7b72">class</span> LambdaGoStack <span style="color:#ff7b72">extends</span> cdk.Stack {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff7b72">private</span> <span style="color:#ff7b72">readonly</span> goFunc: <span style="color:#ff7b72">GoFunction</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff7b72">private</span> <span style="color:#ff7b72">readonly</span> ddbTable: <span style="color:#ff7b72">Table</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff7b72">constructor</span>(scope: <span style="color:#ff7b72">Construct</span>, id: <span style="color:#ff7b72">string</span>, props?: <span style="color:#ff7b72">cdk.StackProps</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">super</span>(scope, id, props);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">this</span>.ddbTable <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72">new</span> Table(<span style="color:#ff7b72">this</span>, <span style="color:#a5d6ff">&#39;HelloGoTable&#39;</span>, {
+</span></span><span style="display:flex;"><span>      partitionKey<span style="color:#ff7b72;font-weight:bold">:</span> {name<span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#39;Name&#39;</span>, <span style="color:#ff7b72">type</span><span style="color:#ff7b72;font-weight:bold">:</span> AttributeType.STRING}
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">this</span>.goFunc <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72">new</span> GoFunction(<span style="color:#ff7b72">this</span>, <span style="color:#a5d6ff">&#39;HelloGo&#39;</span>, {
+</span></span><span style="display:flex;"><span>      entry<span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#39;go-lambda&#39;</span>,
+</span></span><span style="display:flex;"><span>      environment<span style="color:#ff7b72;font-weight:bold">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#39;TABLE_NAME&#39;</span><span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#ff7b72">this</span>.ddbTable.tableName
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">this</span>.ddbTable.grantReadWriteData(<span style="color:#ff7b72">this</span>.goFunc);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This code does the following:</p>
+<ol>
+<li>Creates a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html"  class="external-link" target="_blank" rel="noopener">CloudFormation Stack</a>.</li>
+<li>The stack has two things: a DynamoDB table and a Lambda function.</li>
+<li>The Lambda function is a <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/@aws-cdk_aws-lambda-go-alpha.GoFunction.html"  class="external-link" target="_blank" rel="noopener">GoFunction</a>, which is a CDK construct that allows you to deploy a Go Lambda function using a docker container for the build process.</li>
+<li>Then we give permissions to the Lambda function to read and write to the DynamoDB table.</li>
+</ol>
+<p>Before we can deploy this, we need to define the Lambda function!</p>
+<h3 id="writing-the-lambda-function">
+  Writing the Lambda Function
+  <a class="heading-link" href="#writing-the-lambda-function">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The Lambda function is a <a href="https://github.com/manmartgarc/cdk-lambda-go/blob/main/go-lambda/hello.go"  class="external-link" target="_blank" rel="noopener">simple Go program</a> that reads and writes to the DynamoDB table. The code is as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#ff7b72">package</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-lambda-go/lambda&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/aws&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/aws/session&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/service/dynamodb&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">type</span> MyEvent <span style="color:#ff7b72">struct</span> {
+</span></span><span style="display:flex;"><span>   Name <span style="color:#ff7b72">string</span> <span style="color:#a5d6ff">`json:&#34;name&#34;`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">type</span> TableItem <span style="color:#ff7b72">struct</span> {
+</span></span><span style="display:flex;"><span>    Name      <span style="color:#ff7b72">string</span>
+</span></span><span style="display:flex;"><span>    Timestamp <span style="color:#ff7b72">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">func</span> <span style="color:#d2a8ff;font-weight:bold">newTableItem</span>(name <span style="color:#ff7b72">string</span>) TableItem {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> TableItem{
+</span></span><span style="display:flex;"><span>    Name:      name,
+</span></span><span style="display:flex;"><span>    Timestamp: time.<span style="color:#d2a8ff;font-weight:bold">Now</span>().<span style="color:#d2a8ff;font-weight:bold">Format</span>(time.RFC3339),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">func</span> <span style="color:#d2a8ff;font-weight:bold">HandleRequest</span>(ctx context.Context, event <span style="color:#ff7b72;font-weight:bold">*</span>MyEvent) (<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#ff7b72">string</span>, <span style="color:#ff7b72">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> event <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#79c0ff">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> <span style="color:#79c0ff">nil</span>, fmt.<span style="color:#d2a8ff;font-weight:bold">Errorf</span>(<span style="color:#a5d6ff">&#34;received event is nil&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we create a new session to the AWS SDK
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>    sess <span style="color:#ff7b72;font-weight:bold">:=</span> session.<span style="color:#d2a8ff;font-weight:bold">Must</span>(session.<span style="color:#d2a8ff;font-weight:bold">NewSessionWithOptions</span>(session.Options{
+</span></span><span style="display:flex;"><span>        SharedConfigState: session.SharedConfigEnable,
+</span></span><span style="display:flex;"><span>    }))
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we create a new DynamoDB client
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>    svc <span style="color:#ff7b72;font-weight:bold">:=</span> dynamodb.<span style="color:#d2a8ff;font-weight:bold">New</span>(sess)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we create a new item to be inserted in the table
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>    item <span style="color:#ff7b72;font-weight:bold">:=</span> <span style="color:#d2a8ff;font-weight:bold">newTableItem</span>(event.Name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we marshal the item into a map
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>    av, err <span style="color:#ff7b72;font-weight:bold">:=</span> dynamodbattribute.<span style="color:#d2a8ff;font-weight:bold">MarshalMap</span>(item)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> err <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#79c0ff">nil</span> {
+</span></span><span style="display:flex;"><span>        log.<span style="color:#d2a8ff;font-weight:bold">Fatalf</span>(<span style="color:#a5d6ff">&#34;Got error marshalling new item: %s&#34;</span>, err)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we construct the input request
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>    input <span style="color:#ff7b72;font-weight:bold">:=</span> <span style="color:#ff7b72;font-weight:bold">&amp;</span>dynamodb.PutItemInput{
+</span></span><span style="display:flex;"><span>        Item:      av,
+</span></span><span style="display:flex;"><span>        TableName: aws.<span style="color:#d2a8ff;font-weight:bold">String</span>(os.<span style="color:#d2a8ff;font-weight:bold">Getenv</span>(<span style="color:#a5d6ff">&#34;TABLE_NAME&#34;</span>)),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we put the item in the table
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>    _, err = svc.<span style="color:#d2a8ff;font-weight:bold">PutItem</span>(input)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> err <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#79c0ff">nil</span> {
+</span></span><span style="display:flex;"><span>        log.<span style="color:#d2a8ff;font-weight:bold">Fatalf</span>(<span style="color:#a5d6ff">&#34;Got error calling PutItem: %s&#34;</span>, err)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> aws.<span style="color:#d2a8ff;font-weight:bold">String</span>(fmt.<span style="color:#d2a8ff;font-weight:bold">Sprintf</span>(<span style="color:#a5d6ff">&#34;Hello %s!&#34;</span>, event.Name)), <span style="color:#79c0ff">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">func</span> <span style="color:#d2a8ff;font-weight:bold">main</span>() {
+</span></span><span style="display:flex;"><span>    lambda.<span style="color:#d2a8ff;font-weight:bold">Start</span>(HandleRequest)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you have questions about the directory structure, please refer to the <a href="https://github.com/manmartgarc/cdk-lambda-go/tree/main"  class="external-link" target="_blank" rel="noopener">repository</a>.</p>
+<h2 id="deploying">
+  Deploying
+  <a class="heading-link" href="#deploying">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>To deploy the stack, run the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cdk deploy
+</span></span></code></pre></div><p>That&rsquo;s it! Now all this infrastructure is deployed to your account. You can delete it by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cdk destroy
+</span></span></code></pre></div><p>If you want to make further changes to any component, you can do so by modifying the code and running <code>cdk deploy</code> again.</p>
+<h2 id="testing">
+  Testing
+  <a class="heading-link" href="#testing">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Now that the stack is deployed, you can test the Lambda function by running the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws lambda invoke --function-name &lt;FunctionName&gt; --payload <span style="color:#a5d6ff">&#39;{&#34;name&#34;: &#34;Pepito&#34;}&#39;</span> --cli-binary-format raw-in-base64-out /dev/stdout
+</span></span></code></pre></div><p>And we can verify that the item was inserted in the DynamoDB table by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws dynamodb scan --table-name &lt;TableName&gt;
+</span></span></code></pre></div><p>Which returns:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;Items&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#7ee787">&#34;Timestamp&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#7ee787">&#34;S&#34;</span>: <span style="color:#a5d6ff">&#34;2024-09-29T00:40:29Z&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#7ee787">&#34;Name&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#7ee787">&#34;S&#34;</span>: <span style="color:#a5d6ff">&#34;Pepito&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;Count&#34;</span>: <span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ScannedCount&#34;</span>: <span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#7ee787">&#34;ConsumedCapacity&#34;</span>: <span style="color:#79c0ff">null</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This was of course a very simple example. We left out important details, particularly about the CI/CD cycle. The good thing is that there&rsquo;s a plethora of tools that can help you with that, like deploying your CDK stack with GitHub Actions or <a href="https://aws.amazon.com/codepipeline/"  class="external-link" target="_blank" rel="noopener">AWS CodePipeline</a>. As long as there&rsquo;s a mechanism to run the <code>cdk deploy</code> command, you can use any tool you like. Next time, we&rsquo;ll do the same exercise but with Rust &#x1f980;.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+        
+        
+
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2023 -
+    
+    2024
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NJLM0F56ZC');
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

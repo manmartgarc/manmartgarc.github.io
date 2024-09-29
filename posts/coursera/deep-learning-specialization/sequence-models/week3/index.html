@@ -15,7 +15,39 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week&rsquo;s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?">
+
+Sequence to Sequence Architectures
+
+Basic Seq2Seq Models
+Picking the Most Likely Sentence
+
+Why not Greedy Search?
+Beam Search
+
+Refinements
+Error Analysis
+
+
+
+
+Attention
+
+Developing Intuition
+Defining the Attention Model
+
+
+
+
+
+
+
+  Sequence to Sequence Architectures
+  
+    
+    Link to heading
+  
+
+The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
 <meta name="keywords" content="blog,developer,personal">
 <meta name="fediverse:creator" content="" />
 
@@ -24,14 +56,14 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
   <meta name="twitter:title" content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism">
   <meta name="twitter:description" content="This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week’s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?">
+Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures Link to heading The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism">
   <meta property="og:description" content="This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week’s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search?">
+Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures Link to heading The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -519,9 +551,6 @@ $$</p>
 
 
   
-  
-
-
 
   
 

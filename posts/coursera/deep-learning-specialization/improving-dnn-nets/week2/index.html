@@ -15,7 +15,27 @@
 <meta name="author" content="Manuel Martinez">
 <meta name="description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week&rsquo;s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course.">
+
+Mini-batch Gradient Descent
+Exponentially Weighted Moving Averages (EWMA)
+
+Bias Correction
+
+
+Gradient Descent with Momentum
+RMSProp
+Adam
+Learning Rate Decay
+
+
+
+  Mini-batch Gradient Descent
+  
+    
+    Link to heading
+  
+
+We discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.">
 <meta name="keywords" content="blog,developer,personal">
 <meta name="fediverse:creator" content="" />
 
@@ -24,14 +44,14 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
   <meta name="twitter:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms">
   <meta name="twitter:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week’s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course.">
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms">
   <meta property="og:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
 This week’s topics are:
-Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course.">
+Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -480,9 +500,6 @@ $$</p>
 
 
   
-  
-
-
 
   
 
