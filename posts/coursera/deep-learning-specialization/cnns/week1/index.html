@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Convolutional Neural Networks: Week 1 | Foundations of CNNs · Manuel Martinez
 </title>
@@ -48,7 +48,7 @@ Why Convolutions?
 
 If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@ If you can think of any computer vision application today: self-driving cars, me
 This week’s topics are:
 Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision Link to heading If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
   <meta property="og:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
@@ -74,7 +74,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -84,7 +84,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -94,7 +94,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -142,7 +142,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -185,7 +185,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/">
               Convolutional Neural Networks: Week 1 | Foundations of CNNs
             </a>
           </h1>
@@ -343,8 +343,7 @@ $$</p>
 
 <p>Convolving an image with an edge with this filter will <em>bring up</em> the regions of the original image where there is a gradient of values in the horizontal dimension; thus generating an image that highlights the vertical <em>edges</em>. In this sense, we defined an <em>edge</em> as: a $3\times3$ region in the image where there are bright pixels on the left and dark pixels on the right.</p>
 <blockquote>
-<p>Notice that convolving a $6\times6$ image by a $3\times3$ filter results in a $4\times4$ image. This is the result of convolving without padding, which is covered later.</p>
-</blockquote>
+<p>Notice that convolving a $6\times6$ image by a $3\times3$ filter results in a $4\times4$ image. This is the result of convolving without padding, which is covered later.</p></blockquote>
 <p>It might not surprise you that a <em>horizontal</em> edge filter is:</p>
 <p>$$
 f = \begin{bmatrix}
@@ -356,8 +355,7 @@ $$</p>
 <p>That is, a horizontal edge is a $3\times3$ region in the picture where there are brighter pixels &ldquo;above&rdquo; and darker pixels &ldquo;below&rdquo;.</p>
 <p>But who came up with these numbers? Why not choose $10$ instead of $1$? It turns out that there are a lot of different filters. Think about finding diagonal edges, how would that filter look like? But most importantly, how can we know that the filters we use are going to be relevant to our problem domain, i.e. cat classification?</p>
 <blockquote>
-<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA"  class="external-link" target="_blank" rel="noopener">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M"  class="external-link" target="_blank" rel="noopener">Convolutions</a>.</p>
-</blockquote>
+<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA"  class="external-link" target="_blank" rel="noopener">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M"  class="external-link" target="_blank" rel="noopener">Convolutions</a>.</p></blockquote>
 <h3 id="learning-the-filters">
   Learning the Filters
   <a class="heading-link" href="#learning-the-filters">
@@ -433,8 +431,7 @@ $$</p>
 \text{output\_dim} = \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor \times \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor
 $$</p>
 <blockquote>
-<p>Note on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of <em>not</em> flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn&rsquo;t matter whether we flip the filter or not in the context of CNNs.</p>
-</blockquote>
+<p>Note on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of <em>not</em> flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn&rsquo;t matter whether we flip the filter or not in the context of CNNs.</p></blockquote>
 <h2 id="convolutions-over-volume">
   Convolutions Over Volume
   <a class="heading-link" href="#convolutions-over-volume">
@@ -455,8 +452,7 @@ $$</p>
 <p>But why stop at one filter? We can use as many filters as we want. Think about using one filter for horizontal edge detection, another one for vertical edge detection, and so on. So if we have $n_c^*$ filters, we simply stack them together, as long as they are the same dimensions. Let&rsquo;s say that we have $2$ filters, and they are all dimensions $3\times3\times3$. Then our output will be $n - f + 1 \times n - f + 1 \times n_c^*$, where $n_c^*$ is the number of filters used in the layer.</p>
 <p>Let&rsquo;s run by an example using a $6\times6\times3$ input image and two $3\times3\times3$ filters. Convolving a $6\times6\times3$ image with a $3\times3\times3$ filter will result in a $4\times4$ feature map (remember the handy function). Since we have two filters, the feature map will have dimensions $4\times4\times2$. The basic idea being that you can stack multiple feature maps into a cube.</p>
 <blockquote>
-<p>Notice that the (R, G, B) part of the image is usually called <em>channels</em>. It is also called the <em>depth</em> of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.</p>
-</blockquote>
+<p>Notice that the (R, G, B) part of the image is usually called <em>channels</em>. It is also called the <em>depth</em> of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.</p></blockquote>
 <h2 id="one-layer-of-a-cnn">
   One Layer of a CNN
   <a class="heading-link" href="#one-layer-of-a-cnn">
@@ -483,8 +479,7 @@ $$</p>
 <li>$n_c^{[l]}$ = number of filters</li>
 </ul>
 <blockquote>
-<p>Notice that we don&rsquo;t vary these settings across filters <em>within</em> a layer.</p>
-</blockquote>
+<p>Notice that we don&rsquo;t vary these settings across filters <em>within</em> a layer.</p></blockquote>
 <p>So, layer $l$ will use the output from layer $l-1$, therefore:</p>
 <ul>
 <li>Dimensions of inputs: $n_H^{[l-1]} \times n_W^{[l-1]} \times n_c^{[l-1]}$</li>
@@ -579,60 +574,60 @@ $$</p>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left"></th>
-          <th style="text-align: left"><strong>Activation shape</strong></th>
-          <th style="text-align: left"><strong>Activation size</strong></th>
-          <th style="text-align: left"><strong># Parameters</strong></th>
+          <th></th>
+          <th><strong>Activation shape</strong></th>
+          <th><strong>Activation size</strong></th>
+          <th><strong># Parameters</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">Input</td>
-          <td style="text-align: left">(32, 32, 3)</td>
-          <td style="text-align: left">3,072</td>
-          <td style="text-align: left">0</td>
+          <td>Input</td>
+          <td>(32, 32, 3)</td>
+          <td>3,072</td>
+          <td>0</td>
       </tr>
       <tr>
-          <td style="text-align: left">CONV1 $(f=5, s=1)$</td>
-          <td style="text-align: left">(28, 28, 6)</td>
-          <td style="text-align: left">4,704</td>
-          <td style="text-align: left">456</td>
+          <td>CONV1 $(f=5, s=1)$</td>
+          <td>(28, 28, 6)</td>
+          <td>4,704</td>
+          <td>456</td>
       </tr>
       <tr>
-          <td style="text-align: left">POOL1 $(f=2, s=2)$</td>
-          <td style="text-align: left">(14, 14, 6)</td>
-          <td style="text-align: left">1,176</td>
-          <td style="text-align: left">0</td>
+          <td>POOL1 $(f=2, s=2)$</td>
+          <td>(14, 14, 6)</td>
+          <td>1,176</td>
+          <td>0</td>
       </tr>
       <tr>
-          <td style="text-align: left">CONV2 $(f=5, s=1)$</td>
-          <td style="text-align: left">(10, 10, 16)</td>
-          <td style="text-align: left">1,600</td>
-          <td style="text-align: left">2416</td>
+          <td>CONV2 $(f=5, s=1)$</td>
+          <td>(10, 10, 16)</td>
+          <td>1,600</td>
+          <td>2416</td>
       </tr>
       <tr>
-          <td style="text-align: left">POOL2 $(f=2, s=2)$</td>
-          <td style="text-align: left">(5, 5, 16)</td>
-          <td style="text-align: left">400</td>
-          <td style="text-align: left">0</td>
+          <td>POOL2 $(f=2, s=2)$</td>
+          <td>(5, 5, 16)</td>
+          <td>400</td>
+          <td>0</td>
       </tr>
       <tr>
-          <td style="text-align: left">FC3</td>
-          <td style="text-align: left">(120, 1)</td>
-          <td style="text-align: left">120</td>
-          <td style="text-align: left">48,120</td>
+          <td>FC3</td>
+          <td>(120, 1)</td>
+          <td>120</td>
+          <td>48,120</td>
       </tr>
       <tr>
-          <td style="text-align: left">FC4</td>
-          <td style="text-align: left">(84, 1)</td>
-          <td style="text-align: left">84</td>
-          <td style="text-align: left">10,164</td>
+          <td>FC4</td>
+          <td>(84, 1)</td>
+          <td>84</td>
+          <td>10,164</td>
       </tr>
       <tr>
-          <td style="text-align: left">Softmax</td>
-          <td style="text-align: left">(10, 1)</td>
-          <td style="text-align: left">10</td>
-          <td style="text-align: left">850</td>
+          <td>Softmax</td>
+          <td>(10, 1)</td>
+          <td>10</td>
+          <td>850</td>
       </tr>
   </tbody>
 </table>
@@ -649,7 +644,7 @@ $$</p>
 <li>Parameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to <a href="https://en.wikipedia.org/wiki/Translational_symmetry"  class="external-link" target="_blank" rel="noopener">translational invariance</a>, the idea that a CNN is robust to shifted or distorted images.</li>
 <li>Sparsity of connections: Each output value depends only on a few inputs. This is a mark of low-complexity, and it might have an effect similar to regularization; therefore helping avoid overfitting.</li>
 </ol>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -697,7 +692,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -730,7 +724,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -748,7 +742,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -796,6 +790,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

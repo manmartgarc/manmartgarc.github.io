@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Convolutional Neural Networks: Week 2 | Case Studies · Manuel Martinez
 </title>
@@ -62,7 +62,7 @@ Data Augmentation
 
 We should obviously keep up with the computer vision literature if we are interested in implementing new ideas. However, since CNNs have so many hyperparameters and settings, it&rsquo;s essential to pay attention to the empirically justified advances occurring in the field. Since so many computer vision tasks are similar, many of the core ideas of new approaches can be applied, sometimes identically and sometimes with minor editions, to new applications. Finally, in the age of big data and cheap compute, we can get away with virtually free-riding on somebody else&rsquo;s compute by using their pre-trained model. Let&rsquo;s start with the &ldquo;classic&rdquo; networks that hit the field from the late 90s through the early 10s.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -71,7 +71,7 @@ We should obviously keep up with the computer vision literature if we are intere
 This week’s topics are:
 Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? Networks in Networks | 1x1 Convolutions Inception Network Inception Network Architecture MobileNet Depth-wise Convolution Point-wise Convolution MobileNet Architecture Practical Advice for Using ConvNets Transfer Learning Data Augmentation Case Studies Link to heading We should obviously keep up with the computer vision literature if we are interested in implementing new ideas. However, since CNNs have so many hyperparameters and settings, it’s essential to pay attention to the empirically justified advances occurring in the field. Since so many computer vision tasks are similar, many of the core ideas of new approaches can be applied, sometimes identically and sometimes with minor editions, to new applications. Finally, in the age of big data and cheap compute, we can get away with virtually free-riding on somebody else’s compute by using their pre-trained model. Let’s start with the “classic” networks that hit the field from the late 90s through the early 10s.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Convolutional Neural Networks: Week 2 | Case Studies">
   <meta property="og:description" content="This is the second week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.
@@ -88,7 +88,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -98,7 +98,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -108,7 +108,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -156,7 +156,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -199,7 +199,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/">
               Convolutional Neural Networks: Week 2 | Case Studies
             </a>
           </h1>
@@ -359,8 +359,7 @@ a^{[l+2]} &amp;= a^{[l]}
 $$</p>
 <p>This means that if adding an extra layer actually hurts the network, the network can learn parameters that &ldquo;undo&rdquo; the additional layer! You might be thinking how come the last two equalities hold, and they hold because $g^{[l]} \ \forall l \rightarrow \text{ReLU}$. That is, we use ReLU as the activation function for all layers. Since ReLU is the identity function when the input is greater than $0$, then it&rsquo;s the same; pretty neat.</p>
 <blockquote>
-<p>This only works if the input dimensions are the same in the networks with skip connections. If this is not the case, you can add a convolution step to make sure that the dimensions align without any performance costs.</p>
-</blockquote>
+<p>This only works if the input dimensions are the same in the networks with skip connections. If this is not the case, you can add a convolution step to make sure that the dimensions align without any performance costs.</p></blockquote>
 <h3 id="networks-in-networks--1x1-convolutions">
   Networks in Networks | 1x1 Convolutions
   <a class="heading-link" href="#networks-in-networks--1x1-convolutions">
@@ -469,7 +468,7 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>As we&rsquo;ve seen, networks get pretty big and computational expensive. Many papers release their models as open-source software via public repositories in version control systems. You can use transfer learning, covered in <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" >Structuring Machine Learning Models | Week 2</a>. The key idea is to &ldquo;freeze&rdquo; all the layers expect the last one from a pre-trained model, and retrain the last layer using our own data. Sometimes you can freeze fewer layers, let&rsquo;s say the first $90\%$ of the layers, although this number is not set in stone. Think about what each layer is doing: freezing the earlier layers, means reusing the lower-level features from the pre-trained model, while freezing the latter layers means freezing the higher-level features from the pre-trained model. At which point in the feature hierarchy is the optimal overlap between the pre-trained model and our application depends on each application and pre-trained model combination.</p>
+<p>As we&rsquo;ve seen, networks get pretty big and computational expensive. Many papers release their models as open-source software via public repositories in version control systems. You can use transfer learning, covered in <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" >Structuring Machine Learning Models | Week 2</a>. The key idea is to &ldquo;freeze&rdquo; all the layers expect the last one from a pre-trained model, and retrain the last layer using our own data. Sometimes you can freeze fewer layers, let&rsquo;s say the first $90\%$ of the layers, although this number is not set in stone. Think about what each layer is doing: freezing the earlier layers, means reusing the lower-level features from the pre-trained model, while freezing the latter layers means freezing the higher-level features from the pre-trained model. At which point in the feature hierarchy is the optimal overlap between the pre-trained model and our application depends on each application and pre-trained model combination.</p>
 <h3 id="data-augmentation">
   Data Augmentation
   <a class="heading-link" href="#data-augmentation">
@@ -478,7 +477,7 @@ $$</p>
   </a>
 </h3>
 <p>Data augmentation means generating new training samples from our original training samples via some process. Within the context of computer vision, this is usually done via mirroring and random cropping. Color shifting is also possible via tools like <a href="https://machinelearning.wtf/terms/pca-color-augmentation/"  class="external-link" target="_blank" rel="noopener">PCA Color Augmentation</a> which was a technique used in the <a href="#alexnet" >AlexNet</a> paper. There are also computational approaches that implement data augmentation concurrently with training. Concurrency in scientific computing is a huge field, and it makes sense to show up in any computationally intensive applications.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/" >here</a>.</p>
 
       </div>
 
@@ -515,7 +514,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -548,7 +546,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -566,7 +564,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -614,6 +612,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

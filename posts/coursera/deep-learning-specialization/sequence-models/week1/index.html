@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Sequence Models: Week 1 | Recurrent Neural Networks · Manuel Martinez
 </title>
@@ -44,7 +44,7 @@ Bidirectional RNN
 
 Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we&rsquo;d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@ Time-series get to be their own thing, just like in regression analysis. This ti
 This week’s topics are:
 Why Sequence Models? Notation Representing Words Recurrent Neural Network Forward Propagation Different Types of RNNs Language Model and Sequence Generation Vanishing Gradients with RNNs Gated Recurrent Unit Long Short-Term Memory Bidirectional RNN Why Sequence Models? Link to heading Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we’d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 1 | Recurrent Neural Networks">
   <meta property="og:description" content="This is the first week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let’s get started.
@@ -70,7 +70,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -80,7 +80,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -90,7 +90,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -138,7 +138,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -181,7 +181,7 @@ Why Sequence Models? Notation Representing Words Recurrent Neural Network Forwar
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/">
               Sequence Models: Week 1 | Recurrent Neural Networks
             </a>
           </h1>
@@ -436,8 +436,7 @@ c^{&lt;t&gt;} &amp;= \Gamma_u \tilde{c}^{&lt;t&gt;} + (1 - \Gamma_u) c^{&lt;t-1&
 $$</p>
 <p>The gate $\Gamma_r$ is the &ldquo;relevance&rdquo; gate. It&rsquo;s a parameter that regulates how relevant the previous memory cell $c^{&lt;t-1&gt;}$ is in the next time step. While $\Gamma_u$ is the &ldquo;update&rdquo; gate. A parameter that regulates how relevant our candidate memory cell is relative to the previous memory cell.</p>
 <blockquote>
-<p>Note that in the literature $c$ and $\tilde{c}$ are usually referred as $h$ and $\tilde{h}$. Similarly, $\Gamma_u$ and $\Gamma_r$ are referred to as $u$ and $r$ respectively.</p>
-</blockquote>
+<p>Note that in the literature $c$ and $\tilde{c}$ are usually referred as $h$ and $\tilde{h}$. Similarly, $\Gamma_u$ and $\Gamma_r$ are referred to as $u$ and $r$ respectively.</p></blockquote>
 <h2 id="long-short-term-memory">
   Long Short-Term Memory
   <a class="heading-link" href="#long-short-term-memory">
@@ -498,7 +497,7 @@ $$</p>
 </h2>
 <p>Bidirectional RNNs (BRRNs) are simply running time forward and backward before doing a prediction. That is, before generating the first output, we&rsquo;ve seen the entire sequence. By keeping two hidden states, one for forward in time, and the other for backwards in time, and then combining both these states with the input, we can use information from the future to make a prediction now. Computationally it&rsquo;s almost two times as expensive as a single RNN.</p>
 <p>In practice many people use bidirectional GRUs or LSTMs to also allow the model to parametrize the mixture over longer periods of time.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -543,7 +542,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -576,7 +574,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -594,7 +592,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -642,6 +640,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

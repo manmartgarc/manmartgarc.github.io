@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Improving Deep Learning Networks: Week 2 | Optimization Algorithms · Manuel Martinez
 </title>
@@ -37,7 +37,7 @@ Learning Rate Decay
 
 We discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@ We discussed gradient descent briefly on the second week of the first course. A 
 This week’s topics are:
 Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias Correction Gradient Descent with Momentum RMSProp Adam Learning Rate Decay Mini-batch Gradient Descent Link to heading We discussed gradient descent briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Improving Deep Learning Networks: Week 2 | Optimization Algorithms">
   <meta property="og:description" content="This week is focused on the optimization or training process. Particularly, this week goes over ways to make the training process faster and more efficient, allowing us to iterate quicker when trying different approaches.
@@ -63,7 +63,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -73,7 +73,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -83,7 +83,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -131,7 +131,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -174,7 +174,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/">
               Improving Deep Learning Networks: Week 2 | Optimization Algorithms
             </a>
           </h1>
@@ -245,8 +245,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 <p>But why does this work? Imagine that we set our batch to be $m_b = 1$, that is, on each iteration we will simply look at one training sample and run gradient descent. If the sample we use on each iteration is <em>random</em>, then this process is called <em>stochastic</em> gradient descent. It turns out that on every iteration, gradient descent will take a step independent of other samples in our data, so the &ldquo;path down the mountain&rdquo; of gradient descent will look like a blind-wandering, kinda like Brownian motion. Think of a drunk version of gradient descent. It will also be slower because we loose the optimization that arises from vectorization, but still faster than batch gradient descent. On the other hand, imagine that $m_b = m$ so that we have a single batch, our entire data set. Now we are back to batch gradient descent, and each iteration step of gradient descent is taken by averaging each of the samples&rsquo; contribution to the gradient. The &ldquo;path down the mountain&rdquo; looks much more purposeful and directed, because we have a larger sample. The tradeoff is in the amount of noise that results from smaller samples sizes as we decrease our batch size. Somewhere in between $m_b = 1$ and $m_b = m$ there is a sweet spot that allows us to iterative fast but without much random meandering.</p>
 <p>If our data set is small $m \leq 2000$ then running batch gradient descent should be close to optimal in terms of speed. Otherwise, using mini-batch gradient descent will usually be faster. Batch sizes is really a hyperparameter that we might search for, however, usually it&rsquo;s some multiple of $2^n$, such as $64, 128, 256, 512$. Usually we select this based on amount of memory on our machine in the case that we cannot fit all our data in memory at once.</p>
 <blockquote>
-<p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p>
-</blockquote>
+<p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p></blockquote>
 <h2 id="exponentially-weighted-moving-averages-ewma">
   Exponentially Weighted Moving Averages (EWMA)
   <a class="heading-link" href="#exponentially-weighted-moving-averages-ewma">
@@ -287,8 +286,7 @@ $$</p>
 </h2>
 <p>Let&rsquo;s come back from the time-series digression. Why did we go over moving averages on time-series? Remember that when we introduced mini-batch gradient descent we mentioned that the &ldquo;path down the mountain&rdquo; will be more &ldquo;noisy&rdquo;. From the extreme of using a batch of size $1$, which is the most &ldquo;noisy&rdquo; up to using our entire data, which is the least noisy. It turns out that we can use the concept of EWMA to give &ldquo;inertia&rdquo; to the steps &ldquo;down the mountain&rdquo; that mini-batch gradient descent takes. This is called momentum, and it uses EWMA of the gradients to take steps, instead of each gradient being independently evaluated.</p>
 <blockquote>
-<p>Remember that in physics, momentum is a vector: $\mathbf{p} = m\mathbf{v}$ since $\mathbf{v}$ is the velocity vector. While inertia is a scalar!</p>
-</blockquote>
+<p>Remember that in physics, momentum is a vector: $\mathbf{p} = m\mathbf{v}$ since $\mathbf{v}$ is the velocity vector. While inertia is a scalar!</p></blockquote>
 <p>The idea is exactly the same as when we want to smooth time-series. In this case we want to smooth the oscillations of the cost function as we iterate over each mini-batch. Think that if the oscillations along one dimensions are higher, those will be dampened more than a dimension with fewer oscillations.</p>
 <p>Technically, this means that when we update $W^{[l]}$, we not only need to calculate the gradient $dW^{[l]}$, we need to also calculate the EWMA of the gradients:</p>
 <p>$$
@@ -392,7 +390,7 @@ $$</p>
     </figcaption>
 </figure>
 
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -440,7 +438,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -473,7 +470,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -491,7 +488,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -539,6 +536,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

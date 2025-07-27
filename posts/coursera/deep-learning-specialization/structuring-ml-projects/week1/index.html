@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Structuring ML Projects: Week 1 | ML Strategy · Manuel Martinez
 </title>
@@ -58,7 +58,7 @@ Improving your Model Performance
 
 Whenever we are working on a machine learning project, and after we have completed our first iteration on the approach, there might be many things to try next. Should we get more data? Try regularization? Try a bigger network? So many things to choose from. This is why we need high-level heuristics to guide our strategy.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -67,7 +67,7 @@ Whenever we are working on a machine learning project, and after we have complet
 This week’s topics are:
 Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goal Single Number Evaluation Metric Satisficing and Optimizing Metrics Train/Dev/Test Distributions Size of Dev and Test Sets When to Change Dev/Test Sets and Metrics? Comparing to Human-Level Performance Why Human-level performance? Avoidable Bias Understanding Human-level Performance Surpassing Human-level Performance Improving your Model Performance Introduction to ML Strategy Link to heading Why ML Strategy Link to heading Whenever we are working on a machine learning project, and after we have completed our first iteration on the approach, there might be many things to try next. Should we get more data? Try regularization? Try a bigger network? So many things to choose from. This is why we need high-level heuristics to guide our strategy.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Structuring ML Projects: Week 1 | ML Strategy">
   <meta property="og:description" content="This is the first week of the third course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course is less technical than the previous two, and focuses instead on general principles and intuition related to machine learning projects.
@@ -84,7 +84,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -94,7 +94,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -104,7 +104,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -152,7 +152,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -195,7 +195,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/">
               Structuring ML Projects: Week 1 | ML Strategy
             </a>
           </h1>
@@ -319,8 +319,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <li>$B$ - Precision: $98\%$, Recall: $85\%$</li>
 </ul>
 <blockquote>
-<p>Remember that precision tells you the proportion of true positives out of true positives and false positives, while recall tells you the proportion of true positives out of true positives and false negatives.</p>
-</blockquote>
+<p>Remember that precision tells you the proportion of true positives out of true positives and false positives, while recall tells you the proportion of true positives out of true positives and false negatives.</p></blockquote>
 <p>You might have an application where recall is more important than precision: classifying flight-risk when setting bails. In this case your single metric would be recall. However, if you&rsquo;re not sure, how can you compare classifiers $A$ and $B$?</p>
 <p>In this case we can combine precision and recall into the <a href="https://en.wikipedia.org/wiki/F-score#Definition"  class="external-link" target="_blank" rel="noopener">F1-score</a> which is the harmonic mean of both precision and recall.</p>
 <p>Another example is wanting to implement a model that performs good over different geographical regions. If you have $K$ geographical regions you might have $K$ different evaluation metrics, one for each region. The solution here is to take the average and compare the average of each classifier across all regions and pick the best one.</p>
@@ -335,8 +334,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <p><a href="https://en.wikipedia.org/wiki/Satisficing"  class="external-link" target="_blank" rel="noopener">Satisficing</a> is a decision-making strategy introduced by the legendary Herbert A. Simon in 1947. It differs from optimizing metrics by the fact that satisficing metrics don&rsquo;t have to be the <em>best</em> but just <em>good enough</em> instead.</p>
 <p>In our setting, an optimizing metric might be the performance of our classifier. Whereas latency or training time might be a satisficing metric. Being able to clearly think of which goals are which will help us to iterate faster.</p>
 <blockquote>
-<p>We could also have our model performance to be a satisficing metric: we are okay with some number of bad predictions over some period of time.</p>
-</blockquote>
+<p>We could also have our model performance to be a satisficing metric: we are okay with some number of bad predictions over some period of time.</p></blockquote>
 <p>The main takeaway is that if you have $N$ metrics, you should have $1$ optimizing metric and $N-1$ satisficing metrics. This is because optimizing for two metrics is complicated and also not guaranteed to be aligned.</p>
 <h3 id="traindevtest-distributions">
   Train/Dev/Test Distributions
@@ -466,7 +464,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <li>Add more regularization</li>
 <li>Try a specialized NN architecture and/or improve hyperparameters</li>
 </ul>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/" >here</a>.</p>
 
       </div>
 
@@ -503,7 +501,6 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
         
         
         
-
         
         
       </footer>
@@ -536,7 +533,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -554,7 +551,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -602,6 +599,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
   
 
   
-</body>
 
+  
+</body>
 </html>

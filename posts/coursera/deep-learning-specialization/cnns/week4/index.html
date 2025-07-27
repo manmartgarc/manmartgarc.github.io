@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer · Manuel Martinez
 </title>
@@ -55,7 +55,7 @@ Style Cost Function
 
 Let&rsquo;s start by going over the important distinction between face verification and face recognition.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -64,7 +64,7 @@ Let&rsquo;s start by going over the important distinction between face verificat
 This week’s topics are as follows:
 Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer? What are deep CNNs learning? Cost Function Content Cost Function Style Cost Function Face Recognition Link to heading What is Face Recognition? Link to heading Let’s start by going over the important distinction between face verification and face recognition.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Convolutional Neural Networks: Week 4 | Face Recognition & Neural Style Transfer">
   <meta property="og:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
@@ -81,7 +81,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -91,7 +91,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -101,7 +101,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -149,7 +149,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -192,7 +192,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/">
               Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer
             </a>
           </h1>
@@ -317,8 +317,7 @@ d(x^{(1)}, x^{(2)}) = ||f(x^{(1)}) - f(x^{(2)})||_2^2
 $$</p>
 <p>This is our old friend, the L2-norm of the difference between the two encodings.</p>
 <blockquote>
-<p>You might be thinking, why not compare the two images with the L2-norm directly? Think about what happens when you compare two images of the same person but with different lighting, hairstyle, makeup, etc. It won&rsquo;t work.</p>
-</blockquote>
+<p>You might be thinking, why not compare the two images with the L2-norm directly? Think about what happens when you compare two images of the same person but with different lighting, hairstyle, makeup, etc. It won&rsquo;t work.</p></blockquote>
 <p>But how do we train such a network? Remember we want a CNN that takes as input an image, and generates a $128$ dimensional encoding $f(x^{(i)})$. But of course, not just any encoding! We want that $128$ dimensional encoding to have certain properties:</p>
 <ul>
 <li>If $x^{(i)}, x^{(j)}$ are the same person, we want $||f(x^{(1)}) - f(x^{(2)})||_2^2$ to be small.</li>
@@ -473,7 +472,7 @@ $$</p>
 J(G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)
 $$</p>
 <p>That&rsquo;s it, this is the last week of the CNN course. Next course is sequential models, which, to me, are much more interesting in terms of applications. The programming exercises for this week were fantastic as well, and I heavily suggest that you do them as well.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/" >here</a>, and it&rsquo;s the first week in the sequence models course.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/" >here</a>, and it&rsquo;s the first week in the sequence models course.</p>
 
       </div>
 
@@ -510,7 +509,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -543,7 +541,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -561,7 +559,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -609,6 +607,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

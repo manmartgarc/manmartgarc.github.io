@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on Manuel Martinez</title>
-    <link>https://manmartgarc.github.io/tags/go/</link>
+    <link>http://localhost:1313/tags/go/</link>
     <description>Recent content in Go on Manuel Martinez</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 23 Sep 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://manmartgarc.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lambda Functions with Rust and CDK</title>
+      <link>http://localhost:1313/posts/tech-support/rust-lambda/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tech-support/rust-lambda/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;</description>
+    </item>
     <item>
       <title>Lambda Functions with Go and CDK</title>
-      <link>https://manmartgarc.github.io/posts/tech-support/go-lambda/</link>
+      <link>http://localhost:1313/posts/tech-support/go-lambda/</link>
       <pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/tech-support/go-lambda/</guid>
+      <guid>http://localhost:1313/posts/tech-support/go-lambda/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;AWS Lambda&lt;/a&gt; is a serverless computing service that lets you run code without provisioning or managing servers. Lambdas are very flexible because you can run them on a &lt;a href=&#34;https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-run-lambda-schedule.html&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;schedule&lt;/a&gt;, in response to &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;events&lt;/a&gt;, or even as an &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;API endpoint&lt;/a&gt; that responds to an HTTP request. In this post, we&amp;rsquo;ll look at how to create a Lambda function using Go and the AWS Cloud Development Kit (CDK) - with a focus on using CDK to speed up the development process and improve operational efficiency.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Convolutional Neural Networks: Week 3 | Detection Algorithms · Manuel Martinez
 </title>
@@ -53,7 +53,7 @@ U-Net Architecture
 
 Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We previously discussed how we can train a classifier using images with CNNs. The new kink is the localization of the object in the image.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -62,7 +62,7 @@ Object localization is, intuitively, not just detecting an object in an image, b
 This week’s topics are:
 Object Localization Landmark Detection Object Detection Sliding Windows Detection Convolutional Implementation of Sliding Windows Turning fully connected layers into convolutional layers Implementing sliding windows convolutionally Bounding Box Predictions Intersection Over Union Non-max Suppression Anchor Boxes Semantic Segmentation Transpose Convolutions U-Net Architecture Object Localization Link to heading Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We previously discussed how we can train a classifier using images with CNNs. The new kink is the localization of the object in the image.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Convolutional Neural Networks: Week 3 | Detection Algorithms">
   <meta property="og:description" content="This is the third week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.
@@ -79,7 +79,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -89,7 +89,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -99,7 +99,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -147,7 +147,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -190,7 +190,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/">
               Convolutional Neural Networks: Week 3 | Detection Algorithms
             </a>
           </h1>
@@ -270,7 +270,7 @@ Object Localization Landmark Detection Object Detection Sliding Windows Detectio
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/" >previously</a> discussed how we can train a classifier using images with CNNs. The new kink is the localization of the object in the image.</p>
+<p>Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/" >previously</a> discussed how we can train a classifier using images with CNNs. The new kink is the localization of the object in the image.</p>
 <p>In image classification we would train a CNN with a softmax layer at the end, which outputs the probability distribution of some sample $i$ belonging to one of the class set distributions. We will extend this naturally by adding to this final layer some units that are not under the softmax function. Specifically, we will add four hidden units in the output: $b_x, b_y, b_h, b_w$ which will describe the center point of a bounding box around the object $(b_x, b_y)$ and the bounding box&rsquo;s height and width $(b_h, b_w)$.</p>
 <p>We will literally cram all these things into the final layer so that our output $\hat{y}$ will be an estimate of $y$ as follows:</p>
 <p>$$
@@ -311,8 +311,7 @@ l_{128}
 $$</p>
 <p>Where $p_c$ still represents the probability that the image contains an object, but $l_1, \dots, l_128$ represent the neural network&rsquo;s predictions of the landmarks.</p>
 <blockquote>
-<p>A key thing is that each landmark, say $l_1$ represents the same &ldquo;position&rdquo; in the image across many training samples. If we are doing face recognition, and $l_1$ is a landmark on the bottom of the bridge of the nose, it must be the same across all training samples for it to work.</p>
-</blockquote>
+<p>A key thing is that each landmark, say $l_1$ represents the same &ldquo;position&rdquo; in the image across many training samples. If we are doing face recognition, and $l_1$ is a landmark on the bottom of the bridge of the nose, it must be the same across all training samples for it to work.</p></blockquote>
 <h2 id="object-detection">
   Object Detection
   <a class="heading-link" href="#object-detection">
@@ -503,7 +502,7 @@ $$</p>
 <li>Repeat this operation until we reach our original spatial dimensions.</li>
 </ol>
 <p>In practice, we usually reduce the spatial dimensions by a factor of 2, and then blow them back up by a factor of two every time until we are back to the original spatial dimensions.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/" >here</a>.</p>
 
       </div>
 
@@ -540,7 +539,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -573,7 +571,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -591,7 +589,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -639,6 +637,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

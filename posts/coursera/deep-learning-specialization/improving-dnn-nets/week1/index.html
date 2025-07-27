@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning · Manuel Martinez
 </title>
@@ -54,7 +54,7 @@ Weight Initialization
 
 Machine learning projects are highly iterative. That is, you try something new, see how it does and then adjust; very much like gradient descent. Therefore, you want the iteration time to be quick so that you can try as many things as quickly as possible, without affecting the final performance of the model. Part of this is setting up your datasets correctly so that you can efficiently iterate over different approaches.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -63,7 +63,7 @@ Machine learning projects are highly iterative. That is, you try something new, 
 This week’s topics are:
 Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tradeoff Basic Recipe for Machine Learning Regularizing our Neural Network Regularization Why Does Regularization Reduce Overfitting? Dropout Regularization Understanding Dropout Other Regularization Methods Setting up our Optimization Problem Normalizing Inputs Vanishing and Exploding Gradients Weight Initialization Setting up our Machine Learning problem Link to heading Train / Dev / Test sets Link to heading Machine learning projects are highly iterative. That is, you try something new, see how it does and then adjust; very much like gradient descent. Therefore, you want the iteration time to be quick so that you can try as many things as quickly as possible, without affecting the final performance of the model. Part of this is setting up your datasets correctly so that you can efficiently iterate over different approaches.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning">
   <meta property="og:description" content="This is the first week in the second course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.
@@ -80,7 +80,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -90,7 +90,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -100,7 +100,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -148,7 +148,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -191,7 +191,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/">
               Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning
             </a>
           </h1>
@@ -451,8 +451,7 @@ $$</p>
 </ul>
 <p>The L2-norm is also usually called <em>weight decay</em>. This is because when you differentiate the loss function, which now includes the regularization term, with respect to the parameters, it will scale down $W^{[l]}$ by $1 - \frac{\alpha\lambda}{m}$ on every step. Making those weights smaller, or decaying the weights if you please.</p>
 <blockquote>
-<p>If you&rsquo;re coming from econ-land, you might have heard of Lasso and Ridge regressions. Lasso is a linear regression that uses the L1-norm, while Ridge is a linear regression that uses the L2-norm.</p>
-</blockquote>
+<p>If you&rsquo;re coming from econ-land, you might have heard of Lasso and Ridge regressions. Lasso is a linear regression that uses the L1-norm, while Ridge is a linear regression that uses the L2-norm.</p></blockquote>
 <h3 id="why-does-regularization-reduce-overfitting">
   Why Does Regularization Reduce Overfitting?
   <a class="heading-link" href="#why-does-regularization-reduce-overfitting">
@@ -504,8 +503,7 @@ $$</p>
 </h3>
 <p>So why does dropout behave like regularization? It seems crazy to &ldquo;kill&rdquo; some nodes at random, it&rsquo;s the very definition of chaotic evil. It turns out that by doing this, the model will learn not to rely on any specific feature, because it might not be there the next time. The model will respond to dropout by <em>spreading</em> out the weights across the network, effectively reducing their magnitude. This is why dropout can be thought of as regularization.</p>
 <blockquote>
-<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/"  class="external-link" target="_blank" rel="noopener">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
-</blockquote>
+<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/"  class="external-link" target="_blank" rel="noopener">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p></blockquote>
 <h3 id="other-regularization-methods">
   Other Regularization Methods
   <a class="heading-link" href="#other-regularization-methods">
@@ -604,7 +602,7 @@ $$</p>
 </ul>
 </li>
 </ul>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -655,7 +653,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -688,7 +685,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -706,7 +703,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -754,6 +751,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

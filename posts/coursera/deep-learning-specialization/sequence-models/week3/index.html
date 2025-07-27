@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism · Manuel Martinez
 </title>
@@ -49,7 +49,7 @@ Defining the Attention Model
 
 The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@ The basic example for sequence-to-sequence approaches was also covered in the fi
 This week’s topics are:
 Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures Link to heading The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism">
   <meta property="og:description" content="This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
@@ -75,7 +75,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -85,7 +85,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -95,7 +95,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -143,7 +143,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -186,7 +186,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/">
               Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism
             </a>
           </h1>
@@ -262,7 +262,7 @@ Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely 
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>The basic example for sequence-to-sequence approaches was also covered in the <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/" >first week</a> of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.</p>
+<p>The basic example for sequence-to-sequence approaches was also covered in the <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/" >first week</a> of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.</p>
 <h3 id="basic-seq2seq-models">
   Basic Seq2Seq Models
   <a class="heading-link" href="#basic-seq2seq-models">
@@ -443,7 +443,7 @@ $$</p>
 </figure>
 
 <p>In the picture, the annotation vectors are the pre-attention layer, the attention mechanism represents the layer where we estimate $\alpha^{&lt;t,t&rsquo;&gt;}$ and everything above the dotted line is the post-attention layer.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -491,7 +491,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -524,7 +523,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -542,7 +541,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -590,6 +589,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

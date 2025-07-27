@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks · Manuel Martinez
 </title>
@@ -58,7 +58,7 @@ Programming Frameworks
 
 We have seen by now that neural networks have a lot of hyperparameters. Remember that hyperparameters remain fixed during training. This means that the process of finding reasonable hyperparameters, called hyperparameter tuning, is a process that is separate from training your model.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -67,7 +67,7 @@ We have seen by now that neural networks have a lot of hyperparameters. Remember
 This week’s topics are:
 Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search Using an Appropriate Scale when Searching Python Implementation Hyperparameter Tuning in Practice: Pandas vs. Caviar Batch Normalization Normalizing Activations in a Network Fitting Batch Norm into a Neural Network Why does Batch Norm work? Batch Norm at Test Time Multi-class Classification Softmax Regression Training a Softmax Classifier Programming Frameworks Hyperparameter Tuning Link to heading We have seen by now that neural networks have a lot of hyperparameters. Remember that hyperparameters remain fixed during training. This means that the process of finding reasonable hyperparameters, called hyperparameter tuning, is a process that is separate from training your model.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks">
   <meta property="og:description" content="This is the third and last week of the second course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera.
@@ -84,7 +84,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -94,7 +94,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -104,7 +104,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -152,7 +152,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -195,7 +195,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/">
               Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks
             </a>
           </h1>
@@ -306,8 +306,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 <li>Learning rate decay, and $L$.</li>
 </ol>
 <blockquote>
-<p>If using Adam the defaults of $\beta_1 = 0.9, \beta_2 = 0.999, \epsilon=10^{-8}$ usually work fine.</p>
-</blockquote>
+<p>If using Adam the defaults of $\beta_1 = 0.9, \beta_2 = 0.999, \epsilon=10^{-8}$ usually work fine.</p></blockquote>
 <p>Now we know where to focus first. But how do we actually search and evaluate values?</p>
 <p>In the earlier generation of machine learning algorithms, researchers would usually use <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search"  class="external-link" target="_blank" rel="noopener">grid search</a>. Grid search is an exhaustive search over a manually specified subset of the hyperparameter space, usually using cross validation. It&rsquo;s called a grid because if you imagine having two hyperparameters $h_1, h_2$, and some range of values <em>and</em> a step-size for each of the ranges $r_1, r_2$, then you can imagine a grid or matrix where each cell is a combination of $h_1, h_2$ over each of their ranges. For example, you might say, I want to search a value for $\alpha$ in the interval $[0.001, 0.1]$, and I will draw some <em>equidistant</em> samples in that range and evaluate all the values. Notice that the &ldquo;grid&rdquo; becomes a matrix, or $n$-dimensional tensor as you add more hyperparameters; this is terrible because the volume of the search space increases exponentially with each additional dimension or hyperparameter.</p>
 <h4 id="random-search">
@@ -342,8 +341,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 <p>So we know that we should sample the hyperparameter space at random. However, this doesn&rsquo;t necessarily mean to do it uniformly at random. The reason for this is that the <em>search scale</em> for each hyperparameter matters a lot. Being able to communicate the desired scale to the random sampling process is crucial for efficient search.</p>
 <p>For some hyperparameters, such as the size of a hidden-layer $l$, $n^{[l]}$, it might be reasonable to sample uniformly at random. Say that you want to search for $n^{[l]}$ over the range $[50, 100]$. Then values like $89, 57, 62, 89, 74$ might be reasonable (actually sampled at random).</p>
 <blockquote>
-<p>Remember that a continuous uniform distribution has a PDF of $\frac{1}{b-a}$ where $a,b$ are the minimum and maximum values. Therefore, every value in the range $[a, b]$ has the same probability of being realized.</p>
-</blockquote>
+<p>Remember that a continuous uniform distribution has a PDF of $\frac{1}{b-a}$ where $a,b$ are the minimum and maximum values. Therefore, every value in the range $[a, b]$ has the same probability of being realized.</p></blockquote>
 <p>This will not work for a hyperparameter like $\alpha$, however. Say that we suspect that a good $\alpha$ value is in the range $[0.0001, 1]$, and we sample uniformly at random. Since every value has the same likelihood of being drawn, this means that values between $[0.1, 1]$ will be sampled with $90\%$ probability. What about the interval $[0.0001, 0.1)$? These values have only a $10\%$ probability of being drawn. This is terrible because we are <em>equally</em> interested in values in both ranges.</p>
 <p>This is why it makes more sense to sample for $\alpha$ values on the <strong>log scale</strong> as opposed to the <strong>linear scale</strong>. When we search over the linear scale and sample uniformly at random, we will spend $10\%$ of our effort searching over $[0.0001, 0.1)$ and $90\%$ of our effort searching over $[0.1, 1]$. On the other hand, when using a log-scale and sampling uniformly at random, we will spend an <em>equal</em> amount of effort searching over $[0.0001, 0.001), [0.001, 0.01), [0.01, 0.1), [0.1, 1]$.</p>
 <h4 id="python-implementation">
@@ -384,8 +382,7 @@ Hyperparameter Tuning Tuning Process Random Search Coarse-to-fine Grained Search
 </h2>
 <p>You might remember how we mentioned that <a href="/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#normalizing-inputs" >normalizing your inputs</a> could help our optimization run faster. The issue with this is that even though our input layer is getting normalized values, the outputs of each layer $l$, $A^{[l]}$ are no longer normalized. Batch normalization is applying the same reasoning but on each <em>layer</em>.</p>
 <blockquote>
-<p>Batch normalization doesn&rsquo;t have anything to do with batch or mini-batch gradient descent and can be implemented under both approaches.</p>
-</blockquote>
+<p>Batch normalization doesn&rsquo;t have anything to do with batch or mini-batch gradient descent and can be implemented under both approaches.</p></blockquote>
 <p>A key thing is that we won&rsquo;t normalize $A^{[l]}$ but $Z^{[l]}$ instead. Let&rsquo;s go over the steps.</p>
 <h3 id="normalizing-activations-in-a-network">
   Normalizing Activations in a Network
@@ -425,8 +422,7 @@ $$</p>
 </h3>
 <p>So now we have $\gamma^{[l]}, \beta^{[l]}$ for each of our hidden layers $l$. Remember that $\beta^{[l]}$ is different from $b^{[l]}$ and also different from the $\beta$ parameter used in gradient descent with momentum. We can learn these parameters in the same way we have been learning $W^{[l]}, b^{[l]}$; that is updating them on each step of gradient descent. We can <em>even</em> use EWMA methods such as momentum, RMSProp or Adam. One of the amazing things about these approaches is that they&rsquo;re generalizable.</p>
 <blockquote>
-<p>When using <em>mini-batch</em> gradient descent, we use the mean and standard deviation of <em>each mini-batch</em> to standardize. However, the $\gamma^{[l]}, \beta^{[l]}$ is the same for all mini-batches within a layer $l$.</p>
-</blockquote>
+<p>When using <em>mini-batch</em> gradient descent, we use the mean and standard deviation of <em>each mini-batch</em> to standardize. However, the $\gamma^{[l]}, \beta^{[l]}$ is the same for all mini-batches within a layer $l$.</p></blockquote>
 <p>A final detail mentioned in the course is that, when using batch normalization, the parameters $b^{[l]}$ are redundant because they are subtracted when standardizing. Therefore, you can drop $b^{[l]}, \forall l$ from the set of learnable parameters and simply focus on $\beta^{[l]}$.</p>
 <h3 id="why-does-batch-norm-work">
   Why does Batch Norm work?
@@ -518,8 +514,7 @@ A^{[l]} = \hat{y} = \frac{t^{[l]}}{176.3} = \begin{bmatrix}
 $$</p>
 <p>Now we can interpret these as probabilities! For example $P(x | C_1) = 0.842, P(x | C_2) = 0.042$ and so on. Also notice that the sum of these is $1$ because of the normalization in the denominator. Of course, we can think of the softmax as just another activation function, albeit a multi-dimensional one.</p>
 <blockquote>
-<p>The name softmax comes from the comparison against the &ldquo;hard max&rdquo; function, which used in our case would return the vector $[1, 0, 0, 0]$, that is a boolean mask of the maximum value in the vector. The softmax is a &ldquo;continuous&rdquo; or &ldquo;soft&rdquo; version of that so that the vector we get as output is $[0.842, 0.042, 0.002, 0.114]$.</p>
-</blockquote>
+<p>The name softmax comes from the comparison against the &ldquo;hard max&rdquo; function, which used in our case would return the vector $[1, 0, 0, 0]$, that is a boolean mask of the maximum value in the vector. The softmax is a &ldquo;continuous&rdquo; or &ldquo;soft&rdquo; version of that so that the vector we get as output is $[0.842, 0.042, 0.002, 0.114]$.</p></blockquote>
 <p>You might be thinking, what if $C=2$? In this case we are back to binary classification. If we compare softmax regression to logistic regression, then when $C=2$ softmax reduces to logistic regression. However, softmax can generalize logistic regression to $C=K$ dimensions or classes.</p>
 <h3 id="training-a-softmax-classifier">
   Training a Softmax Classifier
@@ -544,7 +539,7 @@ $$</p>
 <p>Okay, never program your deep learning framework from scratch unless you are an expert trying to squeeze the latest bits of performance in some kind of specialized hardware. Just go with your favorite deep learning framework package. Hopefully go with one that has a vibrant, active community where you can get support and learn how to use the framework.</p>
 <p>Most of the frameworks differ in their approaches and they ultimately end up being equivalent. Like many other packages, measuring the &ldquo;best&rdquo; is hard because the &ldquo;best&rdquo; package is not just the fastest, but the easiest to use, the one with the best community and support, etc.</p>
 <p>The key thing that all frameworks share is that they solve the problem of automatic differentiation. That is you can define some data, some kind of optimizer, some kind of cost function, and then automatically differentiate the cost function with respect to some parameters. For the purposes of the course, all frameworks should be thought of as equivalent. The course goes over a <em>very</em> simple TensorFlow example, but I decided to ignore it since TensorFlow&rsquo;s documentation has better introductory examples in my opinion.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/" >here</a>.</p>
 
       </div>
 
@@ -581,7 +576,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -614,7 +608,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -632,7 +626,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -680,6 +674,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

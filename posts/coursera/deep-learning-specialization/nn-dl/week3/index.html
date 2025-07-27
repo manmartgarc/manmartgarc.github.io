@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks · Manuel Martinez
 </title>
@@ -33,7 +33,7 @@ Random Initialization
 
 It&rsquo;s time to refine our notation and to disambiguate some concepts introduced in week 2. Let&rsquo;s start with the notation used in the course.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@ It&rsquo;s time to refine our notation and to disambiguate some concepts introdu
 This week’s topics are:
 Overview Neural Network Representation Computing a Neural Network’s Output Vectorizing across multiple examples Activation functions Random Initialization Overview Link to heading It’s time to refine our notation and to disambiguate some concepts introduced in week 2. Let’s start with the notation used in the course.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks">
   <meta property="og:description" content="This week’s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
@@ -59,7 +59,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -69,7 +69,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -79,7 +79,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -127,7 +127,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -170,7 +170,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/">
               Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks
             </a>
           </h1>
@@ -250,8 +250,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 <p>The input layer corresponds to your training samples $x^{(1)}, x^{(2)}, \dots, x^{(m)}$. You can also think of the input layer as $a^{[0]}$. This means that the first hidden layer is $a^{[1]}$, and in a neural network with a <em>single</em> hidden layer, the output layer would be $a^{[2]}$.</p>
 <p>Graduating from logistic regression to neural networks requires us to differentiate which $a$ we are taking about. This is because any hidden layer&rsquo;s inputs, including the output layer, is the output of a previous layer.</p>
 <blockquote>
-<p>An important comment in the course is that a network with a single hidden layer is usually referred to as a two layer network.</p>
-</blockquote>
+<p>An important comment in the course is that a network with a single hidden layer is usually referred to as a two layer network.</p></blockquote>
 <h2 id="computing-a-neural-networks-output">
   Computing a Neural Network&rsquo;s Output
   <a class="heading-link" href="#computing-a-neural-networks-output">
@@ -368,8 +367,7 @@ x^{(1)} &amp; x^{(2)} &amp; \dots &amp; x^{(m)} \\
 \end{equation}
 $$</p>
 <blockquote>
-<p>Notice that $x_i$ refers to the $i$th feature of a training example, while $x^{(i)}$ refers to the $i$th training example.</p>
-</blockquote>
+<p>Notice that $x_i$ refers to the $i$th feature of a training example, while $x^{(i)}$ refers to the $i$th training example.</p></blockquote>
 <p>Now we can rewrite our neural net with matrices for $Z^{[l]}, A^{[l]}$:</p>
 <ul>
 <li>$Z^{[1]} = W^{[1]}X + b^{[1]}$</li>
@@ -388,8 +386,7 @@ $$</p>
 </h2>
 <p>So far we&rsquo;ve picked the sigmoid function, $\sigma(x)$, and slapped it at the end of our linear regression. But why did we pick it? We picked it to add non-linearities, which are important to deal with datasets that are non-linearly separable. Also think that the composition of two linear functions is itself a linear function. Without any non-linearities your network would not be able to learn more &ldquo;interesting&rdquo; (non-linear) features as you go deeper in the layers. It turns out however, that this is not our only choice, and in fact the choice matters in many ways.</p>
 <blockquote>
-<p><a href="https://tamarabroderick.com/"  class="external-link" target="_blank" rel="noopener">Tamara Broderick</a> is an Associate Professor at MIT, where she teaches machine learning and statistics. Being an all-around amazing person, she has published an entire course of machine learning on <a href="https://www.youtube.com/watch?v=0xaLT4Svzgo&amp;list=PLxC_ffO4q_rW0bqQB80_vcQB09HOA3ClV"  class="external-link" target="_blank" rel="noopener">YouTube</a>, and the slides made public on her website. The reason I mention this, besides the fact that she is an amazing teacher, is that her slides are beautiful; geometrically so. In her slides, you can see why how the choice of activation function changes the decision plane in graphical detail. I 100% suggest you check out these <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf"  class="external-link" target="_blank" rel="noopener">slides</a> and marvel at the geometric beauty of neural nets!</p>
-</blockquote>
+<p><a href="https://tamarabroderick.com/"  class="external-link" target="_blank" rel="noopener">Tamara Broderick</a> is an Associate Professor at MIT, where she teaches machine learning and statistics. Being an all-around amazing person, she has published an entire course of machine learning on <a href="https://www.youtube.com/watch?v=0xaLT4Svzgo&amp;list=PLxC_ffO4q_rW0bqQB80_vcQB09HOA3ClV"  class="external-link" target="_blank" rel="noopener">YouTube</a>, and the slides made public on her website. The reason I mention this, besides the fact that she is an amazing teacher, is that her slides are beautiful; geometrically so. In her slides, you can see why how the choice of activation function changes the decision plane in graphical detail. I 100% suggest you check out these <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf"  class="external-link" target="_blank" rel="noopener">slides</a> and marvel at the geometric beauty of neural nets!</p></blockquote>
 <p>It turns out that there are three widely used (some more than others) activation functions. We denote the activation function of layer $l$ as $g^{[l]}$. The functions are:</p>
 <ol>
 <li>Hyperbolic Tangent Function: $g^{[l]}(z^{[l]}) = \text{tanh}(z^{[l]}) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$</li>
@@ -406,7 +403,7 @@ $$</p>
 </h2>
 <p>How do we initialize our parameters? The choice of how we initialize our $W^{[l]}$ actually matters. There is a property known as <a href="https://cedar.buffalo.edu/~srihari/CSE676/8.4%20ParInitializn.pdf"  class="external-link" target="_blank" rel="noopener">symmetry</a>. If you choose all your parameters as $0$, then you are not &ldquo;breaking&rdquo; symmetry. What this means is that every iteration of gradient descent will result in the same weights, therefore it will never improve your cost. You might be asking, hey what about $b^{[l]}$? It turns out that $b^{[l]}$ doesn&rsquo;t have the symmetry problem, so you don&rsquo;t need to worry too much about it, and can in fact initialize it to $0$.</p>
 <p>Fine, but what do we initialize it to? You can use random numbers (actually not just any random numbers as we will see in the next course), with the only caveat that you need to scale your randomly chosen parameters by a constant, usually $0.01$ or $10^{-2}$. This is done to keep the numbers close to $0$, where the derivatives of your activation functions are better defined than at the extremes. Remember that $\sigma(z^{[l]})$ is basically flat for values $|x| \approx 6$. There are more sophisticated approaches to parameter initialization that will are covered in the next course.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -454,7 +451,6 @@ $$</p>
         
         
         
-
         
         
       </footer>
@@ -487,7 +483,7 @@ $$</p>
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -505,7 +501,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -553,6 +549,7 @@ $$</p>
   
 
   
-</body>
 
+  
+</body>
 </html>

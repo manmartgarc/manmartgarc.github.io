@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning · Manuel Martinez
 </title>
@@ -22,17 +22,17 @@
 
 This is the first course in Coursera&rsquo;s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
 <meta name="keywords" content="blog,developer,personal">
-<meta name="fediverse:creator" content="" />
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning">
-  <meta name="twitter:description" content=" Introduction to Deep Learning Link to heading This is the first course in Coursera’s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
+  <meta name="twitter:description" content="Introduction to Deep Learning Link to heading This is the first course in Coursera’s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/">
+<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week1/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning">
-  <meta property="og:description" content=" Introduction to Deep Learning Link to heading This is the first course in Coursera’s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
+  <meta property="og:description" content="Introduction to Deep Learning Link to heading This is the first course in Coursera’s Deep Learning Specialization. I will try to summarize the major topics presented in each of the weeks of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also for people who have not taken the specialization. Hopefully these posts will inspire you to do so.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -44,7 +44,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
 
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/">
+<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week1/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -54,7 +54,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.07092c1350ffd254998dc43a44ae96e617d14af4df4602626878df89189c5e1a.css" integrity="sha256-BwksE1D/0lSZjcQ6RK6W5hfRSvTfRgJiaHjfiRicXho=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -64,7 +64,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -112,7 +112,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
+    <a class="navigation-title" href="http://localhost:1313/">
       Manuel Martinez
     </a>
     
@@ -155,7 +155,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/">
+            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week1/">
               Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning
             </a>
           </h1>
@@ -226,7 +226,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
 <li><a href="https://en.wikipedia.org/wiki/Unsupervised_learning"  class="external-link" target="_blank" rel="noopener">Unsupervised Learning</a></li>
 </ol>
 <p>At this point it&rsquo;s not terribly important to know the exact difference, other than two things. Supervised learning is so called because you use labeled data. Labeled data are pairs of features (covariates) and their associated label. Features could be the picture of a cat and the label is whether it&rsquo;s a cat or not, which is called classification. You could also predict the price of a house based on a house&rsquo;s features, and this is called regression. In either case explaining the performance of the algorithm is very straightforward: we are close/far from perfectly predicting (recombining) our target from the training samples. On the other hand, with unsupervised learning, there are no labels in the data, so you cannot objectively measure how the algorithm is doing based on labels. Unsupervised learning does use cost functions, but they are not usually related to the labels in the data. These are commonly clustering or partitioning algorithms. The course focuses on supervised learning.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -271,7 +271,6 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
         
         
         
-
         
         
       </footer>
@@ -304,7 +303,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
     
       2023 -
     
-    2024
+    2025
      Manuel Martinez 
     ·
     
@@ -322,7 +321,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
@@ -370,6 +369,7 @@ This is the first course in Coursera&rsquo;s Deep Learning Specialization. I wil
   
 
   
-</body>
 
+  
+</body>
 </html>
