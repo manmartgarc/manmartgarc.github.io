@@ -482,13 +482,13 @@ $$</p>
 <p>Where $A^{[3]}$ is the output of the layer with $50$ hidden units, and we shut down $20\%$ of them. This means that $A^{[3]}$ is reduced by $20\%$, which also implies that $Z^{[4]}$ is reduced by $20\%$ because $Z^{[4]}$ is just a linear combination of $A^{[3]}$. In order to avoid this problem propagating throughout our network making everything small, we need to roughly &ldquo;refund&rdquo; the lost value to $A^{[3]}$ before passing it to the next layer. We do this simply by:</p>
 <p>$$
 \begin{equation}
-A^{[3]*} = \frac{A^{[3]}}{p}
+A^{[3*]} = \frac{A^{[3]}}{p}
 \end{equation}
 $$</p>
 <p>Remember that dividing anything by a number less than $1$ will make it bigger. Therefore:</p>
 <p>$$
 \begin{equation}
-Z^{[4]} = W^{[4]}A^{[3]*} + b^{[4]}
+Z^{[4]} = W^{[4]}A^{[3*]} + b^{[4]}
 \end{equation}
 $$</p>
 <p>Will make $Z^{[4]}$ be <em>roughly</em> the same as it was originally. This scaling technique is called <a href="https://machinelearning.wtf/terms/inverted-dropout/"  class="external-link" target="_blank" rel="noopener">inverted dropout</a>.</p>

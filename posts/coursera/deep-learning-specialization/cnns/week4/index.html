@@ -13,7 +13,7 @@
 
 
 <meta name="author" content="Manuel Martinez">
-<meta name="description" content="This is the fourth and last week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+<meta name="description" content="This is the fourth and last week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
 This week&rsquo;s topics are as follows:
 
 Face Recognition
@@ -60,14 +60,14 @@ Let&rsquo;s start by going over the important distinction between face verificat
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Convolutional Neural Networks: Week 4 | Face Recognition & Neural Style Transfer">
-  <meta name="twitter:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+  <meta name="twitter:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
 This week’s topics are as follows:
 Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer? What are deep CNNs learning? Cost Function Content Cost Function Style Cost Function Face Recognition Link to heading What is Face Recognition? Link to heading Let’s start by going over the important distinction between face verification and face recognition.">
 
 <meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Convolutional Neural Networks: Week 4 | Face Recognition & Neural Style Transfer">
-  <meta property="og:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
+  <meta property="og:description" content="This is the fourth and last week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.
 This week’s topics are as follows:
 Face Recognition What is Face Recognition? One Shot Learning Siamese Network Triplet Loss Face Verification and Binary Classification Neural Style Transfer What is Neural Style Transfer? What are deep CNNs learning? Cost Function Content Cost Function Style Cost Function Face Recognition Link to heading What is Face Recognition? Link to heading Let’s start by going over the important distinction between face verification and face recognition.">
   <meta property="og:locale" content="en">
@@ -234,7 +234,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
 
       <div class="post-content">
         
-        <p>This is the fourth and last week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. In this week we go over special applications in the field of computer vision with CNNs, face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.</p>
+        <p>This is the fourth and last week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.</p>
 <p>This week&rsquo;s topics are as follows:</p>
 <ul>
 <li><a href="#face-recognition" >Face Recognition</a>
@@ -286,8 +286,8 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
   </a>
 </h3>
 <p>So imagine that we go around our company and finally get a face picture of everyone that should be allowed to get into the building. We want to train a model so that when someone walks into the door, and is one of the people allowed, that the model recognizes that this person is allowed from only one picture. Obviously, we also want to keep away unwanted people!</p>
-<p>The most immediate idea is to train a classifier with a CNN architecture. If we have $K$ employees, then the output layer of our CNN will have $K + 1$ hidden units in the softmax, the extra one for when the input doesn&rsquo;t match to anyone. The issue is that this CNN will have terrible performance because of the size of our training data, remember we only have $K$ pictures. Even worse, what happens when we hire someone else? We would have to retrain the whole network every time. There has to be a better way.</p>
-<p>The better way is to move away from classification and to think of a way to learn a <em>similarity</em> function. A similarity function a function that takes in a pair of elements and outputs their similarity. You might have heard of Jaccard similarity or cosine similarity. In this case, we want to learn a function that takes two pairs of images:</p>
+<p>The most immediate idea is to train a classifier with a CNN architecture. If we have $K$ employees, then the output layer of our CNN will have $K + 1$ hidden units in the softmax, the extra one for when the input doesn&rsquo;t match anyone. The issue is that this CNN will have terrible performance because of the size of our training data—remember, we only have $K$ pictures. Even worse, what happens when we hire someone else? We would have to retrain the whole network every time. There has to be a better way.</p>
+<p>The better way is to move away from classification and to think of a way to learn a <em>similarity</em> function. A similarity function is a function that takes in a pair of elements and outputs their similarity. You might have heard of Jaccard similarity or cosine similarity. In this case, we want to learn a function that takes two images:</p>
 <p>$$
 \text{d}(\text{img}_1, \text{img}_2) = \text{degree of difference between the images}
 $$</p>
@@ -307,7 +307,7 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>The idea behind Siamese networks is pretty straightforward; we run a pair of images, $(\text{img}_1, \text{img}_2)$ through <em>the same</em> CNN with a fully connected layer at the end, we then use these outputs to compare the images. Let&rsquo;s dig deeper into what this means.</p>
+<p>The idea behind Siamese networks is pretty straightforward: we run a pair of images, $(\text{img}_1, \text{img}_2)$, through <em>the same</em> CNN with a fully connected layer at the end, and then use these outputs to compare the images. Let&rsquo;s dig deeper into what this means.</p>
 <p>Remember that CNNs usually reduce the spatial dimensions of the input volume while increasing the channel dimension. Imagine that we have a CNN that takes an image of a face with dimensions $100 \times 100 \times 3$ and after reducing this volume through some number of convolutional and max pooling layers, we get a $128$ dimensional vector. This is the same as in a vanilla CNN, but right before we run the fully connected layer through a softmax layer for classification.</p>
 <p>Let&rsquo;s call our input image $x^{(1)}$. Let&rsquo;s call running $x^{(1)}$ through our CNN, and transforming the $100 \times 100 \times 3$ input into a $128$ element vector $f(x^{(1)})$, so that $f(x^{(1)}) \in \mathbb{R}^{128}$. This $128$ dimensional vector is an <strong>encoding</strong> of the input; it simply some particular representation of the original image containing a face.</p>
 <p>If we let $x^{(1)}$ be the image of our employee in the database, and $x^{(2)}$ be the image of the face of the person who just walked in, you might imagine what we want to do. We&rsquo;ll run $x^{(2)}$ through our CNN and encode it in the same way, so that we get $f(x^{(2)})$. Notice that $f(x^{(2)}) \in \mathbb{R}^{128}$ as well, and that the encoding was generated with the <em>same</em> CNN as $f(x^{(1)})$.</p>
@@ -317,7 +317,7 @@ d(x^{(1)}, x^{(2)}) = ||f(x^{(1)}) - f(x^{(2)})||_2^2
 $$</p>
 <p>This is our old friend, the L2-norm of the difference between the two encodings.</p>
 <blockquote>
-<p>You might be thinking, why not compare the two images with the L2-norm directly? Think about what happens when you compare two images of the same person but with different lighting, hairstyle, makeup, etc. It won&rsquo;t work.</p></blockquote>
+<p>You might be thinking, why not compare the two images with the L2-norm directly? Think about what happens when you compare two images of the same person but with different lighting, hairstyle, makeup, etc. It won&rsquo;t work well.</p></blockquote>
 <p>But how do we train such a network? Remember we want a CNN that takes as input an image, and generates a $128$ dimensional encoding $f(x^{(i)})$. But of course, not just any encoding! We want that $128$ dimensional encoding to have certain properties:</p>
 <ul>
 <li>If $x^{(i)}, x^{(j)}$ are the same person, we want $||f(x^{(1)}) - f(x^{(2)})||_2^2$ to be small.</li>
@@ -362,11 +362,11 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>It turns out that the triplet loss approach is not the only approach to build a face recognition system. We could also use the result of the two CNNs, i.e. the $128$ dimensional embeddings of the pictures, and then feed these to a logistic regression unit and perform binary classification on them; estimating whether the two embeddings are the same or not. The final logistic layer would look like this:</p>
+<p>It turns out that the triplet loss approach is not the only way to build a face recognition system. We could also use the result of the two CNNs, i.e., the $128$-dimensional embeddings of the pictures, and then feed these to a logistic regression unit and perform binary classification on them; estimating whether the two embeddings are the same or not. The final logistic layer would look like this:</p>
 <p>$$
 \hat{y} = \sigma \left( \sum_{k=1}^{128} w_k ||f(x^{(i)})_{k} - f(x^{(j)})_k||_2 + b \right)
 $$</p>
-<p>Where we are still using the embeddings, but we are calculating an element-wise square difference, multiplied each by its own weight.</p>
+<p>Where we are still using the embeddings, but we are calculating an element-wise squared difference, each multiplied by its own weight.</p>
 <p>In practice, and in both approaches, we can speed up the latency of the system by precomputing the encodings of our employees, and only computing the encoding of the person we are trying to recognize on the fly.</p>
 <h2 id="neural-style-transfer">
   Neural Style Transfer
@@ -382,7 +382,7 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>You might still remember back when neural style transfer was the latest, hottest thing in machine learning. Perhaps even more so, the pointed questions it raised about intellectual property rights. Today, many companies use stable diffusion, a text-to-image system, that is used as an interface for performing neural style transfer.</p>
+<p>You might still remember back when neural style transfer was the latest, hottest thing in machine learning. Perhaps even more so, the pointed questions it raised about intellectual property rights. Today, many companies use stable diffusion, a text-to-image system, as an interface for performing neural style transfer.</p>
 <p>Neural style transfer, in a nutshell, is being able to imbue an image with another style. For example, we might have a picture of our cats, but we&rsquo;d like to make that picture look like it was painted by Rembrandt. Neural style transfer allows us to &ldquo;transfer&rdquo; the style of a Rembrandt painting into a picture of our cat, so that it looks like Rembrandt himself painted our furry friend.</p>
 <p>We will be using the notation $C$ to refer to the <em>content</em> image, in our case our cat. The letter $S$ will represent the <em>style</em> image, in our case a Rembrandt painting. Finally, we will use $G$ to refer to the <em>generated</em> image, that is our cat in the style of Rembrandt.</p>
 <h3 id="what-are-deep-cnns-learning">
@@ -392,8 +392,8 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Before getting into neural style transfer, we must understand at a high level, how the input changes through the layers in a CNN. There is an amazing paper by <a href="https://arxiv.org/abs/1311.2901"  class="external-link" target="_blank" rel="noopener">Zeiler and Fergus, 2013</a> in which they come up with novel ways to visualize what visual features the filters are learning on each of the layers.</p>
-<p>The gist of it is that the filters in the shallower (earlier) layers of the network learn to pick apart basic features in our image; think vertical lines, diagonal lines, etc. As we progress down the layers, deeper into the CNN, the filters start to learn more abstract features, such as concentric circles, colors and lines, etc. Even later on, we see that some filters specialize in certain regions of the face, noses, eyes, etc. So on and so forth.</p>
+<p>Before getting into neural style transfer, we must understand, at a high level, how the input changes through the layers in a CNN. There is an amazing paper by <a href="https://arxiv.org/abs/1311.2901"  class="external-link" target="_blank" rel="noopener">Zeiler and Fergus, 2013</a> in which they come up with novel ways to visualize what visual features the filters are learning on each of the layers.</p>
+<p>The gist of it is that the filters in the shallower (earlier) layers of the network learn to pick apart basic features in our image—think vertical lines, diagonal lines, etc. As we progress down the layers, deeper into the CNN, the filters start to learn more abstract features, such as concentric circles, colors, and lines, etc. Even later on, we see that some filters specialize in certain regions of the face: noses, eyes, etc. So on and so forth.</p>
 <p>This is important to keep in mind, especially in the context of neural style transfer, because we can choose to give a unique weight to each layer in the combination of content and style.</p>
 <h3 id="cost-function">
   Cost Function
@@ -402,17 +402,17 @@ $$</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Similar to all of other applications of supervised learning, we need to establish a cost function that will guide the optimization process. Let&rsquo;s get started.</p>
+<p>Similar to all other applications of supervised learning, we need to establish a cost function that will guide the optimization process. Let&rsquo;s get started.</p>
 <p>We have our content image $C$ and our style image $S$, and we&rsquo;d like to generate an image $G$ which is some mixture of both $C$ and $S$. We will define our loss function in terms of these elements:</p>
 <p>$$
 J(G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)
 $$</p>
-<p>Let&rsquo;s unpack the formula. Our total cost is a function of two separate costs. The first one is the content cost, that is, how bad our generate image is relative to original content image, which in our example is a picture of a cat. The second one is the style cost, how bad our generate image is relative to the original style image, which in our example is a Rembrandt painting. We have two hyperparameters $\alpha$ and $\beta$ which allow us to adjust the mixture between the two costs.</p>
-<p>But how do we get $G$? We start by initializing it randomly. In practice, we add some random noise to the original content image $C$, but imagine that we start $G$ completely at random; that is a random noise picture of dimensions $100 \times 100 \times 3$. Then we can use gradient descent to update our random picture $G$:</p>
+<p>Let&rsquo;s unpack the formula. Our total cost is a function of two separate costs. The first one is the content cost, that is, how bad our generated image is relative to the original content image, which in our example is a picture of a cat. The second one is the style cost, how bad our generated image is relative to the original style image, which in our example is a Rembrandt painting. We have two hyperparameters $\alpha$ and $\beta$ which allow us to adjust the mixture between the two costs.</p>
+<p>But how do we get $G$? We start by initializing it randomly. In practice, we add some random noise to the original content image $C$, but imagine that we start $G$ completely at random; that is, a random noise picture of dimensions $100 \times 100 \times 3$. Then we can use gradient descent to update our random picture $G$:</p>
 <p>$$
 G := G - \frac{\partial}{\partial G} J(G)
 $$</p>
-<p>We are not updating any parameters! We are directly updating the pixel values of our generated image $G$ at each step of gradient descent, or whatever garden variety optimization algorithm we chose to use. Let&rsquo;s now break down each of the components of the cost function.</p>
+<p>We are not updating any parameters! We are directly updating the pixel values of our generated image $G$ at each step of gradient descent, or whatever garden variety optimization algorithm we choose to use. Let&rsquo;s now break down each of the components of the cost function.</p>
 <h4 id="content-cost-function">
   Content Cost Function
   <a class="heading-link" href="#content-cost-function">
@@ -425,8 +425,8 @@ $$</p>
 J(G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)
 $$</p>
 <p>We will focus on the $J_{content}(C, G)$ component.</p>
-<p>Say that we are using a pre-trained CNN, such as VGG-19; and that we focus on some layer $l$. Keeping in mind what happens at <a href="#what-are-deep-cnns-learning" >each layer</a> of a CNN, we will hedge our bets and pick some $l$ that&rsquo;s in the middle; not too deep and not too shallow. We will focus on the activations for this layer, $a^{[l]}$.</p>
-<p>We will run both images, $C, G$, through $a^{[l]}$ and generate $a^{[l](C)}, a^{[l](G)}$. The idea is that if we compare $a^{[l](C)}, a^{[l](G)}$, and they are similar, then the images have similar content. This means that the filters are picking up similar activations on the features that they specialize on for that particular layer.</p>
+<p>Say that we are using a pre-trained CNN, such as VGG-19, and that we focus on some layer $l$. Keeping in mind what happens at <a href="#what-are-deep-cnns-learning" >each layer</a> of a CNN, we will hedge our bets and pick some $l$ that&rsquo;s in the middle—not too deep and not too shallow. We will focus on the activations for this layer, $a^{[l]}$.</p>
+<p>We will run both images, $C$ and $G$, through $a^{[l]}$ and generate $a^{<a href="C" >l</a>}, a^{<a href="G" >l</a>}$. The idea is that if we compare $a^{<a href="C" >l</a>}, a^{<a href="G" >l</a>}$, and they are similar, then the images have similar content. This means that the filters are picking up similar activations on the features that they specialize in for that particular layer.</p>
 <p>This comparison is done by our old friend, the L2-norm of the difference:</p>
 <p>$$
 J^{[l]}_{content}(C, G) = \frac{1}{4 n_H^{[l]} n_W^{[l]} n_C^{[l]}}\sum_{\text{all entries}}||a^{[l](C)} - a^{[l](G)}||_2^2
@@ -441,9 +441,9 @@ $$</p>
   </a>
 </h4>
 <p>Calculating the content cost is so far not that crazy; doing element-wise squared differences is a reasonable approach for the content. But how can we quantify &ldquo;style&rdquo; and compare our generated image $G$ to our style image $S$ to see how far off they are from each other? Here is where things get fascinating.</p>
-<p>The authors define &ldquo;style&rdquo; as the pair-wise correlation between the activations <em>across channels</em>. Since each channel learns a different feature, style is defined as the interaction between the features. More specifically their covariance. If one feature picks up stark lines, and another one picks up colors, then if both of these features have positive or negative covariance, then we can say that this is one of the elements of style. When we do a pair-wise comparison between all channels we get a pair-wise matrix, which we will call $G^{[l]}$, the style matrix. This matrix will tell us how each of the channels covary with each other, and this, in a sense, is the essence of style.</p>
-<p>We want to compare the style matrix for both $S$ our style image and $G$ our generated image, and repeat the comparison we did for the content image, but this time on the style matrix or <a href="https://en.wikipedia.org/wiki/Gram_matrix"  class="external-link" target="_blank" rel="noopener">Gram matrix</a> of both $G$ and $S$. Both style matrices $G^{[l](S)}$ and $G^{[l](G)}$ will be of the same dimensions: $n_C^{[l]} \times n_C^{[l]}$.</p>
-<p>Let&rsquo;s start with the style matrix of $S$. We define $a^{[l](S)}_{i,j,k}$ as <em>one</em> entry in the activations for layer $l$ using $S$ as the input. We will construct $G^{[l](S)}$ the Gram matrix of the activations. The entry $kk&rsquo;$ in the $G^{[l](S)}$ is defined as:</p>
+<p>The authors define &ldquo;style&rdquo; as the pair-wise correlation between the activations <em>across channels</em>. Since each channel learns a different feature, style is defined as the interaction between the features. More specifically, their covariance. If one feature picks up stark lines, and another one picks up colors, then if both of these features have positive or negative covariance, then we can say that this is one of the elements of style. When we do a pair-wise comparison between all channels, we get a pair-wise matrix, which we will call $G^{[l]}$, the style matrix. This matrix will tell us how each of the channels covary with each other, and this, in a sense, is the essence of style.</p>
+<p>We want to compare the style matrix for both $S$, our style image, and $G$, our generated image, and repeat the comparison we did for the content image, but this time on the style matrix or <a href="https://en.wikipedia.org/wiki/Gram_matrix"  class="external-link" target="_blank" rel="noopener">Gram matrix</a> of both $G$ and $S$. Both style matrices $G^{<a href="S" >l</a>}$ and $G^{<a href="G" >l</a>}$ will be of the same dimensions: $n_C^{[l]} \times n_C^{[l]}$.</p>
+<p>Let&rsquo;s start with the style matrix of $S$. We define $a^{<a href="S" >l</a>}_{i,j,k}$ as <em>one</em> entry in the activations for layer $l$ using $S$ as the input. We will construct $G^{<a href="S" >l</a>}$, the Gram matrix of the activations. The entry $kk&rsquo;$ in the $G^{<a href="S" >l</a>}$ is defined as:</p>
 <p>$$
 G^{[l](S)}_{kk&rsquo;} = \sum_{i=1}^{n_H} \sum_{j=1}^{n_W} a^{[l](S)}_{i,j,k} a^{[l](S)}_{i,j,k&rsquo;}
 $$</p>
@@ -462,16 +462,16 @@ $$</p>
 J^{[l]}_{style}(S, G) = \frac{1}{\left(2 n_H^{[l]} n_W^{[l]} n_C^{[l]} \right)^2} \sum_{k=1}^{n_C^{[l]}} \sum_{k&rsquo;=1}^{n_C^{[l]}} \left( G_{kk&rsquo;}^{[l](S)} - G_{kk&rsquo;}^{[l](G)}\right)^2
 $$</p>
 <p>Where again, the normalization factor in front was set by the authors.</p>
-<p>A final thing to notice about the style function: notice that&rsquo;s indexed by $l$; we calculate the style function at every layer $l$. The authors define the cost function at the network level as:</p>
+<p>A final thing to notice about the style function: notice that it&rsquo;s indexed by $l$; we calculate the style function at every layer $l$. The authors define the cost function at the network level as:</p>
 <p>$$
 J_{style}(S, G) = \sum_{l=1}^L \lambda^{[l]} J^{[l]}_{style}(S, G)
 $$</p>
-<p>Using the $\lambda^{[l]}$ parameter for each layer allows us to mix the more basic features in the shallower layers or the more abstract features in the deeper layers. If we want the generated image to <em>softly</em> follow the style, we chose larger weights for the <em>deeper</em> layers and smaller for the shallower layers. On the other hand, if we want our generate image to <em>strongly</em> follow the style image, we do the opposite: select smaller weights for the deeper layers but larger weights for the shallower layers.</p>
+<p>Using the $\lambda^{[l]}$ parameter for each layer allows us to mix the more basic features in the shallower layers or the more abstract features in the deeper layers. If we want the generated image to <em>softly</em> follow the style, we choose larger weights for the <em>deeper</em> layers and smaller for the shallower layers. On the other hand, if we want our generated image to <em>strongly</em> follow the style image, we do the opposite: select smaller weights for the deeper layers but larger weights for the shallower layers.</p>
 <p>Now we can come back to the cost function we defined earlier:</p>
 <p>$$
 J(G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)
 $$</p>
-<p>That&rsquo;s it, this is the last week of the CNN course. Next course is sequential models, which, to me, are much more interesting in terms of applications. The programming exercises for this week were fantastic as well, and I heavily suggest that you do them as well.</p>
+<p>That&rsquo;s it, this is the last week of the CNN course. The next course is sequential models, which, to me, are much more interesting in terms of applications. The programming exercises for this week were fantastic as well, and I highly suggest that you do them as well.</p>
 <p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/" >here</a>, and it&rsquo;s the first week in the sequence models course.</p>
 
       </div>
