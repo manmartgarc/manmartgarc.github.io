@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <title>
   Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks · Manuel Martinez
 </title>
@@ -42,7 +42,7 @@ It&rsquo;s time to refine our notation and to disambiguate some concepts introdu
 This week’s topics are:
 Overview Neural Network Representation Computing a Neural Network’s Output Vectorizing across multiple examples Activation functions Random Initialization Overview Link to heading It’s time to refine our notation and to disambiguate some concepts introduced in week 2. Let’s start with the notation used in the course.">
 
-<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/">
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks">
   <meta property="og:description" content="This week’s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.
@@ -59,7 +59,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 
 
 
-<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/">
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -69,7 +69,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 
   
   
-  <link rel="stylesheet" href="/css/coder.css" media="screen">
+  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -79,7 +79,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -127,7 +127,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="http://localhost:1313/">
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
@@ -170,7 +170,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/">
               Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks
             </a>
           </h1>
@@ -403,7 +403,7 @@ $$</p>
 </h2>
 <p>How do we initialize our parameters? The choice of how we initialize our $W^{[l]}$ actually matters. There is a property known as <a href="https://cedar.buffalo.edu/~srihari/CSE676/8.4%20ParInitializn.pdf"  class="external-link" target="_blank" rel="noopener">symmetry</a>. If you choose all your parameters as $0$, then you are not &ldquo;breaking&rdquo; symmetry. What this means is that every iteration of gradient descent will result in the same weights, therefore it will never improve your cost. You might be asking, hey what about $b^{[l]}$? It turns out that $b^{[l]}$ doesn&rsquo;t have the symmetry problem, so you don&rsquo;t need to worry too much about it, and can in fact initialize it to $0$.</p>
 <p>Fine, but what do we initialize it to? You can use random numbers (actually not just any random numbers as we will see in the next course), with the only caveat that you need to scale your randomly chosen parameters by a constant, usually $0.01$ or $10^{-2}$. This is done to keep the numbers close to $0$, where the derivatives of your activation functions are better defined than at the extremes. Remember that $\sigma(z^{[l]})$ is basically flat for values $|x| \approx 6$. There are more sophisticated approaches to parameter initialization that will are covered in the next course.</p>
-<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -501,7 +501,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.js"></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
 
   

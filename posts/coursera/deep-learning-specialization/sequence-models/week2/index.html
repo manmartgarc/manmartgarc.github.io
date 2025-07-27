@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <title>
   Sequence Models: Week 2 | NLP &amp; Word Embeddings · Manuel Martinez
 </title>
@@ -69,7 +69,7 @@ Word embeddings are a way of representing words. The approach borrows from dimen
 This week’s topics are:
 Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible.">
 
-<meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/">
+<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
   <meta property="og:site_name" content="Manuel Martinez">
   <meta property="og:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
   <meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week we go over a little more in depth into natural language applications with sequence models, and also discuss word embeddings; an amazing technique for extracting semantic meaning from words.
@@ -86,7 +86,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 
 
 
-<link rel="canonical" href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/">
+<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -96,7 +96,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 
   
   
-  <link rel="stylesheet" href="/css/coder.css" media="screen">
+  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -106,7 +106,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -154,7 +154,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="http://localhost:1313/">
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
       Manuel Martinez
     </a>
     
@@ -197,7 +197,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
               Sequence Models: Week 2 | NLP &amp; Word Embeddings
             </a>
           </h1>
@@ -364,7 +364,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
   </a>
 </h3>
 <p>So how do we use these embeddings? It turns out that learning good word embeddings takes a lot of text: between $1$ and $100$ billion words in the corpus. That&rsquo;s just the data requirements, training costs are also going to be significant. Instead, we can be <a href="https://www.goodreads.com/quotes/568877-i-choose-a-lazy-person-to-do-a-hard-job"  class="external-link" target="_blank" rel="noopener">lazy</a> and use pre-trained embeddings from somewhere online. After we have these embeddings, we can employ transfer learning and fine-tune a neural network model to our task. We could even fine-tune the embeddings with our data.</p>
-<p>This approach is similar to that of <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/" >face encoding</a>. In the face recognition approach, we used a Siamese network to learn some $\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It&rsquo;s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.</p>
+<p>This approach is similar to that of <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/" >face encoding</a>. In the face recognition approach, we used a Siamese network to learn some $\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It&rsquo;s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.</p>
 <h3 id="properties-of-word-embeddings">
   Properties of Word Embeddings
   <a class="heading-link" href="#properties-of-word-embeddings">
@@ -529,7 +529,7 @@ $$</p>
 <p>In economics, we differentiate taste-based discrimination from <a href="https://en.wikipedia.org/wiki/Statistical_discrimination_%28economics%29"  class="external-link" target="_blank" rel="noopener">statistical discrimination</a>. The former emphasizes the role of prejudice on decision-making, while the latter is more mechanical. In the absence of perfect information, people must make guesses, based on observable attributes to make rational decisions. A very interesting study of statistical discrimination occurred in the context of the &ldquo;ban the box&rdquo; (BTB) policies. BTB policies prevented employers from asking about job applicant&rsquo;s criminal records until late in the hiring process, under the idea that it was unfair for people with criminal records. The study however finds the opposite effect: with the absence of information, employers engage in statistical discrimination against demographic groups that include more ex-offenders. The <a href="https://www.journals.uchicago.edu/doi/full/10.1086/705880"  class="external-link" target="_blank" rel="noopener">study</a> finds that BTB policies decrease the probability of employment by $3.4$ percentage points for young, low-skilled black men.</p>
 <p>Is there a way we could de-bias training data so that the predictive model aligns better with our ethical and moral compass? For the case of machine translation, a group of authors did just that.</p>
 <p>With our knowledge of embeddings it&rsquo;s pretty intuitive to understand the basics of the approach by <a href="https://arxiv.org/abs/1607.06520"  class="external-link" target="_blank" rel="noopener">Bolukbasi, et al.</a> in <em>Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</em>. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as <em>man</em> and <em>woman</em> and averaging the bias across all such pairs we find. The bias for the pair <code>(male, female)</code> for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.</p>
-<p>Next week&rsquo;s post is <a href="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/" >here</a>.</p>
+<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/" >here</a>.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -624,7 +624,7 @@ $$</p>
 
   
   
-  <script src="/js/coder.js"></script>
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
 
   

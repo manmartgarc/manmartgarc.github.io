@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Manuel Martinez</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://manmartgarc.github.io/categories/</link>
     <description>Recent content in Categories on Manuel Martinez</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://manmartgarc.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tech Support</title>
-      <link>http://localhost:1313/categories/tech-support/</link>
+      <link>https://manmartgarc.github.io/categories/tech-support/</link>
       <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/tech-support/</guid>
+      <guid>https://manmartgarc.github.io/categories/tech-support/</guid>
       <description></description>
     </item>
     <item>
       <title>Coursera</title>
-      <link>http://localhost:1313/categories/coursera/</link>
+      <link>https://manmartgarc.github.io/categories/coursera/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/coursera/</guid>
+      <guid>https://manmartgarc.github.io/categories/coursera/</guid>
       <description></description>
     </item>
     <item>
       <title>Deep Learning Specialization</title>
-      <link>http://localhost:1313/categories/deep-learning-specialization/</link>
+      <link>https://manmartgarc.github.io/categories/deep-learning-specialization/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/deep-learning-specialization/</guid>
+      <guid>https://manmartgarc.github.io/categories/deep-learning-specialization/</guid>
       <description></description>
     </item>
     <item>
       <title>Sequence Models</title>
-      <link>http://localhost:1313/categories/sequence-models/</link>
+      <link>https://manmartgarc.github.io/categories/sequence-models/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/sequence-models/</guid>
+      <guid>https://manmartgarc.github.io/categories/sequence-models/</guid>
       <description></description>
     </item>
     <item>
       <title>Convolutional Neural Networks</title>
-      <link>http://localhost:1313/categories/convolutional-neural-networks/</link>
+      <link>https://manmartgarc.github.io/categories/convolutional-neural-networks/</link>
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/convolutional-neural-networks/</guid>
+      <guid>https://manmartgarc.github.io/categories/convolutional-neural-networks/</guid>
       <description></description>
     </item>
     <item>
       <title>Structuring ML Projects</title>
-      <link>http://localhost:1313/categories/structuring-ml-projects/</link>
+      <link>https://manmartgarc.github.io/categories/structuring-ml-projects/</link>
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/structuring-ml-projects/</guid>
+      <guid>https://manmartgarc.github.io/categories/structuring-ml-projects/</guid>
       <description></description>
     </item>
     <item>
       <title>Improving Deep Learning Networks</title>
-      <link>http://localhost:1313/categories/improving-deep-learning-networks/</link>
+      <link>https://manmartgarc.github.io/categories/improving-deep-learning-networks/</link>
       <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/improving-deep-learning-networks/</guid>
+      <guid>https://manmartgarc.github.io/categories/improving-deep-learning-networks/</guid>
       <description></description>
     </item>
     <item>
       <title>Neural Networks and Deep Learning</title>
-      <link>http://localhost:1313/categories/neural-networks-and-deep-learning/</link>
+      <link>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</link>
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/neural-networks-and-deep-learning/</guid>
+      <guid>https://manmartgarc.github.io/categories/neural-networks-and-deep-learning/</guid>
       <description></description>
     </item>
   </channel>
