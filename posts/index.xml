@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Manuel Martinez</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 23 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://manmartgarc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lambda Functions with Rust and CDK</title>
+      <link>https://manmartgarc.github.io/posts/tech-support/rust-lambda/</link>
+      <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://manmartgarc.github.io/posts/tech-support/rust-lambda/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This post is a follow-up to the previous post on &lt;a href=&#34;https://manmartgarc.github.io/posts/tech-support/go-lambda&#34; &gt;Lambda Functions with Go and CDK&lt;/a&gt;. In this post, we&amp;rsquo;ll go through deploying a Rust-based AWS Lambda function using the AWS Cloud Development Kit (CDK). We&amp;rsquo;ll focus on the developer workflow: how to get started, wire up your Rust Lambda, and use CDK to manage your infrastructure as code. If you&amp;rsquo;re already familiar with Lambda as a service, this guide will help you get productive with Rust and CDK quickly.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Lambda Functions with Go and CDK</title>
       <link>https://manmartgarc.github.io/posts/tech-support/go-lambda/</link>
