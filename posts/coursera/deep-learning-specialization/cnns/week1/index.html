@@ -84,7 +84,7 @@ Computer Vision Convolution Convolution in continuous land Convolution in discre
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -343,7 +343,8 @@ $$</p>
 
 <p>Convolving an image with an edge with this filter will <em>bring up</em> the regions of the original image where there is a gradient of values in the horizontal dimension; thus generating an image that highlights the vertical <em>edges</em>. In this sense, we defined an <em>edge</em> as: a $3\times3$ region in the image where there are bright pixels on the left and dark pixels on the right.</p>
 <blockquote>
-<p>Notice that convolving a $6\times6$ image by a $3\times3$ filter results in a $4\times4$ image. This is the result of convolving without padding, which is covered later.</p></blockquote>
+<p>Notice that convolving a $6\times6$ image by a $3\times3$ filter results in a $4\times4$ image. This is the result of convolving without padding, which is covered later.</p>
+</blockquote>
 <p>It might not surprise you that a <em>horizontal</em> edge filter is:</p>
 <p>$$
 f = \begin{bmatrix}
@@ -355,7 +356,8 @@ $$</p>
 <p>That is, a horizontal edge is a $3\times3$ region in the picture where there are brighter pixels &ldquo;above&rdquo; and darker pixels &ldquo;below&rdquo;.</p>
 <p>But who came up with these numbers? Why not choose $10$ instead of $1$? It turns out that there are a lot of different filters. Think about finding diagonal edges—how would that filter look? But most importantly, how can we know that the filters we use are going to be relevant to our problem domain, i.e., cat classification?</p>
 <blockquote>
-<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA"  class="external-link" target="_blank" rel="noopener">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M"  class="external-link" target="_blank" rel="noopener">Convolutions</a>.</p></blockquote>
+<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA"  class="external-link" target="_blank" rel="noopener">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M"  class="external-link" target="_blank" rel="noopener">Convolutions</a>.</p>
+</blockquote>
 <h3 id="learning-the-filters">
   Learning the Filters
   <a class="heading-link" href="#learning-the-filters">
@@ -431,7 +433,8 @@ $$</p>
 \text{output\_dim} = \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor \times \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor
 $$</p>
 <blockquote>
-<p>Note on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of <em>not</em> flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn&rsquo;t matter whether we flip the filter or not in the context of CNNs.</p></blockquote>
+<p>Note on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of <em>not</em> flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn&rsquo;t matter whether we flip the filter or not in the context of CNNs.</p>
+</blockquote>
 <h2 id="convolutions-over-volume">
   Convolutions Over Volume
   <a class="heading-link" href="#convolutions-over-volume">
@@ -451,7 +454,8 @@ $$</p>
 <p>But why stop at one filter? We can use as many filters as we want. Think about using one filter for horizontal edge detection, another one for vertical edge detection, and so on. So if we have $n_c^<em>$ filters, we simply stack them together, as long as they are the same dimensions. Let&rsquo;s say that we have $2$ filters, and they are all dimensions $3\times3\times3$. Then our output will be $n - f + 1 \times n - f + 1 \times n_c^</em>$, where $n_c^*$ is the number of filters used in the layer.</p>
 <p>Let&rsquo;s run by an example using a $6\times6\times3$ input image and two $3\times3\times3$ filters. Convolving a $6\times6\times3$ image with a $3\times3\times3$ filter will result in a $4\times4$ feature map (remember the handy function). Since we have two filters, the feature map will have dimensions $4\times4\times2$. The basic idea being that you can stack multiple feature maps into a cube.</p>
 <blockquote>
-<p>Notice that the (R, G, B) part of the image is usually called <em>channels</em>. It is also called the <em>depth</em> of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.</p></blockquote>
+<p>Notice that the (R, G, B) part of the image is usually called <em>channels</em>. It is also called the <em>depth</em> of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.</p>
+</blockquote>
 <h2 id="one-layer-of-a-cnn">
   One Layer of a CNN
   <a class="heading-link" href="#one-layer-of-a-cnn">
@@ -478,7 +482,8 @@ $$</p>
 <li>$n_c^{[l]}$ = number of filters</li>
 </ul>
 <blockquote>
-<p>Notice that we don&rsquo;t vary these settings across filters <em>within</em> a layer.</p></blockquote>
+<p>Notice that we don&rsquo;t vary these settings across filters <em>within</em> a layer.</p>
+</blockquote>
 <p>So, layer $l$ will use the output from layer $l-1$; therefore:</p>
 <ul>
 <li>Dimensions of inputs: $n_H^{[l-1]} \times n_W^{[l-1]} \times n_c^{[l-1]}$</li>

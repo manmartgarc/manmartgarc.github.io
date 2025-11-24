@@ -56,7 +56,7 @@ This post is a follow-up to the previous post on Lambda Functions with Go and CD
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -366,7 +366,8 @@ This post is a follow-up to the previous post on Lambda Functions with Go and CD
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># In another terminal:</span>
 </span></span><span style="display:flex;"><span>cargo lambda invoke -F s3-example.json
 </span></span></code></pre></div><blockquote>
-<p>Keep in mind that since the Lambda is triggered by S3 events, you will need to provide a valid S3 event payload when invoking the Lambda locally. The <code>--data-example s3-put</code> flag provides a sample S3 PUT event.</p></blockquote>
+<p>Keep in mind that since the Lambda is triggered by S3 events, you will need to provide a valid S3 event payload when invoking the Lambda locally. The <code>--data-example s3-put</code> flag provides a sample S3 PUT event.</p>
+</blockquote>
 <p>When we are happy with our Rust code, we can build the Lambda binary and deploy it using CDK:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cdk deploy
 </span></span></code></pre></div><p>The <a href="https://github.com/cdklabs/aws-lambda-rust"  class="external-link" target="_blank" rel="noopener">@cdklabs/aws-lambda-rust</a> CDK construct will handle packaging the Rust binary (using a Docker image with the Rust toolchain) and deploying the stack. The <code>cdk deploy</code> command will also create the S3 bucket and wire it up to the Lambda function. Now you can upload files to the S3 bucket, and the Lambda function will be triggered automatically — you can check the logs in CloudWatch to see the Lambda function processing the S3 events and also deleting the objects after processing them.</p>

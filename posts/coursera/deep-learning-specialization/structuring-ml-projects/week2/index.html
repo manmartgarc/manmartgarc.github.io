@@ -96,7 +96,7 @@ Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -323,7 +323,8 @@ Error Analysis Carrying out Error Analysis Cleaning up Incorrectly Labeled Data 
 </h3>
 <p>We have repeatedly worried about having the dev and test set come from different distributions. How bad is it that our training set comes from a different distribution from our dev and test set? Let&rsquo;s go over the example shown in the course.</p>
 <blockquote>
-<p>Why would we want to have different distributions between training and dev/test sets? Because doing this might allow we to use a lot more data.</p></blockquote>
+<p>Why would we want to have different distributions between training and dev/test sets? Because doing this might allow we to use a lot more data.</p>
+</blockquote>
 <p>Say that we have our cat app, where users can upload pictures, and we can classify them as a cat or not. Say that we scraped the web for cat images, and we have $200,000$ such images, called $D_{old}$; all of which are pretty high quality. These images were used for our original train/dev/test splits. However, now our users upload their own images of cats, which are usually blurry and of lesser quality; we have $10,000$ of these user-generated images, called $D_{new}$. How can we incorporate this new data, which comes from a different distribution than our original $200,000$ samples, into our pipeline? Let&rsquo;s go over the different options:</p>
 <ol>
 <li>Mix $D_{old}$ and $D_{new}$ into a single dataset $(210,000)$ samples. Shuffle them and split again:

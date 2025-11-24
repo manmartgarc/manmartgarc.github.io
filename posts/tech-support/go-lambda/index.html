@@ -56,7 +56,7 @@ AWS Lambda is a serverless computing service that lets you run code without prov
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -220,7 +220,8 @@ AWS Lambda is a serverless computing service that lets you run code without prov
 </h2>
 <p>I will try my best not to regurgitate the <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"  class="external-link" target="_blank" rel="noopener">AWS Lambda documentation</a> here. In a nutshell, the whole point of the Lambda service is to run code without having to worry about the underlying compute infrastructure; normally EC2 or Fargate. Lambdas can scale automatically, and you only <a href="https://aws.amazon.com/lambda/pricing/?did=ap_card&amp;trk=ap_card"  class="external-link" target="_blank" rel="noopener">pay for what you use</a>.</p>
 <blockquote>
-<p>If you&rsquo;re wondering how and where your code is run, read more about <a href="https://firecracker-microvm.github.io/"  class="external-link" target="_blank" rel="noopener">Firecracker</a> on this <a href="https://aws.amazon.com/blogs/aws/firecracker-lightweight-virtualization-for-serverless-computing/"  class="external-link" target="_blank" rel="noopener">blog post</a> by AWS.</p></blockquote>
+<p>If you&rsquo;re wondering how and where your code is run, read more about <a href="https://firecracker-microvm.github.io/"  class="external-link" target="_blank" rel="noopener">Firecracker</a> on this <a href="https://aws.amazon.com/blogs/aws/firecracker-lightweight-virtualization-for-serverless-computing/"  class="external-link" target="_blank" rel="noopener">blog post</a> by AWS.</p>
+</blockquote>
 <p>All of this flexibility comes with trade-offs. Currently, Lambda executions are limited in time to 15 minutes, and the maximum memory you can allocate is 10 GB; and I say currently because these limits have been increased in the past and will most likely increase in the future. This is all to say that if you want to run a long-running process or a memory-intensive task, you will probably have a bad time. Even more so, if you want to run a stateful process, you will have to maintain state somewhere else, the function&rsquo;s execution environment (scope) is virtually stateless and ephemeral. Lambdas are designed to run short-lived, stateless, scalable, and hopefully idempotent processes; you can see best practices <a href="https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"  class="external-link" target="_blank" rel="noopener">here</a>.</p>
 <h3 id="lambda-runtimes">
   Lambda Runtimes
@@ -263,7 +264,8 @@ AWS Lambda is a serverless computing service that lets you run code without prov
 </h3>
 <p>Follow the instructions <a href="https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html"  class="external-link" target="_blank" rel="noopener">here</a> to install the CDK CLI and create a new project. Once you have your project set up, you can start creating your stack.</p>
 <blockquote>
-<p>You can see the final repository <a href="https://github.com/manmartgarc/cdk-lambda-go"  class="external-link" target="_blank" rel="noopener">here</a></p></blockquote>
+<p>You can see the final repository <a href="https://github.com/manmartgarc/cdk-lambda-go"  class="external-link" target="_blank" rel="noopener">here</a></p>
+</blockquote>
 <h3 id="creating-the-lambda-function">
   Creating the Lambda Function
   <a class="heading-link" href="#creating-the-lambda-function">
@@ -312,77 +314,77 @@ AWS Lambda is a serverless computing service that lets you run code without prov
   </a>
 </h3>
 <p>The Lambda function is a <a href="https://github.com/manmartgarc/cdk-lambda-go/blob/main/go-lambda/hello.go"  class="external-link" target="_blank" rel="noopener">simple Go program</a> that reads and writes to the DynamoDB table. The code is as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#ff7b72">package</span> main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> (
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;context&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;log&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;os&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;time&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-lambda-go/lambda&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/aws&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/aws/session&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/service/dynamodb&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">type</span> MyEvent <span style="color:#ff7b72">struct</span> {
-</span></span><span style="display:flex;"><span>   Name <span style="color:#ff7b72">string</span> <span style="color:#a5d6ff">`json:&#34;name&#34;`</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">type</span> TableItem <span style="color:#ff7b72">struct</span> {
-</span></span><span style="display:flex;"><span>    Name      <span style="color:#ff7b72">string</span>
-</span></span><span style="display:flex;"><span>    Timestamp <span style="color:#ff7b72">string</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">func</span> <span style="color:#d2a8ff;font-weight:bold">newTableItem</span>(name <span style="color:#ff7b72">string</span>) TableItem {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> TableItem{
-</span></span><span style="display:flex;"><span>    Name:      name,
-</span></span><span style="display:flex;"><span>    Timestamp: time.<span style="color:#d2a8ff;font-weight:bold">Now</span>().<span style="color:#d2a8ff;font-weight:bold">Format</span>(time.RFC3339),
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">func</span> <span style="color:#d2a8ff;font-weight:bold">HandleRequest</span>(ctx context.Context, event <span style="color:#ff7b72;font-weight:bold">*</span>MyEvent) (<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#ff7b72">string</span>, <span style="color:#ff7b72">error</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> event <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#79c0ff">nil</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> <span style="color:#79c0ff">nil</span>, fmt.<span style="color:#d2a8ff;font-weight:bold">Errorf</span>(<span style="color:#a5d6ff">&#34;received event is nil&#34;</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we create a new session to the AWS SDK</span>
-</span></span><span style="display:flex;"><span>    sess <span style="color:#ff7b72;font-weight:bold">:=</span> session.<span style="color:#d2a8ff;font-weight:bold">Must</span>(session.<span style="color:#d2a8ff;font-weight:bold">NewSessionWithOptions</span>(session.Options{
-</span></span><span style="display:flex;"><span>        SharedConfigState: session.SharedConfigEnable,
-</span></span><span style="display:flex;"><span>    }))
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we create a new DynamoDB client</span>
-</span></span><span style="display:flex;"><span>    svc <span style="color:#ff7b72;font-weight:bold">:=</span> dynamodb.<span style="color:#d2a8ff;font-weight:bold">New</span>(sess)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we create a new item to be inserted in the table</span>
-</span></span><span style="display:flex;"><span>    item <span style="color:#ff7b72;font-weight:bold">:=</span> <span style="color:#d2a8ff;font-weight:bold">newTableItem</span>(event.Name)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we marshal the item into a map</span>
-</span></span><span style="display:flex;"><span>    av, err <span style="color:#ff7b72;font-weight:bold">:=</span> dynamodbattribute.<span style="color:#d2a8ff;font-weight:bold">MarshalMap</span>(item)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> err <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#79c0ff">nil</span> {
-</span></span><span style="display:flex;"><span>        log.<span style="color:#d2a8ff;font-weight:bold">Fatalf</span>(<span style="color:#a5d6ff">&#34;Got error marshalling new item: %s&#34;</span>, err)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we construct the input request</span>
-</span></span><span style="display:flex;"><span>    input <span style="color:#ff7b72;font-weight:bold">:=</span> <span style="color:#ff7b72;font-weight:bold">&amp;</span>dynamodb.PutItemInput{
-</span></span><span style="display:flex;"><span>        Item:      av,
-</span></span><span style="display:flex;"><span>        TableName: aws.<span style="color:#d2a8ff;font-weight:bold">String</span>(os.<span style="color:#d2a8ff;font-weight:bold">Getenv</span>(<span style="color:#a5d6ff">&#34;TABLE_NAME&#34;</span>)),
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic">// we put the item in the table</span>
-</span></span><span style="display:flex;"><span>    _, err = svc.<span style="color:#d2a8ff;font-weight:bold">PutItem</span>(input)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> err <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#79c0ff">nil</span> {
-</span></span><span style="display:flex;"><span>        log.<span style="color:#d2a8ff;font-weight:bold">Fatalf</span>(<span style="color:#a5d6ff">&#34;Got error calling PutItem: %s&#34;</span>, err)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> aws.<span style="color:#d2a8ff;font-weight:bold">String</span>(fmt.<span style="color:#d2a8ff;font-weight:bold">Sprintf</span>(<span style="color:#a5d6ff">&#34;Hello %s!&#34;</span>, event.Name)), <span style="color:#79c0ff">nil</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">func</span> <span style="color:#d2a8ff;font-weight:bold">main</span>() {
-</span></span><span style="display:flex;"><span>    lambda.<span style="color:#d2a8ff;font-weight:bold">Start</span>(HandleRequest)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>If you have questions about the directory structure, please refer to the <a href="https://github.com/manmartgarc/cdk-lambda-go/tree/main"  class="external-link" target="_blank" rel="noopener">repository</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#ff7b72">package</span><span style="color:#6e7681"> </span>main<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">import</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;context&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;fmt&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;log&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;os&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;time&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;github.com/aws/aws-lambda-go/lambda&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/aws&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/aws/session&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/service/dynamodb&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#a5d6ff">&#34;github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute&#34;</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">type</span><span style="color:#6e7681"> </span>MyEvent<span style="color:#6e7681"> </span><span style="color:#ff7b72">struct</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">   </span>Name<span style="color:#6e7681"> </span><span style="color:#ff7b72">string</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">`json:&#34;name&#34;`</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">type</span><span style="color:#6e7681"> </span>TableItem<span style="color:#6e7681"> </span><span style="color:#ff7b72">struct</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Name<span style="color:#6e7681">      </span><span style="color:#ff7b72">string</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Timestamp<span style="color:#6e7681"> </span><span style="color:#ff7b72">string</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">func</span><span style="color:#6e7681"> </span><span style="color:#d2a8ff;font-weight:bold">newTableItem</span>(name<span style="color:#6e7681"> </span><span style="color:#ff7b72">string</span>)<span style="color:#6e7681"> </span>TableItem<span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#ff7b72">return</span><span style="color:#6e7681"> </span>TableItem{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Name:<span style="color:#6e7681">      </span>name,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Timestamp:<span style="color:#6e7681"> </span>time.<span style="color:#d2a8ff;font-weight:bold">Now</span>().<span style="color:#d2a8ff;font-weight:bold">Format</span>(time.RFC3339),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">func</span><span style="color:#6e7681"> </span><span style="color:#d2a8ff;font-weight:bold">HandleRequest</span>(ctx<span style="color:#6e7681"> </span>context.Context,<span style="color:#6e7681"> </span>event<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span>MyEvent)<span style="color:#6e7681"> </span>(<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#ff7b72">string</span>,<span style="color:#6e7681"> </span><span style="color:#ff7b72">error</span>)<span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#ff7b72">if</span><span style="color:#6e7681"> </span>event<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">==</span><span style="color:#6e7681"> </span><span style="color:#79c0ff">nil</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span><span style="color:#ff7b72">return</span><span style="color:#6e7681"> </span><span style="color:#79c0ff">nil</span>,<span style="color:#6e7681"> </span>fmt.<span style="color:#d2a8ff;font-weight:bold">Errorf</span>(<span style="color:#a5d6ff">&#34;received event is nil&#34;</span>)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#8b949e;font-style:italic">// we create a new session to the AWS SDK</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>sess<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">:=</span><span style="color:#6e7681"> </span>session.<span style="color:#d2a8ff;font-weight:bold">Must</span>(session.<span style="color:#d2a8ff;font-weight:bold">NewSessionWithOptions</span>(session.Options{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span>SharedConfigState:<span style="color:#6e7681"> </span>session.SharedConfigEnable,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>}))<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#8b949e;font-style:italic">// we create a new DynamoDB client</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>svc<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">:=</span><span style="color:#6e7681"> </span>dynamodb.<span style="color:#d2a8ff;font-weight:bold">New</span>(sess)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#8b949e;font-style:italic">// we create a new item to be inserted in the table</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>item<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">:=</span><span style="color:#6e7681"> </span><span style="color:#d2a8ff;font-weight:bold">newTableItem</span>(event.Name)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#8b949e;font-style:italic">// we marshal the item into a map</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>av,<span style="color:#6e7681"> </span>err<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">:=</span><span style="color:#6e7681"> </span>dynamodbattribute.<span style="color:#d2a8ff;font-weight:bold">MarshalMap</span>(item)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#ff7b72">if</span><span style="color:#6e7681"> </span>err<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">!=</span><span style="color:#6e7681"> </span><span style="color:#79c0ff">nil</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span>log.<span style="color:#d2a8ff;font-weight:bold">Fatalf</span>(<span style="color:#a5d6ff">&#34;Got error marshalling new item: %s&#34;</span>,<span style="color:#6e7681"> </span>err)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#8b949e;font-style:italic">// we construct the input request</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>input<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">:=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">&amp;</span>dynamodb.PutItemInput{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span>Item:<span style="color:#6e7681">      </span>av,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span>TableName:<span style="color:#6e7681"> </span>aws.<span style="color:#d2a8ff;font-weight:bold">String</span>(os.<span style="color:#d2a8ff;font-weight:bold">Getenv</span>(<span style="color:#a5d6ff">&#34;TABLE_NAME&#34;</span>)),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#8b949e;font-style:italic">// we put the item in the table</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>_,<span style="color:#6e7681"> </span>err<span style="color:#6e7681"> </span>=<span style="color:#6e7681"> </span>svc.<span style="color:#d2a8ff;font-weight:bold">PutItem</span>(input)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#ff7b72">if</span><span style="color:#6e7681"> </span>err<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">!=</span><span style="color:#6e7681"> </span><span style="color:#79c0ff">nil</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">        </span>log.<span style="color:#d2a8ff;font-weight:bold">Fatalf</span>(<span style="color:#a5d6ff">&#34;Got error calling PutItem: %s&#34;</span>,<span style="color:#6e7681"> </span>err)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span><span style="color:#ff7b72">return</span><span style="color:#6e7681"> </span>aws.<span style="color:#d2a8ff;font-weight:bold">String</span>(fmt.<span style="color:#d2a8ff;font-weight:bold">Sprintf</span>(<span style="color:#a5d6ff">&#34;Hello %s!&#34;</span>,<span style="color:#6e7681"> </span>event.Name)),<span style="color:#6e7681"> </span><span style="color:#79c0ff">nil</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">func</span><span style="color:#6e7681"> </span><span style="color:#d2a8ff;font-weight:bold">main</span>()<span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>lambda.<span style="color:#d2a8ff;font-weight:bold">Start</span>(HandleRequest)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span></code></pre></div><p>If you have questions about the directory structure, please refer to the <a href="https://github.com/manmartgarc/cdk-lambda-go/tree/main"  class="external-link" target="_blank" rel="noopener">repository</a>.</p>
 <h2 id="deploying">
   Deploying
   <a class="heading-link" href="#deploying">

@@ -90,7 +90,7 @@ Setting up our Machine Learning problem Train / Dev / Test sets Bias-Variance Tr
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -451,7 +451,8 @@ $$</p>
 </ul>
 <p>The L2-norm is also usually called <em>weight decay</em>. This is because when you differentiate the loss function, which now includes the regularization term, with respect to the parameters, it will scale down $W^{[l]}$ by $1 - \frac{\alpha\lambda}{m}$ on every step. Making those weights smaller, or decaying the weights if you please.</p>
 <blockquote>
-<p>If you&rsquo;re coming from econ-land, you might have heard of Lasso and Ridge regressions. Lasso is a linear regression that uses the L1-norm, while Ridge is a linear regression that uses the L2-norm.</p></blockquote>
+<p>If you&rsquo;re coming from econ-land, you might have heard of Lasso and Ridge regressions. Lasso is a linear regression that uses the L1-norm, while Ridge is a linear regression that uses the L2-norm.</p>
+</blockquote>
 <h3 id="why-does-regularization-reduce-overfitting">
   Why Does Regularization Reduce Overfitting?
   <a class="heading-link" href="#why-does-regularization-reduce-overfitting">
@@ -503,7 +504,8 @@ $$</p>
 </h3>
 <p>So why does dropout behave like regularization? It seems crazy to &ldquo;kill&rdquo; some nodes at random, it&rsquo;s the very definition of chaotic evil. It turns out that by doing this, the model will learn not to rely on any specific feature, because it might not be there the next time. The model will respond to dropout by <em>spreading</em> out the weights across the network, effectively reducing their magnitude. This is why dropout can be thought of as regularization.</p>
 <blockquote>
-<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/"  class="external-link" target="_blank" rel="noopener">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p></blockquote>
+<p>An interesting approach to building resilience in engineering systems is that of <a href="https://principlesofchaos.org/"  class="external-link" target="_blank" rel="noopener">Chaos Engineering</a>. It&rsquo;s similar in spirit to dropout, whereby randomly disabling some parts of a system, and forcing designers to deal with random failures will produce a more robust system.</p>
+</blockquote>
 <h3 id="other-regularization-methods">
   Other Regularization Methods
   <a class="heading-link" href="#other-regularization-methods">

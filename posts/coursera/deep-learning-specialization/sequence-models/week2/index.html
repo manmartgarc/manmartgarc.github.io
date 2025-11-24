@@ -96,7 +96,7 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -355,7 +355,8 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 <p>The numbers are fictitious, but set by hand to illustrate the example. The important thing is to notice that by embedding these words in our four new dimensions we have captured semantic meaning, and now the vectors live in &ldquo;semantic&rdquo; space. This in turns, allows us to define distance, and therefore similarity. For example, we should expect our embeddings to comply with $e_{apple} - e_{queen} &gt; e_{apple} - e_{orange}$, where $e_{w}$ is the embedding vector, in our case in $\mathbb{R}^{4}$, of the word $w$. That is, the distance between the word apple and queen, should be greater than the distance between apple and orange because apples and oranges are fruits.</p>
 <p>How do we <a href="#learning-word-embeddings" >learn these embeddings</a>, and how many dimensions are enough is something we go over in a bit.</p>
 <blockquote>
-<p>Remember that embeddings are synonymous with encodings. We want to have efficient word encodings that are much smaller but denser than our one-hot vectors; which are big but sparse.</p></blockquote>
+<p>Remember that embeddings are synonymous with encodings. We want to have efficient word encodings that are much smaller but denser than our one-hot vectors; which are big but sparse.</p>
+</blockquote>
 <h3 id="using-word-embeddings">
   Using Word Embeddings
   <a class="heading-link" href="#using-word-embeddings">
@@ -375,7 +376,8 @@ Introduction to Word Embeddings Word Representation Using Word Embeddings Proper
 <p>We ended up with word embeddings by wanting to have a better representation of words that capture semantic meaning. But what does &ldquo;capturing semantic meaning&rdquo; really mean, and how is that helpful? One of the things that we can do with semantics, is to reason about analogies: $a$ is to $b$ as $c$ is to $d$; this seems to be an ability that helps with NLP tasks.</p>
 <p>Let&rsquo;s say that we have some embedding $e_w \in \mathbb{R}^{300}$, since our embedding vectors are no longer orthogonal we can use linear algebra to describe the relationship between things in this new space; such as length, distance and so on. In the <a href="https://aclanthology.org/N13-1090.pdf"  class="external-link" target="_blank" rel="noopener">paper</a> that introduces this idea, the authors write in the abstract:</p>
 <blockquote>
-<p>&hellip; For example, the male/female relationship is automatically learned, and with the induced vector representations, “King - Man + Woman” results in a vector very close to “Queen.”</p></blockquote>
+<p>&hellip; For example, the male/female relationship is automatically learned, and with the induced vector representations, “King - Man + Woman” results in a vector very close to “Queen.”</p>
+</blockquote>
 <p>This means that there is some dimension in the embedding that represents the semantic meaning of &ldquo;gender&rdquo;, and this dimension, the difference between &ldquo;King&rdquo; and &ldquo;Man&rdquo;, plus that of &ldquo;Woman&rdquo; approximates &ldquo;Queen&rdquo;. We can do math with semantic topics. Since we can do math, let&rsquo;s define &ldquo;Man&rdquo; is to &ldquo;Woman&rdquo; as &ldquo;King&rdquo; is to $w$. Mathematically:</p>
 <p>$$
 \begin{aligned}

@@ -73,7 +73,7 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -245,7 +245,8 @@ Mini-batch Gradient Descent Exponentially Weighted Moving Averages (EWMA) Bias C
 <p>But why does this work? Imagine that we set our batch to be $m_b = 1$, that is, on each iteration we will simply look at one training sample and run gradient descent. If the sample we use on each iteration is <em>random</em>, then this process is called <em>stochastic</em> gradient descent. It turns out that on every iteration, gradient descent will take a step independent of other samples in our data, so the &ldquo;path down the mountain&rdquo; of gradient descent will look like a blind-wandering, kinda like Brownian motion. Think of a drunk version of gradient descent. It will also be slower because we loose the optimization that arises from vectorization, but still faster than batch gradient descent. On the other hand, imagine that $m_b = m$ so that we have a single batch, our entire data set. Now we are back to batch gradient descent, and each iteration step of gradient descent is taken by averaging each of the samples&rsquo; contribution to the gradient. The &ldquo;path down the mountain&rdquo; looks much more purposeful and directed, because we have a larger sample. The tradeoff is in the amount of noise that results from smaller samples sizes as we decrease our batch size. Somewhere in between $m_b = 1$ and $m_b = m$ there is a sweet spot that allows us to iterative fast but without much random meandering.</p>
 <p>If our data set is small $m \leq 2000$ then running batch gradient descent should be close to optimal in terms of speed. Otherwise, using mini-batch gradient descent will usually be faster. Batch sizes is really a hyperparameter that we might search for, however, usually it&rsquo;s some multiple of $2^n$, such as $64, 128, 256, 512$. Usually we select this based on amount of memory on our machine in the case that we cannot fit all our data in memory at once.</p>
 <blockquote>
-<p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p></blockquote>
+<p>An important consideration is that the data should be randomly shuffled before generating the batches. So that they really are random samples of $X, Y$ <strong>without</strong> replacement.</p>
+</blockquote>
 <h2 id="exponentially-weighted-moving-averages-ewma">
   Exponentially Weighted Moving Averages (EWMA)
   <a class="heading-link" href="#exponentially-weighted-moving-averages-ewma">
@@ -286,7 +287,8 @@ $$</p>
 </h2>
 <p>Let&rsquo;s come back from the time-series digression. Why did we go over moving averages on time-series? Remember that when we introduced mini-batch gradient descent we mentioned that the &ldquo;path down the mountain&rdquo; will be more &ldquo;noisy&rdquo;. From the extreme of using a batch of size $1$, which is the most &ldquo;noisy&rdquo; up to using our entire data, which is the least noisy. It turns out that we can use the concept of EWMA to give &ldquo;inertia&rdquo; to the steps &ldquo;down the mountain&rdquo; that mini-batch gradient descent takes. This is called momentum, and it uses EWMA of the gradients to take steps, instead of each gradient being independently evaluated.</p>
 <blockquote>
-<p>Remember that in physics, momentum is a vector: $\mathbf{p} = m\mathbf{v}$ since $\mathbf{v}$ is the velocity vector. While inertia is a scalar!</p></blockquote>
+<p>Remember that in physics, momentum is a vector: $\mathbf{p} = m\mathbf{v}$ since $\mathbf{v}$ is the velocity vector. While inertia is a scalar!</p>
+</blockquote>
 <p>The idea is exactly the same as when we want to smooth time-series. In this case we want to smooth the oscillations of the cost function as we iterate over each mini-batch. Think that if the oscillations along one dimensions are higher, those will be dampened more than a dimension with fewer oscillations.</p>
 <p>Technically, this means that when we update $W^{[l]}$, we not only need to calculate the gradient $dW^{[l]}$, we need to also calculate the EWMA of the gradients:</p>
 <p>$$

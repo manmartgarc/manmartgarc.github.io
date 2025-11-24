@@ -69,7 +69,7 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -250,7 +250,8 @@ Overview Neural Network Representation Computing a Neural Network’s Output Vec
 <p>The input layer corresponds to your training samples $x^{(1)}, x^{(2)}, \dots, x^{(m)}$. You can also think of the input layer as $a^{[0]}$. This means that the first hidden layer is $a^{[1]}$, and in a neural network with a <em>single</em> hidden layer, the output layer would be $a^{[2]}$.</p>
 <p>Graduating from logistic regression to neural networks requires us to differentiate which $a$ we are taking about. This is because any hidden layer&rsquo;s inputs, including the output layer, is the output of a previous layer.</p>
 <blockquote>
-<p>An important comment in the course is that a network with a single hidden layer is usually referred to as a two layer network.</p></blockquote>
+<p>An important comment in the course is that a network with a single hidden layer is usually referred to as a two layer network.</p>
+</blockquote>
 <h2 id="computing-a-neural-networks-output">
   Computing a Neural Network&rsquo;s Output
   <a class="heading-link" href="#computing-a-neural-networks-output">
@@ -367,7 +368,8 @@ x^{(1)} &amp; x^{(2)} &amp; \dots &amp; x^{(m)} \\
 \end{equation}
 $$</p>
 <blockquote>
-<p>Notice that $x_i$ refers to the $i$th feature of a training example, while $x^{(i)}$ refers to the $i$th training example.</p></blockquote>
+<p>Notice that $x_i$ refers to the $i$th feature of a training example, while $x^{(i)}$ refers to the $i$th training example.</p>
+</blockquote>
 <p>Now we can rewrite our neural net with matrices for $Z^{[l]}, A^{[l]}$:</p>
 <ul>
 <li>$Z^{[1]} = W^{[1]}X + b^{[1]}$</li>
@@ -386,7 +388,8 @@ $$</p>
 </h2>
 <p>So far we&rsquo;ve picked the sigmoid function, $\sigma(x)$, and slapped it at the end of our linear regression. But why did we pick it? We picked it to add non-linearities, which are important to deal with datasets that are non-linearly separable. Also think that the composition of two linear functions is itself a linear function. Without any non-linearities your network would not be able to learn more &ldquo;interesting&rdquo; (non-linear) features as you go deeper in the layers. It turns out however, that this is not our only choice, and in fact the choice matters in many ways.</p>
 <blockquote>
-<p><a href="https://tamarabroderick.com/"  class="external-link" target="_blank" rel="noopener">Tamara Broderick</a> is an Associate Professor at MIT, where she teaches machine learning and statistics. Being an all-around amazing person, she has published an entire course of machine learning on <a href="https://www.youtube.com/watch?v=0xaLT4Svzgo&amp;list=PLxC_ffO4q_rW0bqQB80_vcQB09HOA3ClV"  class="external-link" target="_blank" rel="noopener">YouTube</a>, and the slides made public on her website. The reason I mention this, besides the fact that she is an amazing teacher, is that her slides are beautiful; geometrically so. In her slides, you can see why how the choice of activation function changes the decision plane in graphical detail. I 100% suggest you check out these <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf"  class="external-link" target="_blank" rel="noopener">slides</a> and marvel at the geometric beauty of neural nets!</p></blockquote>
+<p><a href="https://tamarabroderick.com/"  class="external-link" target="_blank" rel="noopener">Tamara Broderick</a> is an Associate Professor at MIT, where she teaches machine learning and statistics. Being an all-around amazing person, she has published an entire course of machine learning on <a href="https://www.youtube.com/watch?v=0xaLT4Svzgo&amp;list=PLxC_ffO4q_rW0bqQB80_vcQB09HOA3ClV"  class="external-link" target="_blank" rel="noopener">YouTube</a>, and the slides made public on her website. The reason I mention this, besides the fact that she is an amazing teacher, is that her slides are beautiful; geometrically so. In her slides, you can see why how the choice of activation function changes the decision plane in graphical detail. I 100% suggest you check out these <a href="https://tamarabroderick.com/files/ml_6036_2020_lectures/broderick_lecture_06.pdf"  class="external-link" target="_blank" rel="noopener">slides</a> and marvel at the geometric beauty of neural nets!</p>
+</blockquote>
 <p>It turns out that there are three widely used (some more than others) activation functions. We denote the activation function of layer $l$ as $g^{[l]}$. The functions are:</p>
 <ol>
 <li>Hyperbolic Tangent Function: $g^{[l]}(z^{[l]}) = \text{tanh}(z^{[l]}) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$</li>

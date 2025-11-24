@@ -94,7 +94,7 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -319,7 +319,8 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <li>$B$ - Precision: $98\%$, Recall: $85\%$</li>
 </ul>
 <blockquote>
-<p>Remember that precision tells you the proportion of true positives out of true positives and false positives, while recall tells you the proportion of true positives out of true positives and false negatives.</p></blockquote>
+<p>Remember that precision tells you the proportion of true positives out of true positives and false positives, while recall tells you the proportion of true positives out of true positives and false negatives.</p>
+</blockquote>
 <p>You might have an application where recall is more important than precision: classifying flight-risk when setting bails. In this case your single metric would be recall. However, if you&rsquo;re not sure, how can you compare classifiers $A$ and $B$?</p>
 <p>In this case we can combine precision and recall into the <a href="https://en.wikipedia.org/wiki/F-score#Definition"  class="external-link" target="_blank" rel="noopener">F1-score</a> which is the harmonic mean of both precision and recall.</p>
 <p>Another example is wanting to implement a model that performs good over different geographical regions. If you have $K$ geographical regions you might have $K$ different evaluation metrics, one for each region. The solution here is to take the average and compare the average of each classifier across all regions and pick the best one.</p>
@@ -334,7 +335,8 @@ Introduction to ML Strategy Why ML Strategy Orthogonalization Setting Up our Goa
 <p><a href="https://en.wikipedia.org/wiki/Satisficing"  class="external-link" target="_blank" rel="noopener">Satisficing</a> is a decision-making strategy introduced by the legendary Herbert A. Simon in 1947. It differs from optimizing metrics by the fact that satisficing metrics don&rsquo;t have to be the <em>best</em> but just <em>good enough</em> instead.</p>
 <p>In our setting, an optimizing metric might be the performance of our classifier. Whereas latency or training time might be a satisficing metric. Being able to clearly think of which goals are which will help us to iterate faster.</p>
 <blockquote>
-<p>We could also have our model performance to be a satisficing metric: we are okay with some number of bad predictions over some period of time.</p></blockquote>
+<p>We could also have our model performance to be a satisficing metric: we are okay with some number of bad predictions over some period of time.</p>
+</blockquote>
 <p>The main takeaway is that if you have $N$ metrics, you should have $1$ optimizing metric and $N-1$ satisficing metrics. This is because optimizing for two metrics is complicated and also not guaranteed to be aligned.</p>
 <h3 id="traindevtest-distributions">
   Train/Dev/Test Distributions

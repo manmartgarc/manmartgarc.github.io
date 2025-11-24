@@ -98,7 +98,7 @@ Case Studies Classic Networks LeNet5 AlexNet VGG16 ResNets Why do ResNets Work? 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -359,7 +359,8 @@ a^{[l+2]} &amp;= a^{[l]}
 $$</p>
 <p>This means that if adding an extra layer actually hurts the network, the network can learn parameters that &ldquo;undo&rdquo; the additional layer! You might be thinking, how come the last two equalities hold? They hold because $g^{[l]} \ \forall l \rightarrow \text{ReLU}$. That is, we use ReLU as the activation function for all layers. Since ReLU is the identity function when the input is greater than $0$, then it&rsquo;s the same; pretty neat.</p>
 <blockquote>
-<p>This only works if the input dimensions are the same in the networks with skip connections. If this is not the case, you can add a convolution step to make sure that the dimensions align without any performance costs.</p></blockquote>
+<p>This only works if the input dimensions are the same in the networks with skip connections. If this is not the case, you can add a convolution step to make sure that the dimensions align without any performance costs.</p>
+</blockquote>
 <h3 id="networks-in-networks--1x1-convolutions">
   Networks in Networks | 1x1 Convolutions
   <a class="heading-link" href="#networks-in-networks--1x1-convolutions">

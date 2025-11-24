@@ -91,7 +91,7 @@ Face Recognition What is Face Recognition? One Shot Learning Siamese Network Tri
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css" integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -317,7 +317,8 @@ d(x^{(1)}, x^{(2)}) = ||f(x^{(1)}) - f(x^{(2)})||_2^2
 $$</p>
 <p>This is our old friend, the L2-norm of the difference between the two encodings.</p>
 <blockquote>
-<p>You might be thinking, why not compare the two images with the L2-norm directly? Think about what happens when you compare two images of the same person but with different lighting, hairstyle, makeup, etc. It won&rsquo;t work well.</p></blockquote>
+<p>You might be thinking, why not compare the two images with the L2-norm directly? Think about what happens when you compare two images of the same person but with different lighting, hairstyle, makeup, etc. It won&rsquo;t work well.</p>
+</blockquote>
 <p>But how do we train such a network? Remember we want a CNN that takes as input an image, and generates a $128$ dimensional encoding $f(x^{(i)})$. But of course, not just any encoding! We want that $128$ dimensional encoding to have certain properties:</p>
 <ul>
 <li>If $x^{(i)}, x^{(j)}$ are the same person, we want $||f(x^{(1)}) - f(x^{(2)})||_2^2$ to be small.</li>
