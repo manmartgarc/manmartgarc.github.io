@@ -175,7 +175,7 @@ I wanted to explore building a serverless HTTP-based MCP server using the typica
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              13-minute read
+              14-minute read
             </span>
           </div>
           
@@ -331,16 +331,16 @@ MCP servers expose a unified interface that any compatible agent can use. This i
 <p>There&rsquo;s a <a href="https://www.jlowin.dev/blog/stop-converting-rest-apis-to-mcp"  class="external-link" target="_blank" rel="noopener">good write-up</a> by <a href="https://www.jlowin.dev/about"  class="external-link" target="_blank" rel="noopener">Jeremiah Lowin</a>, the creator of FastMCP, on why this approach can be problematic in practice. The gist of it is that while automatic conversion is convenient, it often leads to bloated and inefficient agent interfaces that are hard to use effectively. Definitely recommend reading his post for a deeper dive into this topic - I&rsquo;ll just summarize a few key points here:</p>
 <ol>
 <li>
-<p><strong>Purpose</strong>: REST APIs often have dozens or hundreds of endpoints. These are designed to be consumed by applications with specific use cases in mind. In contrast, MCP tools are intended to be more general-purpose and composable, allowing for greater flexibility in how they are used.</p>
+<p><strong>Purpose</strong>: REST APIs often have dozens or hundreds of endpoints. These are designed to be consumed by applications with specific use cases in mind. In contrast, MCP tools are intended to be more general-purpose and composable, allowing for greater flexibility in how they are used. Probably the main issue here is that OpenAPI specs are written for humans and lack the <em>semantic clarity</em>, i.e. natural language context, that explains <em>why</em> a tool should be used and not just <em>how</em> to use it.</p>
 </li>
 <li>
-<p><strong>Context</strong>: Each MCP tool that&rsquo;s available to an AI agent adds to the context window that the agent needs to consider when making decisions, i.e. the mechanism through which an agent can discover and invoke tools is by their descriptions being included in the prompt context. If you have too many tools, the agent may struggle to identify the most relevant ones for a given task. This can lead to confusion and suboptimal performance.</p>
+<p><strong>Context</strong>: Each MCP tool that&rsquo;s available to an AI agent adds to the context window that the agent needs to consider when making decisions, i.e. the mechanism through which an agent can discover and invoke tools is by their descriptions being included in the prompt context. The main concern here is that each MCP server and its tools is eating up precious context. Additionally, ff you have too many tools, the agent may struggle to identify the most relevant ones for a given task - think of overlapping descriptions, i.e. some tools may have very similar names or functionalities, making it hard for the agent to choose the right one. This can lead to confusion and suboptimal tool usage.</p>
 </li>
 <li>
-<p><strong>Cycle Length</strong>: REST APIs response times are usually in the order of tens to hundreds of milliseconds. It&rsquo;s common to fire off multiple API calls in quick succession to gather data. However, each MCP tool invocation involves additional overhead due to the agent&rsquo;s reasoning process, prompt construction, and response parsing. “In practice, each MCP tool invocation can be orders of magnitude slower than a direct API call. If an agent has to make many tool calls to accomplish a task, the overall latency can become prohibitive.</p>
+<p><strong>Cycle Length</strong>: REST APIs response times are usually in the order of tens to hundreds of milliseconds. It&rsquo;s common to fire off multiple API calls in quick succession to gather data. However, each MCP tool invocation involves additional overhead because even finding which tool to call requires an inference step based on the tool metadata. Then once the tool is selected, the agent has to generate a new prompt that includes the tool call, send it to the MCP server, wait for the response, and then process the result - which is another inference step. This adds significant latency compared to direct API calls. In practice, each MCP tool invocation can be orders of magnitude slower than a direct API call. If an agent has to make many tool calls to accomplish a task, the overall latency can become prohibitive.</p>
 </li>
 </ol>
-<p>So is it a good idea to auto-convert REST APIs to MCP tools and call it a day? No. Is it a good way to quickly prototype an MCP server and experiment with agent interactions? Absolutely. Just be aware of the limitations and be prepared to refine the tool set for production use. Most OpenAPI to MCP parsers allow you to customize which endpoints get converted and how they are represented as tools.</p>
+<p>So is it a good idea to auto-convert REST APIs to MCP tools and call it a day? No. Is it a good way to quickly prototype an MCP server and experiment with agent interactions? Absolutely. Just be aware of the limitations and be prepared to refine the tool set for production use. Most OpenAPI to MCP parsers allow you to customize which endpoints get included as tools, so you can easily curate a more focused tool set right off the bat - although this is not a substitute for thoughtful tool design.</p>
 <h2 id="implementation">
   Implementation
   <a class="heading-link" href="#implementation">
