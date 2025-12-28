@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Recommender Systems: What are they? · Manuel Martinez
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="This is the first post in what I plan to be a series of very basic introductions to recommendation engines, and the most basic ones at that. I am by no means an expert, or even a middling practitioner, but just a neophyte, so the series will not be exhaustive. The real purpose of these posts is to learn by explaining, but also to allow you to hit the ground running if you want to set up a basic recommendation system for your purposes.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Recommender Systems: What are they?">
+  <meta name="twitter:description" content="This is the first post in what I plan to be a series of very basic introductions to recommendation engines, and the most basic ones at that. I am by no means an expert, or even a middling practitioner, but just a neophyte, so the series will not be exhaustive. The real purpose of these posts is to learn by explaining, but also to allow you to hit the ground running if you want to set up a basic recommendation system for your purposes.">
+
+<meta property="og:url" content="http://localhost:1313/posts/what-is/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Recommender Systems: What are they?">
+  <meta property="og:description" content="This is the first post in what I plan to be a series of very basic introductions to recommendation engines, and the most basic ones at that. I am by no means an expert, or even a middling practitioner, but just a neophyte, so the series will not be exhaustive. The real purpose of these posts is to learn by explaining, but also to allow you to hit the ground running if you want to set up a basic recommendation system for your purposes.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-12T00:00:00+00:00">
+    <meta property="article:tag" content="Machine Learning">
+    <meta property="article:tag" content="Recommendation Systems">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/what-is/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Manuel Martinez
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/what-is/">
+              Recommender Systems: What are they?
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2023-06-12T00:00:00Z">
+                June 12, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/til/">TIL</a>
+      <span class="separator">•</span>
+    <a href="/categories/recommendation-systems/">Recommendation Systems</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/machine-learning/">Machine Learning</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/recommendation-systems/">Recommendation Systems</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is the first post in what I plan to be a series of very basic introductions to recommendation engines, and the most basic ones at that. I am by no means an expert, or even a middling practitioner, but just a neophyte, so the series will not be exhaustive. The real purpose of these posts is to <a href="https://www.colorado.edu/artssciences-advising/resource-library/life-skills/the-feynman-technique-in-academic-coaching"  class="external-link" target="_blank" rel="noopener">learn by explaining</a>, but also to allow you to hit the ground running if you want to set up a basic recommendation system for your purposes.</p>
+<p>The goal is to go over the very basics of recommendation engines and the different approaches that have been taken in the past. Some approaches are dictated by the nature of the data, while others are constrained by the technological stack available. In each of the approaches we will go over basic implementation details and code up basic examples from scratch using Python.</p>
+<p>I originally wanted to do a simple post about alternating-least squares using rank-ordered data, but I decided to give more background information and to do this at the end of the series. In the end we will generate school recommendations for families applying to schools within the context of <a href="https://www.edchoice.org/school-choice/what-is-school-choice/"  class="external-link" target="_blank" rel="noopener">school choice</a> using a collaborative filtering approach. Let&rsquo;s get to it.</p>
+<h2 id="what-is-a-recommendation-system">
+  What is a recommendation system?
+  <a class="heading-link" href="#what-is-a-recommendation-system">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>A recommendation system, or recommendation engine, is a subclass of an <a href="https://en.wikipedia.org/wiki/Information_filtering_system"  class="external-link" target="_blank" rel="noopener">information filtering system</a> that provides suggestions for items that are most pertinent to a particular entity. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Usually, the recommendations are related to e-commerce, music and movie streaming services, and even news aggregators. Basically, you want to present each entity or user with a set of items that are <em>pertinent</em>; and this amounts to finding a mapping between items and users that somehow maximizes the <em>pertinence</em>.</p>
+<p>I mentioned pertinence, but didn&rsquo;t define it. Even worse, pertinence is a very dubious term. Now, you might ask, well what exactly is <em>pertinence</em>? Which is a great question because different approaches to estimating this mapping use different definitions of what pertinence is.</p>
+<p>Before going over the approaches, think about how we would do it. What kind of data would we need? Of course the most basic requirement is to have a tuple $(i, j)$ between user $i$ and item $j$.</p>
+<h2 id="types-of-recommendation-systems">
+  Types of Recommendation Systems
+  <a class="heading-link" href="#types-of-recommendation-systems">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>There are two main flavors of recommendation systems: <a href="" >content-based filtering</a> and <a href="" >collaborative filtering</a>. They each get their own posts since keeping it all in one post was growing too much in size.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Recommender_system"  class="external-link" target="_blank" rel="noopener">Recommender Systems | Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2023 -
+    
+    2025
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NJLM0F56ZC');
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

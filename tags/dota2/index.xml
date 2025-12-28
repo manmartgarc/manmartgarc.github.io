@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dota2 on Manuel Martinez</title>
+    <link>http://localhost:1313/tags/dota2/</link>
+    <description>Recent content in Dota2 on Manuel Martinez</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/dota2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building an MCP Server for OpenDota API with FastMCP</title>
+      <link>http://localhost:1313/posts/tech-support/fastmcp-opendota/</link>
+      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tech-support/fastmcp-opendota/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I recently built a showcase project that demonstrates how to transform any OpenAPI-compliant REST API into a Model Context Protocol (MCP) server using &lt;a href=&#34;https://gofastmcp.com/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FastMCP&lt;/a&gt;. The result is &lt;a href=&#34;https://github.com/manmartgarc/opendotamcp&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;opendotamcp&lt;/a&gt;, an MCP server that wraps the &lt;a href=&#34;https://www.opendota.com/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenDota API&lt;/a&gt; and can be deployed both locally and remotely via AWS Lambda + API Gateway.&lt;/p&gt;&#xA;&lt;p&gt;This project serves as both a practical tool for AI agents to access Dota 2 statistics and a reference implementation for anyone looking to build production-ready MCP servers.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

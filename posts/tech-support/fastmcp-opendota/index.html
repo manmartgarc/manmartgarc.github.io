@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Building an MCP Server for OpenDota API with FastMCP · Manuel Martinez
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Manuel Martinez">
+<meta name="description" content="
+  Introduction
+  
+    
+    Link to heading
+  
+
+You&rsquo;ve probably heard about the Model Context Protocol (MCP) by now — an emerging standard for connecting AI agents to external data sources and tools.
+I wanted to explore building a serverless HTTP-based MCP server using the typical APIGW &#43; Lambda pattern that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building an MCP Server for OpenDota API with FastMCP">
+  <meta name="twitter:description" content="Introduction Link to heading You’ve probably heard about the Model Context Protocol (MCP) by now — an emerging standard for connecting AI agents to external data sources and tools.
+I wanted to explore building a serverless HTTP-based MCP server using the typical APIGW &#43; Lambda pattern that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.">
+
+<meta property="og:url" content="https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/">
+  <meta property="og:site_name" content="Manuel Martinez">
+  <meta property="og:title" content="Building an MCP Server for OpenDota API with FastMCP">
+  <meta property="og:description" content="Introduction Link to heading You’ve probably heard about the Model Context Protocol (MCP) by now — an emerging standard for connecting AI agents to external data sources and tools.
+I wanted to explore building a serverless HTTP-based MCP server using the typical APIGW &#43; Lambda pattern that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-12-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-24T00:00:00+00:00">
+    <meta property="article:tag" content="Aws">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Cdk">
+    <meta property="article:tag" content="Mcp">
+
+
+
+
+<link rel="canonical" href="https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://manmartgarc.github.io/">
+      Manuel Martinez
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/cv/">CV</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/">
+              Building an MCP Server for OpenDota API with FastMCP
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-12-24T00:00:00Z">
+                December 24, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              13-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/tech-support/">Tech Support</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/aws/">Aws</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/python/">Python</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/cdk/">Cdk</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/mcp/">Mcp</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h2 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>You&rsquo;ve probably heard about the <a href="https://modelcontextprotocol.io/docs/getting-started/intro"  class="external-link" target="_blank" rel="noopener">Model Context Protocol (MCP)</a> by now — an emerging standard for connecting AI agents to external data sources and tools.</p>
+<p>I wanted to explore building a serverless HTTP-based MCP server using the typical <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html"  class="external-link" target="_blank" rel="noopener">APIGW + Lambda pattern</a> that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.</p>
+<p>The rest of this post will describe how I built an MCP server for the <a href="https://www.opendota.com/"  class="external-link" target="_blank" rel="noopener">OpenDota API</a> using FastMCP and deployed it to AWS Lambda + API Gateway and some lessons learned along the way.</p>
+<blockquote>
+<p>If you don&rsquo;t know what <a href="https://www.dota2.com/home"  class="external-link" target="_blank" rel="noopener">Dota 2</a> is, it&rsquo;s a popular multiplayer online battle arena (MOBA) game where two teams of five players compete to destroy each other&rsquo;s bases. The OpenDota API provides free access to a wealth of Dota 2 statistics, including player data, match histories, hero stats, and more.</p>
+</blockquote>
+<h2 id="motivation">
+  Motivation
+  <a class="heading-link" href="#motivation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="whats-an-mcp-server">
+  What&rsquo;s an MCP server?
+  <a class="heading-link" href="#whats-an-mcp-server">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<blockquote>
+<p>Throughout this post, I’ll use agent to mean an AI system capable of discovering and invoking MCP tools, and user to mean the human interacting with that agent.</p>
+</blockquote>
+<p>An MCP server is a service that implements the Model Context Protocol (MCP) specification, allowing AI agents to interact with external tools and data sources in a standardized way.
+MCP servers expose a unified interface that any compatible agent can use. This is part of the trend of decoupling AI agents from specific API implementations, enabling interoperability across platforms and allowing developers to build once and deploy everywhere and even switch AI backends without rewriting tool integrations.</p>
+<p>Some justifications for MCP servers are:</p>
+<ul>
+<li>Empower LLM-based AI agents with tools that provide real-time data access since it might not be included in their training data. Think of a weather API or stock prices.</li>
+<li>Limiting some of the undefined behavior that comes from the next-token-prediction nature of LLMs by providing structured tool interfaces. For example, arithmetic calculations or database queries.</li>
+<li>Allowing AI agents to leverage specialized external services (e.g., search engines, knowledge bases) that can enhance their capabilities beyond the base LLM. This is especially useful for domain-specific applications or private. For example, an enterprise knowledge base that contains proprietary information not available in public datasets.</li>
+</ul>
+<h3 id="transports">
+  Transports
+  <a class="heading-link" href="#transports">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>A key part of the MCP specification is the <a href="https://modelcontextprotocol.io/specification/2025-06-18/basic/transports"  class="external-link" target="_blank" rel="noopener">Transports</a> mechanism, which defines how agents communicate with MCP servers. Initially, the <code>stdio</code> transport was the only option—agents spawn MCP servers as subprocesses and communicate via standard input/output. However, new mechanisms like HTTP have emerged for remote deployment, allowing MCP servers to be hosted in the cloud and scaled independently.</p>
+<p>For teams building AI tooling at scale, treating MCP servers like standard cloud services—deployed, monitored, and scaled with other infrastructure—makes sense. HTTP transport is the natural choice here, enabling you to integrate MCP into a larger ecosystem of sessions, authentication, rate limiting, and observability.</p>
+<h3 id="but-we-already-have-a-rest-api-at-home">
+  But we already have a REST API (at home)
+  <a class="heading-link" href="#but-we-already-have-a-rest-api-at-home">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>There are obviously a trillion existing REST APIs out there - and I wanted to see how easy it would be to convert one of them into an MCP server. Specifically given that there are some API specifications such as OpenAPI that provide machine-readable definitions of REST APIs.</p>
+<p>It turns out there are a couple of options across multiple languages:</p>
+<ul>
+<li><a href="https://crates.io/crates/rmcp-openapi"  class="external-link" target="_blank" rel="noopener">rmcp-openapi</a>: Can generate MCP servers from OpenAPI specs in Rust</li>
+<li><a href="https://gofastmcp.com/integrations/openapi"  class="external-link" target="_blank" rel="noopener">fastmcp</a>: A Python framework that can auto-generate MCP servers from OpenAPI specifications</li>
+<li><a href="https://github.com/jedisct1/openapi-mcp"  class="external-link" target="_blank" rel="noopener">openapi-mcp</a>: A Go library to create MCP servers from OpenAPI specs</li>
+</ul>
+<p>All of these tools do roughly the same thing:</p>
+<ol>
+<li>Parse the OpenAPI specification to extract endpoints, parameters, and schemas.</li>
+<li>Map REST endpoints to MCP tools, converting HTTP methods and paths into tool names and descriptions.</li>
+<li>Generate the necessary MCP server code to handle tool invocations and translate them into REST API calls.</li>
+</ol>
+<p>I tried using <code>rmcp-openapi</code>, but ran into issues with the specification parsing; specifically the <a href="https://swagger.io/docs/specification/v3_0/using-ref/"  class="external-link" target="_blank" rel="noopener">$ref</a> mechanism. What ended up working was FastMCP&rsquo;s OpenAPI integration, but still required some customizations to handle authentication removal and AWS Lambda deployment as we&rsquo;ll see next.</p>
+<h2 id="architecture">
+  Architecture
+  <a class="heading-link" href="#architecture">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The goal is to build an MCP server that exposes the entire OpenDota API without introducing any stateful or long-lived servers, allowing AI agents to query Dota 2 statistics programmatically. The MCP server should be a serverless HTTP service deployed to <a href="https://aws.amazon.com/api-gateway/"  class="external-link" target="_blank" rel="noopener">APIGW</a> + <a href="https://aws.amazon.com/lambda/"  class="external-link" target="_blank" rel="noopener">Lambda</a> using <a href="https://aws.amazon.com/cdk/"  class="external-link" target="_blank" rel="noopener">AWS CDK</a> for infrastructure as code.</p>
+<p>A user can then interact with the MCP server using HTTP requests and any MCP-compatible AI agent.</p>
+<h3 id="sequence-diagram">
+  Sequence Diagram
+  <a class="heading-link" href="#sequence-diagram">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><a href="https://mermaid.live/edit#pako:eNplkF1rgzAUhv9KOFcb2GKtTpuLgrSbDByWbTAY3pzpmZVpYmOEdqX_fVGxDJqrnOf9OCRnyGROwKGlQ0cio22JhcI6FcycBpUus7JBoVnIsGVhQULfatGg7Z5Z9HErxr0YY_2VI7t7wla_bHb3t7aktyUNia3U2JelYjSFs_U64sykmKLDyCLDYs52Sh5PI4kNSTh7fXx7ZxlW1UiT2WgcsKK2mcz_O9uu0lOt4eGVN2BBococuFYdWVCTqrEf4dz7U9B7qikFbq45qp8UUnExGfOeTynrKaZkV-yBf2PVmqlrctTTN1-pIpGT2shOaOCuN3QAP8MRuOMv5wvHWQZB4Nn2ynUsOAH3HuYPge_6tr_yF8FyFbgXC36HrfY88L3LH5N0jxE"  class="external-link" target="_blank" rel="noopener"><img src="https://mermaid.ink/img/pako:eNplkF1rgzAUhv9KOFcb2GKtTpuLgrSbDByWbTAY3pzpmZVpYmOEdqX_fVGxDJqrnOf9OCRnyGROwKGlQ0cio22JhcI6FcycBpUus7JBoVnIsGVhQULfatGg7Z5Z9HErxr0YY_2VI7t7wla_bHb3t7aktyUNia3U2JelYjSFs_U64sykmKLDyCLDYs52Sh5PI4kNSTh7fXx7ZxlW1UiT2WgcsKK2mcz_O9uu0lOt4eGVN2BBococuFYdWVCTqrEf4dz7U9B7qikFbq45qp8UUnExGfOeTynrKaZkV-yBf2PVmqlrctTTN1-pIpGT2shOaOCuN3QAP8MRuOMv5wvHWQZB4Nn2ynUsOAH3HuYPge_6tr_yF8FyFbgXC36HrfY88L3LH5N0jxE?type=png" alt=""></a></p>
+<p>The architecture is very straightforward:</p>
+<ol>
+<li>A Lambda function hosts the FastMCP server that exposes the OpenDota API as MCP tools.</li>
+<li>API Gateway provides an HTTP endpoint that routes requests to the Lambda function.</li>
+<li>AI agents can send HTTP requests to the API Gateway endpoint to invoke MCP tools.</li>
+</ol>
+<p>This project uses:</p>
+<ul>
+<li><strong><a href="https://gofastmcp.com/"  class="external-link" target="_blank" rel="noopener">FastMCP</a></strong>: Python framework that auto-generates MCP tools from OpenAPI specifications</li>
+<li><strong><a href="https://github.com/jasonthehuman/mangum"  class="external-link" target="_blank" rel="noopener">Mangum</a></strong>: ASGI adapter for running FastMCP on AWS Lambda</li>
+<li><strong><a href="https://aws.amazon.com/cdk/"  class="external-link" target="_blank" rel="noopener">AWS CDK</a></strong>: Infrastructure as code for deploying API Gateway + Lambda</li>
+<li><strong><a href="https://github.com/tiangolo/uvicorn"  class="external-link" target="_blank" rel="noopener">UV</a></strong>: Modern Python package manager for dependency bundling</li>
+<li><strong><a href="https://awslabs.github.io/aws-lambda-powertools-python/latest/"  class="external-link" target="_blank" rel="noopener">AWS Lambda Powertools</a></strong>: Lambda utilities (though Mangum was preferred for ASGI compatibility)</li>
+</ul>
+<h3 id="project-structure">
+  Project Structure
+  <a class="heading-link" href="#project-structure">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>├── lib/ # CDK stack definitions
+</span></span><span style="display:flex;"><span>├── python-lambda/ # Python MCP server code
+</span></span><span style="display:flex;"><span>│ ├── lambda_function.py # AWS Lambda handler with Mangum adapter
+</span></span><span style="display:flex;"><span>│ ├── pyproject.toml # Python de    pendencies
+</span></span><span style="display:flex;"><span>│ └── uv.lock # Locked dependencies for reproducible builds
+</span></span><span style="display:flex;"><span>├── cdk.json # CDK configuration
+</span></span><span style="display:flex;"><span>├── package.json # Node.js dependencies
+</span></span><span style="display:flex;"><span>└── README.md # Quick start &amp; deployment instructions
+</span></span></code></pre></div><h2 id="is-this-a-good-idea">
+  Is this a good idea?
+  <a class="heading-link" href="#is-this-a-good-idea">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I want to focus on the discussion around whether this automatic conversion from OpenAPI to MCP tools is a good idea in practice. Feel free to skip my meandering thoughts and jump to the <a href="#implementation-details" >implementation details</a> if you just want to see how it was built.</p>
+<p>There&rsquo;s a <a href="https://www.jlowin.dev/blog/stop-converting-rest-apis-to-mcp"  class="external-link" target="_blank" rel="noopener">good write-up</a> by <a href="https://www.jlowin.dev/about"  class="external-link" target="_blank" rel="noopener">Jeremiah Lowin</a>, the creator of FastMCP, on why this approach can be problematic in practice. The gist of it is that while automatic conversion is convenient, it often leads to bloated and inefficient agent interfaces that are hard to use effectively. Definitely recommend reading his post for a deeper dive into this topic - I&rsquo;ll just summarize a few key points here:</p>
+<ol>
+<li>
+<p><strong>Purpose</strong>: REST APIs often have dozens or hundreds of endpoints. These are designed to be consumed by applications with specific use cases in mind. In contrast, MCP tools are intended to be more general-purpose and composable, allowing for greater flexibility in how they are used.</p>
+</li>
+<li>
+<p><strong>Context</strong>: Each MCP tool that&rsquo;s available to an AI agent adds to the context window that the agent needs to consider when making decisions, i.e. the mechanism through which an agent can discover and invoke tools is by their descriptions being included in the prompt context. If you have too many tools, the agent may struggle to identify the most relevant ones for a given task. This can lead to confusion and suboptimal performance.</p>
+</li>
+<li>
+<p><strong>Cycle Length</strong>: REST APIs response times are usually in the order of tens to hundreds of milliseconds. It&rsquo;s common to fire off multiple API calls in quick succession to gather data. However, each MCP tool invocation involves additional overhead due to the agent&rsquo;s reasoning process, prompt construction, and response parsing. “In practice, each MCP tool invocation can be orders of magnitude slower than a direct API call. If an agent has to make many tool calls to accomplish a task, the overall latency can become prohibitive.</p>
+</li>
+</ol>
+<p>So is it a good idea to auto-convert REST APIs to MCP tools and call it a day? No. Is it a good way to quickly prototype an MCP server and experiment with agent interactions? Absolutely. Just be aware of the limitations and be prepared to refine the tool set for production use. Most OpenAPI to MCP parsers allow you to customize which endpoints get converted and how they are represented as tools.</p>
+<h2 id="implementation">
+  Implementation
+  <a class="heading-link" href="#implementation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Overall the implementation is fairly straightforward thanks to FastMCP&rsquo;s OpenAPI integration and <a href="https://github.com/Kludex/mangum"  class="external-link" target="_blank" rel="noopener">Mangum</a> for ASGI compatibility with AWS Lambda.</p>
+<p>Take a look at the <a href="https://github.com/manmartgarc/opendotamcp/tree/main?tab=readme-ov-file#-quick-start"  class="external-link" target="_blank" rel="noopener">full source code</a> for this project on GitHub.</p>
+<h3 id="authentication-removal">
+  Authentication Removal
+  <a class="heading-link" href="#authentication-removal">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>One challenge was that the OpenDota API supports both public and authenticated endpoints. The public API is accessible without authentication, but the OpenAPI spec includes authentication schemas. I implemented a <a href="https://github.com/manmartgarc/opendotamcp/blob/main/python-lambda/lambda_function.py#L9"  class="external-link" target="_blank" rel="noopener"><code>NoAuthClient</code></a> that:</p>
+<ul>
+<li>Strips authentication from OpenDota API calls</li>
+<li>Removes security schemes from the OpenAPI specification</li>
+</ul>
+<p>Without these changes, the FastMCP solution was not working properly since it expected authentication to be provided and was actually sending invalid headers.</p>
+<h3 id="encoding">
+  Encoding
+  <a class="heading-link" href="#encoding">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Another issue I ran into was with encoding, particularly between MCP-server responses like <code>list_tools</code> and the tools themselves. FastMCP expects UTF-8 strings, but some OpenDota API responses include non-UTF-8 bytes (e.g., in player names). To handle this, I ensured that all responses are properly encoded and decoded as UTF-8, replacing invalid characters as needed.</p>
+<h3 id="mangum">
+  Mangum
+  <a class="heading-link" href="#mangum">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>To deploy the FastMCP server to AWS Lambda, I used <a href="https://github.com/Kludex/mangum"  class="external-link" target="_blank" rel="noopener">Mangum</a>, an adapter that allows <a href="https://asgi.readthedocs.io/en/latest/"  class="external-link" target="_blank" rel="noopener">ASGI</a> applications to run on AWS Lambda. This involved wrapping the FastMCP app with Mangum&rsquo;s handler, enabling it to process Lambda events and return appropriate HTTP responses. There&rsquo;s a somewhat equivalent <a href="https://docs.aws.amazon.com/powertools/python/latest/core/event_handler/api_gateway/"  class="external-link" target="_blank" rel="noopener">REST API</a> from AWS Lambda Powertools, but it was easier to use Mangum since FastMCP is ASGI-based.</p>
+<h3 id="aws-cdk">
+  AWS CDK
+  <a class="heading-link" href="#aws-cdk">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-lambda-python-alpha-readme.html#packaging"  class="external-link" target="_blank" rel="noopener">AWS CDK Python Lambda</a> has come a very long way since I last used it. Today, you can use <a href="https://docs.astral.sh/uv/"  class="external-link" target="_blank" rel="noopener">UV</a> to manage your Python dependencies and package them seamlessly for Lambda deployment. All you need is a <code>uv.lock</code> file in your Lambda source directory, and CDK takes care of the rest.</p>
+<p>There are instructions in the <a href="https://github.com/manmartgarc/opendotamcp/tree/main"  class="external-link" target="_blank" rel="noopener">repo</a> on how to deploy the CDK stack to your AWS account for testing and how to configure a tool so that it can call the deployed MCP server via HTTP.</p>
+<h2 id="lessons-learned">
+  Lessons Learned
+  <a class="heading-link" href="#lessons-learned">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>As mentioned earlier, auto-converting an entire REST API into MCP tools is not ideal for production use. In general a more AI-centric approach is recommended:</p>
+<ol>
+<li><strong>Start with Agent Stories</strong>: Identify the key workflows and tasks that agents need to perform. Write down &ldquo;As an agent, given {context}, I use {tools} to achieve {outcome}.&rdquo; This helps focus on the actual use cases rather than exposing every possible endpoint.</li>
+<li><strong>Curate Tools</strong>: Instead of exposing every endpoint, select and design tools that align with the identified agent stories. This may involve combining multiple API calls into a single tool or simplifying complex endpoints.</li>
+<li><strong>Optimize for Context</strong>: Minimize the number of tools and their complexity to reduce context pollution. Focus on high-value tools that provide the most relevant data for the agent&rsquo;s tasks.</li>
+<li><strong>Don&rsquo;t reinvent the wheel</strong>: There&rsquo;s a lot of new AWS services that can help you build robust MCP servers without starting from scratch. For example <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-mcp.html"  class="external-link" target="_blank" rel="noopener">AWS AgentCore</a> provides a managed MCP server environment that you can leverage.</li>
+</ol>
+<h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This project demonstrates both the power and the pitfalls of auto-generating MCP servers. FastMCP makes it trivially easy to expose any OpenAPI-compliant API, but that convenience can lead to bloated, inefficient agent interfaces.</p>
+<p>Even so, we were able to successfully build and deploy a serverless MCP server for the OpenDota API using AWS Lambda and API Gateway in a couple of hours. This is exceptional for prototyping and experimentation before you invest in a more curated production solution.</p>
+<p>I used <a href="https://kiro.dev/cli/"  class="external-link" target="_blank" rel="noopener">Kiro CLI</a> to interact with the MCP server once deployed. Here&rsquo;s an example of querying player statistics using the FastMCP OpenDota MCP server:</p>
+<details >
+  <summary>CLI Output</summary>
+  <div class="expand-content">
+    <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>✓ open-dota loaded in 2.84 s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀     ⢀⣴⣶⣶⣦⡀⠀⠀⠀⢀⣴⣶⣦⣄⡀⠀⠀⢀⣴⣶⣶⣦⡀⠀⠀⢀⣴⣶⣶⣶⣶⣶⣶⣶⣶⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣶⣶⣶⣶⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢰⣿⠋⠁⠈⠙⣿⡆⠀⢀⣾⡿⠁⠀⠈⢻⡆⢰⣿⠋⠁⠈⠙⣿⡆⢰⣿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⣦⠀⠀⠀⠀⣴⡿⠟⠋⠁⠀⠀⠀⠈⠙⠻⢿⣦⠀⠀⠀⠀⠀⠀⠀
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⣿⣇⣴⡿⠋⠀⠀⠀⢀⣼⠇⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⢠⣤⣤⣤⣤⣄⠀⠀⠀⠀⣿⡆⠀⠀⣼⡟⠀⠀⠀⠀⣀⣀⣀⠀⠀⠀⠀⢻⣧⠀⠀⠀⠀⠀
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⣿⡿⠋⠀⠀⠀⢀⣾⡿⠁⠀⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⢸⣿⠉⠉⠉⣿⡇⠀⠀⠀⣿⡇⠀⣼⡟⠀⠀⠀⣰⡿⠟⠛⠻⢿⣆⠀⠀⠀⢻⣧⠀⠀⠀⠀
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⠙⠁⠀⠀⢀⣼⡟⠁⠀⠀⠀⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⢸⣿⣶⣶⡶⠋⠀⠀⠀⠀⣿⠇⢰⣿⠀⠀⠀⢰⣿⠀⠀⠀⠀⠀⣿⡆⠀⠀⠀⣿⡆
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⡀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣼⠟⠀⢸⣿⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⣿⡇
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⠀⣠⡀⠀⠀⠹⣷⡄⠀⠀⠀⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⠀⣤⣄⠀⠀⠀⠀⠹⣿⡅⠀⠀⠸⣿⠀⠀⠀⠸⣿⠀⠀⠀⠀⠀⣿⠇⠀⠀⠀⣿⠇
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⣾⡟⣷⡀⠀⠀⠘⣿⣆⠀⠀⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⠀⣿⡟⣷⡀⠀⠀⠀⠘⣿⣆⠀⠀⢻⣧⠀⠀⠀⠹⣷⣦⣤⣤⣾⠏⠀⠀⠀⣼⡟
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⢸⣿⠀⠀⠀⠀⣿⡇⠹⣷⡀⠀⠀⠈⢻⡇⠀⢸⣿⠀⠀⠀⠀⣿⡇⢸⣿⠀⠀⠀⠀⣿⡇⠹⣷⡀⠀⠀⠀⠈⢻⡇⠀⠀⢻⣧⠀⠀⠀⠀⠉⠉⠉⠀⠀⠀⠀⣼⡟
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⠸⣿⣄⡀⢀⣠⣿⠇⠀⠙⣷⡀⠀⢀⣼⠇⠀⠸⣿⣄⡀⢀⣠⣿⠇⠸⣿⣄⡀⢀⣠⣿⠇⠀⠙⣷⡀⠀⠀⢀⣼⠇⠀⠀⠀⠻⣷⣦⣄⡀⠀⠀⠀⢀⣠⣴⣾⠟
+</span></span><span style="display:flex;"><span>⠀⠀⠀⠀⠀⠀⠀    ⠀⠈⠻⠿⠿⠟⠁⠀⠀⠀⠈⠻⠿⠿⠟⠁⠀⠀⠈⠻⠿⠿⠟⠁⠀⠀⠈⠻⠿⠿⠟⠁⠀⠀⠀⠈⠻⠿⠿⠟⠁⠀⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠿⠟⠋⠁
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>╭─────────────────────────────── Did you know? ────────────────────────────────╮
+</span></span><span style="display:flex;"><span>│                                                                              │
+</span></span><span style="display:flex;"><span>│           You can use /editor to edit your prompt with a vim-like            │
+</span></span><span style="display:flex;"><span>│                                  experience                                  │
+</span></span><span style="display:flex;"><span>│                                                                              │
+</span></span><span style="display:flex;"><span>╰──────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Model: Auto (/model to change) | Plan: KIRO FREE (/usage for more detail)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; I&#39;m thinking what hero to choose given that my team already chose:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>1. Axe
+</span></span><span style="display:flex;"><span>2. Winter Wyvern
+</span></span><span style="display:flex;"><span>3. Shadow Fiend
+</span></span><span style="display:flex;"><span>4. Witch Doctor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The enemy team chose
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>1. Juggernaut
+</span></span><span style="display:flex;"><span>2. Primal Beast
+</span></span><span style="display:flex;"><span>3. Queen of Pain
+</span></span><span style="display:flex;"><span>4. Pugna
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Stop if you run into any MCP server errors and report them. Take your time and use the correct tools, especially those that allow you to see match results based on team comps. You can use delegate or subagents to speed up the process
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; I&#39;ll help you find the best hero pick for your team. Let me analyze the matchups using the available Dota 2 data tools.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Running tool get_constants_by_resource with the param (from mcp server: open-dota)
+</span></span><span style="display:flex;"><span> ⋮  {
+</span></span><span style="display:flex;"><span> ⋮    &#34;resource&#34;: &#34;heroes&#34;
+</span></span><span style="display:flex;"><span> ⋮  }
+</span></span><span style="display:flex;"><span>Running tool get_find_matches with the param (from mcp server: open-dota)
+</span></span><span style="display:flex;"><span> ⋮  {
+</span></span><span style="display:flex;"><span> ⋮    &#34;teamA&#34;: [
+</span></span><span style="display:flex;"><span> ⋮      1,
+</span></span><span style="display:flex;"><span> ⋮      15,
+</span></span><span style="display:flex;"><span> ⋮      8,
+</span></span><span style="display:flex;"><span> ⋮      79
+</span></span><span style="display:flex;"><span> ⋮    ],
+</span></span><span style="display:flex;"><span> ⋮    &#34;teamB&#34;: [
+</span></span><span style="display:flex;"><span> ⋮      15,
+</span></span><span style="display:flex;"><span> ⋮      93,
+</span></span><span style="display:flex;"><span> ⋮      101,
+</span></span><span style="display:flex;"><span> ⋮      84
+</span></span><span style="display:flex;"><span> ⋮    ]
+</span></span><span style="display:flex;"><span> ⋮  }
+</span></span><span style="display:flex;"><span> - Completed in 1.415s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> - Completed in 0.848s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; Let me analyze the matchups for your team composition. I&#39;ll check hero matchups against the enemy team to find the best pick.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Running tool get_heroes_by_hero_id_select_matchups with the param (from mcp server: open-dota)
+</span></span><span style="display:flex;"><span> ⋮  {
+</span></span><span style="display:flex;"><span> ⋮    &#34;hero_id&#34;: 8
+</span></span><span style="display:flex;"><span> ⋮  }
+</span></span><span style="display:flex;"><span>Running tool get_heroes_by_hero_id_select_matchups with the param (from mcp server: open-dota)
+</span></span><span style="display:flex;"><span> ⋮  {
+</span></span><span style="display:flex;"><span> ⋮    &#34;hero_id&#34;: 112
+</span></span><span style="display:flex;"><span> ⋮  }
+</span></span><span style="display:flex;"><span>Running tool get_heroes_by_hero_id_select_matchups with the param (from mcp server: open-dota)
+</span></span><span style="display:flex;"><span> ⋮  {
+</span></span><span style="display:flex;"><span> ⋮    &#34;hero_id&#34;: 11
+</span></span><span style="display:flex;"><span> ⋮  }
+</span></span><span style="display:flex;"><span>Running tool get_heroes_by_hero_id_select_matchups with the param (from mcp server: open-dota)
+</span></span><span style="display:flex;"><span> ⋮  {
+</span></span><span style="display:flex;"><span> ⋮    &#34;hero_id&#34;: 30
+</span></span><span style="display:flex;"><span> ⋮  }
+</span></span><span style="display:flex;"><span> - Completed in 0.729s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> - Completed in 6.61s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> - Completed in 0.864s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> - Completed in 4.608s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; Based on the matchup data analysis, here are the best hero picks for your team:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Top Recommendations:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>1. Rubick (Hero ID: 86) - 47.4% win rate vs your enemies
+</span></span><span style="display:flex;"><span>   - Excellent against Primal Beast, Juggernaut, and Queen of Pain
+</span></span><span style="display:flex;"><span>   - Provides utility and can steal key enemy abilities
+</span></span><span style="display:flex;"><span>   - Complements your team&#39;s support/control focus
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. Ogre Magi (Hero ID: 84) - 49.3% win rate vs your enemies
+</span></span><span style="display:flex;"><span>   - Strong against Primal Beast and Juggernaut
+</span></span><span style="display:flex;"><span>   - Adds tankiness and stun potential
+</span></span><span style="display:flex;"><span>   - Works well with your existing supports
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. Disruptor (Hero ID: 87) - 52.7% win rate vs your enemies
+</span></span><span style="display:flex;"><span>   - Excellent against Primal Beast (125 wins in 237 games)
+</span></span><span style="display:flex;"><span>   - Strong disable against Queen of Pain
+</span></span><span style="display:flex;"><span>   - Provides good teamfight control
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>4. Jakiro (Hero ID: 64) - 57% win rate vs your enemies
+</span></span><span style="display:flex;"><span>   - Very strong matchup overall
+</span></span><span style="display:flex;"><span>   - Good against Pugna and Queen of Pain
+</span></span><span style="display:flex;"><span>   - Adds both damage and control
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Why these work:
+</span></span><span style="display:flex;"><span>- Your team has Axe (initiator), Winter Wyvern (support), Shadow Fiend (carry), and Witch Doctor (support)
+</span></span><span style="display:flex;"><span>- You need either another support/utility hero or a mid-laner
+</span></span><span style="display:flex;"><span>- These picks provide disable/control against Primal Beast&#39;s aggression and Queen of Pain&#39;s mobility
+</span></span><span style="display:flex;"><span>- They synergize well with Winter Wyvern&#39;s crowd control
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Avoid: Pugna is particularly weak against your team composition (only 30 wins in 55 games vs Witch Doctor).
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>I&#39;d recommend Disruptor or Jakiro as your best bets for the strongest matchups against their entire team.
+</span></span><span style="display:flex;"><span> ▸ Credits: 0.31 • Time: 27s
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<p>I&rsquo;m under no illusions that this is even close to <a href="https://www.dota2.com/plus"  class="external-link" target="_blank" rel="noopener">Dota Plus</a>, a paid in-game service that provides real-time hero recommendations based on advanced analytics. But it&rsquo;s pretty cool to see an AI agent using an MCP server to analyze matchups and suggest hero pick - feel free to use it to let your teammates know who&rsquo;s carrying the game &#x1f601;</p>
+<h2 id="acknowledgments">
+  Acknowledgments
+  <a class="heading-link" href="#acknowledgments">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li><a href="https://www.opendota.com/"  class="external-link" target="_blank" rel="noopener">OpenDota</a>: Free Dota 2 statistics API</li>
+<li><a href="https://gofastmcp.com/"  class="external-link" target="_blank" rel="noopener">FastMCP</a>: Powerful MCP server framework</li>
+<li><a href="https://gitlab.com/lx-industries/rmcp-openapi/-/tree/main/crates/rmcp-openapi-server"  class="external-link" target="_blank" rel="noopener">rmcp-openapi</a>: Rust OpenAPI to MCP server generator</li>
+<li><a href="https://awslabs.github.io/aws-lambda-powertools-python/"  class="external-link" target="_blank" rel="noopener">AWS Lambda Powertools</a>: Robust Lambda utilities</li>
+<li><a href="https://docs.astral.sh/uv/"  class="external-link" target="_blank" rel="noopener">UV</a>: Next-generation Python package management</li>
+<li><a href="https://www.jlowin.dev/"  class="external-link" target="_blank" rel="noopener">Jeremiah Lowin</a>: For the important reality check on MCP auto-conversion</li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2023 -
+    
+    2025
+     Manuel Martinez 
+    ·
+    
+      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NJLM0F56ZC');
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

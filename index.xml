@@ -6,8 +6,15 @@
     <description>Recent content on Manuel Martinez</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://manmartgarc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building an MCP Server for OpenDota API with FastMCP</title>
+      <link>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</link>
+      <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;You&amp;rsquo;ve probably heard about the &lt;a href=&#34;https://modelcontextprotocol.io/docs/getting-started/intro&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt; by now — an emerging standard for connecting AI agents to external data sources and tools.&lt;/p&gt;&#xA;&lt;p&gt;I wanted to explore building a serverless HTTP-based MCP server using the typical &lt;a href=&#34;https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;APIGW + Lambda pattern&lt;/a&gt; that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Lambda Functions with Rust and CDK</title>
       <link>https://manmartgarc.github.io/posts/tech-support/rust-lambda/</link>
