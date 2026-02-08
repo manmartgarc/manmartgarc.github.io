@@ -2,42 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tech Support on Manuel Martinez</title>
-    <link>http://localhost:1313/categories/tech-support/</link>
+    <link>https://manmartgarc.github.io/categories/tech-support/</link>
     <description>Recent content in Tech Support on Manuel Martinez</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Wed, 24 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/tech-support/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://manmartgarc.github.io/categories/tech-support/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building an MCP Server for OpenDota API with FastMCP</title>
-      <link>http://localhost:1313/posts/tech-support/fastmcp-opendota/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/fastmcp-opendota/</guid>
+      <guid>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;You&amp;rsquo;ve probably heard about the &lt;a href=&#34;https://modelcontextprotocol.io/docs/getting-started/intro&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt; by now — an emerging standard for connecting AI agents to external data sources and tools.&lt;/p&gt;
 &lt;p&gt;I wanted to explore building a serverless HTTP-based MCP server using the typical &lt;a href=&#34;https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html&#34;&gt;APIGW + Lambda pattern&lt;/a&gt; that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lambda Functions with Rust and CDK</title>
-      <link>http://localhost:1313/posts/tech-support/rust-lambda/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/rust-lambda/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/rust-lambda/</guid>
+      <guid>https://manmartgarc.github.io/posts/tech-support/rust-lambda/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This post is a follow-up to the previous post on &lt;a href=&#34;http://localhost:1313/posts/tech-support/go-lambda/&#34;&gt;Lambda Functions with Go and CDK&lt;/a&gt;. In this post, we&amp;rsquo;ll go through deploying a Rust-based AWS Lambda function using the AWS Cloud Development Kit (CDK). We&amp;rsquo;ll focus on the developer workflow: how to get started, wire up your Rust Lambda, and use CDK to manage your infrastructure as code. If you&amp;rsquo;re already familiar with Lambda as a service, this guide will help you get productive with Rust and CDK quickly.&lt;/p&gt;</description>
+&lt;p&gt;This post is a follow-up to the previous post on &lt;a href=&#34;https://manmartgarc.github.io/posts/tech-support/go-lambda/&#34;&gt;Lambda Functions with Go and CDK&lt;/a&gt;. In this post, we&amp;rsquo;ll go through deploying a Rust-based AWS Lambda function using the AWS Cloud Development Kit (CDK). We&amp;rsquo;ll focus on the developer workflow: how to get started, wire up your Rust Lambda, and use CDK to manage your infrastructure as code. If you&amp;rsquo;re already familiar with Lambda as a service, this guide will help you get productive with Rust and CDK quickly.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lambda Functions with Go and CDK</title>
-      <link>http://localhost:1313/posts/tech-support/go-lambda/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/go-lambda/</link>
       <pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/go-lambda/</guid>
+      <guid>https://manmartgarc.github.io/posts/tech-support/go-lambda/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/lambda/&#34;&gt;AWS Lambda&lt;/a&gt; is a serverless computing service that lets you run code without provisioning or managing servers. Lambdas are very flexible because you can run them on a &lt;a href=&#34;https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-run-lambda-schedule.html&#34;&gt;schedule&lt;/a&gt;, in response to &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html&#34;&gt;events&lt;/a&gt;, or even as an &lt;a href=&#34;https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html&#34;&gt;API endpoint&lt;/a&gt; that responds to an HTTP request. In this post, we&amp;rsquo;ll look at how to create a Lambda function using Go and the AWS Cloud Development Kit (CDK) - with a focus on using CDK to speed up the development process and improve operational efficiency.&lt;/p&gt;</description>
     </item>
     <item>
       <title>VSCode and Tiny Instances over Remote SSH</title>
-      <link>http://localhost:1313/posts/tech-support/vscode-ec2/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/vscode-ec2/</guid>
+      <guid>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</guid>
       <description>&lt;h2 id=&#34;vscode-is-very-popular&#34;&gt;VSCode is very popular&lt;/h2&gt;
 &lt;p&gt;A lot of people like VSCode, 74% of respondents in &lt;a href=&#34;https://survey.stackoverflow.co/2022/#section-most-popular-technologies-integrated-development-environment&#34;&gt;StackOverflow&amp;rsquo;s 2022 Developer Survey&lt;/a&gt; said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.&lt;/p&gt;</description>
     </item>

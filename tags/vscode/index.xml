@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Vscode on Manuel Martinez</title>
-    <link>http://localhost:1313/tags/vscode/</link>
+    <link>https://manmartgarc.github.io/tags/vscode/</link>
     <description>Recent content in Vscode on Manuel Martinez</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Sat, 01 Apr 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://manmartgarc.github.io/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VSCode and Tiny Instances over Remote SSH</title>
-      <link>http://localhost:1313/posts/tech-support/vscode-ec2/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/vscode-ec2/</guid>
+      <guid>https://manmartgarc.github.io/posts/tech-support/vscode-ec2/</guid>
       <description>&lt;h2 id=&#34;vscode-is-very-popular&#34;&gt;VSCode is very popular&lt;/h2&gt;
 &lt;p&gt;A lot of people like VSCode, 74% of respondents in &lt;a href=&#34;https://survey.stackoverflow.co/2022/#section-most-popular-technologies-integrated-development-environment&#34;&gt;StackOverflow&amp;rsquo;s 2022 Developer Survey&lt;/a&gt; said that VSCode is the IDE that they&amp;rsquo;ve used in the past year and also plan to keep using it. Why is VSCode liked so, and what do people like about it is not the focus of the post; but for sure it has to do with its extendable functionality, much of which comes from extensions.&lt;/p&gt;</description>
     </item>

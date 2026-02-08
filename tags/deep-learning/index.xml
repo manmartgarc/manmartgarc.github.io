@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Deep Learning on Manuel Martinez</title>
-    <link>http://localhost:1313/tags/deep-learning/</link>
+    <link>https://manmartgarc.github.io/tags/deep-learning/</link>
     <description>Recent content in Deep Learning on Manuel Martinez</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://manmartgarc.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sequence Models: Week 4 | Transformers</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</guid>
       <description>&lt;p&gt;This is the fourth and last week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The main topic for this week is transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#transformer-network-intuition&#34;&gt;Transformer Network Intuition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#self-attention&#34;&gt;Self-Attention&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#multi-head-attention&#34;&gt;Multi-Head Attention&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#transformer-network-architecture&#34;&gt;Transformer Network Architecture&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#more-information&#34;&gt;More Information&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/#transformer-network-intuition&#34;&gt;Transformer Network Intuition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/#self-attention&#34;&gt;Self-Attention&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/#multi-head-attention&#34;&gt;Multi-Head Attention&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/#transformer-network-architecture&#34;&gt;Transformer Network Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/#more-information&#34;&gt;More Information&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;transformer-network-intuition&#34;&gt;Transformer Network Intuition&lt;/h2&gt;
@@ -28,30 +28,30 @@
     </item>
     <item>
       <title>Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</link>
       <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</guid>
       <description>&lt;p&gt;This is the third week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#sequence-to-sequence-architectures&#34;&gt;Sequence to Sequence Architectures&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#sequence-to-sequence-architectures&#34;&gt;Sequence to Sequence Architectures&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#basic-seq2seq-models&#34;&gt;Basic Seq2Seq Models&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#picking-the-most-likely-sentence&#34;&gt;Picking the Most Likely Sentence&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#basic-seq2seq-models&#34;&gt;Basic Seq2Seq Models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#picking-the-most-likely-sentence&#34;&gt;Picking the Most Likely Sentence&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#why-not-greedy-search&#34;&gt;Why not Greedy Search?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#beam-search&#34;&gt;Beam Search&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#why-not-greedy-search&#34;&gt;Why not Greedy Search?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#beam-search&#34;&gt;Beam Search&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#refinements&#34;&gt;Refinements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#error-analysis&#34;&gt;Error Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#refinements&#34;&gt;Refinements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#error-analysis&#34;&gt;Error Analysis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#attention&#34;&gt;Attention&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#attention&#34;&gt;Attention&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#developing-intuition&#34;&gt;Developing Intuition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#defining-the-attention-model&#34;&gt;Defining the Attention Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#developing-intuition&#34;&gt;Developing Intuition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/#defining-the-attention-model&#34;&gt;Defining the Attention Model&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -59,40 +59,40 @@
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;sequence-to-sequence-architectures&#34;&gt;Sequence to Sequence Architectures&lt;/h2&gt;
-&lt;p&gt;The basic example for sequence-to-sequence approaches was also covered in the &lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/&#34;&gt;first week&lt;/a&gt; of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.&lt;/p&gt;</description>
+&lt;p&gt;The basic example for sequence-to-sequence approaches was also covered in the &lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/&#34;&gt;first week&lt;/a&gt; of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sequence Models: Week 2 | NLP &amp; Word Embeddings</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</link>
       <pubDate>Thu, 10 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</guid>
       <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#introduction-to-word-embeddings&#34;&gt;Introduction to Word Embeddings&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#introduction-to-word-embeddings&#34;&gt;Introduction to Word Embeddings&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-representation&#34;&gt;Word Representation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#using-word-embeddings&#34;&gt;Using Word Embeddings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#properties-of-word-embeddings&#34;&gt;Properties of Word Embeddings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#cosine-similarity&#34;&gt;Cosine Similarity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#embedding-matrix&#34;&gt;Embedding Matrix&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-representation&#34;&gt;Word Representation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#using-word-embeddings&#34;&gt;Using Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#properties-of-word-embeddings&#34;&gt;Properties of Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#cosine-similarity&#34;&gt;Cosine Similarity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#embedding-matrix&#34;&gt;Embedding Matrix&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-embeddings&#34;&gt;Word Embeddings&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-embeddings&#34;&gt;Word Embeddings&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#learning-word-embeddings&#34;&gt;Learning Word Embeddings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#word2vec&#34;&gt;Word2Vec&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#learning-word-embeddings&#34;&gt;Learning Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#word2vec&#34;&gt;Word2Vec&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#negative-sampling&#34;&gt;Negative Sampling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#negative-sampling&#34;&gt;Negative Sampling&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#glove-word-vectors&#34;&gt;GloVe Word Vectors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#glove-word-vectors&#34;&gt;GloVe Word Vectors&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#applications-using-word-embeddings&#34;&gt;Applications Using Word Embeddings&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#applications-using-word-embeddings&#34;&gt;Applications Using Word Embeddings&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#sentiment-classification&#34;&gt;Sentiment Classification&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#de-biasing-word-embeddings&#34;&gt;De-biasing Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#sentiment-classification&#34;&gt;Sentiment Classification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/#de-biasing-word-embeddings&#34;&gt;De-biasing Word Embeddings&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -103,29 +103,29 @@
     </item>
     <item>
       <title>Sequence Models: Week 1 | Recurrent Neural Networks</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
       <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&amp;rsquo;s get started.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#why-sequence-models&#34;&gt;Why Sequence Models?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#notation&#34;&gt;Notation&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#why-sequence-models&#34;&gt;Why Sequence Models?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#notation&#34;&gt;Notation&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#representing-words&#34;&gt;Representing Words&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#representing-words&#34;&gt;Representing Words&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#recurrent-neural-network&#34;&gt;Recurrent Neural Network&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#recurrent-neural-network&#34;&gt;Recurrent Neural Network&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#forward-propagation&#34;&gt;Forward Propagation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#different-types-of-rnns&#34;&gt;Different Types of RNNs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#language-model-and-sequence-generation&#34;&gt;Language Model and Sequence Generation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#vanishing-gradients-with-rnns&#34;&gt;Vanishing Gradients with RNNs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#forward-propagation&#34;&gt;Forward Propagation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#different-types-of-rnns&#34;&gt;Different Types of RNNs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#language-model-and-sequence-generation&#34;&gt;Language Model and Sequence Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#vanishing-gradients-with-rnns&#34;&gt;Vanishing Gradients with RNNs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#gated-recurrent-unit&#34;&gt;Gated Recurrent Unit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#long-short-term-memory&#34;&gt;Long Short-Term Memory&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#bidirectional-rnn&#34;&gt;Bidirectional RNN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#gated-recurrent-unit&#34;&gt;Gated Recurrent Unit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#long-short-term-memory&#34;&gt;Long Short-Term Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/#bidirectional-rnn&#34;&gt;Bidirectional RNN&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;why-sequence-models&#34;&gt;Why Sequence Models?&lt;/h2&gt;
@@ -133,29 +133,29 @@
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</link>
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
       <description>&lt;p&gt;This is the fourth and last week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are as follows:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#face-recognition&#34;&gt;Face Recognition&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#face-recognition&#34;&gt;Face Recognition&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#what-is-face-recognition&#34;&gt;What is Face Recognition?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#one-shot-learning&#34;&gt;One Shot Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#siamese-network&#34;&gt;Siamese Network&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#triplet-loss&#34;&gt;Triplet Loss&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#face-verification-and-binary-classification&#34;&gt;Face Verification and Binary Classification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#what-is-face-recognition&#34;&gt;What is Face Recognition?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#one-shot-learning&#34;&gt;One Shot Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#siamese-network&#34;&gt;Siamese Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#triplet-loss&#34;&gt;Triplet Loss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#face-verification-and-binary-classification&#34;&gt;Face Verification and Binary Classification&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#neural-style-transfer&#34;&gt;Neural Style Transfer&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#neural-style-transfer&#34;&gt;Neural Style Transfer&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#what-is-neural-style-transfer&#34;&gt;What is Neural Style Transfer?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#what-are-deep-cnns-learning&#34;&gt;What are deep CNNs learning?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#cost-function&#34;&gt;Cost Function&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#what-is-neural-style-transfer&#34;&gt;What is Neural Style Transfer?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#what-are-deep-cnns-learning&#34;&gt;What are deep CNNs learning?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#cost-function&#34;&gt;Cost Function&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#content-cost-function&#34;&gt;Content Cost Function&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#style-cost-function&#34;&gt;Style Cost Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#content-cost-function&#34;&gt;Content Cost Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/#style-cost-function&#34;&gt;Style Cost Function&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -168,84 +168,84 @@
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 3 | Detection Algorithms</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</link>
       <pubDate>Tue, 01 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
       <description>&lt;p&gt;This is the third week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#object-localization&#34;&gt;Object Localization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#landmark-detection&#34;&gt;Landmark Detection&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#object-detection&#34;&gt;Object Detection&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#object-localization&#34;&gt;Object Localization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#landmark-detection&#34;&gt;Landmark Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#object-detection&#34;&gt;Object Detection&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#sliding-windows-detection&#34;&gt;Sliding Windows Detection&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#convolutional-implementation-of-sliding-windows&#34;&gt;Convolutional Implementation of Sliding Windows&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#sliding-windows-detection&#34;&gt;Sliding Windows Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#convolutional-implementation-of-sliding-windows&#34;&gt;Convolutional Implementation of Sliding Windows&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#turning-fully-connected-layers-into-convolutional-layers&#34;&gt;Turning fully connected layers into convolutional layers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#implementing-sliding-windows-convolutionally&#34;&gt;Implementing sliding windows convolutionally&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#turning-fully-connected-layers-into-convolutional-layers&#34;&gt;Turning fully connected layers into convolutional layers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#implementing-sliding-windows-convolutionally&#34;&gt;Implementing sliding windows convolutionally&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#bounding-box-predictions&#34;&gt;Bounding Box Predictions&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#bounding-box-predictions&#34;&gt;Bounding Box Predictions&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#intersection-over-union&#34;&gt;Intersection Over Union&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#non-max-suppression&#34;&gt;Non-max Suppression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#anchor-boxes&#34;&gt;Anchor Boxes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#intersection-over-union&#34;&gt;Intersection Over Union&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#non-max-suppression&#34;&gt;Non-max Suppression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#anchor-boxes&#34;&gt;Anchor Boxes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#semantic-segmentation&#34;&gt;Semantic Segmentation&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#semantic-segmentation&#34;&gt;Semantic Segmentation&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#transpose-convolutions&#34;&gt;Transpose Convolutions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#u-net-architecture&#34;&gt;U-Net Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#transpose-convolutions&#34;&gt;Transpose Convolutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/#u-net-architecture&#34;&gt;U-Net Architecture&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;object-localization&#34;&gt;Object Localization&lt;/h2&gt;
-&lt;p&gt;Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We &lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/&#34;&gt;previously&lt;/a&gt; discussed how we can train a classifier using images with CNNs. The new twist is the localization of the object in the image.&lt;/p&gt;</description>
+&lt;p&gt;Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We &lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/&#34;&gt;previously&lt;/a&gt; discussed how we can train a classifier using images with CNNs. The new twist is the localization of the object in the image.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 2 | Case Studies</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</link>
       <pubDate>Wed, 19 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
       <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#case-studies&#34;&gt;Case Studies&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#case-studies&#34;&gt;Case Studies&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#classic-networks&#34;&gt;Classic Networks&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#classic-networks&#34;&gt;Classic Networks&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#lenet5&#34;&gt;LeNet5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#alexnet&#34;&gt;AlexNet&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#vgg16&#34;&gt;VGG16&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#lenet5&#34;&gt;LeNet5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#alexnet&#34;&gt;AlexNet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#vgg16&#34;&gt;VGG16&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#resnets&#34;&gt;ResNets&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#resnets&#34;&gt;ResNets&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#why-do-resnets-work&#34;&gt;Why do ResNets Work?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#why-do-resnets-work&#34;&gt;Why do ResNets Work?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#networks-in-networks--1x1-convolutions&#34;&gt;Networks in Networks | 1x1 Convolutions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#inception-network&#34;&gt;Inception Network&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#networks-in-networks--1x1-convolutions&#34;&gt;Networks in Networks | 1x1 Convolutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#inception-network&#34;&gt;Inception Network&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#inception-network-architecture&#34;&gt;Inception Network Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#inception-network-architecture&#34;&gt;Inception Network Architecture&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#mobilenet&#34;&gt;MobileNet&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#mobilenet&#34;&gt;MobileNet&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#depth-wise-convolution&#34;&gt;Depth-wise Convolution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#point-wise-convolution&#34;&gt;Point-wise Convolution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#mobilenet-architecture&#34;&gt;MobileNet Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#depth-wise-convolution&#34;&gt;Depth-wise Convolution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#point-wise-convolution&#34;&gt;Point-wise Convolution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#mobilenet-architecture&#34;&gt;MobileNet Architecture&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#practical-advice-for-using-convnets&#34;&gt;Practical Advice for Using ConvNets&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#practical-advice-for-using-convnets&#34;&gt;Practical Advice for Using ConvNets&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#transfer-learning&#34;&gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#data-augmentation&#34;&gt;Data Augmentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#transfer-learning&#34;&gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/#data-augmentation&#34;&gt;Data Augmentation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -255,33 +255,33 @@
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 1 | Foundations of CNNs</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</link>
       <pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
       <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#computer-vision&#34;&gt;Computer Vision&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolution&#34;&gt;Convolution&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#computer-vision&#34;&gt;Computer Vision&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#convolution&#34;&gt;Convolution&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-continuous-land&#34;&gt;Convolution in continuous land&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-discrete-land&#34;&gt;Convolution in discrete land&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#back-to-edge-detection&#34;&gt;Back to Edge Detection&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#learning-the-filters&#34;&gt;Learning the Filters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-continuous-land&#34;&gt;Convolution in continuous land&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-discrete-land&#34;&gt;Convolution in discrete land&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#back-to-edge-detection&#34;&gt;Back to Edge Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#learning-the-filters&#34;&gt;Learning the Filters&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#padding&#34;&gt;Padding&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#strided-convolutions&#34;&gt;Strided Convolutions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolutions-over-volume&#34;&gt;Convolutions Over Volume&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#one-layer-of-a-cnn&#34;&gt;One Layer of a CNN&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#padding&#34;&gt;Padding&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#strided-convolutions&#34;&gt;Strided Convolutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#convolutions-over-volume&#34;&gt;Convolutions Over Volume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#one-layer-of-a-cnn&#34;&gt;One Layer of a CNN&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#defining-the-notation-and-dimensions&#34;&gt;Defining the Notation and Dimensions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#defining-the-notation-and-dimensions&#34;&gt;Defining the Notation and Dimensions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#simple-cnn-example&#34;&gt;Simple CNN Example&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#pooling-layers&#34;&gt;Pooling Layers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#full-cnn-example&#34;&gt;Full CNN Example&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#why-convolutions&#34;&gt;Why Convolutions?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#simple-cnn-example&#34;&gt;Simple CNN Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#pooling-layers&#34;&gt;Pooling Layers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#full-cnn-example&#34;&gt;Full CNN Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/#why-convolutions&#34;&gt;Why Convolutions?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;computer-vision&#34;&gt;Computer Vision&lt;/h2&gt;
@@ -289,36 +289,36 @@
     </item>
     <item>
       <title>Structuring ML Projects: Week 2 | ML Strategy</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</link>
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</guid>
       <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning&#34;&gt;third course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course is less technical than the previous two and focuses instead on general principles and intuition related to machine learning projects.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#error-analysis&#34;&gt;Error Analysis&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#error-analysis&#34;&gt;Error Analysis&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#carrying-out-error-analysis&#34;&gt;Carrying out Error Analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#cleaning-up-incorrectly-labeled-data&#34;&gt;Cleaning up Incorrectly Labeled Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#build-our-first-system-quickly-then-iterate&#34;&gt;Build our First System Quickly, then Iterate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#carrying-out-error-analysis&#34;&gt;Carrying out Error Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#cleaning-up-incorrectly-labeled-data&#34;&gt;Cleaning up Incorrectly Labeled Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#build-our-first-system-quickly-then-iterate&#34;&gt;Build our First System Quickly, then Iterate&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#mismatched-training-and-devtest-sets&#34;&gt;Mismatched Training and Dev/Test Sets&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#mismatched-training-and-devtest-sets&#34;&gt;Mismatched Training and Dev/Test Sets&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#training-and-testing-on-different-distributions&#34;&gt;Training and Testing on Different Distributions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#bias-and-variance-with-mismatched-data-distributions&#34;&gt;Bias and Variance with Mismatched Data Distributions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#addressing-data-mismatch&#34;&gt;Addressing Data Mismatch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#training-and-testing-on-different-distributions&#34;&gt;Training and Testing on Different Distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#bias-and-variance-with-mismatched-data-distributions&#34;&gt;Bias and Variance with Mismatched Data Distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#addressing-data-mismatch&#34;&gt;Addressing Data Mismatch&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#learning-from-multiple-tasks&#34;&gt;Learning from Multiple Tasks&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#learning-from-multiple-tasks&#34;&gt;Learning from Multiple Tasks&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#transfer-learning&#34;&gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#multitask-learning&#34;&gt;Multitask Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#transfer-learning&#34;&gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#multitask-learning&#34;&gt;Multitask Learning&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#end-to-end-deep-learning&#34;&gt;End-to-end Deep Learning&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#end-to-end-deep-learning&#34;&gt;End-to-end Deep Learning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#what-is-end-to-end-deep-learning&#34;&gt;What is End-to-end Deep Learning?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#whether-to-use-end-to-end-deep-learning&#34;&gt;Whether to use End-to-end Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#what-is-end-to-end-deep-learning&#34;&gt;What is End-to-end Deep Learning?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#whether-to-use-end-to-end-deep-learning&#34;&gt;Whether to use End-to-end Deep Learning&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -329,34 +329,34 @@
     </item>
     <item>
       <title>Structuring ML Projects: Week 1 | ML Strategy</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</link>
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</guid>
       <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning&#34;&gt;third course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course is less technical than the previous two and focuses instead on general principles and intuition related to machine learning projects.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#introduction-to-ml-strategy&#34;&gt;Introduction to ML Strategy&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#introduction-to-ml-strategy&#34;&gt;Introduction to ML Strategy&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#why-ml-strategy&#34;&gt;Why ML Strategy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#orthogonalization&#34;&gt;Orthogonalization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#why-ml-strategy&#34;&gt;Why ML Strategy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#orthogonalization&#34;&gt;Orthogonalization&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#setting-up-our-goal&#34;&gt;Setting Up our Goal&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#setting-up-our-goal&#34;&gt;Setting Up our Goal&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#single-number-evaluation-metric&#34;&gt;Single Number Evaluation Metric&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#satisficing-and-optimizing-metrics&#34;&gt;Satisficing and Optimizing Metrics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#traindevtest-distributions&#34;&gt;Train/Dev/Test Distributions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#size-of-dev-and-test-sets&#34;&gt;Size of Dev and Test Sets&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#when-to-change-devtest-sets-and-metrics&#34;&gt;When to Change Dev/Test Sets and Metrics?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#single-number-evaluation-metric&#34;&gt;Single Number Evaluation Metric&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#satisficing-and-optimizing-metrics&#34;&gt;Satisficing and Optimizing Metrics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#traindevtest-distributions&#34;&gt;Train/Dev/Test Distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#size-of-dev-and-test-sets&#34;&gt;Size of Dev and Test Sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#when-to-change-devtest-sets-and-metrics&#34;&gt;When to Change Dev/Test Sets and Metrics?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#comparing-to-human-level-performance&#34;&gt;Comparing to Human-Level Performance&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#comparing-to-human-level-performance&#34;&gt;Comparing to Human-Level Performance&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#why-human-level-performance&#34;&gt;Why Human-level performance?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#avoidable-bias&#34;&gt;Avoidable Bias&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#understanding-human-level-performance&#34;&gt;Understanding Human-level Performance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#surpassing-human-level-performance&#34;&gt;Surpassing Human-level Performance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#improving-your-model-performance&#34;&gt;Improving your Model Performance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#why-human-level-performance&#34;&gt;Why Human-level performance?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#avoidable-bias&#34;&gt;Avoidable Bias&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#understanding-human-level-performance&#34;&gt;Understanding Human-level Performance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#surpassing-human-level-performance&#34;&gt;Surpassing Human-level Performance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#improving-your-model-performance&#34;&gt;Improving your Model Performance&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -367,43 +367,43 @@
     </item>
     <item>
       <title>Improving Deep Learning Networks: Week 3 | Hyperparameter Tuning, Batch Optimization, Programming Frameworks</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</link>
       <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/</guid>
       <description>&lt;p&gt;This is the third and final week of the &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network&#34;&gt;second course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#hyperparameter-tuning&#34;&gt;Hyperparameter Tuning&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#hyperparameter-tuning&#34;&gt;Hyperparameter Tuning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#tuning-process&#34;&gt;Tuning Process&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#tuning-process&#34;&gt;Tuning Process&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#random-search&#34;&gt;Random Search&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#coarse-to-fine-grained-search&#34;&gt;Coarse-to-fine Grained Search&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#random-search&#34;&gt;Random Search&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#coarse-to-fine-grained-search&#34;&gt;Coarse-to-fine Grained Search&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#using-an-appropriate-scale-when-searching&#34;&gt;Using an Appropriate Scale when Searching&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#using-an-appropriate-scale-when-searching&#34;&gt;Using an Appropriate Scale when Searching&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#python-implementation&#34;&gt;Python Implementation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#python-implementation&#34;&gt;Python Implementation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#hyperparameter-tuning-in-practice-pandas-vs-caviar&#34;&gt;Hyperparameter Tuning in Practice: Pandas vs. Caviar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#hyperparameter-tuning-in-practice-pandas-vs-caviar&#34;&gt;Hyperparameter Tuning in Practice: Pandas vs. Caviar&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#batch-normalization&#34;&gt;Batch Normalization&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#batch-normalization&#34;&gt;Batch Normalization&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#normalizing-activations-in-a-network&#34;&gt;Normalizing Activations in a Network&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#fitting-batch-norm-into-a-neural-network&#34;&gt;Fitting Batch Norm into a Neural Network&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#why-does-batch-norm-work&#34;&gt;Why does Batch Norm work?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#batch-norm-at-test-time&#34;&gt;Batch Norm at Test Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#normalizing-activations-in-a-network&#34;&gt;Normalizing Activations in a Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#fitting-batch-norm-into-a-neural-network&#34;&gt;Fitting Batch Norm into a Neural Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#why-does-batch-norm-work&#34;&gt;Why does Batch Norm work?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#batch-norm-at-test-time&#34;&gt;Batch Norm at Test Time&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#multi-class-classification&#34;&gt;Multi-class Classification&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#multi-class-classification&#34;&gt;Multi-class Classification&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#softmax-regression&#34;&gt;Softmax Regression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#training-a-softmax-classifier&#34;&gt;Training a Softmax Classifier&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#softmax-regression&#34;&gt;Softmax Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#training-a-softmax-classifier&#34;&gt;Training a Softmax Classifier&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#programming-frameworks&#34;&gt;Programming Frameworks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week3/#programming-frameworks&#34;&gt;Programming Frameworks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;hyperparameter-tuning&#34;&gt;Hyperparameter Tuning&lt;/h2&gt;
@@ -411,55 +411,55 @@
     </item>
     <item>
       <title>Improving Deep Learning Networks: Week 2 | Optimization Algorithms</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</link>
       <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/</guid>
       <description>&lt;p&gt;This week is focused on the optimization and training process. In particular, this week covers ways to make the training process faster and more efficient, allowing us to iterate more quickly when trying different approaches.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#mini-batch-gradient-descent&#34;&gt;Mini-batch Gradient Descent&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#exponentially-weighted-moving-averages-ewma&#34;&gt;Exponentially Weighted Moving Averages (EWMA)&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#mini-batch-gradient-descent&#34;&gt;Mini-batch Gradient Descent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#exponentially-weighted-moving-averages-ewma&#34;&gt;Exponentially Weighted Moving Averages (EWMA)&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#bias-correction&#34;&gt;Bias Correction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#bias-correction&#34;&gt;Bias Correction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#gradient-descent-with-momentum&#34;&gt;Gradient Descent with Momentum&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#rmsprop&#34;&gt;RMSProp&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#adam&#34;&gt;Adam&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#learning-rate-decay&#34;&gt;Learning Rate Decay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#gradient-descent-with-momentum&#34;&gt;Gradient Descent with Momentum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#rmsprop&#34;&gt;RMSProp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#adam&#34;&gt;Adam&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week2/#learning-rate-decay&#34;&gt;Learning Rate Decay&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;mini-batch-gradient-descent&#34;&gt;Mini-batch Gradient Descent&lt;/h2&gt;
-&lt;p&gt;We discussed &lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent&#34;&gt;gradient descent&lt;/a&gt; briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.&lt;/p&gt;</description>
+&lt;p&gt;We discussed &lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent&#34;&gt;gradient descent&lt;/a&gt; briefly on the second week of the first course. A key takeaway is that vanilla gradient descent is vectorized across all our training samples $x^{(m)}$. That is, every gradient step is taken after doing a forward and back propagation over our entire training data. This is relatively efficient when our data is small, but as our data grows it becomes a very big challenge. This is especially true with large neural networks or complex architectures.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Improving Deep Learning Networks: Week 1 | Practical Aspects of Deep Learning</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</link>
       <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/</guid>
       <description>&lt;p&gt;This is the first week in the &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network&#34;&gt;second course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The course deals with hyperparameter tuning, regularization and the optimization of the training process. The optimization ranges from computational complexity to performance. This is again a pretty technical week, where you will benefit a lot from doing the programming exercises.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#setting-up-our-machine-learning-problem&#34;&gt;Setting up our Machine Learning problem&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#setting-up-our-machine-learning-problem&#34;&gt;Setting up our Machine Learning problem&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#train--dev--test-sets&#34;&gt;Train / Dev / Test sets&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#bias-variance-tradeoff&#34;&gt;Bias-Variance Tradeoff&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#basic-recipe-for-machine-learning&#34;&gt;Basic Recipe for Machine Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#train--dev--test-sets&#34;&gt;Train / Dev / Test sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#bias-variance-tradeoff&#34;&gt;Bias-Variance Tradeoff&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#basic-recipe-for-machine-learning&#34;&gt;Basic Recipe for Machine Learning&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#regularizing-our-neural-network&#34;&gt;Regularizing our Neural Network&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#regularizing-our-neural-network&#34;&gt;Regularizing our Neural Network&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#regularization&#34;&gt;Regularization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#why-does-regularization-reduce-overfitting&#34;&gt;Why Does Regularization Reduce Overfitting?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#dropout-regularization&#34;&gt;Dropout Regularization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#understanding-dropout&#34;&gt;Understanding Dropout&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#other-regularization-methods&#34;&gt;Other Regularization Methods&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#regularization&#34;&gt;Regularization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#why-does-regularization-reduce-overfitting&#34;&gt;Why Does Regularization Reduce Overfitting?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#dropout-regularization&#34;&gt;Dropout Regularization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#understanding-dropout&#34;&gt;Understanding Dropout&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#other-regularization-methods&#34;&gt;Other Regularization Methods&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#setting-up-our-optimization-problem&#34;&gt;Setting up our Optimization Problem&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#normalizing-inputs&#34;&gt;Normalizing Inputs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#vanishing-and-exploding-gradients&#34;&gt;Vanishing and Exploding Gradients&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#weight-initialization&#34;&gt;Weight Initialization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#setting-up-our-optimization-problem&#34;&gt;Setting up our Optimization Problem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#normalizing-inputs&#34;&gt;Normalizing Inputs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#vanishing-and-exploding-gradients&#34;&gt;Vanishing and Exploding Gradients&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/improving-dnn-nets/week1/#weight-initialization&#34;&gt;Weight Initialization&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;setting-up-our-machine-learning-problem&#34;&gt;Setting up our Machine Learning problem&lt;/h2&gt;
@@ -468,16 +468,16 @@
     </item>
     <item>
       <title>Neural Networks and Deep Learning: Week 4 | Deep Neural Networks</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</link>
       <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/</guid>
       <description>&lt;p&gt;Final week of this course. Again, this week is pretty technical and a lot of the learning is done while coding up your own examples via the weekly programming assignments. The purpose of this week is to extend previous weeks&amp;rsquo; ideas into $L$-layered networks.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/#deep-l-layer-neural-network&#34;&gt;Deep L-Layer neural network&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/#getting-your-matrix-dimensions-right&#34;&gt;Getting your matrix dimensions right&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/#why-deep-representations&#34;&gt;Why deep representations?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week4/#parameters-and-hyperparameters&#34;&gt;Parameters and Hyperparameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/#deep-l-layer-neural-network&#34;&gt;Deep L-Layer neural network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/#getting-your-matrix-dimensions-right&#34;&gt;Getting your matrix dimensions right&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/#why-deep-representations&#34;&gt;Why deep representations?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week4/#parameters-and-hyperparameters&#34;&gt;Parameters and Hyperparameters&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;deep-l-layer-neural-network&#34;&gt;Deep L-Layer neural network&lt;/h2&gt;
@@ -485,18 +485,18 @@
     </item>
     <item>
       <title>Neural Networks and Deep Learning: Week 3 | Shallow Neural Networks</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</link>
       <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/</guid>
       <description>&lt;p&gt;This week&amp;rsquo;s focus is again very technical. Similar to the previous week, the focus is on the implementation of neural networks and on how to generalize your code from a single-layer network to a multi-layer network, and also how to extend the ideas presented previously into deeper neural networks.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/#neural-network-representation&#34;&gt;Neural Network Representation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/#computing-a-neural-networks-output&#34;&gt;Computing a Neural Network&amp;rsquo;s Output&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/#vectorizing-across-multiple-examples&#34;&gt;Vectorizing across multiple examples&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/#activation-functions&#34;&gt;Activation functions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week3/#random-initialization&#34;&gt;Random Initialization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/#neural-network-representation&#34;&gt;Neural Network Representation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/#computing-a-neural-networks-output&#34;&gt;Computing a Neural Network&amp;rsquo;s Output&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/#vectorizing-across-multiple-examples&#34;&gt;Vectorizing across multiple examples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/#activation-functions&#34;&gt;Activation functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week3/#random-initialization&#34;&gt;Random Initialization&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
@@ -504,19 +504,19 @@
     </item>
     <item>
       <title>Neural Networks and Deep Learning: Week 2 | Neural Network Basics</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</link>
       <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/</guid>
       <description>&lt;p&gt;Here we kick off the second week of the first course in the specialization. This week is very technical, and many of the details shown in the course will be lost in the summarization. Also, a lot of the content is based on you doing programming assignments. There is simply no substitute for getting your hands dirty.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#binary-classification&#34;&gt;Binary Classification&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#logistic-regression&#34;&gt;Logistic Regression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#logistic-function&#34;&gt;Logistic Function&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent&#34;&gt;Gradient Descent&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#computation-graph&#34;&gt;Computation Graph&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#python-and-vectorization&#34;&gt;Python and Vectorization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week2/#broadcasting&#34;&gt;Broadcasting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#binary-classification&#34;&gt;Binary Classification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#logistic-regression&#34;&gt;Logistic Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#logistic-function&#34;&gt;Logistic Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#gradient-descent&#34;&gt;Gradient Descent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#computation-graph&#34;&gt;Computation Graph&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#python-and-vectorization&#34;&gt;Python and Vectorization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week2/#broadcasting&#34;&gt;Broadcasting&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;binary-classification&#34;&gt;Binary Classification&lt;/h2&gt;
@@ -524,9 +524,9 @@
     </item>
     <item>
       <title>Neural Networks and Deep Learning: Week 1 | Introduction to Deep Learning</title>
-      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week1/</link>
+      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</link>
       <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
+      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/nn-dl/week1/</guid>
       <description>&lt;h2 id=&#34;introduction-to-deep-learning&#34;&gt;Introduction to Deep Learning&lt;/h2&gt;
 &lt;p&gt;This is the first course in Coursera&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt;. I will try to summarize the major topics presented in each week of each course in a series of posts. The purpose of this is to both deepen my own understanding by explaining, but also to help people who have not taken the specialization. Hopefully, these posts will inspire you to do so.&lt;/p&gt;
 &lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;</description>

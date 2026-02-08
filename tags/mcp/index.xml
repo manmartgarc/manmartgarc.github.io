@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Mcp on Manuel Martinez</title>
-    <link>http://localhost:1313/tags/mcp/</link>
+    <link>https://manmartgarc.github.io/tags/mcp/</link>
     <description>Recent content in Mcp on Manuel Martinez</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Wed, 24 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://manmartgarc.github.io/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building an MCP Server for OpenDota API with FastMCP</title>
-      <link>http://localhost:1313/posts/tech-support/fastmcp-opendota/</link>
+      <link>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/fastmcp-opendota/</guid>
+      <guid>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;You&amp;rsquo;ve probably heard about the &lt;a href=&#34;https://modelcontextprotocol.io/docs/getting-started/intro&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt; by now — an emerging standard for connecting AI agents to external data sources and tools.&lt;/p&gt;
 &lt;p&gt;I wanted to explore building a serverless HTTP-based MCP server using the typical &lt;a href=&#34;https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html&#34;&gt;APIGW + Lambda pattern&lt;/a&gt; that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.&lt;/p&gt;</description>
