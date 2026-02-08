@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>
-  Convolutional Neural Networks: Week 1 | Foundations of CNNs · Manuel Martinez
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="Manuel Martinez">
-<meta name="description" content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+<!doctype html><html lang=en dir=auto data-theme=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Convolutional Neural Networks: Week 1 | Foundations of CNNs | Manuel Martinez</title><meta name=keywords content="machine learning,deep learning"><meta name=description content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week&rsquo;s topics are:
 
 Computer Vision
@@ -39,762 +24,80 @@ Full CNN Example
 Why Convolutions?
 
 
-
-  Computer Vision
-  
-    
-    Link to heading
-  
-
-If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
-<meta name="keywords" content="blog,developer,personal">
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
-  <meta name="twitter:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+Computer Vision
+If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier."><meta name=author content="Manuel Martinez"><link rel=canonical href=http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/><link crossorigin=anonymous href=/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/images/favicon.ico><link rel=apple-touch-icon href=http://localhost:1313/apple-touch-icon.png><link rel=mask-icon href=http://localhost:1313/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],throwOnError:!1})})</script><meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/"><meta property="og:site_name" content="Manuel Martinez"><meta property="og:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs"><meta property="og:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
 This week’s topics are:
-Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision Link to heading If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
+Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-07-11T00:00:00+00:00"><meta property="article:modified_time" content="2023-07-11T00:00:00+00:00"><meta property="article:tag" content="Machine Learning"><meta property="article:tag" content="Deep Learning"><meta name=twitter:card content="summary"><meta name=twitter:title content="Convolutional Neural Networks: Week 1 | Foundations of CNNs"><meta name=twitter:description content="This is the first week of the fourth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
+This week&rsquo;s topics are:
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
-  <meta property="og:site_name" content="Manuel Martinez">
-  <meta property="og:title" content="Convolutional Neural Networks: Week 1 | Foundations of CNNs">
-  <meta property="og:description" content="This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.
-This week’s topics are:
-Computer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision Link to heading If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-07-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-07-11T00:00:00+00:00">
-    <meta property="article:tag" content="Machine Learning">
-    <meta property="article:tag" content="Deep Learning">
+Computer Vision
+Convolution
+
+Convolution in continuous land
+Convolution in discrete land
+Back to Edge Detection
+Learning the Filters
 
 
+Padding
+Strided Convolutions
+Convolutions Over Volume
+One Layer of a CNN
+
+Defining the Notation and Dimensions
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
+Simple CNN Example
+Pooling Layers
+Full CNN Example
+Why Convolutions?
 
 
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-
-
-  
-  
-  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
-
-
-
-
-
-
-  
-    
-    
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
-      Manuel Martinez
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/about/">About</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/posts/">Posts</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/projects/">Projects</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/cv/">CV</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container post">
-    <article>
-      <header>
-        <div class="post-title">
-          <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/">
-              Convolutional Neural Networks: Week 1 | Foundations of CNNs
-            </a>
-          </h1>
-        </div>
-        <div class="post-meta">
-          <div class="date">
-            <span class="posted-on">
-              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2023-07-11T00:00:00Z">
-                July 11, 2023
-              </time>
-            </span>
-            <span class="reading-time">
-              <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              21-minute read
-            </span>
-          </div>
-          
-          <div class="categories">
-  <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/coursera/">Coursera</a>
-      <span class="separator">•</span>
-    <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
-      <span class="separator">•</span>
-    <a href="/categories/convolutional-neural-networks/">Convolutional Neural Networks</a></div>
-
-          <div class="tags">
-  <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/machine-learning/">Machine Learning</a>
-    </span>
-      <span class="separator">•</span>
-    <span class="tag">
-      <a href="/tags/deep-learning/">Deep Learning</a>
-    </span></div>
-
-        </div>
-      </header>
-
-      <div class="post-content">
-        
-        <p>This is the first week of the <a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">fourth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.</p>
-<p>This week&rsquo;s topics are:</p>
-<ul>
-<li><a href="#computer-vision" >Computer Vision</a></li>
-<li><a href="#convolution" >Convolution</a>
-<ul>
-<li><a href="#convolution-in-continuous-land" >Convolution in continuous land</a></li>
-<li><a href="#convolution-in-discrete-land" >Convolution in discrete land</a></li>
-<li><a href="#back-to-edge-detection" >Back to Edge Detection</a></li>
-<li><a href="#learning-the-filters" >Learning the Filters</a></li>
-</ul>
-</li>
-<li><a href="#padding" >Padding</a></li>
-<li><a href="#strided-convolutions" >Strided Convolutions</a></li>
-<li><a href="#convolutions-over-volume" >Convolutions Over Volume</a></li>
-<li><a href="#one-layer-of-a-cnn" >One Layer of a CNN</a>
-<ul>
-<li><a href="#defining-the-notation-and-dimensions" >Defining the Notation and Dimensions</a></li>
-</ul>
-</li>
-<li><a href="#simple-cnn-example" >Simple CNN Example</a></li>
-<li><a href="#pooling-layers" >Pooling Layers</a></li>
-<li><a href="#full-cnn-example" >Full CNN Example</a></li>
-<li><a href="#why-convolutions" >Why Convolutions?</a></li>
-</ul>
-<hr>
-<h2 id="computer-vision">
-  Computer Vision
-  <a class="heading-link" href="#computer-vision">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.</p>
-<p>Say that we want to develop a classifier that processes a digital image, and it outputs the probability that the image is a cat. How are digital images represented usually? A simple, math-friendly, software-friendly way of representing images is as matrices. An image is a grid of pixels, where each pixel has a tuple $(R, G, B)$, where each element represents the color intensity of each channel. If we have a $64\times64$ pixel image of a cat, we would need $64\times64\times3 = 12288$ numerical types to represent the image. But a $64\times64$ pixel image is incredibly tiny. A $1000\times1000$ pixel image, 1 mega-pixel, would require $1000\times1000\times3 = 3,000,000 = 3M$ numerical types to be represented. That&rsquo;s a lot of numbers, but it gets worse.</p>
-<p>If we try to use what we already know, fully-connected feed-forward neural networks, and we set up a single hidden layer with $1,000$ hidden units, then the number of weights will explode. Because we represent each image as a $3M$ vector of features $x_1, x_2, \dots, x_{3M}$, and we are using a fully-connected layer, each feature $x_n$ is connected to each hidden unit. We represent those weights $W^{[l]}$ as a matrix. And that matrix will have dimensions $(1000, 3M)$, which is about 3 billion parameters, and that&rsquo;s just the first hidden layer.</p>
-<p>Sure, we could settle by using smaller images, or compressing larger images - losing detail. But what if there&rsquo;s a way to avoid the parameter explosion, <em>and</em>, also train a model that overfits less? Remember that big model complexity usually means overfitting. It turns out that convolutions do just that.</p>
-<h2 id="convolution">
-  Convolution
-  <a class="heading-link" href="#convolution">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="convolution-in-continuous-land">
-  Convolution in continuous land
-  <a class="heading-link" href="#convolution-in-continuous-land">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>When someone mentions convolutions they might be referring to slightly different things. In the field of math called <a href="https://en.wikipedia.org/wiki/Functional_analysis"  class="external-link" target="_blank" rel="noopener">functional analysis</a>, which is the field that uses functions as its units of inquiry, a convolution is an operation between two functions. What is an operation between two functions? Think of differentiation and integration as examples of functional operators.</p>
-<p>In this sense, a <a href="https://en.wikipedia.org/wiki/Convolution"  class="external-link" target="_blank" rel="noopener">convolution</a> is a mathematical operation between two functions $f$ and $g$ that produces a <em>third</em> function $f * g$. This third function expresses how the shape of one is modified by the other. It&rsquo;s defined as an integral:</p>
-<p>$$
+Computer Vision
+If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"Convolutional Neural Networks: Week 1 | Foundations of CNNs","item":"http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Convolutional Neural Networks: Week 1 | Foundations of CNNs","name":"Convolutional Neural Networks: Week 1 | Foundations of CNNs","description":"This is the first week of the fourth course of DeepLearning.AI\u0026rsquo;s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.\nThis week\u0026rsquo;s topics are:\nComputer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it\u0026rsquo;s very likely that they\u0026rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let\u0026rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.\n","keywords":["machine learning","deep learning"],"articleBody":"This is the first week of the fourth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.\nThis week’s topics are:\nComputer Vision Convolution Convolution in continuous land Convolution in discrete land Back to Edge Detection Learning the Filters Padding Strided Convolutions Convolutions Over Volume One Layer of a CNN Defining the Notation and Dimensions Simple CNN Example Pooling Layers Full CNN Example Why Convolutions? Computer Vision If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it’s very likely that they’re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos 1. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let’s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.\nSay that we want to develop a classifier that processes a digital image, and it outputs the probability that the image is a cat. How are digital images represented usually? A simple, math-friendly, software-friendly way of representing images is as matrices. An image is a grid of pixels, where each pixel has a tuple $(R, G, B)$, where each element represents the color intensity of each channel. If we have a $64\\times64$ pixel image of a cat, we would need $64\\times64\\times3 = 12288$ numerical types to represent the image. But a $64\\times64$ pixel image is incredibly tiny. A $1000\\times1000$ pixel image, 1 mega-pixel, would require $1000\\times1000\\times3 = 3,000,000 = 3M$ numerical types to be represented. That’s a lot of numbers, but it gets worse.\nIf we try to use what we already know, fully-connected feed-forward neural networks, and we set up a single hidden layer with $1,000$ hidden units, then the number of weights will explode. Because we represent each image as a $3M$ vector of features $x_1, x_2, \\dots, x_{3M}$, and we are using a fully-connected layer, each feature $x_n$ is connected to each hidden unit. We represent those weights $W^{[l]}$ as a matrix. And that matrix will have dimensions $(1000, 3M)$, which is about 3 billion parameters, and that’s just the first hidden layer.\nSure, we could settle by using smaller images, or compressing larger images - losing detail. But what if there’s a way to avoid the parameter explosion, and, also train a model that overfits less? Remember that big model complexity usually means overfitting. It turns out that convolutions do just that.\nConvolution Convolution in continuous land When someone mentions convolutions they might be referring to slightly different things. In the field of math called functional analysis, which is the field that uses functions as its units of inquiry, a convolution is an operation between two functions. What is an operation between two functions? Think of differentiation and integration as examples of functional operators.\nIn this sense, a convolution is a mathematical operation between two functions $f$ and $g$ that produces a third function $f * g$. This third function expresses how the shape of one is modified by the other. It’s defined as an integral:\n$$ (f*g) := \\int_{-\\infty}^{\\infty} f(\\tau)g(t-\\tau)d\\tau $$\nPerhaps more didactic, there’s a beautiful visual explanation of what a convolution is. It involves plotting $f(t)$ and $g(t - \\tau)$ along the $\\tau$ axis. As $g(t - \\tau)$ is shifted, the convolution $(f*g)(t)$ is plotted, which literally describes the normalized area overlap between the two functions at a particular $t$ value. The integral above is a way to compute that area as the sum of the overlaps over the sliding window.\nAn animation displaying the process and result of convolving a box signal with itself.\nAn animation displaying the process and result of convolving a box signal with a spiky impulse response.\nHow is this at all related to image processing? Images are not represented as continuous functions, but as discrete objects, i.e., $M \\times N \\times C$ matrices. It turns out that the discrete equivalent of the integral above is called multidimensional discrete convolution, and this is what people refer to as convolution within the signal-processing and computer vision context.\nConvolution in discrete land So, similar to how we convolve two functions, $f$ and $g$, to find a third function $f * g$, we want to convolve an image and a filter, or kernel. That is, we want to get some output that is, in essence, a filtered image. Why would we want to apply a filter to an image? It turns out that some filters, or kernels, can tell us where the edges are in an image. That seems like a reasonable place to start building a system that can process digital images.\nLet’s start by defining a 2D convolution:\n$$ g(x,y) = w * f(x,y) = \\sum_{dx=-a}^a \\sum_{dy=-b}^{b}w(dx,dy)f(x-dx, y-dy) $$\nWhere $g(x,y)$ is the filtered image, $f(x,y)$ is the original image, and $w$ is the filter kernel. Every element of the filter kernel is considered by $-a \\leq dx \\leq a$ and $-b \\leq dy \\leq b$ 2. In essence, this convolves a filter and an image by moving a filter over the image, calculating the sum of all the element-wise products, and setting that as the output for each element in the output matrix. A convolution takes in two matrices and outputs a matrix, but it’s not matrix multiplication. This animation should help clarify what’s going on:\n2D Convolution Animation.\nThe smaller $3\\times3$ matrix is the filter, or kernel, and the large matrix is our image. In this case, instead of having three values representing each pixel, it has one. How to convolve over many channels, or colors in this case, is covered later in the course.\nNotice how each of the entries in the output matrix is the result of sliding the filter around the original image, and calculating the sum of all element-wise products. This procedure is what ends up being the discrete equivalent of continuous convolution.\nBack to Edge Detection You might be thinking, how could a matrix (kernel) be used to detect edges? It turns out to be pretty intuitive.\nThink about the following $3\\times3$ filter:\n$$ f = \\begin{bmatrix} 1 \u0026 0 \u0026 -1 \\\\ 1 \u0026 0 \u0026 -1 \\\\ 1 \u0026 0 \u0026 -1 \\end{bmatrix} $$\nIt turns out that this filter can work as a vertical edge detector. Notice that it’s negatively symmetrical about the middle column. If we convolve this filter by a $3 \\times 3$ matrix of equal numbers, the output will be $0$ because the symmetry will cancel everything out. What happens if you convolve this filter with an image that has a vertical edge?\nVertical Edge Detection.\nConvolving an image with an edge with this filter will bring up the regions of the original image where there is a gradient of values in the horizontal dimension; thus generating an image that highlights the vertical edges. In this sense, we defined an edge as: a $3\\times3$ region in the image where there are bright pixels on the left and dark pixels on the right.\nNotice that convolving a $6\\times6$ image by a $3\\times3$ filter results in a $4\\times4$ image. This is the result of convolving without padding, which is covered later.\nIt might not surprise you that a horizontal edge filter is:\n$$ f = \\begin{bmatrix} 1 \u0026 1 \u0026 1 \\\\ 0 \u0026 0 \u0026 0 \\\\ -1 \u0026 -1 \u0026 -1 \\end{bmatrix} $$\nThat is, a horizontal edge is a $3\\times3$ region in the picture where there are brighter pixels “above” and darker pixels “below”.\nBut who came up with these numbers? Why not choose $10$ instead of $1$? It turns out that there are a lot of different filters. Think about finding diagonal edges—how would that filter look? But most importantly, how can we know that the filters we use are going to be relevant to our problem domain, i.e., cat classification?\nIf you think that the convolution explanation is not great, it’s because I don’t really understand convolutions. A great resource is 3Blue1Brown’s beautiful But what is a convolution? video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains Convolutions.\nLearning the Filters It turns out that we can unleash all the machine learning knowledge from the previous courses and simply learn the filters that perform best with respect to a cost function. If we define a filter as:\n$$ f = \\begin{bmatrix} w_1 \u0026 w_2 \u0026 w_3 \\\\ w_4 \u0026 w_5 \u0026 w_6 \\\\ w_7 \u0026 w_8 \u0026 w_9 \\end{bmatrix} $$\nAnd learn these weights via some optimization algorithm. Do we know which filters will work? No. Can we learn them, whatever they are? Yes!\nIf we revisit our parameter size estimates, having a $1000\\times1000\\times3$ matrix representing an image, and a fully connected hidden layer with $1000$ units, then the size of $W^{[l]}$ would be 3 billion. Because in convolution we slide the same filter over the entire image, we just need $10$ parameters (plus the bias) to start building a convolutional layer. We have broken the relationship between our input size and the parameter size of a hidden layer!\nThe idea of parameter sharing is the powerful idea behind convolutional layers. Not simply because it’s computationally efficient, but also because it helps models generalize better.\nPadding In the example above, we convolved a $6\\times6$ image with a $3\\times3$ kernel, and got back a $4\\times4$ output. This is because once you move the filter to the third column, going left to right, you get to the rightmost border of the image. It turns out that there is a handy formula that we can use to calculate the output dimensions:\n$$ \\text{output\\_dim} = n - f + 1 \\times n - f + 1 $$\nIf we have a $n\\times n$ input and convolved it with a $f \\times f$ filter, we get out a $n-f+1 \\times n-f+1$ output. In the case above: $6 - 3 + 1 = 4$.\nBut maybe we don’t want to get smaller-sized images after convolving them with our filters. What if we want to convolve them many times? It turns out that there is a solution to this issue, and it’s called padding. Padding will help us deal with the two main downsides of convolving without padding:\nShrinking output dimensions Corner and edge pixels only contribute to very few outputs in the feature map (the output). This means that the pixels around the center of the image will end up being over-represented in the output, relative to the corner and edge pixels. So what is padding? It’s very simple. Before convolving the image with a filter, you pad the input image, around its edges, with some values. Usually, people use $0$ for the padding, and it’s appropriately named zero-padding. So if we have a $6\\times6$ image, and we use a padding of $p=1$, then our padded image will be of dimensions $8 \\times 8$. This is because we pad all edges: left, right, top, and bottom. Again, there is a nice formula that allows us to calculate the feature map’s dimensions:\n$$ \\text{output\\_dim} = n+2p-f+1 \\times n+2p-f+1 $$\nPlugging our example into the formula, we get $6 + 2(1) - 3 + 1 = 6$. Notice that this is the same dimensions as our input. By using padding we were able to keep the convolution output from shrinking. This is called a same convolution, because it preserves the input dimensions. That is, for any given input, you can solve for a padding size that will preserve the dimensions. We can solve for $p$:\n$$ \\begin{aligned} n+2p-f+1 \u0026= n^* \\\\ 2p-f+1 \u0026= 0 \\\\ 2p \u0026= f - 1 \\\\ p \u0026= \\frac{f-1}{2} \\end{aligned} $$\nSo in the previous example, if we have a $3\\times3 = f$ filter, then $\\frac{3-1}{2} = 1 = p$. This is why a padding of $1$ made our convolution a same one. This is contrasted with valid convolutions, which is where we use no padding.\nIt turns out that people rarely use even-sized filters, and usually go for odd ones like $3\\times3$, $5\\times5$, etc.\nStrided Convolutions Another basic building block in CNNs is that of stride. A stride is another tool, like padding, that can be thought of as a hyperparameter of a convolution. A stride is very simple: if we move the filter by $1$ location every time, this is equivalent to using a stride of $1$, $s=1$. We could jump two spaces, or three, or however many we want. However, by using larger strides, we have fewer outputs in the feature map; therefore, it needs to be used with care, otherwise, we get back to our original problem of quickly shrinking the dimensions of our feature maps.\nWith strides, the handy-formula for the feature map output changes a little:\n$$ \\text{output\\_dim} = \\Bigl\\lfloor\\frac{n+2p-f}{s} + 1 \\Bigr\\rfloor \\times \\Bigl\\lfloor\\frac{n+2p-f}{s} + 1 \\Bigr\\rfloor $$\nNotice that we take the floor, $\\lfloor x \\rfloor$, to handle the case where the result is not an integer.\nSo to recap:\n$n \\times n$ = image dimensions $f \\times f$ = filter/kernel dimensions $p$ = padding $s$ = stride And the feature map dimensions are given to us by the handy formula:\n$$ \\text{output\\_dim} = \\Bigl\\lfloor\\frac{n+2p-f}{s} + 1 \\Bigr\\rfloor \\times \\Bigl\\lfloor\\frac{n+2p-f}{s} + 1 \\Bigr\\rfloor $$\nNote on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of not flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn’t matter whether we flip the filter or not in the context of CNNs.\nConvolutions Over Volume By now, we should have a pretty good grasp on 2D convolution. We have an image, and we convolve it with a filter, and we get some output. We can use padding or a stride different from one, but these are details, and we know how to calculate the dimensions of the output, which is one of the key things to keep in mind; in the same way that it’s very important to keep in mind the dimensions of any neural net. Yet a snag remains: our images are not 2D, but 3D. Our $64\\times64\\times3$ cat image is a cube. How can we do a convolution over volume?\nIt turns out that instead of using a square filter, we use a cube filter. That is, if our image is $6\\times6\\times3$, then we need the number of channels, $3$, to match the number of channels in our filter. Therefore, our filter will have dimensions $3\\times3\\times3$ if we choose a $3\\times3$ filter. Here is an illustration:\n3D Convolution | Papers With Code.\nThis means that each entry in the output feature map is the element-wise product sum of 27 pairs of numbers; 27 from the image and 27 from the filter, since $3 \\times 3 \\times 3 = 27$. An important thing to notice is that the number of channels in the output is $1$, and not $3$ as in the input or filter.\nBut why stop at one filter? We can use as many filters as we want. Think about using one filter for horizontal edge detection, another one for vertical edge detection, and so on. So if we have $n_c^$ filters, we simply stack them together, as long as they are the same dimensions. Let’s say that we have $2$ filters, and they are all dimensions $3\\times3\\times3$. Then our output will be $n - f + 1 \\times n - f + 1 \\times n_c^$, where $n_c^*$ is the number of filters used in the layer.\nLet’s run by an example using a $6\\times6\\times3$ input image and two $3\\times3\\times3$ filters. Convolving a $6\\times6\\times3$ image with a $3\\times3\\times3$ filter will result in a $4\\times4$ feature map (remember the handy function). Since we have two filters, the feature map will have dimensions $4\\times4\\times2$. The basic idea being that you can stack multiple feature maps into a cube.\nNotice that the (R, G, B) part of the image is usually called channels. It is also called the depth of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.\nOne Layer of a CNN Getting back to neural nets, we need to fit all these new pieces into the framework we’ve been using throughout the course. We know that ultimately we want to run some optimization algorithm to learn the filter parameters. But before we do that, we need to bring the notation home to make sure that we can apply all the nice tools we developed throughout.\nLet’s set up the problem. We have a $6\\times6\\times3$ image, and that we have two $3\\times3\\times3$ filters. We convolve each filter with the image, and we get a $4\\times4\\times2$ output, remember that the $2$ comes from using two filters, so if we had $10$ filters, the output would be $4\\times4\\times10$. So far so good. The problem is that we don’t have non-linearities! Fear not however, because we can add non-linearities the same way we did before, by using activation functions. The key idea is that we apply an activation function to the output of a convolution between the image and one filter. So after convolving each filter and getting a $4\\times4$ output, we pass it through some $a^{[l]}$, our choice of activation function. Not only that, but each filter has its own $b^{[l]}_{n_c^*}$ term, a scalar. So the whole shebang is that we grab each filter, convolve it with the image and get an output. We run that output through an activation function $a^{[l]}$, and then add some $b^{[l]}_{n_c^*}$ bias to the $4\\times4$ output, element-wise. Notice that $b^{[l]}_{n_c^*}$ is indexed by the number of filters in the layer $l$, $n_c^*$. This means that if we have a $3\\times3\\times3$ filter, we don’t have just $27$ parameters, but $28$!\nSo in this case, the $6\\times6\\times3$ image plays the role of $a^{[0]}$, our input layer. Remember that we first compute $z^{[1]} = W^{[1]}a^{[0]}+b^{[1]}$. In our case, all the filters we have on our layer play the role of $W^{[1]}$. So the $W^{[1]}a^{[0]}$ term is really the output of a convolution operation. Then we add the biases $b^{[l]}_{n_c^*}$ for each of the filters. Finally, we get $a^{[l]} = g(z^{[1]})$ by passing that output through an activation function (usually a ReLU). This is how we get our final $4\\times4$ output. If we have two filters, then the output will be $4\\times4\\times2$.\nThis is a good practice question in the course: If we have 10 filters that are $3\\times3\\times3$ in one layer of a neural network, how many parameters does that layer have? The answer should be even. And again, the truly cool thing about this is that no matter how big the input image is, the number of parameters remains the same. We are no longer in billion-parameter land.\nDefining the Notation and Dimensions If a layer $l$ is a convolutional layer:\n$f^{[l]}$ = filter size. $p^{[l]}$ = padding $s^{[l]}$ = stride $n_c^{[l]}$ = number of filters Notice that we don’t vary these settings across filters within a layer.\nSo, layer $l$ will use the output from layer $l-1$; therefore:\nDimensions of inputs: $n_H^{[l-1]} \\times n_W^{[l-1]} \\times n_c^{[l-1]}$ Dimension of outputs: $n_H^{[l]} \\times n_W^{[l]} \\times n_c^{[l]}$ Where $H$ and $W$ stand for height and width.\nOkay, but how do we actually get $n_H^{[l]}$? We use the trusty formula:\n$$ n^{[l]}_H = \\Bigl\\lfloor\\frac{n^{[l-1]}_H + 2p^{[l]} - f^{[l]}}{s^{[l]}} + 1\\Bigr\\rfloor $$\nWe can do this separately for width and height.\nLet’s go over the dimensions of the components of the layer:\nEach filter is $f^{[l]} \\times f^{[l]} \\times n_c^{[l-1]}$ (notice the channel matching to the previous layer). Activations are $a^{[l]} = n_H^{[l]} \\times n_W^{[l]} \\times n_c^{[l]}$ (the same as the output, of course). If we are using mini batch gradient descent, we can describe this with a matrix: $A^{[l]} = m \\times n_H^{[l]} \\times n_W^{[l]} \\times n_c^{[l]}$, where $m$ is the mini-batch size. Weights are $f^{[l]} \\times f^{[l]} \\times n_c^{[l-1]} \\times n_c^{[l]}$. This one is important! $n_c^{[l-1]}$ is the number of channels or filters in the previous layer, while $n_c^{[l]}$ is the number of filters in the current layer. The biases $b^{[l]}$ will have one for each filter in layer $l$, therefore it will be of dimensions $1 \\times 1 \\times 1 \\times n_c^{[l]}$, the added dimensions are for broadcasting purposes. Simple CNN Example Let’s do a simple example before we go over pooling layers; this should be good practice for calculating the input and output dimensions of the layer.\nLet’s start with a $39\\times39\\times3$ input. We want to convolve it with $10$ filters, where $f^{[1]} = 3, s^{[1]} = 1, p^{[1]} = 0$. Using the trusty formula, we should get an output of dimensions $37\\times37\\times10$. Remember $\\frac{39+2(0)-3}{1} + 1 = 37$, and we have $10$ filters, therefore the output channels are $10$.\nLet’s say that we have another convolutional layer $l=2$, and this time we use twenty $5\\times5$ filters, so that $f^{[2]} = 5, s^{[2]} = 2, p^{[2]} = 0$. Plugging these numbers into our formula, we start from the last layer’s input size: $37\\times37\\times10$ and we get this layer’s output dimensions as $17\\times17\\times20$. Finally, let’s do another layer, $l=3$, with $40$ filters where $f^{[3]} = 5, s^{[3]}=2, p^{[3]} = 0$. Then we end up with an output size of $7\\times7\\times40$.\nNotice how we started with an input of $39\\times39\\times3$ and end up with a feature map of dimensions $7\\times7\\times40$; we took a cube and reshaped it into a rectangle. In the case of doing classification, we can run the $7\\times7\\times40$ output into a $1960$ hidden-unit fully connected layer that runs its output through a softmax or sigmoid.\nIn summary, the layer types in a CNN are:\nConvolutional Layer | CONV Pooling Layer | POOL Fully connected Layer | FC Pooling layers are discussed next and remain a key part of CNNs.\nPooling Layers Pooling layers reduce some layer’s output dimension by applying an aggregating procedure, usually taking the max or average over some region in the output. This is good for two main reasons: smaller outputs are more computationally efficient. However, unlike the output shrinking from filters, the aggregating procedures can boost certain features down the network.\nA pooling layer works similar to a convolutional layer. An example of $2\\times2$ max pooling is shown here:\nMax-pooling with a $2\\times2$ shape\nEach of the outputs in the feature map is simply the maximum value in the input’s region overlaid by the filter. We can still use our trusty formula to calculate the output sizes.\nA key thing to notice is that pooling layers have no parameters. That is, they only have hyperparameters, $f$ and $s$—that is, their size and the stride. Additionally, another hyperparameter is whether the layer is a max-pooling layer or average-pooling layer. Max-pooling is a lot more popular in the CNN literature.\nFull CNN Example This example goes over a CNN architecture similar to that of LeNet-5, a legendary architecture proposed by Yan LeCun in 1998. The network was implemented to do character recognition originally.\nThe architecture is as follows:\nInput: $32\\times32\\times3$ CONV 1: $f=5, s=1$. Outputs: $28\\times28\\times6$ MAXPOOL 1: $f=2, s=2$. Outputs: $14\\times14\\times6$ CONV 2: $f=5, s=1$. Outputs: $10\\times10\\times16$ MAXPOOL 2: $f=2, s=2$. Outputs: $5\\times5\\times16$ FC3: $120$ units. The weights $W^{[FC3]}$ has dimensions $(120, 400)$. Where $400 = 5\\times5\\times16$. FC4: $84$ units. The weights $W^{[FC4]}$ has dimensions $(120, 84)$ Softmax: The final output layer with $C=9$ classes, one for each digit. A couple of details:\nIn the literature, a convolutional layer is usually referred to as a CONV layer followed by a POOL layer. So CONV 1 and MAXPOOL 1 can be referred to as a single layer. The dimensions of the feature maps tend to decrease. That is, $n_H, n_W$ go down as we go deeper in the network. The number of channels tends to increase; that is, $n_C$ goes up as we go deeper in the network. Here is a table with the dimensions for each layer and also the number of parameters. Verifying the number is a great exercise to test our understanding:\nActivation shape Activation size # Parameters Input (32, 32, 3) 3,072 0 CONV1 $(f=5, s=1)$ (28, 28, 6) 4,704 456 POOL1 $(f=2, s=2)$ (14, 14, 6) 1,176 0 CONV2 $(f=5, s=1)$ (10, 10, 16) 1,600 2416 POOL2 $(f=2, s=2)$ (5, 5, 16) 400 0 FC3 (120, 1) 120 48,120 FC4 (84, 1) 84 10,164 Softmax (10, 1) 10 850 Notice how the activation sizes decrease through the layers. Also, notice how around 94% of all the parameters in the network are part of the fully connected layers. This network has a grand total of $62,006$ parameters, which is a lot less than hundreds of millions.\nWhy Convolutions? Unfortunately, there is no single reason as to why convolutions work so well. However, there are two probable reasons:\nParameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to translational invariance, the idea that a CNN is robust to shifted or distorted images. Sparsity of connections: Each output value depends only on a few inputs. This is a mark of low complexity, and it might have an effect similar to regularization; therefore, helping avoid overfitting. Next week’s post is here.\nWhat is Computer Vision? | Microsoft ↩︎\nKernel (image processing) | Wikipedia ↩︎\n","wordCount":"4287","inLanguage":"en","datePublished":"2023-07-11T00:00:00Z","dateModified":"2023-07-11T00:00:00Z","author":{"@type":"Person","name":"Manuel Martinez"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/"},"publisher":{"@type":"Organization","name":"Manuel Martinez","logo":{"@type":"ImageObject","url":"http://localhost:1313/images/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="Manuel Martinez (Alt + H)">Manuel Martinez</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li><li><a href=http://localhost:1313/posts/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/archives/ title=Archive><span>Archive</span></a></li><li><a href=http://localhost:1313/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://localhost:1313/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://localhost:1313/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=http://localhost:1313/cv/ title=CV><span>CV</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:1313/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:1313/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Convolutional Neural Networks: Week 1 | Foundations of CNNs</h1><div class=post-meta><span title='2023-07-11 00:00:00 +0000 UTC'>July 11, 2023</span>&nbsp;·&nbsp;<span>21 min</span>&nbsp;·&nbsp;<span>Manuel Martinez</span></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#computer-vision>Computer Vision</a></li><li><a href=#convolution>Convolution</a><ul><li><a href=#convolution-in-continuous-land>Convolution in continuous land</a></li><li><a href=#convolution-in-discrete-land>Convolution in discrete land</a></li><li><a href=#back-to-edge-detection>Back to Edge Detection</a></li><li><a href=#learning-the-filters>Learning the Filters</a></li></ul></li><li><a href=#padding>Padding</a></li><li><a href=#strided-convolutions>Strided Convolutions</a></li><li><a href=#convolutions-over-volume>Convolutions Over Volume</a></li><li><a href=#one-layer-of-a-cnn>One Layer of a CNN</a><ul><li><a href=#defining-the-notation-and-dimensions>Defining the Notation and Dimensions</a></li></ul></li><li><a href=#simple-cnn-example>Simple CNN Example</a></li><li><a href=#pooling-layers>Pooling Layers</a></li><li><a href=#full-cnn-example>Full CNN Example</a></li><li><a href=#why-convolutions>Why Convolutions?</a></li></ul></nav></div></details></div><div class=post-content><p>This is the first week of the <a href=https://www.coursera.org/learn/convolutional-neural-networks/>fourth course</a> of DeepLearning.AI&rsquo;s <a href=https://www.coursera.org/specializations/deep-learning>Deep Learning Specialization</a> offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.</p><p>This week&rsquo;s topics are:</p><ul><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#computer-vision>Computer Vision</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#convolution>Convolution</a><ul><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-continuous-land>Convolution in continuous land</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-discrete-land>Convolution in discrete land</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#back-to-edge-detection>Back to Edge Detection</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#learning-the-filters>Learning the Filters</a></li></ul></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#padding>Padding</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#strided-convolutions>Strided Convolutions</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#convolutions-over-volume>Convolutions Over Volume</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#one-layer-of-a-cnn>One Layer of a CNN</a><ul><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#defining-the-notation-and-dimensions>Defining the Notation and Dimensions</a></li></ul></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#simple-cnn-example>Simple CNN Example</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#pooling-layers>Pooling Layers</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#full-cnn-example>Full CNN Example</a></li><li><a href=/posts/coursera/deep-learning-specialization/cnns/week1/#why-convolutions>Why Convolutions?</a></li></ul><hr><h2 id=computer-vision>Computer Vision<a hidden class=anchor aria-hidden=true href=#computer-vision>#</a></h2><p>If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&rsquo;s very likely that they&rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.</p><p>Say that we want to develop a classifier that processes a digital image, and it outputs the probability that the image is a cat. How are digital images represented usually? A simple, math-friendly, software-friendly way of representing images is as matrices. An image is a grid of pixels, where each pixel has a tuple $(R, G, B)$, where each element represents the color intensity of each channel. If we have a $64\times64$ pixel image of a cat, we would need $64\times64\times3 = 12288$ numerical types to represent the image. But a $64\times64$ pixel image is incredibly tiny. A $1000\times1000$ pixel image, 1 mega-pixel, would require $1000\times1000\times3 = 3,000,000 = 3M$ numerical types to be represented. That&rsquo;s a lot of numbers, but it gets worse.</p><p>If we try to use what we already know, fully-connected feed-forward neural networks, and we set up a single hidden layer with $1,000$ hidden units, then the number of weights will explode. Because we represent each image as a $3M$ vector of features $x_1, x_2, \dots, x_{3M}$, and we are using a fully-connected layer, each feature $x_n$ is connected to each hidden unit. We represent those weights $W^{[l]}$ as a matrix. And that matrix will have dimensions $(1000, 3M)$, which is about 3 billion parameters, and that&rsquo;s just the first hidden layer.</p><p>Sure, we could settle by using smaller images, or compressing larger images - losing detail. But what if there&rsquo;s a way to avoid the parameter explosion, <em>and</em>, also train a model that overfits less? Remember that big model complexity usually means overfitting. It turns out that convolutions do just that.</p><h2 id=convolution>Convolution<a hidden class=anchor aria-hidden=true href=#convolution>#</a></h2><h3 id=convolution-in-continuous-land>Convolution in continuous land<a hidden class=anchor aria-hidden=true href=#convolution-in-continuous-land>#</a></h3><p>When someone mentions convolutions they might be referring to slightly different things. In the field of math called <a href=https://en.wikipedia.org/wiki/Functional_analysis>functional analysis</a>, which is the field that uses functions as its units of inquiry, a convolution is an operation between two functions. What is an operation between two functions? Think of differentiation and integration as examples of functional operators.</p><p>In this sense, a <a href=https://en.wikipedia.org/wiki/Convolution>convolution</a> is a mathematical operation between two functions $f$ and $g$ that produces a <em>third</em> function $f * g$. This third function expresses how the shape of one is modified by the other. It&rsquo;s defined as an integral:</p><p>$$
 (f*g) := \int_{-\infty}^{\infty} f(\tau)g(t-\tau)d\tau
-$$</p>
-<p>Perhaps more didactic, there&rsquo;s a <a href="https://en.wikipedia.org/wiki/Convolution#Visual_explanation"  class="external-link" target="_blank" rel="noopener">beautiful visual explanation</a> of what a convolution is. It involves plotting $f(t)$ and $g(t - \tau)$ along the $\tau$ axis. As $g(t - \tau)$ is shifted, the convolution $(f*g)(t)$ is plotted, which literally describes the normalized area overlap between the two functions at a particular $t$ value. The integral above is a way to compute that area as the sum of the overlaps over the sliding window.</p>
-<figure><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Convolution_of_box_signal_with_itself2.gif"
-    alt="An animation displaying the process and result of convolving a box signal with itself." width="50%"><figcaption>
-      <p><a href="https://en.wikipedia.org/wiki/Convolution"  class="external-link" target="_blank" rel="noopener">An animation displaying the process and result of convolving a box signal with itself.</a></p>
-    </figcaption>
-</figure>
-
-<figure><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Convolution_of_spiky_function_with_box2.gif"
-    alt="An animation displaying the process and result of convolving a box signal with a spiky impulse response." width="50%"><figcaption>
-      <p><a href="https://en.wikipedia.org/wiki/Convolution"  class="external-link" target="_blank" rel="noopener">An animation displaying the process and result of convolving a box signal with a spiky impulse response.</a></p>
-    </figcaption>
-</figure>
-
-<p>How is this at all related to image processing? Images are not represented as continuous functions, but as discrete objects, i.e., $M \times N \times C$ matrices. It turns out that the <em>discrete</em> equivalent of the integral above is called <a href="https://en.wikipedia.org/wiki/Multidimensional_discrete_convolution"  class="external-link" target="_blank" rel="noopener">multidimensional discrete convolution</a>, and this is what people refer to as convolution within the signal-processing and computer vision context.</p>
-<h3 id="convolution-in-discrete-land">
-  Convolution in discrete land
-  <a class="heading-link" href="#convolution-in-discrete-land">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>So, similar to how we convolve two functions, $f$ and $g$, to find a third function $f * g$, we want to convolve an image and a filter, or <a href="https://en.wikipedia.org/wiki/Kernel_%28image_processing%29"  class="external-link" target="_blank" rel="noopener">kernel</a>. That is, we want to get some output that is, in essence, a filtered image. Why would we want to apply a filter to an image? It turns out that some filters, or kernels, can tell us where the <em>edges</em> are in an image. That seems like a reasonable place to start building a system that can process digital images.</p>
-<p>Let&rsquo;s start by defining a 2D convolution:</p>
-<p>$$
+$$</p><p>Perhaps more didactic, there&rsquo;s a <a href=https://en.wikipedia.org/wiki/Convolution#Visual_explanation>beautiful visual explanation</a> of what a convolution is. It involves plotting $f(t)$ and $g(t - \tau)$ along the $\tau$ axis. As $g(t - \tau)$ is shifted, the convolution $(f*g)(t)$ is plotted, which literally describes the normalized area overlap between the two functions at a particular $t$ value. The integral above is a way to compute that area as the sum of the overlaps over the sliding window.</p><figure><img loading=lazy src=https://upload.wikimedia.org/wikipedia/commons/6/6a/Convolution_of_box_signal_with_itself2.gif alt="An animation displaying the process and result of convolving a box signal with itself." width=50%><figcaption><p><a href=https://en.wikipedia.org/wiki/Convolution>An animation displaying the process and result of convolving a box signal with itself.</a></p></figcaption></figure><figure><img loading=lazy src=https://upload.wikimedia.org/wikipedia/commons/b/b9/Convolution_of_spiky_function_with_box2.gif alt="An animation displaying the process and result of convolving a box signal with a spiky impulse response." width=50%><figcaption><p><a href=https://en.wikipedia.org/wiki/Convolution>An animation displaying the process and result of convolving a box signal with a spiky impulse response.</a></p></figcaption></figure><p>How is this at all related to image processing? Images are not represented as continuous functions, but as discrete objects, i.e., $M \times N \times C$ matrices. It turns out that the <em>discrete</em> equivalent of the integral above is called <a href=https://en.wikipedia.org/wiki/Multidimensional_discrete_convolution>multidimensional discrete convolution</a>, and this is what people refer to as convolution within the signal-processing and computer vision context.</p><h3 id=convolution-in-discrete-land>Convolution in discrete land<a hidden class=anchor aria-hidden=true href=#convolution-in-discrete-land>#</a></h3><p>So, similar to how we convolve two functions, $f$ and $g$, to find a third function $f * g$, we want to convolve an image and a filter, or <a href=https://en.wikipedia.org/wiki/Kernel_%28image_processing%29>kernel</a>. That is, we want to get some output that is, in essence, a filtered image. Why would we want to apply a filter to an image? It turns out that some filters, or kernels, can tell us where the <em>edges</em> are in an image. That seems like a reasonable place to start building a system that can process digital images.</p><p>Let&rsquo;s start by defining a 2D convolution:</p><p>$$
 g(x,y) = w * f(x,y) = \sum_{dx=-a}^a \sum_{dy=-b}^{b}w(dx,dy)f(x-dx, y-dy)
-$$</p>
-<p>Where $g(x,y)$ is the filtered image, $f(x,y)$ is the original image, and $w$ is the filter kernel. Every element of the filter kernel is considered by $-a \leq dx \leq a$ and $-b \leq dy \leq b$ <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. In essence, this convolves a filter and an image by moving a filter over the image, calculating the sum of all the element-wise products, and setting that as the output for each element in the output matrix. A convolution takes in two matrices and outputs a matrix, but it&rsquo;s not matrix multiplication. This animation should help clarify what&rsquo;s going on:</p>
-<figure><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/2D_Convolution_Animation.gif"
-    alt="2D Convolution Animation." width="50%"><figcaption>
-      <p><a href="https://en.wikipedia.org/wiki/Kernel_%28image_processing%29"  class="external-link" target="_blank" rel="noopener">2D Convolution Animation.</a></p>
-    </figcaption>
-</figure>
-
-<p>The smaller $3\times3$ matrix is the filter, or kernel, and the large matrix is our image. In this case, instead of having three values representing each pixel, it has one. How to convolve over many channels, or colors in this case, is covered later in the course.</p>
-<p>Notice how each of the entries in the output matrix is the result of <em>sliding</em> the filter around the original image, and calculating the sum of all element-wise products. This procedure is what ends up being the discrete equivalent of continuous convolution.</p>
-<h3 id="back-to-edge-detection">
-  Back to Edge Detection
-  <a class="heading-link" href="#back-to-edge-detection">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>You might be thinking, how could a matrix (kernel) be used to detect edges? It turns out to be pretty intuitive.</p>
-<p>Think about the following $3\times3$ filter:</p>
-<p>$$
+$$</p><p>Where $g(x,y)$ is the filtered image, $f(x,y)$ is the original image, and $w$ is the filter kernel. Every element of the filter kernel is considered by $-a \leq dx \leq a$ and $-b \leq dy \leq b$ <sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>. In essence, this convolves a filter and an image by moving a filter over the image, calculating the sum of all the element-wise products, and setting that as the output for each element in the output matrix. A convolution takes in two matrices and outputs a matrix, but it&rsquo;s not matrix multiplication. This animation should help clarify what&rsquo;s going on:</p><figure><img loading=lazy src=https://upload.wikimedia.org/wikipedia/commons/1/19/2D_Convolution_Animation.gif alt="2D Convolution Animation." width=50%><figcaption><p><a href=https://en.wikipedia.org/wiki/Kernel_%28image_processing%29>2D Convolution Animation.</a></p></figcaption></figure><p>The smaller $3\times3$ matrix is the filter, or kernel, and the large matrix is our image. In this case, instead of having three values representing each pixel, it has one. How to convolve over many channels, or colors in this case, is covered later in the course.</p><p>Notice how each of the entries in the output matrix is the result of <em>sliding</em> the filter around the original image, and calculating the sum of all element-wise products. This procedure is what ends up being the discrete equivalent of continuous convolution.</p><h3 id=back-to-edge-detection>Back to Edge Detection<a hidden class=anchor aria-hidden=true href=#back-to-edge-detection>#</a></h3><p>You might be thinking, how could a matrix (kernel) be used to detect edges? It turns out to be pretty intuitive.</p><p>Think about the following $3\times3$ filter:</p><p>$$
 f = \begin{bmatrix}
-1 &amp; 0 &amp; -1 \\
-1 &amp; 0 &amp; -1 \\
-1 &amp; 0 &amp; -1
+1 & 0 & -1 \\
+1 & 0 & -1 \\
+1 & 0 & -1
 \end{bmatrix}
-$$</p>
-<p>It turns out that this filter can work as a <em>vertical</em> edge detector. Notice that it&rsquo;s negatively symmetrical about the middle column. If we convolve this filter by a $3 \times 3$ matrix of equal numbers, the output will be $0$ because the symmetry will cancel everything out. What happens if you convolve this filter with an image that has a vertical edge?</p>
-<figure><img src="/images/conv-vert.png"
-    alt="Vertical Edge Detection." width="75%"><figcaption>
-      <p><a href="https://www.coursera.org/learn/convolutional-neural-networks/"  class="external-link" target="_blank" rel="noopener">Vertical Edge Detection.</a></p>
-    </figcaption>
-</figure>
-
-<p>Convolving an image with an edge with this filter will <em>bring up</em> the regions of the original image where there is a gradient of values in the horizontal dimension; thus generating an image that highlights the vertical <em>edges</em>. In this sense, we defined an <em>edge</em> as: a $3\times3$ region in the image where there are bright pixels on the left and dark pixels on the right.</p>
-<blockquote>
-<p>Notice that convolving a $6\times6$ image by a $3\times3$ filter results in a $4\times4$ image. This is the result of convolving without padding, which is covered later.</p>
-</blockquote>
-<p>It might not surprise you that a <em>horizontal</em> edge filter is:</p>
-<p>$$
+$$</p><p>It turns out that this filter can work as a <em>vertical</em> edge detector. Notice that it&rsquo;s negatively symmetrical about the middle column. If we convolve this filter by a $3 \times 3$ matrix of equal numbers, the output will be $0$ because the symmetry will cancel everything out. What happens if you convolve this filter with an image that has a vertical edge?</p><figure><img loading=lazy src=/images/conv-vert.png alt="Vertical Edge Detection." width=75%><figcaption><p><a href=https://www.coursera.org/learn/convolutional-neural-networks/>Vertical Edge Detection.</a></p></figcaption></figure><p>Convolving an image with an edge with this filter will <em>bring up</em> the regions of the original image where there is a gradient of values in the horizontal dimension; thus generating an image that highlights the vertical <em>edges</em>. In this sense, we defined an <em>edge</em> as: a $3\times3$ region in the image where there are bright pixels on the left and dark pixels on the right.</p><blockquote><p>Notice that convolving a $6\times6$ image by a $3\times3$ filter results in a $4\times4$ image. This is the result of convolving without padding, which is covered later.</p></blockquote><p>It might not surprise you that a <em>horizontal</em> edge filter is:</p><p>$$
 f = \begin{bmatrix}
-1 &amp; 1 &amp; 1 \\
-0 &amp; 0 &amp; 0 \\
--1 &amp; -1 &amp; -1
+1 & 1 & 1 \\
+0 & 0 & 0 \\
+-1 & -1 & -1
 \end{bmatrix}
-$$</p>
-<p>That is, a horizontal edge is a $3\times3$ region in the picture where there are brighter pixels &ldquo;above&rdquo; and darker pixels &ldquo;below&rdquo;.</p>
-<p>But who came up with these numbers? Why not choose $10$ instead of $1$? It turns out that there are a lot of different filters. Think about finding diagonal edges—how would that filter look? But most importantly, how can we know that the filters we use are going to be relevant to our problem domain, i.e., cat classification?</p>
-<blockquote>
-<p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA"  class="external-link" target="_blank" rel="noopener">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M"  class="external-link" target="_blank" rel="noopener">Convolutions</a>.</p>
-</blockquote>
-<h3 id="learning-the-filters">
-  Learning the Filters
-  <a class="heading-link" href="#learning-the-filters">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>It turns out that we can unleash all the machine learning knowledge from the previous courses and simply <em>learn</em> the filters that perform best with respect to a cost function. If we define a filter as:</p>
-<p>$$
+$$</p><p>That is, a horizontal edge is a $3\times3$ region in the picture where there are brighter pixels &ldquo;above&rdquo; and darker pixels &ldquo;below&rdquo;.</p><p>But who came up with these numbers? Why not choose $10$ instead of $1$? It turns out that there are a lot of different filters. Think about finding diagonal edges—how would that filter look? But most importantly, how can we know that the filters we use are going to be relevant to our problem domain, i.e., cat classification?</p><blockquote><p>If you think that the convolution explanation is not great, it&rsquo;s because I don&rsquo;t really understand convolutions. A great resource is 3Blue1Brown&rsquo;s beautiful <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA">But what is a convolution?</a> video explanation of what a convolution is through the lens of statistics and geometry, and also one that directly explains <a href="https://www.youtube.com/watch?v=IaSGqQa5O-M">Convolutions</a>.</p></blockquote><h3 id=learning-the-filters>Learning the Filters<a hidden class=anchor aria-hidden=true href=#learning-the-filters>#</a></h3><p>It turns out that we can unleash all the machine learning knowledge from the previous courses and simply <em>learn</em> the filters that perform best with respect to a cost function. If we define a filter as:</p><p>$$
 f = \begin{bmatrix}
-w_1 &amp; w_2 &amp; w_3 \\
-w_4 &amp; w_5 &amp; w_6 \\
-w_7 &amp; w_8 &amp; w_9
+w_1 & w_2 & w_3 \\
+w_4 & w_5 & w_6 \\
+w_7 & w_8 & w_9
 \end{bmatrix}
-$$</p>
-<p>And learn these weights via some optimization algorithm. Do we know which filters will work? No. Can we learn them, whatever they are? Yes!</p>
-<p>If we revisit our parameter size estimates, having a $1000\times1000\times3$ matrix representing an image, and a fully connected hidden layer with $1000$ units, then the size of $W^{[l]}$ would be 3 billion. Because in convolution we <em>slide</em> the <em>same</em> filter over the entire image, we just need $10$ parameters (plus the bias) to start building a convolutional layer. We have broken the relationship between our input size and the parameter size of a hidden layer!</p>
-<p>The idea of parameter sharing is the powerful idea behind convolutional layers. Not simply because it&rsquo;s computationally efficient, but also because it helps models generalize better.</p>
-<h2 id="padding">
-  Padding
-  <a class="heading-link" href="#padding">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>In the example above, we convolved a $6\times6$ image with a $3\times3$ kernel, and got back a $4\times4$ output. This is because once you move the filter to the third column, going left to right, you get to the rightmost border of the image. It turns out that there is a handy formula that we can use to calculate the output dimensions:</p>
-<p>$$
+$$</p><p>And learn these weights via some optimization algorithm. Do we know which filters will work? No. Can we learn them, whatever they are? Yes!</p><p>If we revisit our parameter size estimates, having a $1000\times1000\times3$ matrix representing an image, and a fully connected hidden layer with $1000$ units, then the size of $W^{[l]}$ would be 3 billion. Because in convolution we <em>slide</em> the <em>same</em> filter over the entire image, we just need $10$ parameters (plus the bias) to start building a convolutional layer. We have broken the relationship between our input size and the parameter size of a hidden layer!</p><p>The idea of parameter sharing is the powerful idea behind convolutional layers. Not simply because it&rsquo;s computationally efficient, but also because it helps models generalize better.</p><h2 id=padding>Padding<a hidden class=anchor aria-hidden=true href=#padding>#</a></h2><p>In the example above, we convolved a $6\times6$ image with a $3\times3$ kernel, and got back a $4\times4$ output. This is because once you move the filter to the third column, going left to right, you get to the rightmost border of the image. It turns out that there is a handy formula that we can use to calculate the output dimensions:</p><p>$$
 \text{output\_dim} = n - f + 1 \times n - f + 1
-$$</p>
-<p>If we have a $n\times n$ input and convolved it with a $f \times f$ filter, we get out a $n-f+1 \times n-f+1$ output. In the case above: $6 - 3 + 1 = 4$.</p>
-<p>But maybe we don&rsquo;t want to get smaller-sized images after convolving them with our filters. What if we want to convolve them many times? It turns out that there is a solution to this issue, and it&rsquo;s called <em>padding</em>. Padding will help us deal with the two main downsides of convolving without padding:</p>
-<ol>
-<li>Shrinking output dimensions</li>
-<li>Corner and edge pixels only contribute to very few outputs in the feature map (the output). This means that the pixels around the center of the image will end up being over-represented in the output, relative to the corner and edge pixels.</li>
-</ol>
-<p>So what is padding? It&rsquo;s very simple. Before convolving the image with a filter, you <em>pad</em> the input image, around its edges, with some values. Usually, people use $0$ for the padding, and it&rsquo;s appropriately named zero-padding. So if we have a $6\times6$ image, and we use a padding of $p=1$, then our padded image will be of dimensions $8 \times 8$. This is because we pad all edges: left, right, top, and bottom. Again, there is a nice formula that allows us to calculate the feature map&rsquo;s dimensions:</p>
-<p>$$
+$$</p><p>If we have a $n\times n$ input and convolved it with a $f \times f$ filter, we get out a $n-f+1 \times n-f+1$ output. In the case above: $6 - 3 + 1 = 4$.</p><p>But maybe we don&rsquo;t want to get smaller-sized images after convolving them with our filters. What if we want to convolve them many times? It turns out that there is a solution to this issue, and it&rsquo;s called <em>padding</em>. Padding will help us deal with the two main downsides of convolving without padding:</p><ol><li>Shrinking output dimensions</li><li>Corner and edge pixels only contribute to very few outputs in the feature map (the output). This means that the pixels around the center of the image will end up being over-represented in the output, relative to the corner and edge pixels.</li></ol><p>So what is padding? It&rsquo;s very simple. Before convolving the image with a filter, you <em>pad</em> the input image, around its edges, with some values. Usually, people use $0$ for the padding, and it&rsquo;s appropriately named zero-padding. So if we have a $6\times6$ image, and we use a padding of $p=1$, then our padded image will be of dimensions $8 \times 8$. This is because we pad all edges: left, right, top, and bottom. Again, there is a nice formula that allows us to calculate the feature map&rsquo;s dimensions:</p><p>$$
 \text{output\_dim} = n+2p-f+1 \times n+2p-f+1
-$$</p>
-<p>Plugging our example into the formula, we get $6 + 2(1) - 3 + 1 = 6$. Notice that this is the same dimensions as our input. By using padding we were able to keep the convolution output from shrinking. This is called a <em>same</em> convolution, because it preserves the input dimensions. That is, for any given input, you can solve for a padding size that will preserve the dimensions. We can solve for $p$:</p>
-<p>$$
+$$</p><p>Plugging our example into the formula, we get $6 + 2(1) - 3 + 1 = 6$. Notice that this is the same dimensions as our input. By using padding we were able to keep the convolution output from shrinking. This is called a <em>same</em> convolution, because it preserves the input dimensions. That is, for any given input, you can solve for a padding size that will preserve the dimensions. We can solve for $p$:</p><p>$$
 \begin{aligned}
-n+2p-f+1 &amp;= n^* \\
-2p-f+1 &amp;= 0 \\
-2p &amp;= f - 1 \\
-p &amp;= \frac{f-1}{2}
+n+2p-f+1 &= n^* \\
+2p-f+1 &= 0 \\
+2p &= f - 1 \\
+p &= \frac{f-1}{2}
 \end{aligned}
-$$</p>
-<p>So in the previous example, if we have a $3\times3 = f$ filter, then $\frac{3-1}{2} = 1 = p$. This is why a padding of $1$ made our convolution a <em>same</em> one. This is contrasted with <em>valid</em> convolutions, which is where we use <em>no</em> padding.</p>
-<p>It turns out that people rarely use <em>even</em>-sized filters, and usually go for odd ones like $3\times3$, $5\times5$, etc.</p>
-<h2 id="strided-convolutions">
-  Strided Convolutions
-  <a class="heading-link" href="#strided-convolutions">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Another basic building block in CNNs is that of <em>stride</em>. A stride is another tool, like padding, that can be thought of as a hyperparameter of a convolution. A stride is very simple: if we move the filter by $1$ location every time, this is equivalent to using a stride of $1$, $s=1$. We could jump two spaces, or three, or however many we want. However, by using larger strides, we have fewer outputs in the feature map; therefore, it needs to be used with care, otherwise, we get back to our original problem of quickly shrinking the dimensions of our feature maps.</p>
-<p>With strides, the handy-formula for the feature map output changes a little:</p>
-<p>$$
+$$</p><p>So in the previous example, if we have a $3\times3 = f$ filter, then $\frac{3-1}{2} = 1 = p$. This is why a padding of $1$ made our convolution a <em>same</em> one. This is contrasted with <em>valid</em> convolutions, which is where we use <em>no</em> padding.</p><p>It turns out that people rarely use <em>even</em>-sized filters, and usually go for odd ones like $3\times3$, $5\times5$, etc.</p><h2 id=strided-convolutions>Strided Convolutions<a hidden class=anchor aria-hidden=true href=#strided-convolutions>#</a></h2><p>Another basic building block in CNNs is that of <em>stride</em>. A stride is another tool, like padding, that can be thought of as a hyperparameter of a convolution. A stride is very simple: if we move the filter by $1$ location every time, this is equivalent to using a stride of $1$, $s=1$. We could jump two spaces, or three, or however many we want. However, by using larger strides, we have fewer outputs in the feature map; therefore, it needs to be used with care, otherwise, we get back to our original problem of quickly shrinking the dimensions of our feature maps.</p><p>With strides, the handy-formula for the feature map output changes a little:</p><p>$$
 \text{output\_dim} = \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor \times \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor
-$$</p>
-<p>Notice that we take the floor, $\lfloor x \rfloor$, to handle the case where the result is not an integer.</p>
-<p>So to recap:</p>
-<ul>
-<li>$n \times n$ = image dimensions</li>
-<li>$f \times f$ = filter/kernel dimensions</li>
-<li>$p$ = padding</li>
-<li>$s$ = stride</li>
-</ul>
-<p>And the feature map dimensions are given to us by the handy formula:</p>
-<p>$$
+$$</p><p>Notice that we take the floor, $\lfloor x \rfloor$, to handle the case where the result is not an integer.</p><p>So to recap:</p><ul><li>$n \times n$ = image dimensions</li><li>$f \times f$ = filter/kernel dimensions</li><li>$p$ = padding</li><li>$s$ = stride</li></ul><p>And the feature map dimensions are given to us by the handy formula:</p><p>$$
 \text{output\_dim} = \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor \times \Bigl\lfloor\frac{n+2p-f}{s} + 1 \Bigr\rfloor
-$$</p>
-<blockquote>
-<p>Note on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of <em>not</em> flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn&rsquo;t matter whether we flip the filter or not in the context of CNNs.</p>
-</blockquote>
-<h2 id="convolutions-over-volume">
-  Convolutions Over Volume
-  <a class="heading-link" href="#convolutions-over-volume">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>By now, we should have a pretty good grasp on 2D convolution. We have an image, and we convolve it with a filter, and we get some output. We can use padding or a stride different from one, but these are details, and we know how to calculate the dimensions of the output, which is one of the key things to keep in mind; in the same way that it&rsquo;s very important to keep in mind the dimensions of any neural net. Yet a snag remains: our images are not 2D, but 3D. Our $64\times64\times3$ cat image is a cube. How can we do a convolution over volume?</p>
-<p>It turns out that instead of using a square filter, we use a cube filter. That is, if our image is $6\times6\times3$, then we need the number of channels, $3$, to match the number of channels in our filter. Therefore, our filter will have dimensions $3\times3\times3$ if we choose a $3\times3$ filter. Here is an illustration:</p>
-<figure><img src="https://production-media.paperswithcode.com/methods/Screen_Shot_2020-07-05_at_10.03.11_PM_KEC4Hm0.png"
-    alt="3D Convolution | Papers With Code." width="50%"><figcaption>
-      <p><a href="https://paperswithcode.com/method/3d-convolution"  class="external-link" target="_blank" rel="noopener">3D Convolution | Papers With Code.</a></p>
-    </figcaption>
-</figure>
-
-<p>This means that each entry in the output feature map is the element-wise product sum of 27 pairs of numbers; 27 from the image and 27 from the filter, since $3 \times 3 \times 3 = 27$. An important thing to notice is that the number of channels in the output is $1$, and not $3$ as in the input or filter.</p>
-<p>But why stop at one filter? We can use as many filters as we want. Think about using one filter for horizontal edge detection, another one for vertical edge detection, and so on. So if we have $n_c^<em>$ filters, we simply stack them together, as long as they are the same dimensions. Let&rsquo;s say that we have $2$ filters, and they are all dimensions $3\times3\times3$. Then our output will be $n - f + 1 \times n - f + 1 \times n_c^</em>$, where $n_c^*$ is the number of filters used in the layer.</p>
-<p>Let&rsquo;s run by an example using a $6\times6\times3$ input image and two $3\times3\times3$ filters. Convolving a $6\times6\times3$ image with a $3\times3\times3$ filter will result in a $4\times4$ feature map (remember the handy function). Since we have two filters, the feature map will have dimensions $4\times4\times2$. The basic idea being that you can stack multiple feature maps into a cube.</p>
-<blockquote>
-<p>Notice that the (R, G, B) part of the image is usually called <em>channels</em>. It is also called the <em>depth</em> of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.</p>
-</blockquote>
-<h2 id="one-layer-of-a-cnn">
-  One Layer of a CNN
-  <a class="heading-link" href="#one-layer-of-a-cnn">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Getting back to neural nets, we need to fit all these new pieces into the framework we&rsquo;ve been using throughout the course. We know that ultimately we want to run some optimization algorithm to learn the filter parameters. But before we do that, we need to bring the notation home to make sure that we can apply all the nice tools we developed throughout.</p>
-<p>Let&rsquo;s set up the problem. We have a $6\times6\times3$ image, and that we have two $3\times3\times3$ filters. We convolve each filter with the image, and we get a $4\times4\times2$ output, remember that the $2$ comes from using two filters, so if we had $10$ filters, the output would be $4\times4\times10$. So far so good. The problem is that we don&rsquo;t have non-linearities! Fear not however, because we can add non-linearities the same way we did before, by using activation functions. The key idea is that we apply an activation function to the output of a convolution between the image and <em>one</em> filter. So after convolving each filter and getting a $4\times4$ output, we pass it through some $a^{[l]}$, our choice of activation function. Not only that, but each filter has its own $b^{[l]}_{n_c^*}$ term, a scalar. So the whole shebang is that we grab each filter, convolve it with the image and get an output. We run that output through an activation function $a^{[l]}$, and then add some $b^{[l]}_{n_c^*}$ bias to the $4\times4$ output, element-wise. Notice that $b^{[l]}_{n_c^*}$ is indexed by the number of filters in the layer $l$, $n_c^*$. This means that if we have a $3\times3\times3$ filter, we don&rsquo;t have just $27$ parameters, but $28$!</p>
-<p>So in this case, the $6\times6\times3$ image plays the role of $a^{[0]}$, our input layer. Remember that we first compute $z^{[1]} = W^{[1]}a^{[0]}+b^{[1]}$. In our case, all the filters we have on our layer play the role of $W^{[1]}$. So the $W^{[1]}a^{[0]}$ term is really the output of a convolution operation. Then we add the biases $b^{[l]}_{n_c^*}$ for each of the filters. Finally, we get $a^{[l]} = g(z^{[1]})$ by passing that output through an activation function (usually a ReLU). This is how we get our final $4\times4$ output. If we have two filters, then the output will be $4\times4\times2$.</p>
-<p>This is a good practice question in the course: If we have 10 filters that are $3\times3\times3$ in one layer of a neural network, how many parameters does that layer have? The answer should be even. And again, the truly cool thing about this is that no matter how big the input image is, the number of parameters remains the same. We are no longer in billion-parameter land.</p>
-<h3 id="defining-the-notation-and-dimensions">
-  Defining the Notation and Dimensions
-  <a class="heading-link" href="#defining-the-notation-and-dimensions">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>If a layer $l$ is a convolutional layer:</p>
-<ul>
-<li>$f^{[l]}$ = filter size.</li>
-<li>$p^{[l]}$ = padding</li>
-<li>$s^{[l]}$ = stride</li>
-<li>$n_c^{[l]}$ = number of filters</li>
-</ul>
-<blockquote>
-<p>Notice that we don&rsquo;t vary these settings across filters <em>within</em> a layer.</p>
-</blockquote>
-<p>So, layer $l$ will use the output from layer $l-1$; therefore:</p>
-<ul>
-<li>Dimensions of inputs: $n_H^{[l-1]} \times n_W^{[l-1]} \times n_c^{[l-1]}$</li>
-<li>Dimension of outputs: $n_H^{[l]} \times n_W^{[l]} \times n_c^{[l]}$</li>
-</ul>
-<p>Where $H$ and $W$ stand for height and width.</p>
-<p>Okay, but how do we actually get $n_H^{[l]}$? We use the trusty formula:</p>
-<p>$$
+$$</p><blockquote><p>Note on difference between convolutions in math vs computer vision. Usually the filter is flipped over the diagonal before convolving. The process of <em>not</em> flipping it is called cross-correlation, while the one where we flip the filter is actually called a discrete convolution. It doesn&rsquo;t matter whether we flip the filter or not in the context of CNNs.</p></blockquote><h2 id=convolutions-over-volume>Convolutions Over Volume<a hidden class=anchor aria-hidden=true href=#convolutions-over-volume>#</a></h2><p>By now, we should have a pretty good grasp on 2D convolution. We have an image, and we convolve it with a filter, and we get some output. We can use padding or a stride different from one, but these are details, and we know how to calculate the dimensions of the output, which is one of the key things to keep in mind; in the same way that it&rsquo;s very important to keep in mind the dimensions of any neural net. Yet a snag remains: our images are not 2D, but 3D. Our $64\times64\times3$ cat image is a cube. How can we do a convolution over volume?</p><p>It turns out that instead of using a square filter, we use a cube filter. That is, if our image is $6\times6\times3$, then we need the number of channels, $3$, to match the number of channels in our filter. Therefore, our filter will have dimensions $3\times3\times3$ if we choose a $3\times3$ filter. Here is an illustration:</p><figure><img loading=lazy src=https://production-media.paperswithcode.com/methods/Screen_Shot_2020-07-05_at_10.03.11_PM_KEC4Hm0.png alt="3D Convolution | Papers With Code." width=50%><figcaption><p><a href=https://paperswithcode.com/method/3d-convolution>3D Convolution | Papers With Code.</a></p></figcaption></figure><p>This means that each entry in the output feature map is the element-wise product sum of 27 pairs of numbers; 27 from the image and 27 from the filter, since $3 \times 3 \times 3 = 27$. An important thing to notice is that the number of channels in the output is $1$, and not $3$ as in the input or filter.</p><p>But why stop at one filter? We can use as many filters as we want. Think about using one filter for horizontal edge detection, another one for vertical edge detection, and so on. So if we have $n_c^<em>$ filters, we simply stack them together, as long as they are the same dimensions. Let&rsquo;s say that we have $2$ filters, and they are all dimensions $3\times3\times3$. Then our output will be $n - f + 1 \times n - f + 1 \times n_c^</em>$, where $n_c^*$ is the number of filters used in the layer.</p><p>Let&rsquo;s run by an example using a $6\times6\times3$ input image and two $3\times3\times3$ filters. Convolving a $6\times6\times3$ image with a $3\times3\times3$ filter will result in a $4\times4$ feature map (remember the handy function). Since we have two filters, the feature map will have dimensions $4\times4\times2$. The basic idea being that you can stack multiple feature maps into a cube.</p><blockquote><p>Notice that the (R, G, B) part of the image is usually called <em>channels</em>. It is also called the <em>depth</em> of the image. In the field of machine learning, a multidimensional array might be called a tensor, but this is not really a tensor in the mathematical sense. Just think about channels as the size of the third dimension in the images.</p></blockquote><h2 id=one-layer-of-a-cnn>One Layer of a CNN<a hidden class=anchor aria-hidden=true href=#one-layer-of-a-cnn>#</a></h2><p>Getting back to neural nets, we need to fit all these new pieces into the framework we&rsquo;ve been using throughout the course. We know that ultimately we want to run some optimization algorithm to learn the filter parameters. But before we do that, we need to bring the notation home to make sure that we can apply all the nice tools we developed throughout.</p><p>Let&rsquo;s set up the problem. We have a $6\times6\times3$ image, and that we have two $3\times3\times3$ filters. We convolve each filter with the image, and we get a $4\times4\times2$ output, remember that the $2$ comes from using two filters, so if we had $10$ filters, the output would be $4\times4\times10$. So far so good. The problem is that we don&rsquo;t have non-linearities! Fear not however, because we can add non-linearities the same way we did before, by using activation functions. The key idea is that we apply an activation function to the output of a convolution between the image and <em>one</em> filter. So after convolving each filter and getting a $4\times4$ output, we pass it through some $a^{[l]}$, our choice of activation function. Not only that, but each filter has its own $b^{[l]}_{n_c^*}$ term, a scalar. So the whole shebang is that we grab each filter, convolve it with the image and get an output. We run that output through an activation function $a^{[l]}$, and then add some $b^{[l]}_{n_c^*}$ bias to the $4\times4$ output, element-wise. Notice that $b^{[l]}_{n_c^*}$ is indexed by the number of filters in the layer $l$, $n_c^*$. This means that if we have a $3\times3\times3$ filter, we don&rsquo;t have just $27$ parameters, but $28$!</p><p>So in this case, the $6\times6\times3$ image plays the role of $a^{[0]}$, our input layer. Remember that we first compute $z^{[1]} = W^{[1]}a^{[0]}+b^{[1]}$. In our case, all the filters we have on our layer play the role of $W^{[1]}$. So the $W^{[1]}a^{[0]}$ term is really the output of a convolution operation. Then we add the biases $b^{[l]}_{n_c^*}$ for each of the filters. Finally, we get $a^{[l]} = g(z^{[1]})$ by passing that output through an activation function (usually a ReLU). This is how we get our final $4\times4$ output. If we have two filters, then the output will be $4\times4\times2$.</p><p>This is a good practice question in the course: If we have 10 filters that are $3\times3\times3$ in one layer of a neural network, how many parameters does that layer have? The answer should be even. And again, the truly cool thing about this is that no matter how big the input image is, the number of parameters remains the same. We are no longer in billion-parameter land.</p><h3 id=defining-the-notation-and-dimensions>Defining the Notation and Dimensions<a hidden class=anchor aria-hidden=true href=#defining-the-notation-and-dimensions>#</a></h3><p>If a layer $l$ is a convolutional layer:</p><ul><li>$f^{[l]}$ = filter size.</li><li>$p^{[l]}$ = padding</li><li>$s^{[l]}$ = stride</li><li>$n_c^{[l]}$ = number of filters</li></ul><blockquote><p>Notice that we don&rsquo;t vary these settings across filters <em>within</em> a layer.</p></blockquote><p>So, layer $l$ will use the output from layer $l-1$; therefore:</p><ul><li>Dimensions of inputs: $n_H^{[l-1]} \times n_W^{[l-1]} \times n_c^{[l-1]}$</li><li>Dimension of outputs: $n_H^{[l]} \times n_W^{[l]} \times n_c^{[l]}$</li></ul><p>Where $H$ and $W$ stand for height and width.</p><p>Okay, but how do we actually get $n_H^{[l]}$? We use the trusty formula:</p><p>$$
 n^{[l]}_H = \Bigl\lfloor\frac{n^{[l-1]}_H + 2p^{[l]} - f^{[l]}}{s^{[l]}} + 1\Bigr\rfloor
-$$</p>
-<p>We can do this separately for width and height.</p>
-<p>Let&rsquo;s go over the dimensions of the components of the layer:</p>
-<ul>
-<li>Each filter is $f^{[l]} \times f^{[l]} \times n_c^{[l-1]}$ (notice the channel matching to the previous layer).</li>
-<li>Activations are $a^{[l]} = n_H^{[l]} \times n_W^{[l]} \times n_c^{[l]}$ (the same as the output, of course).
-<ul>
-<li>If we are using mini batch gradient descent, we can describe this with a matrix:
-<ul>
-<li>$A^{[l]} = m \times n_H^{[l]} \times n_W^{[l]} \times n_c^{[l]}$, where $m$ is the mini-batch size.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Weights are $f^{[l]} \times f^{[l]} \times n_c^{[l-1]} \times n_c^{[l]}$.
-<ul>
-<li>This one is important! $n_c^{[l-1]}$ is the number of channels or filters in the previous layer, while $n_c^{[l]}$ is the number of filters in the current layer.</li>
-</ul>
-</li>
-<li>The biases $b^{[l]}$ will have one for each filter in layer $l$, therefore it will be of dimensions $1 \times 1 \times 1 \times n_c^{[l]}$, the added dimensions are for broadcasting purposes.</li>
-</ul>
-<h2 id="simple-cnn-example">
-  Simple CNN Example
-  <a class="heading-link" href="#simple-cnn-example">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Let&rsquo;s do a simple example before we go over pooling layers; this should be good practice for calculating the input and output dimensions of the layer.</p>
-<p>Let&rsquo;s start with a $39\times39\times3$ input. We want to convolve it with $10$ filters, where $f^{[1]} = 3, s^{[1]} = 1, p^{[1]} = 0$. Using the trusty formula, we should get an output of dimensions $37\times37\times10$. Remember $\frac{39+2(0)-3}{1} + 1 = 37$, and we have $10$ filters, therefore the output channels are $10$.</p>
-<p>Let&rsquo;s say that we have another convolutional layer $l=2$, and this time we use twenty $5\times5$ filters, so that $f^{[2]} = 5, s^{[2]} = 2, p^{[2]} = 0$. Plugging these numbers into our formula, we start from the last layer&rsquo;s input size: $37\times37\times10$ and we get this layer&rsquo;s output dimensions as $17\times17\times20$. Finally, let&rsquo;s do another layer, $l=3$, with $40$ filters where $f^{[3]} = 5, s^{[3]}=2, p^{[3]} = 0$. Then we end up with an output size of $7\times7\times40$.</p>
-<p>Notice how we started with an input of $39\times39\times3$ and end up with a feature map of dimensions $7\times7\times40$; we took a cube and reshaped it into a rectangle. In the case of doing classification, we can run the $7\times7\times40$ output into a $1960$ hidden-unit fully connected layer that runs its output through a softmax or sigmoid.</p>
-<p>In summary, the layer types in a CNN are:</p>
-<ul>
-<li>Convolutional Layer | <code>CONV</code></li>
-<li>Pooling Layer | <code>POOL</code></li>
-<li>Fully connected Layer | <code>FC</code></li>
-</ul>
-<p>Pooling layers are discussed next and remain a key part of CNNs.</p>
-<h2 id="pooling-layers">
-  Pooling Layers
-  <a class="heading-link" href="#pooling-layers">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Pooling layers reduce some layer&rsquo;s output dimension by applying an aggregating procedure, usually taking the max or average over some region in the output. This is good for two main reasons: smaller outputs are more computationally efficient. However, unlike the output shrinking from filters, the aggregating procedures can <em>boost</em> certain features down the network.</p>
-<p>A pooling layer works similar to a convolutional layer. An example of $2\times2$ max pooling is shown here:</p>
-<figure><img src="https://d2l.ai/_images/pooling.svg"
-    alt="Max-pooling with a $2\times2$ shape" width="50%"><figcaption>
-      <p><a href="https://d2l.ai/chapter_convolutional-neural-networks/pooling.html"  class="external-link" target="_blank" rel="noopener">Max-pooling with a $2\times2$ shape</a></p>
-    </figcaption>
-</figure>
-
-<p>Each of the outputs in the feature map is simply the maximum value in the input&rsquo;s region overlaid by the filter. We can still use our trusty formula to calculate the output sizes.</p>
-<p>A key thing to notice is that pooling layers have <em>no</em> parameters. That is, they only have hyperparameters, $f$ and $s$—that is, their size and the stride. Additionally, another hyperparameter is whether the layer is a max-pooling layer or average-pooling layer. Max-pooling is <em>a lot</em> more popular in the CNN literature.</p>
-<h2 id="full-cnn-example">
-  Full CNN Example
-  <a class="heading-link" href="#full-cnn-example">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>This example goes over a CNN architecture similar to that of <a href="https://en.wikipedia.org/wiki/LeNet#Structure"  class="external-link" target="_blank" rel="noopener">LeNet-5</a>, a legendary architecture proposed by Yan LeCun in 1998. The network was implemented to do character recognition originally.</p>
-<p>The architecture is as follows:</p>
-<ol>
-<li>Input: $32\times32\times3$</li>
-<li><code>CONV 1</code>: $f=5, s=1$. Outputs: $28\times28\times6$</li>
-<li><code>MAXPOOL 1</code>: $f=2, s=2$. Outputs: $14\times14\times6$</li>
-<li><code>CONV 2</code>: $f=5, s=1$. Outputs: $10\times10\times16$</li>
-<li><code>MAXPOOL 2</code>: $f=2, s=2$. Outputs: $5\times5\times16$</li>
-<li><code>FC3</code>: $120$ units. The weights $W^{[FC3]}$ has dimensions $(120, 400)$. Where $400 = 5\times5\times16$.</li>
-<li><code>FC4</code>: $84$ units. The weights $W^{[FC4]}$ has dimensions $(120, 84)$</li>
-<li><code>Softmax</code>: The final output layer with $C=9$ classes, one for each digit.</li>
-</ol>
-<p>A couple of details:</p>
-<ul>
-<li>In the literature, a convolutional layer is usually referred to as a <code>CONV</code> layer followed by a <code>POOL</code> layer. So <code>CONV 1</code> and <code>MAXPOOL 1</code> can be referred to as a single layer.</li>
-<li>The dimensions of the feature maps tend to decrease. That is, $n_H, n_W$ go down as we go deeper in the network.</li>
-<li>The number of channels tends to increase; that is, $n_C$ goes up as we go deeper in the network.</li>
-</ul>
-<p>Here is a table with the dimensions for each layer and also the number of parameters. Verifying the number is a great exercise to test our understanding:</p>
-<table>
-  <thead>
-      <tr>
-          <th></th>
-          <th><strong>Activation shape</strong></th>
-          <th><strong>Activation size</strong></th>
-          <th><strong># Parameters</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Input</td>
-          <td>(32, 32, 3)</td>
-          <td>3,072</td>
-          <td>0</td>
-      </tr>
-      <tr>
-          <td>CONV1 $(f=5, s=1)$</td>
-          <td>(28, 28, 6)</td>
-          <td>4,704</td>
-          <td>456</td>
-      </tr>
-      <tr>
-          <td>POOL1 $(f=2, s=2)$</td>
-          <td>(14, 14, 6)</td>
-          <td>1,176</td>
-          <td>0</td>
-      </tr>
-      <tr>
-          <td>CONV2 $(f=5, s=1)$</td>
-          <td>(10, 10, 16)</td>
-          <td>1,600</td>
-          <td>2416</td>
-      </tr>
-      <tr>
-          <td>POOL2 $(f=2, s=2)$</td>
-          <td>(5, 5, 16)</td>
-          <td>400</td>
-          <td>0</td>
-      </tr>
-      <tr>
-          <td>FC3</td>
-          <td>(120, 1)</td>
-          <td>120</td>
-          <td>48,120</td>
-      </tr>
-      <tr>
-          <td>FC4</td>
-          <td>(84, 1)</td>
-          <td>84</td>
-          <td>10,164</td>
-      </tr>
-      <tr>
-          <td>Softmax</td>
-          <td>(10, 1)</td>
-          <td>10</td>
-          <td>850</td>
-      </tr>
-  </tbody>
-</table>
-<p>Notice how the activation sizes decrease through the layers. Also, notice how around 94% of all the parameters in the network are part of the fully connected layers. This network has a grand total of $62,006$ parameters, which is a lot less than hundreds of millions.</p>
-<h2 id="why-convolutions">
-  Why Convolutions?
-  <a class="heading-link" href="#why-convolutions">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Unfortunately, there is no single reason as to why convolutions work so well. However, there are two probable reasons:</p>
-<ol>
-<li>Parameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to <a href="https://en.wikipedia.org/wiki/Translational_symmetry"  class="external-link" target="_blank" rel="noopener">translational invariance</a>, the idea that a CNN is robust to shifted or distorted images.</li>
-<li>Sparsity of connections: Each output value depends only on a few inputs. This is a mark of low complexity, and it might have an effect similar to regularization; therefore, helping avoid overfitting.</li>
-</ol>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/" >here</a>.</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p><a href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-computer-vision/#:~:text=Computer%20vision%20is%20a%20field,tasks%20that%20replicate%20human%20capabilities."  class="external-link" target="_blank" rel="noopener">What is Computer Vision? | Microsoft</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p><a href="https://en.wikipedia.org/wiki/Kernel_%28image_processing%29"  class="external-link" target="_blank" rel="noopener">Kernel (image processing) | Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-
-      </div>
-
-
-      <footer>
-        
-
-
-        <div id="disqus_thread"></div>
-<script>
-  window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    
-    document.addEventListener('themeChanged', function (e) { 
-        if (document.readyState == 'complete') {
-          DISQUS.reset({ reload: true, config: disqus_config });
-        }
-    });
-</script>
-        
-        
-        
-        
-        
-        
-      </footer>
-    </article>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
-  
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
-    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
-    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-    onload="renderMathInElement(document.body,
-      {
-        delimiters: [
-          {left: '$$', right: '$$', display:true},
-          {left: '$', right: '$', display:false},
-          {left: '\\(', right: '\\)', display: false},
-          {left: '\\[', right: '\\]', display: true}
-        ]
-      }
-    );"></script>
-  </section>
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-      2023 -
-    
-    2025
-     Manuel Martinez 
-    ·
-    
-      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NJLM0F56ZC');
-</script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-</html>
+$$</p><p>We can do this separately for width and height.</p><p>Let&rsquo;s go over the dimensions of the components of the layer:</p><ul><li>Each filter is $f^{[l]} \times f^{[l]} \times n_c^{[l-1]}$ (notice the channel matching to the previous layer).</li><li>Activations are $a^{[l]} = n_H^{[l]} \times n_W^{[l]} \times n_c^{[l]}$ (the same as the output, of course).<ul><li>If we are using mini batch gradient descent, we can describe this with a matrix:<ul><li>$A^{[l]} = m \times n_H^{[l]} \times n_W^{[l]} \times n_c^{[l]}$, where $m$ is the mini-batch size.</li></ul></li></ul></li><li>Weights are $f^{[l]} \times f^{[l]} \times n_c^{[l-1]} \times n_c^{[l]}$.<ul><li>This one is important! $n_c^{[l-1]}$ is the number of channels or filters in the previous layer, while $n_c^{[l]}$ is the number of filters in the current layer.</li></ul></li><li>The biases $b^{[l]}$ will have one for each filter in layer $l$, therefore it will be of dimensions $1 \times 1 \times 1 \times n_c^{[l]}$, the added dimensions are for broadcasting purposes.</li></ul><h2 id=simple-cnn-example>Simple CNN Example<a hidden class=anchor aria-hidden=true href=#simple-cnn-example>#</a></h2><p>Let&rsquo;s do a simple example before we go over pooling layers; this should be good practice for calculating the input and output dimensions of the layer.</p><p>Let&rsquo;s start with a $39\times39\times3$ input. We want to convolve it with $10$ filters, where $f^{[1]} = 3, s^{[1]} = 1, p^{[1]} = 0$. Using the trusty formula, we should get an output of dimensions $37\times37\times10$. Remember $\frac{39+2(0)-3}{1} + 1 = 37$, and we have $10$ filters, therefore the output channels are $10$.</p><p>Let&rsquo;s say that we have another convolutional layer $l=2$, and this time we use twenty $5\times5$ filters, so that $f^{[2]} = 5, s^{[2]} = 2, p^{[2]} = 0$. Plugging these numbers into our formula, we start from the last layer&rsquo;s input size: $37\times37\times10$ and we get this layer&rsquo;s output dimensions as $17\times17\times20$. Finally, let&rsquo;s do another layer, $l=3$, with $40$ filters where $f^{[3]} = 5, s^{[3]}=2, p^{[3]} = 0$. Then we end up with an output size of $7\times7\times40$.</p><p>Notice how we started with an input of $39\times39\times3$ and end up with a feature map of dimensions $7\times7\times40$; we took a cube and reshaped it into a rectangle. In the case of doing classification, we can run the $7\times7\times40$ output into a $1960$ hidden-unit fully connected layer that runs its output through a softmax or sigmoid.</p><p>In summary, the layer types in a CNN are:</p><ul><li>Convolutional Layer | <code>CONV</code></li><li>Pooling Layer | <code>POOL</code></li><li>Fully connected Layer | <code>FC</code></li></ul><p>Pooling layers are discussed next and remain a key part of CNNs.</p><h2 id=pooling-layers>Pooling Layers<a hidden class=anchor aria-hidden=true href=#pooling-layers>#</a></h2><p>Pooling layers reduce some layer&rsquo;s output dimension by applying an aggregating procedure, usually taking the max or average over some region in the output. This is good for two main reasons: smaller outputs are more computationally efficient. However, unlike the output shrinking from filters, the aggregating procedures can <em>boost</em> certain features down the network.</p><p>A pooling layer works similar to a convolutional layer. An example of $2\times2$ max pooling is shown here:</p><figure><img loading=lazy src=https://d2l.ai/_images/pooling.svg alt="Max-pooling with a $2\times2$ shape" width=50%><figcaption><p><a href=https://d2l.ai/chapter_convolutional-neural-networks/pooling.html>Max-pooling with a $2\times2$ shape</a></p></figcaption></figure><p>Each of the outputs in the feature map is simply the maximum value in the input&rsquo;s region overlaid by the filter. We can still use our trusty formula to calculate the output sizes.</p><p>A key thing to notice is that pooling layers have <em>no</em> parameters. That is, they only have hyperparameters, $f$ and $s$—that is, their size and the stride. Additionally, another hyperparameter is whether the layer is a max-pooling layer or average-pooling layer. Max-pooling is <em>a lot</em> more popular in the CNN literature.</p><h2 id=full-cnn-example>Full CNN Example<a hidden class=anchor aria-hidden=true href=#full-cnn-example>#</a></h2><p>This example goes over a CNN architecture similar to that of <a href=https://en.wikipedia.org/wiki/LeNet#Structure>LeNet-5</a>, a legendary architecture proposed by Yan LeCun in 1998. The network was implemented to do character recognition originally.</p><p>The architecture is as follows:</p><ol><li>Input: $32\times32\times3$</li><li><code>CONV 1</code>: $f=5, s=1$. Outputs: $28\times28\times6$</li><li><code>MAXPOOL 1</code>: $f=2, s=2$. Outputs: $14\times14\times6$</li><li><code>CONV 2</code>: $f=5, s=1$. Outputs: $10\times10\times16$</li><li><code>MAXPOOL 2</code>: $f=2, s=2$. Outputs: $5\times5\times16$</li><li><code>FC3</code>: $120$ units. The weights $W^{[FC3]}$ has dimensions $(120, 400)$. Where $400 = 5\times5\times16$.</li><li><code>FC4</code>: $84$ units. The weights $W^{[FC4]}$ has dimensions $(120, 84)$</li><li><code>Softmax</code>: The final output layer with $C=9$ classes, one for each digit.</li></ol><p>A couple of details:</p><ul><li>In the literature, a convolutional layer is usually referred to as a <code>CONV</code> layer followed by a <code>POOL</code> layer. So <code>CONV 1</code> and <code>MAXPOOL 1</code> can be referred to as a single layer.</li><li>The dimensions of the feature maps tend to decrease. That is, $n_H, n_W$ go down as we go deeper in the network.</li><li>The number of channels tends to increase; that is, $n_C$ goes up as we go deeper in the network.</li></ul><p>Here is a table with the dimensions for each layer and also the number of parameters. Verifying the number is a great exercise to test our understanding:</p><table><thead><tr><th></th><th><strong>Activation shape</strong></th><th><strong>Activation size</strong></th><th><strong># Parameters</strong></th></tr></thead><tbody><tr><td>Input</td><td>(32, 32, 3)</td><td>3,072</td><td>0</td></tr><tr><td>CONV1 $(f=5, s=1)$</td><td>(28, 28, 6)</td><td>4,704</td><td>456</td></tr><tr><td>POOL1 $(f=2, s=2)$</td><td>(14, 14, 6)</td><td>1,176</td><td>0</td></tr><tr><td>CONV2 $(f=5, s=1)$</td><td>(10, 10, 16)</td><td>1,600</td><td>2416</td></tr><tr><td>POOL2 $(f=2, s=2)$</td><td>(5, 5, 16)</td><td>400</td><td>0</td></tr><tr><td>FC3</td><td>(120, 1)</td><td>120</td><td>48,120</td></tr><tr><td>FC4</td><td>(84, 1)</td><td>84</td><td>10,164</td></tr><tr><td>Softmax</td><td>(10, 1)</td><td>10</td><td>850</td></tr></tbody></table><p>Notice how the activation sizes decrease through the layers. Also, notice how around 94% of all the parameters in the network are part of the fully connected layers. This network has a grand total of $62,006$ parameters, which is a lot less than hundreds of millions.</p><h2 id=why-convolutions>Why Convolutions?<a hidden class=anchor aria-hidden=true href=#why-convolutions>#</a></h2><p>Unfortunately, there is no single reason as to why convolutions work so well. However, there are two probable reasons:</p><ol><li>Parameter sharing: Since you use the same filter to convolve it across different parts of the image, you can use the same filter many times. This is related to <a href=https://en.wikipedia.org/wiki/Translational_symmetry>translational invariance</a>, the idea that a CNN is robust to shifted or distorted images.</li><li>Sparsity of connections: Each output value depends only on a few inputs. This is a mark of low complexity, and it might have an effect similar to regularization; therefore, helping avoid overfitting.</li></ol><p>Next week&rsquo;s post is <a href=http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/>here</a>.</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-computer-vision/#:~:text=Computer%20vision%20is%20a%20field,tasks%20that%20replicate%20human%20capabilities.">What is Computer Vision? | Microsoft</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://en.wikipedia.org/wiki/Kernel_%28image_processing%29>Kernel (image processing) | Wikipedia</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><footer class=post-footer><ul class=post-tags><li><a href=http://localhost:1313/tags/machine-learning/>Machine Learning</a></li><li><a href=http://localhost:1313/tags/deep-learning/>Deep Learning</a></li></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/><span class=title>« Prev</span><br><span>Structuring ML Projects: Week 2 | ML Strategy</span>
+</a><a class=next href=http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/><span class=title>Next »</span><br><span>Convolutional Neural Networks: Week 2 | Case Studies</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=http://localhost:1313/>Manuel Martinez</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

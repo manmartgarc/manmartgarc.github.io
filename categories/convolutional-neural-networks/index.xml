@@ -1,40 +1,168 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Convolutional Neural Networks on Manuel Martinez</title>
-    <link>https://manmartgarc.github.io/categories/convolutional-neural-networks/</link>
+    <link>http://localhost:1313/categories/convolutional-neural-networks/</link>
     <description>Recent content in Convolutional Neural Networks on Manuel Martinez</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Wed, 02 Aug 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://manmartgarc.github.io/categories/convolutional-neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/convolutional-neural-networks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Convolutional Neural Networks: Week 4 | Face Recognition &amp; Neural Style Transfer</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/</link>
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
-      <description>&lt;p&gt;This is the fourth and last week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are as follows:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#face-recognition&#34; &gt;Face Recognition&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#what-is-face-recognition&#34; &gt;What is Face Recognition?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#one-shot-learning&#34; &gt;One Shot Learning&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#siamese-network&#34; &gt;Siamese Network&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#triplet-loss&#34; &gt;Triplet Loss&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#face-verification-and-binary-classification&#34; &gt;Face Verification and Binary Classification&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#neural-style-transfer&#34; &gt;Neural Style Transfer&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#what-is-neural-style-transfer&#34; &gt;What is Neural Style Transfer?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#what-are-deep-cnns-learning&#34; &gt;What are deep CNNs learning?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#cost-function&#34; &gt;Cost Function&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#content-cost-function&#34; &gt;Content Cost Function&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#style-cost-function&#34; &gt;Style Cost Function&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;face-recognition&#34;&gt;&#xA;  Face Recognition&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#face-recognition&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;what-is-face-recognition&#34;&gt;&#xA;  What is Face Recognition?&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#what-is-face-recognition&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start by going over the important distinction between face verification and face recognition.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/</guid>
+      <description>&lt;p&gt;This is the fourth and last week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. In this week, we go over special applications in the field of computer vision with CNNs: face recognition and neural style transfer. This week introduces new important concepts that will be useful even beyond the context of CNNs.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#face-recognition&#34;&gt;Face Recognition&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#what-is-face-recognition&#34;&gt;What is Face Recognition?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#one-shot-learning&#34;&gt;One Shot Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#siamese-network&#34;&gt;Siamese Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#triplet-loss&#34;&gt;Triplet Loss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#face-verification-and-binary-classification&#34;&gt;Face Verification and Binary Classification&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#neural-style-transfer&#34;&gt;Neural Style Transfer&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#what-is-neural-style-transfer&#34;&gt;What is Neural Style Transfer?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#what-are-deep-cnns-learning&#34;&gt;What are deep CNNs learning?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#cost-function&#34;&gt;Cost Function&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#content-cost-function&#34;&gt;Content Cost Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/#style-cost-function&#34;&gt;Style Cost Function&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;face-recognition&#34;&gt;Face Recognition&lt;/h2&gt;
+&lt;h3 id=&#34;what-is-face-recognition&#34;&gt;What is Face Recognition?&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s start by going over the important distinction between face verification and face recognition.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 3 | Detection Algorithms</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/</link>
       <pubDate>Tue, 01 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
-      <description>&lt;p&gt;This is the third week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#object-localization&#34; &gt;Object Localization&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#landmark-detection&#34; &gt;Landmark Detection&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#object-detection&#34; &gt;Object Detection&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#sliding-windows-detection&#34; &gt;Sliding Windows Detection&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#convolutional-implementation-of-sliding-windows&#34; &gt;Convolutional Implementation of Sliding Windows&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#turning-fully-connected-layers-into-convolutional-layers&#34; &gt;Turning fully connected layers into convolutional layers&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#implementing-sliding-windows-convolutionally&#34; &gt;Implementing sliding windows convolutionally&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#bounding-box-predictions&#34; &gt;Bounding Box Predictions&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#intersection-over-union&#34; &gt;Intersection Over Union&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#non-max-suppression&#34; &gt;Non-max Suppression&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#anchor-boxes&#34; &gt;Anchor Boxes&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#semantic-segmentation&#34; &gt;Semantic Segmentation&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#transpose-convolutions&#34; &gt;Transpose Convolutions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#u-net-architecture&#34; &gt;U-Net Architecture&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;object-localization&#34;&gt;&#xA;  Object Localization&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#object-localization&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We &lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/&#34; &gt;previously&lt;/a&gt; discussed how we can train a classifier using images with CNNs. The new twist is the localization of the object in the image.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/</guid>
+      <description>&lt;p&gt;This is the third week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The week focuses on object detection and localization, important applications of computer vision where CNNs serve as a building block to more specialized applications.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#object-localization&#34;&gt;Object Localization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#landmark-detection&#34;&gt;Landmark Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#object-detection&#34;&gt;Object Detection&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#sliding-windows-detection&#34;&gt;Sliding Windows Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#convolutional-implementation-of-sliding-windows&#34;&gt;Convolutional Implementation of Sliding Windows&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#turning-fully-connected-layers-into-convolutional-layers&#34;&gt;Turning fully connected layers into convolutional layers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#implementing-sliding-windows-convolutionally&#34;&gt;Implementing sliding windows convolutionally&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#bounding-box-predictions&#34;&gt;Bounding Box Predictions&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#intersection-over-union&#34;&gt;Intersection Over Union&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#non-max-suppression&#34;&gt;Non-max Suppression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#anchor-boxes&#34;&gt;Anchor Boxes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#semantic-segmentation&#34;&gt;Semantic Segmentation&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#transpose-convolutions&#34;&gt;Transpose Convolutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week3/#u-net-architecture&#34;&gt;U-Net Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;object-localization&#34;&gt;Object Localization&lt;/h2&gt;
+&lt;p&gt;Object localization is, intuitively, not just detecting an object in an image, but also being able to describe its position in the image. We &lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/&#34;&gt;previously&lt;/a&gt; discussed how we can train a classifier using images with CNNs. The new twist is the localization of the object in the image.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 2 | Case Studies</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/</link>
       <pubDate>Wed, 19 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
-      <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#case-studies&#34; &gt;Case Studies&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#classic-networks&#34; &gt;Classic Networks&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#lenet5&#34; &gt;LeNet5&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#alexnet&#34; &gt;AlexNet&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#vgg16&#34; &gt;VGG16&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#resnets&#34; &gt;ResNets&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-do-resnets-work&#34; &gt;Why do ResNets Work?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#networks-in-networks--1x1-convolutions&#34; &gt;Networks in Networks | 1x1 Convolutions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inception-network&#34; &gt;Inception Network&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inception-network-architecture&#34; &gt;Inception Network Architecture&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#mobilenet&#34; &gt;MobileNet&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#depth-wise-convolution&#34; &gt;Depth-wise Convolution&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#point-wise-convolution&#34; &gt;Point-wise Convolution&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#mobilenet-architecture&#34; &gt;MobileNet Architecture&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#practical-advice-for-using-convnets&#34; &gt;Practical Advice for Using ConvNets&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#transfer-learning&#34; &gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#data-augmentation&#34; &gt;Data Augmentation&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;case-studies&#34;&gt;&#xA;  Case Studies&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#case-studies&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;We should obviously keep up with the computer vision literature if we are interested in implementing new ideas. However, since CNNs have so many hyperparameters and settings, it&amp;rsquo;s essential to pay attention to the empirically justified advances occurring in the field. Since so many computer vision tasks are similar, many of the core ideas of new approaches can be applied, sometimes identically and sometimes with minor editions, to new applications. Finally, in the age of big data and cheap compute, we can get away with virtually free-riding on somebody else&amp;rsquo;s compute by using their pre-trained model. Let&amp;rsquo;s start with the &amp;ldquo;classic&amp;rdquo; networks that hit the field from the late 90s through the early 10s.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/</guid>
+      <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week is largely a literature review, going over different architectures and approaches that have made large contributions to the field.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#case-studies&#34;&gt;Case Studies&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#classic-networks&#34;&gt;Classic Networks&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#lenet5&#34;&gt;LeNet5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#alexnet&#34;&gt;AlexNet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#vgg16&#34;&gt;VGG16&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#resnets&#34;&gt;ResNets&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#why-do-resnets-work&#34;&gt;Why do ResNets Work?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#networks-in-networks--1x1-convolutions&#34;&gt;Networks in Networks | 1x1 Convolutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#inception-network&#34;&gt;Inception Network&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#inception-network-architecture&#34;&gt;Inception Network Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#mobilenet&#34;&gt;MobileNet&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#depth-wise-convolution&#34;&gt;Depth-wise Convolution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#point-wise-convolution&#34;&gt;Point-wise Convolution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#mobilenet-architecture&#34;&gt;MobileNet Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#practical-advice-for-using-convnets&#34;&gt;Practical Advice for Using ConvNets&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#transfer-learning&#34;&gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week2/#data-augmentation&#34;&gt;Data Augmentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;case-studies&#34;&gt;Case Studies&lt;/h2&gt;
+&lt;p&gt;We should obviously keep up with the computer vision literature if we are interested in implementing new ideas. However, since CNNs have so many hyperparameters and settings, it&amp;rsquo;s essential to pay attention to the empirically justified advances occurring in the field. Since so many computer vision tasks are similar, many of the core ideas of new approaches can be applied, sometimes identically and sometimes with minor editions, to new applications. Finally, in the age of big data and cheap compute, we can get away with virtually free-riding on somebody else&amp;rsquo;s compute by using their pre-trained model. Let&amp;rsquo;s start with the &amp;ldquo;classic&amp;rdquo; networks that hit the field from the late 90s through the early 10s.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Convolutional Neural Networks: Week 1 | Foundations of CNNs</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/</link>
       <pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
-      <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#computer-vision&#34; &gt;Computer Vision&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#convolution&#34; &gt;Convolution&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#convolution-in-continuous-land&#34; &gt;Convolution in continuous land&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#convolution-in-discrete-land&#34; &gt;Convolution in discrete land&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#back-to-edge-detection&#34; &gt;Back to Edge Detection&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#learning-the-filters&#34; &gt;Learning the Filters&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#padding&#34; &gt;Padding&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#strided-convolutions&#34; &gt;Strided Convolutions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#convolutions-over-volume&#34; &gt;Convolutions Over Volume&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#one-layer-of-a-cnn&#34; &gt;One Layer of a CNN&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#defining-the-notation-and-dimensions&#34; &gt;Defining the Notation and Dimensions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#simple-cnn-example&#34; &gt;Simple CNN Example&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#pooling-layers&#34; &gt;Pooling Layers&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#full-cnn-example&#34; &gt;Full CNN Example&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-convolutions&#34; &gt;Why Convolutions?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;computer-vision&#34;&gt;&#xA;  Computer Vision&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#computer-vision&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&amp;rsquo;s very likely that they&amp;rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&amp;rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/</guid>
+      <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/convolutional-neural-networks/&#34;&gt;fourth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course introduces convolutional neural networks, an extremely popular architecture in the field of computer vision.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#computer-vision&#34;&gt;Computer Vision&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolution&#34;&gt;Convolution&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-continuous-land&#34;&gt;Convolution in continuous land&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolution-in-discrete-land&#34;&gt;Convolution in discrete land&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#back-to-edge-detection&#34;&gt;Back to Edge Detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#learning-the-filters&#34;&gt;Learning the Filters&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#padding&#34;&gt;Padding&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#strided-convolutions&#34;&gt;Strided Convolutions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#convolutions-over-volume&#34;&gt;Convolutions Over Volume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#one-layer-of-a-cnn&#34;&gt;One Layer of a CNN&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#defining-the-notation-and-dimensions&#34;&gt;Defining the Notation and Dimensions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#simple-cnn-example&#34;&gt;Simple CNN Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#pooling-layers&#34;&gt;Pooling Layers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#full-cnn-example&#34;&gt;Full CNN Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week1/#why-convolutions&#34;&gt;Why Convolutions?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;computer-vision&#34;&gt;Computer Vision&lt;/h2&gt;
+&lt;p&gt;If you can think of any computer vision application today: self-driving cars, medical imaging, face recognition and even visual generative AI; it&amp;rsquo;s very likely that they&amp;rsquo;re using some kind of convolutional architecture. Computer vision is a field of computer science that focuses on enabling computers to identify and understand objects and people in images and videos &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Identification and understanding are nebulous words, but the key thing is that computer vision involves processing digital images and videos. Let&amp;rsquo;s think about how we could represent an image and use our existing knowledge about neural networks to design a cat classifier.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

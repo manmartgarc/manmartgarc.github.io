@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Manuel Martinez</title>
-    <link>https://manmartgarc.github.io/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Manuel Martinez</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Wed, 24 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://manmartgarc.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Aws</title>
-      <link>https://manmartgarc.github.io/tags/aws/</link>
+      <link>http://localhost:1313/tags/aws/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/aws/</guid>
+      <guid>http://localhost:1313/tags/aws/</guid>
       <description></description>
     </item>
     <item>
       <title>Cdk</title>
-      <link>https://manmartgarc.github.io/tags/cdk/</link>
+      <link>http://localhost:1313/tags/cdk/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/cdk/</guid>
+      <guid>http://localhost:1313/tags/cdk/</guid>
       <description></description>
     </item>
     <item>
       <title>Mcp</title>
-      <link>https://manmartgarc.github.io/tags/mcp/</link>
+      <link>http://localhost:1313/tags/mcp/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/mcp/</guid>
+      <guid>http://localhost:1313/tags/mcp/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>https://manmartgarc.github.io/tags/python/</link>
+      <link>http://localhost:1313/tags/python/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/python/</guid>
+      <guid>http://localhost:1313/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloud</title>
-      <link>https://manmartgarc.github.io/tags/cloud/</link>
+      <link>http://localhost:1313/tags/cloud/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/cloud/</guid>
+      <guid>http://localhost:1313/tags/cloud/</guid>
       <description></description>
     </item>
     <item>
       <title>Rust</title>
-      <link>https://manmartgarc.github.io/tags/rust/</link>
+      <link>http://localhost:1313/tags/rust/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/rust/</guid>
+      <guid>http://localhost:1313/tags/rust/</guid>
       <description></description>
     </item>
     <item>
       <title>Go</title>
-      <link>https://manmartgarc.github.io/tags/go/</link>
+      <link>http://localhost:1313/tags/go/</link>
       <pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/go/</guid>
+      <guid>http://localhost:1313/tags/go/</guid>
       <description></description>
     </item>
     <item>
       <title>Deep Learning</title>
-      <link>https://manmartgarc.github.io/tags/deep-learning/</link>
+      <link>http://localhost:1313/tags/deep-learning/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/deep-learning/</guid>
+      <guid>http://localhost:1313/tags/deep-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>https://manmartgarc.github.io/tags/machine-learning/</link>
+      <link>http://localhost:1313/tags/machine-learning/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/machine-learning/</guid>
+      <guid>http://localhost:1313/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Remote</title>
-      <link>https://manmartgarc.github.io/tags/remote/</link>
+      <link>http://localhost:1313/tags/remote/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/remote/</guid>
+      <guid>http://localhost:1313/tags/remote/</guid>
       <description></description>
     </item>
     <item>
       <title>Vscode</title>
-      <link>https://manmartgarc.github.io/tags/vscode/</link>
+      <link>http://localhost:1313/tags/vscode/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/tags/vscode/</guid>
+      <guid>http://localhost:1313/tags/vscode/</guid>
       <description></description>
     </item>
   </channel>

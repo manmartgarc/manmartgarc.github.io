@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>
-  Sequence Models: Week 2 | NLP &amp; Word Embeddings · Manuel Martinez
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="Manuel Martinez">
-<meta name="description" content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.
+<!doctype html><html lang=en dir=auto data-theme=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Sequence Models: Week 2 | NLP & Word Embeddings | Manuel Martinez</title><meta name=keywords content="machine learning,deep learning"><meta name=description content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.
 This week&rsquo;s topics are:
 
 Introduction to Word Embeddings
@@ -44,637 +29,75 @@ De-biasing Word Embeddings
 
 
 
-
-  Introduction to Word Embeddings
-  
-    
-    Link to heading
-  
-
-
-  Word Representation
-  
-    
-    Link to heading
-  
-
-Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&rsquo;s go over how this is possible.">
-<meta name="keywords" content="blog,developer,personal">
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
-  <meta name="twitter:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.
+Introduction to Word Embeddings
+Word Representation
+Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&rsquo;s go over how this is possible."><meta name=author content="Manuel Martinez"><link rel=canonical href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/><link crossorigin=anonymous href=/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/images/favicon.ico><link rel=apple-touch-icon href=http://localhost:1313/apple-touch-icon.png><link rel=mask-icon href=http://localhost:1313/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],throwOnError:!1})})</script><meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/"><meta property="og:site_name" content="Manuel Martinez"><meta property="og:title" content="Sequence Models: Week 2 | NLP & Word Embeddings"><meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.
 This week’s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible.">
+Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Word Representation Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-08-10T00:00:00+00:00"><meta property="article:modified_time" content="2023-08-10T00:00:00+00:00"><meta property="article:tag" content="Machine Learning"><meta property="article:tag" content="Deep Learning"><meta name=twitter:card content="summary"><meta name=twitter:title content="Sequence Models: Week 2 | NLP & Word Embeddings"><meta name=twitter:description content="This is the second week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.
+This week&rsquo;s topics are:
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
-  <meta property="og:site_name" content="Manuel Martinez">
-  <meta property="og:title" content="Sequence Models: Week 2 | NLP & Word Embeddings">
-  <meta property="og:description" content="This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.
-This week’s topics are:
-Introduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Link to heading Word Representation Link to heading Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-08-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-08-10T00:00:00+00:00">
-    <meta property="article:tag" content="Machine Learning">
-    <meta property="article:tag" content="Deep Learning">
+Introduction to Word Embeddings
+
+Word Representation
+Using Word Embeddings
+Properties of Word Embeddings
+Cosine Similarity
+Embedding Matrix
 
 
+Word Embeddings
+
+Learning Word Embeddings
+Word2Vec
+
+Negative Sampling
 
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
+GloVe Word Vectors
 
 
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+Applications Using Word Embeddings
 
-
-  
-  
-  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
+Sentiment Classification
+De-biasing Word Embeddings
 
 
 
 
-
-
-  
-    
-    
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
-      Manuel Martinez
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/about/">About</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/posts/">Posts</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/projects/">Projects</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/cv/">CV</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container post">
-    <article>
-      <header>
-        <div class="post-title">
-          <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/">
-              Sequence Models: Week 2 | NLP &amp; Word Embeddings
-            </a>
-          </h1>
-        </div>
-        <div class="post-meta">
-          <div class="date">
-            <span class="posted-on">
-              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2023-08-10T00:00:00Z">
-                August 10, 2023
-              </time>
-            </span>
-            <span class="reading-time">
-              <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              18-minute read
-            </span>
-          </div>
-          
-          <div class="categories">
-  <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/coursera/">Coursera</a>
-      <span class="separator">•</span>
-    <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
-      <span class="separator">•</span>
-    <a href="/categories/sequence-models/">Sequence Models</a></div>
-
-          <div class="tags">
-  <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/machine-learning/">Machine Learning</a>
-    </span>
-      <span class="separator">•</span>
-    <span class="tag">
-      <a href="/tags/deep-learning/">Deep Learning</a>
-    </span></div>
-
-        </div>
-      </header>
-
-      <div class="post-content">
-        
-        <p>This is the second week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/"  class="external-link" target="_blank" rel="noopener">fifth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.</p>
-<p>This week&rsquo;s topics are:</p>
-<ul>
-<li><a href="#introduction-to-word-embeddings" >Introduction to Word Embeddings</a>
-<ul>
-<li><a href="#word-representation" >Word Representation</a></li>
-<li><a href="#using-word-embeddings" >Using Word Embeddings</a></li>
-<li><a href="#properties-of-word-embeddings" >Properties of Word Embeddings</a></li>
-<li><a href="#cosine-similarity" >Cosine Similarity</a></li>
-<li><a href="#embedding-matrix" >Embedding Matrix</a></li>
-</ul>
-</li>
-<li><a href="#word-embeddings" >Word Embeddings</a>
-<ul>
-<li><a href="#learning-word-embeddings" >Learning Word Embeddings</a></li>
-<li><a href="#word2vec" >Word2Vec</a>
-<ul>
-<li><a href="#negative-sampling" >Negative Sampling</a></li>
-</ul>
-</li>
-<li><a href="#glove-word-vectors" >GloVe Word Vectors</a></li>
-</ul>
-</li>
-<li><a href="#applications-using-word-embeddings" >Applications Using Word Embeddings</a>
-<ul>
-<li><a href="#sentiment-classification" >Sentiment Classification</a></li>
-<li><a href="#de-biasing-word-embeddings" >De-biasing Word Embeddings</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="introduction-to-word-embeddings">
-  Introduction to Word Embeddings
-  <a class="heading-link" href="#introduction-to-word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="word-representation">
-  Word Representation
-  <a class="heading-link" href="#word-representation">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&rsquo;s go over how this is possible.</p>
-<p>We have been using one-hot encoding for words in our vocabulary. This works great as a way of representing words for a mathematical model; i.e. we build a pretty decent language model. The issue however, is two-fold: a vocabulary size of $10,000$ is tiny in practice. Do we really need to calculate the softmax for all these words? The second issue is that of semantics: at no point does the model realize that <code>apple</code>, <code>orange</code> and <code>banana</code> are similar things. Let&rsquo;s look at the latter first.</p>
-<p>In a one-hot encoding all elements are $0$ except for the element indexed by the index of the word in our vocabulary. If our vocabulary size $|V| = 10,000$, then we represent each word with $9,999$ zeros and one $1$ in the index of that word. Let&rsquo;s use these indexes for the words in the example next:</p>
-<ul>
-<li>$i_{man} = 5391$</li>
-<li>$i_{woman} = 9853$</li>
-<li>$i_{king} = 4914$</li>
-<li>$i_{queen} = 7157$</li>
-<li>$i_{apple} = 456$</li>
-<li>$i_{orange} = 6257$</li>
-</ul>
-<p>So that $o_{man} = o_{5391}$ is the one-hot encoding of the word. Remember that $o_w \in \mathbb{R}^{10,000}$.</p>
-<p>How could our algorithm handle semantic meaning? The same way that we define most about anything, with matrices and linear algebra. Currently, our words live in $\mathbb{R}^{10,000}$ space. That is, they are a $10,000$ dimensional one-hot vector, where all the entries are $0$ except for one. Let&rsquo;s think about the dot-product, which is the <a href="https://en.wikipedia.org/wiki/Inner_product_space"  class="external-link" target="_blank" rel="noopener">inner product</a> of Euclidean space. Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Let&rsquo;s focus on the geometrical definition.</p>
-<p>If the dot-product between two vectors is $0$ then the vectors are <em>either</em> orthogonal or one of them is the zero vector $\vec{0}$. On the other hand, positive and negative values map to the angle value between them. What does it mean that two vectors are orthogonal? It means that they are perpendicular to each other. What does that mean? It depends on the application: in optics, orthogonality is related to polarization states. In statistics, orthogonal random variables are those whose covariance is $0$. What happens when we dot two one-hot vectors for different words?</p>
-<p>Since, by definition, each of the one-hot vectors is unique for every word in our dictionary, all of them will have a $1$ in a unique position. This means that the dot product between any pair $i,j$ where $i \neq j$ will be $0$. This means that the vector space defined by all of our one-hot vectors has a <em>dimension for each word</em>, since dimension are orthogonal to each other, all vectors are orthogonal to each other. Which in turn means that our representation imposes the assumption that there is <em>literally</em> no relationship between any pair of words. Even pairs such as $(\text{happy}, \text{happier})$.</p>
-<p>The question is then: how can we project the $\mathbb{R}^{10,000}$ vector space into a lower dimensional space, say $\mathbb{R}^{300}$? We could try to use dimensionality reduction techniques, such as PCA, but it will not work that well. This is because all dimensions are orthogonal, and there&rsquo;s no &ldquo;common&rdquo; information to encode the higher dimensional space into a lower dimensional space. We need something different, something learnable, we need word embeddings!</p>
-<p>Say that we define $4$ dimensions: <code>Gender</code>, <code>Royal</code>, <code>Age</code>, <code>Food</code>. We&rsquo;d like to map each of our $\mathbb{R}^{10,000}$ one-hot vectors into $\mathbb{R}^{4}$. We can do this by hand. Let&rsquo;s map the words we had before into these by hand:</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: center"></th>
-          <th style="text-align: center"><strong>Man</strong></th>
-          <th style="text-align: center"><strong>Woman</strong></th>
-          <th style="text-align: center"><strong>King</strong></th>
-          <th style="text-align: center"><strong>Queen</strong></th>
-          <th style="text-align: center"><strong>Apple</strong></th>
-          <th style="text-align: center"><strong>Orange</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center"><strong>Gender</strong></td>
-          <td style="text-align: center">-1</td>
-          <td style="text-align: center">1</td>
-          <td style="text-align: center">-0.95</td>
-          <td style="text-align: center">0.97</td>
-          <td style="text-align: center">0.00</td>
-          <td style="text-align: center">0.01</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><strong>Royal</strong></td>
-          <td style="text-align: center">0.01</td>
-          <td style="text-align: center">0.02</td>
-          <td style="text-align: center">0.93</td>
-          <td style="text-align: center">0.95</td>
-          <td style="text-align: center">-0.01</td>
-          <td style="text-align: center">0.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><strong>Age</strong></td>
-          <td style="text-align: center">0.03</td>
-          <td style="text-align: center">0.02</td>
-          <td style="text-align: center">0.7</td>
-          <td style="text-align: center">0.69</td>
-          <td style="text-align: center">0.03</td>
-          <td style="text-align: center">-0.02</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><strong>Food</strong></td>
-          <td style="text-align: center">0.09</td>
-          <td style="text-align: center">0.01</td>
-          <td style="text-align: center">0.02</td>
-          <td style="text-align: center">0.01</td>
-          <td style="text-align: center">0.95</td>
-          <td style="text-align: center">0.97</td>
-      </tr>
-  </tbody>
-</table>
-<p>The numbers are fictitious, but set by hand to illustrate the example. The important thing is to notice that by embedding these words in our four new dimensions we have captured semantic meaning, and now the vectors live in &ldquo;semantic&rdquo; space. This in turns, allows us to define distance, and therefore similarity. For example, we should expect our embeddings to comply with $e_{apple} - e_{queen} &gt; e_{apple} - e_{orange}$, where $e_{w}$ is the embedding vector, in our case in $\mathbb{R}^{4}$, of the word $w$. That is, the distance between the word apple and queen, should be greater than the distance between apple and orange because apples and oranges are fruits.</p>
-<p>How do we <a href="#learning-word-embeddings" >learn these embeddings</a>, and how many dimensions are enough is something we go over in a bit.</p>
-<blockquote>
-<p>Remember that embeddings are synonymous with encodings. We want to have efficient word encodings that are much smaller but denser than our one-hot vectors; which are big but sparse.</p>
-</blockquote>
-<h3 id="using-word-embeddings">
-  Using Word Embeddings
-  <a class="heading-link" href="#using-word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>So how do we use these embeddings? It turns out that learning good word embeddings takes a lot of text: between $1$ and $100$ billion words in the corpus. That&rsquo;s just the data requirements, training costs are also going to be significant. Instead, we can be <a href="https://www.goodreads.com/quotes/568877-i-choose-a-lazy-person-to-do-a-hard-job"  class="external-link" target="_blank" rel="noopener">lazy</a> and use pre-trained embeddings from somewhere online. After we have these embeddings, we can employ transfer learning and fine-tune a neural network model to our task. We could even fine-tune the embeddings with our data.</p>
-<p>This approach is similar to that of <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/cnns/week4/" >face encoding</a>. In the face recognition approach, we used a Siamese network to learn some $\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It&rsquo;s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.</p>
-<h3 id="properties-of-word-embeddings">
-  Properties of Word Embeddings
-  <a class="heading-link" href="#properties-of-word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>We ended up with word embeddings by wanting to have a better representation of words that capture semantic meaning. But what does &ldquo;capturing semantic meaning&rdquo; really mean, and how is that helpful? One of the things that we can do with semantics, is to reason about analogies: $a$ is to $b$ as $c$ is to $d$; this seems to be an ability that helps with NLP tasks.</p>
-<p>Let&rsquo;s say that we have some embedding $e_w \in \mathbb{R}^{300}$, since our embedding vectors are no longer orthogonal we can use linear algebra to describe the relationship between things in this new space; such as length, distance and so on. In the <a href="https://aclanthology.org/N13-1090.pdf"  class="external-link" target="_blank" rel="noopener">paper</a> that introduces this idea, the authors write in the abstract:</p>
-<blockquote>
-<p>&hellip; For example, the male/female relationship is automatically learned, and with the induced vector representations, “King - Man + Woman” results in a vector very close to “Queen.”</p>
-</blockquote>
-<p>This means that there is some dimension in the embedding that represents the semantic meaning of &ldquo;gender&rdquo;, and this dimension, the difference between &ldquo;King&rdquo; and &ldquo;Man&rdquo;, plus that of &ldquo;Woman&rdquo; approximates &ldquo;Queen&rdquo;. We can do math with semantic topics. Since we can do math, let&rsquo;s define &ldquo;Man&rdquo; is to &ldquo;Woman&rdquo; as &ldquo;King&rdquo; is to $w$. Mathematically:</p>
-<p>$$
+Introduction to Word Embeddings
+Word Representation
+Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&rsquo;s go over how this is possible."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"Sequence Models: Week 2 | NLP \u0026 Word Embeddings","item":"http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sequence Models: Week 2 | NLP \u0026 Word Embeddings","name":"Sequence Models: Week 2 | NLP \u0026 Word Embeddings","description":"This is the second week of the fifth course of DeepLearning.AI\u0026rsquo;s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.\nThis week\u0026rsquo;s topics are:\nIntroduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Word Representation Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let\u0026rsquo;s go over how this is possible.\n","keywords":["machine learning","deep learning"],"articleBody":"This is the second week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.\nThis week’s topics are:\nIntroduction to Word Embeddings Word Representation Using Word Embeddings Properties of Word Embeddings Cosine Similarity Embedding Matrix Word Embeddings Learning Word Embeddings Word2Vec Negative Sampling GloVe Word Vectors Applications Using Word Embeddings Sentiment Classification De-biasing Word Embeddings Introduction to Word Embeddings Word Representation Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let’s go over how this is possible.\nWe have been using one-hot encoding for words in our vocabulary. This works great as a way of representing words for a mathematical model; i.e. we build a pretty decent language model. The issue however, is two-fold: a vocabulary size of $10,000$ is tiny in practice. Do we really need to calculate the softmax for all these words? The second issue is that of semantics: at no point does the model realize that apple, orange and banana are similar things. Let’s look at the latter first.\nIn a one-hot encoding all elements are $0$ except for the element indexed by the index of the word in our vocabulary. If our vocabulary size $|V| = 10,000$, then we represent each word with $9,999$ zeros and one $1$ in the index of that word. Let’s use these indexes for the words in the example next:\n$i_{man} = 5391$ $i_{woman} = 9853$ $i_{king} = 4914$ $i_{queen} = 7157$ $i_{apple} = 456$ $i_{orange} = 6257$ So that $o_{man} = o_{5391}$ is the one-hot encoding of the word. Remember that $o_w \\in \\mathbb{R}^{10,000}$.\nHow could our algorithm handle semantic meaning? The same way that we define most about anything, with matrices and linear algebra. Currently, our words live in $\\mathbb{R}^{10,000}$ space. That is, they are a $10,000$ dimensional one-hot vector, where all the entries are $0$ except for one. Let’s think about the dot-product, which is the inner product of Euclidean space. Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them. 1 Let’s focus on the geometrical definition.\nIf the dot-product between two vectors is $0$ then the vectors are either orthogonal or one of them is the zero vector $\\vec{0}$. On the other hand, positive and negative values map to the angle value between them. What does it mean that two vectors are orthogonal? It means that they are perpendicular to each other. What does that mean? It depends on the application: in optics, orthogonality is related to polarization states. In statistics, orthogonal random variables are those whose covariance is $0$. What happens when we dot two one-hot vectors for different words?\nSince, by definition, each of the one-hot vectors is unique for every word in our dictionary, all of them will have a $1$ in a unique position. This means that the dot product between any pair $i,j$ where $i \\neq j$ will be $0$. This means that the vector space defined by all of our one-hot vectors has a dimension for each word, since dimension are orthogonal to each other, all vectors are orthogonal to each other. Which in turn means that our representation imposes the assumption that there is literally no relationship between any pair of words. Even pairs such as $(\\text{happy}, \\text{happier})$.\nThe question is then: how can we project the $\\mathbb{R}^{10,000}$ vector space into a lower dimensional space, say $\\mathbb{R}^{300}$? We could try to use dimensionality reduction techniques, such as PCA, but it will not work that well. This is because all dimensions are orthogonal, and there’s no “common” information to encode the higher dimensional space into a lower dimensional space. We need something different, something learnable, we need word embeddings!\nSay that we define $4$ dimensions: Gender, Royal, Age, Food. We’d like to map each of our $\\mathbb{R}^{10,000}$ one-hot vectors into $\\mathbb{R}^{4}$. We can do this by hand. Let’s map the words we had before into these by hand:\nMan Woman King Queen Apple Orange Gender -1 1 -0.95 0.97 0.00 0.01 Royal 0.01 0.02 0.93 0.95 -0.01 0.00 Age 0.03 0.02 0.7 0.69 0.03 -0.02 Food 0.09 0.01 0.02 0.01 0.95 0.97 The numbers are fictitious, but set by hand to illustrate the example. The important thing is to notice that by embedding these words in our four new dimensions we have captured semantic meaning, and now the vectors live in “semantic” space. This in turns, allows us to define distance, and therefore similarity. For example, we should expect our embeddings to comply with $e_{apple} - e_{queen} \u003e e_{apple} - e_{orange}$, where $e_{w}$ is the embedding vector, in our case in $\\mathbb{R}^{4}$, of the word $w$. That is, the distance between the word apple and queen, should be greater than the distance between apple and orange because apples and oranges are fruits.\nHow do we learn these embeddings, and how many dimensions are enough is something we go over in a bit.\nRemember that embeddings are synonymous with encodings. We want to have efficient word encodings that are much smaller but denser than our one-hot vectors; which are big but sparse.\nUsing Word Embeddings So how do we use these embeddings? It turns out that learning good word embeddings takes a lot of text: between $1$ and $100$ billion words in the corpus. That’s just the data requirements, training costs are also going to be significant. Instead, we can be lazy and use pre-trained embeddings from somewhere online. After we have these embeddings, we can employ transfer learning and fine-tune a neural network model to our task. We could even fine-tune the embeddings with our data.\nThis approach is similar to that of face encoding. In the face recognition approach, we used a Siamese network to learn some $\\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It’s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.\nProperties of Word Embeddings We ended up with word embeddings by wanting to have a better representation of words that capture semantic meaning. But what does “capturing semantic meaning” really mean, and how is that helpful? One of the things that we can do with semantics, is to reason about analogies: $a$ is to $b$ as $c$ is to $d$; this seems to be an ability that helps with NLP tasks.\nLet’s say that we have some embedding $e_w \\in \\mathbb{R}^{300}$, since our embedding vectors are no longer orthogonal we can use linear algebra to describe the relationship between things in this new space; such as length, distance and so on. In the paper that introduces this idea, the authors write in the abstract:\n… For example, the male/female relationship is automatically learned, and with the induced vector representations, “King - Man + Woman” results in a vector very close to “Queen.”\nThis means that there is some dimension in the embedding that represents the semantic meaning of “gender”, and this dimension, the difference between “King” and “Man”, plus that of “Woman” approximates “Queen”. We can do math with semantic topics. Since we can do math, let’s define “Man” is to “Woman” as “King” is to $w$. Mathematically:\n$$ \\begin{aligned} e_{man} - e_{woman} \u0026\\approx e_{king} - e_{w} \\\\ e_{w} \u0026\\approx e_{king} - e_{man} + e_{woman} \\end{aligned} $$\nIf we have a way to compare two vectors, i.e. a similarity function, we can search over all our words $w \\in V$ in linear time comparing each $e_w$ to $e_{king} - e_{man} + e_{woman}$, and then picking the most similar as $e_w$. How can we say if two vectors are similar?\nCosine Similarity Let’s keep in mind that the dot product is related to the angle between two vectors. If $x \\cdot y = 0$, then $x \\perp y$, that is, they are either orthogonal or $x$ or $y = \\vec{0}$. In the case that they are orthogonal, the angle between them is $90\\degree$. What if $x \\cdot y \\neq 0$? It can be anything, from $(-\\infty, \\infty)$ except $0$. In similarity functions we always like the interval $[0, 1]$ more than $[-\\infty, \\infty]$. We can shrink the domain to be in the interval $[0, 1]$ usually by normalizing by something. We can use the Euclidean norm of the two vectors $x, y$ to normalize the size of the dot product. What does that product between the lengths of two vectors have to do with the dot product, and the angle between the vectors?\nThe Euclidean dot product formula is:\n$$ A \\cdot B = ||A|| \\ ||B|| \\cos{\\theta} $$\nWhich is where the cosine similarity formula comes from:\n$$ S_c(A, B) := \\cos{\\theta} = \\frac{A \\cdot B}{||A|| \\ ||B||} $$\nRemembering the sine and cosine definitions: $\\cos(90) = 0, \\cos(0) = 1$ in angles.\nWe can redefine our search problem for analogy reasoning as:\n$$ \\argmax_{w \\in W} := S_c(e_w, e_{king} - e_{man} + e_{woman}) $$\nThe analogy reasoning is just a show trick. It’s a way of exemplify what embeddings are doing. In practice, using word embeddings allows our models to learn about the connections between words in semantic space; which is very useful for performance.\nEmbedding Matrix So to formalize what an embedding is, let’s go step by step and calculate some embedding $e_w$. Let $E$ be an embedding matrix of dimensions $(300, 10000)$. It’s a mapping from 10,000 dimensional space to 300 dimensional space. The 10,000 comes from our vocabulary size; that is, for each word in our vocabulary $w \\in W$ we will have a 300 dimensional vector $e_w$ which represents the embedding of $w \\in \\mathbb{R}^{300}$. Remember that the one-vector is the same but in more dimensions: $o_w \\in \\mathbb{R}^{10000}$. What happens if we multiply $E o_w$? The output dimension should be $(300, 1)$ since:\n$$ \\underset{(300, 10000)}{E}\\underset{(10000, 1)}{o_w} = \\underset{(300, 1)}{e_w} $$\nNotice that because of the way matrix multiplication works, only one column of $E$ is selected, and it’s exactly the $w_{th}$ one. This makes generating word embeddings pretty computationally expensive, even after learning $E$. Which is the reason why many pre-trained embeddings are distributed as a dictionary mapping $w \\to e_w$ directly, without the multiplication step.\nWord Embeddings Learning Word Embeddings How can we learn the embedding matrix $E$? We can learn it via supervised learning. If we have some vocabulary $V$ with size $|V| = 10,000$, and $o_w$ represents the one-hot vector encoding of the word with index $w$. The training pair is a pair consisting of a phrase and the next word, such as $X_i=\\text{“I want a glass of orange”}$ and $Y_i=\\text{“juice”}$\nWe can randomly initialize $E$ and define $e_w = Eo_w$. The idea is to take each $o_w^{}$ in our training pair and map it to $e_w^{}$ via $E$. Finally, we use all $e_w^{}$ into a fully connected layer that’s run into a softmax. The idea is to correctly classify the next word using the optimization on the network parameters $\\theta$, one of which is $E$ the embedding matrix, using cross-entropy loss.\nIn practice, this means that the algorithm will learn embeddings of words with the directed goal of next token prediction. Since the quality of the embeddings is directly related to word prediction, the algorithm has full incentive to encode relations of similar words into one of the 300 features. This brings us to another important thing.\nSo far we have been using semantic topics such as “Man” or “Queen”. We do this not because the embeddings will correspond to topics we understand, but to aid the explanation of the topic. In practice, deciphering what an embedding dimension really means is hard, and it amounts to guess work.\nDifferent extensions of this basic model generalize the pairing of examples for the supervised learning task. We can define a context $c$ and a target word $t$. We were using $c$ to be all the words leading up to $t$. But we are not required to do this. We can use a context where we use 2 words on the left and on the right of the target word, even just the last word. The Word2Vec algorithm is an extension of this idea, and it has a variation that uses Negative sampling for generating the pairs. Let’s discuss the Word2Vec approach first.\nWord2Vec In Word2Vec we keep using the supervised learning approach, but we pick just a pair of words $c, t$, the context and target respectively. Notice that these do not need to be adjacent words. In the skip-gram model, we pick a word $t$ and generate the content by picking a neighboring word $c$ at random. Therefore, the classification task is to classify which words are more likely to occur nearby each other. We will see a more sophisticated way of sampling in negative sampling but for now let’s keep in mind that we are still doing essentially the same as before:\n$$ o_c \\to E \\to e_c \\to \\text{softmax} \\to \\hat{y} $$\nThe softmax output $\\hat{y}$ is the estimate of the probability that we see $c$ given $t$: $P(t\\mid c)$. It’s defined as:\n$$ P(t \\mid c) = \\frac{e^{\\theta_t^Te_c}}{\\sum_{j=1}^{10000}e^{\\theta_j^Te_c}} $$\nAnd our loss is:\n$$ \\mathcal{L}(\\hat{y}, y) = - \\sum_{i=1}^{10000} y_i \\log \\hat{y}_i $$\nSo far so good, and this will work. But there’s a problem: calculating the softmax for $10,000$ classes might be feasible, but what about bigger vocabularies? What about a million? It’s no longer feasible. There are a few solutions.\nThe hierarchical softmax is a similar approach to negative sampling, where the idea is to reduce the computational complexity of the $\\text{softmax}$ function down from $O(|V|)$. The hierarchical softmax has a time complexity of $O(\\log |V|)$. The approach is based on Huffman coding a coding scheme used for lossless data compression. Chris McCormick has an amazing tutorial on his website where you can learn a lot more about word2vec. It seems that negative sampling and hierarchical softmax work in an equivalent manner, with negative sampling being more intuitive to understand.\nNegative Sampling In negative sampling we still have a context word and a target: $c, t$. Except we will create fake example pairs, negative samples, in addition to the real pair. For example, if the real pair is (orange, juice), we might make $k=4$ negative samples:\n(orange, king) (orange, book) (orange, the) (orange, of) Notice that the context $c$ remains fixed, while the target $t$ is sampled at random. For smaller datasets we want to pick $k \\in [5, 20]$ while for larger datasets we can get away with $k \\in [2, 5]$. Think of $k$ as a sampling size parameter, which reduces the standard error of our estimates as it goes up.\nThe next thing is to label all positive samples (real) with a $1$ label, that is $y=1$; while we give a $0$ label to the negative samples, that is $y = 0$. The idea is for the softmax to learn to classify which pairs are positive and which ones are negative. That is we want to estimate:\n$$ P(y=1 \\mid c, t) = \\sigma(\\theta_t^Te_c) $$\nThis is equivalent to training $10,000$ different binary classifiers at the end of the network, but only sampling $k$ of those classifiers at each time. Therefore, we can think of negative sampling as an estimator of the $\\text{softmax}$ function.\nBut how do we sample the negative samples? The authors recommend a way that’s somewhere in between the empirical distribution $P(w_i)$ and $\\frac{1}{|V|}$. Using the former will over-sample stop words because they are very common, while the latter will treat extremely uncommon words the same as stop words. The actual probability mass function is given by:\n$$ P(w_i) = \\frac{f(w_i)^{\\frac{3}{4}}}{\\sum_{j=1}^{10000}f(w_j)^{\\frac{3}{4}}} $$\nGloVe Word Vectors Global Vectors For Word Representations (GloVE) is another approach to learn $E$ and $e_w$, the embedding matrix and word embeddings. It does something very similar to word2vec.\nIn word2vec we were picking $c, t$ two words that appear in proximity. Here we will be more explicit and define $X_{ij}$ as the number of times that word $j$ appears in the context of word $i$. Notice that depending on how we define the context $X_{ij}$ could be equal to $X_{ji}$. If the context wraps around the target it will be symmetrical, while if you only look backwards it will not.\nIn this case we want to minimize the following:\n$$ \\mathcal{L} = \\sum_{i=1}^{|V|} \\sum_{j=1}^{|V|} f(X_{ij})(\\theta_i^Te_j + b_i + b_j - \\log X_{ij})^2 $$\n$f(X_{ij})$ is some weighting function that allows us to deal with taking $\\log 0$ but can also introduce useful information about the frequency of the pair $ij$.\nIt turns out that $\\theta_i$ and $e_j$ as symmetrical vectors since they are both optimized in the same way. This means that in practice, to calculate the embedding of word $w$ we take the average of the two:\n$$ e_w = \\frac{\\theta_w + e_w}{2} $$\nApplications Using Word Embeddings Sentiment Classification Okay, enough about embeddings. How can we use them? The same way we use one-hot encodings! Let’s walk through the steps from a basic NN to using an RNN.\nWe could take a review, such as “This desert is excellent” and want to classify it into five classes, the reviews’ stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \\dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.\nWe can simply plug-and-play an RNN using the same embeddings, and generate a prediction at the end, exactly like the many-to-one RNN approach. This will work a lot better for reviews that say things like: “A great waste of my very, good, excellent time”. The former model might score this review highly because of the presence of positive sentiment words, but an RNN might be more adept at figuring out that “waste” negates all the other positive words.\nDe-biasing Word Embeddings You might have heard of instances where earlier versions of machine translation approaches would translate the non-gendered words in English such as “Doctor” into gendered versions in the target language, such as “Doctor” in Spanish as opposed to “Doctora”, the female version of the noun. This is a reflection of the corpus the model was trained on. Algorithmic bias is a contentious topic because it reveals biases we either forgot were there or those that we do not like to be reminded of. In this case, male doctors were much more frequent than female doctors in the target translation language, and as such, the language model learned to estimate that empirical probability distribution. But this example, generally benign in its real outcomes, is probably the most benevolent example of algorithmic bias.\nAs predictive models make their way into diverse aspects of life, the more important the outcome associated with the prediction generated by an algorithm, the more care we must take with the implicit biases in its training data. One noxious example is that of bail decisions, an approach supported by quasi-experimental methods as an improvement over judges deciding by themselves as measured by the change in the defendant’s welfare.\nIn economics, we differentiate taste-based discrimination from statistical discrimination. The former emphasizes the role of prejudice on decision-making, while the latter is more mechanical. In the absence of perfect information, people must make guesses, based on observable attributes to make rational decisions. A very interesting study of statistical discrimination occurred in the context of the “ban the box” (BTB) policies. BTB policies prevented employers from asking about job applicant’s criminal records until late in the hiring process, under the idea that it was unfair for people with criminal records. The study however finds the opposite effect: with the absence of information, employers engage in statistical discrimination against demographic groups that include more ex-offenders. The study finds that BTB policies decrease the probability of employment by $3.4$ percentage points for young, low-skilled black men.\nIs there a way we could de-bias training data so that the predictive model aligns better with our ethical and moral compass? For the case of machine translation, a group of authors did just that.\nWith our knowledge of embeddings it’s pretty intuitive to understand the basics of the approach by Bolukbasi, et al. in Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as man and woman and averaging the bias across all such pairs we find. The bias for the pair (male, female) for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.\nNext week’s post is here.\nDot-Product | Wikipedia ↩︎\n","wordCount":"3675","inLanguage":"en","datePublished":"2023-08-10T00:00:00Z","dateModified":"2023-08-10T00:00:00Z","author":{"@type":"Person","name":"Manuel Martinez"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/"},"publisher":{"@type":"Organization","name":"Manuel Martinez","logo":{"@type":"ImageObject","url":"http://localhost:1313/images/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="Manuel Martinez (Alt + H)">Manuel Martinez</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li><li><a href=http://localhost:1313/posts/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/archives/ title=Archive><span>Archive</span></a></li><li><a href=http://localhost:1313/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://localhost:1313/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://localhost:1313/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=http://localhost:1313/cv/ title=CV><span>CV</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:1313/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:1313/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Sequence Models: Week 2 | NLP & Word Embeddings</h1><div class=post-meta><span title='2023-08-10 00:00:00 +0000 UTC'>August 10, 2023</span>&nbsp;·&nbsp;<span>18 min</span>&nbsp;·&nbsp;<span>Manuel Martinez</span></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#introduction-to-word-embeddings>Introduction to Word Embeddings</a><ul><li><a href=#word-representation>Word Representation</a></li><li><a href=#using-word-embeddings>Using Word Embeddings</a></li><li><a href=#properties-of-word-embeddings>Properties of Word Embeddings</a></li><li><a href=#cosine-similarity>Cosine Similarity</a></li><li><a href=#embedding-matrix>Embedding Matrix</a></li></ul></li><li><a href=#word-embeddings>Word Embeddings</a><ul><li><a href=#learning-word-embeddings>Learning Word Embeddings</a></li><li><a href=#word2vec>Word2Vec</a></li><li><a href=#glove-word-vectors>GloVe Word Vectors</a></li></ul></li><li><a href=#applications-using-word-embeddings>Applications Using Word Embeddings</a><ul><li><a href=#sentiment-classification>Sentiment Classification</a></li><li><a href=#de-biasing-word-embeddings>De-biasing Word Embeddings</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p>This is the second week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/">fifth course</a> of DeepLearning.AI&rsquo;s <a href=https://www.coursera.org/specializations/deep-learning>Deep Learning Specialization</a> offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.</p><p>This week&rsquo;s topics are:</p><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#introduction-to-word-embeddings>Introduction to Word Embeddings</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-representation>Word Representation</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#using-word-embeddings>Using Word Embeddings</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#properties-of-word-embeddings>Properties of Word Embeddings</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#cosine-similarity>Cosine Similarity</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#embedding-matrix>Embedding Matrix</a></li></ul></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-embeddings>Word Embeddings</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#learning-word-embeddings>Learning Word Embeddings</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#word2vec>Word2Vec</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#negative-sampling>Negative Sampling</a></li></ul></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#glove-word-vectors>GloVe Word Vectors</a></li></ul></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#applications-using-word-embeddings>Applications Using Word Embeddings</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#sentiment-classification>Sentiment Classification</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#de-biasing-word-embeddings>De-biasing Word Embeddings</a></li></ul></li></ul><hr><h2 id=introduction-to-word-embeddings>Introduction to Word Embeddings<a hidden class=anchor aria-hidden=true href=#introduction-to-word-embeddings>#</a></h2><h3 id=word-representation>Word Representation<a hidden class=anchor aria-hidden=true href=#word-representation>#</a></h3><p>Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&rsquo;s go over how this is possible.</p><p>We have been using one-hot encoding for words in our vocabulary. This works great as a way of representing words for a mathematical model; i.e. we build a pretty decent language model. The issue however, is two-fold: a vocabulary size of $10,000$ is tiny in practice. Do we really need to calculate the softmax for all these words? The second issue is that of semantics: at no point does the model realize that <code>apple</code>, <code>orange</code> and <code>banana</code> are similar things. Let&rsquo;s look at the latter first.</p><p>In a one-hot encoding all elements are $0$ except for the element indexed by the index of the word in our vocabulary. If our vocabulary size $|V| = 10,000$, then we represent each word with $9,999$ zeros and one $1$ in the index of that word. Let&rsquo;s use these indexes for the words in the example next:</p><ul><li>$i_{man} = 5391$</li><li>$i_{woman} = 9853$</li><li>$i_{king} = 4914$</li><li>$i_{queen} = 7157$</li><li>$i_{apple} = 456$</li><li>$i_{orange} = 6257$</li></ul><p>So that $o_{man} = o_{5391}$ is the one-hot encoding of the word. Remember that $o_w \in \mathbb{R}^{10,000}$.</p><p>How could our algorithm handle semantic meaning? The same way that we define most about anything, with matrices and linear algebra. Currently, our words live in $\mathbb{R}^{10,000}$ space. That is, they are a $10,000$ dimensional one-hot vector, where all the entries are $0$ except for one. Let&rsquo;s think about the dot-product, which is the <a href=https://en.wikipedia.org/wiki/Inner_product_space>inner product</a> of Euclidean space. Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them. <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup> Let&rsquo;s focus on the geometrical definition.</p><p>If the dot-product between two vectors is $0$ then the vectors are <em>either</em> orthogonal or one of them is the zero vector $\vec{0}$. On the other hand, positive and negative values map to the angle value between them. What does it mean that two vectors are orthogonal? It means that they are perpendicular to each other. What does that mean? It depends on the application: in optics, orthogonality is related to polarization states. In statistics, orthogonal random variables are those whose covariance is $0$. What happens when we dot two one-hot vectors for different words?</p><p>Since, by definition, each of the one-hot vectors is unique for every word in our dictionary, all of them will have a $1$ in a unique position. This means that the dot product between any pair $i,j$ where $i \neq j$ will be $0$. This means that the vector space defined by all of our one-hot vectors has a <em>dimension for each word</em>, since dimension are orthogonal to each other, all vectors are orthogonal to each other. Which in turn means that our representation imposes the assumption that there is <em>literally</em> no relationship between any pair of words. Even pairs such as $(\text{happy}, \text{happier})$.</p><p>The question is then: how can we project the $\mathbb{R}^{10,000}$ vector space into a lower dimensional space, say $\mathbb{R}^{300}$? We could try to use dimensionality reduction techniques, such as PCA, but it will not work that well. This is because all dimensions are orthogonal, and there&rsquo;s no &ldquo;common&rdquo; information to encode the higher dimensional space into a lower dimensional space. We need something different, something learnable, we need word embeddings!</p><p>Say that we define $4$ dimensions: <code>Gender</code>, <code>Royal</code>, <code>Age</code>, <code>Food</code>. We&rsquo;d like to map each of our $\mathbb{R}^{10,000}$ one-hot vectors into $\mathbb{R}^{4}$. We can do this by hand. Let&rsquo;s map the words we had before into these by hand:</p><table><thead><tr><th style=text-align:center></th><th style=text-align:center><strong>Man</strong></th><th style=text-align:center><strong>Woman</strong></th><th style=text-align:center><strong>King</strong></th><th style=text-align:center><strong>Queen</strong></th><th style=text-align:center><strong>Apple</strong></th><th style=text-align:center><strong>Orange</strong></th></tr></thead><tbody><tr><td style=text-align:center><strong>Gender</strong></td><td style=text-align:center>-1</td><td style=text-align:center>1</td><td style=text-align:center>-0.95</td><td style=text-align:center>0.97</td><td style=text-align:center>0.00</td><td style=text-align:center>0.01</td></tr><tr><td style=text-align:center><strong>Royal</strong></td><td style=text-align:center>0.01</td><td style=text-align:center>0.02</td><td style=text-align:center>0.93</td><td style=text-align:center>0.95</td><td style=text-align:center>-0.01</td><td style=text-align:center>0.00</td></tr><tr><td style=text-align:center><strong>Age</strong></td><td style=text-align:center>0.03</td><td style=text-align:center>0.02</td><td style=text-align:center>0.7</td><td style=text-align:center>0.69</td><td style=text-align:center>0.03</td><td style=text-align:center>-0.02</td></tr><tr><td style=text-align:center><strong>Food</strong></td><td style=text-align:center>0.09</td><td style=text-align:center>0.01</td><td style=text-align:center>0.02</td><td style=text-align:center>0.01</td><td style=text-align:center>0.95</td><td style=text-align:center>0.97</td></tr></tbody></table><p>The numbers are fictitious, but set by hand to illustrate the example. The important thing is to notice that by embedding these words in our four new dimensions we have captured semantic meaning, and now the vectors live in &ldquo;semantic&rdquo; space. This in turns, allows us to define distance, and therefore similarity. For example, we should expect our embeddings to comply with $e_{apple} - e_{queen} > e_{apple} - e_{orange}$, where $e_{w}$ is the embedding vector, in our case in $\mathbb{R}^{4}$, of the word $w$. That is, the distance between the word apple and queen, should be greater than the distance between apple and orange because apples and oranges are fruits.</p><p>How do we <a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#learning-word-embeddings>learn these embeddings</a>, and how many dimensions are enough is something we go over in a bit.</p><blockquote><p>Remember that embeddings are synonymous with encodings. We want to have efficient word encodings that are much smaller but denser than our one-hot vectors; which are big but sparse.</p></blockquote><h3 id=using-word-embeddings>Using Word Embeddings<a hidden class=anchor aria-hidden=true href=#using-word-embeddings>#</a></h3><p>So how do we use these embeddings? It turns out that learning good word embeddings takes a lot of text: between $1$ and $100$ billion words in the corpus. That&rsquo;s just the data requirements, training costs are also going to be significant. Instead, we can be <a href=https://www.goodreads.com/quotes/568877-i-choose-a-lazy-person-to-do-a-hard-job>lazy</a> and use pre-trained embeddings from somewhere online. After we have these embeddings, we can employ transfer learning and fine-tune a neural network model to our task. We could even fine-tune the embeddings with our data.</p><p>This approach is similar to that of <a href=http://localhost:1313/posts/coursera/deep-learning-specialization/cnns/week4/>face encoding</a>. In the face recognition approach, we used a Siamese network to learn some $\mathbb{R}^{128}$ dimensional face embedding that is a good embedding for comparing two faces. It would even work with a picture that was not in the training set; a necessity of the face recognition application. In the case of word embeddings we are doing the same, except two things. The encodings are good encodings with respect to a language model, and also the cardinality of the inputs is fixed. It&rsquo;s equal to the size of the vocabulary used to learn the embeddings. Remember that we can use a unique token to represent unknown words, which would also get its own embedding representation.</p><h3 id=properties-of-word-embeddings>Properties of Word Embeddings<a hidden class=anchor aria-hidden=true href=#properties-of-word-embeddings>#</a></h3><p>We ended up with word embeddings by wanting to have a better representation of words that capture semantic meaning. But what does &ldquo;capturing semantic meaning&rdquo; really mean, and how is that helpful? One of the things that we can do with semantics, is to reason about analogies: $a$ is to $b$ as $c$ is to $d$; this seems to be an ability that helps with NLP tasks.</p><p>Let&rsquo;s say that we have some embedding $e_w \in \mathbb{R}^{300}$, since our embedding vectors are no longer orthogonal we can use linear algebra to describe the relationship between things in this new space; such as length, distance and so on. In the <a href=https://aclanthology.org/N13-1090.pdf>paper</a> that introduces this idea, the authors write in the abstract:</p><blockquote><p>&mldr; For example, the male/female relationship is automatically learned, and with the induced vector representations, “King - Man + Woman” results in a vector very close to “Queen.”</p></blockquote><p>This means that there is some dimension in the embedding that represents the semantic meaning of &ldquo;gender&rdquo;, and this dimension, the difference between &ldquo;King&rdquo; and &ldquo;Man&rdquo;, plus that of &ldquo;Woman&rdquo; approximates &ldquo;Queen&rdquo;. We can do math with semantic topics. Since we can do math, let&rsquo;s define &ldquo;Man&rdquo; is to &ldquo;Woman&rdquo; as &ldquo;King&rdquo; is to $w$. Mathematically:</p><p>$$
 \begin{aligned}
-e_{man} - e_{woman} &amp;\approx e_{king} - e_{w} \\
-e_{w} &amp;\approx e_{king} - e_{man} + e_{woman}
+e_{man} - e_{woman} &\approx e_{king} - e_{w} \\
+e_{w} &\approx e_{king} - e_{man} + e_{woman}
 \end{aligned}
-$$</p>
-<p>If we have a way to compare two vectors, i.e. a similarity function, we can search over all our words $w \in V$ in linear time comparing each $e_w$ to $e_{king} - e_{man} + e_{woman}$, and then picking the most similar as $e_w$. How can we say if two vectors are similar?</p>
-<h3 id="cosine-similarity">
-  Cosine Similarity
-  <a class="heading-link" href="#cosine-similarity">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Let&rsquo;s keep in mind that the dot product is related to the angle between two vectors. If $x \cdot y = 0$, then $x \perp y$, that is, they are either orthogonal or $x$ or $y = \vec{0}$. In the case that they are orthogonal, the angle between them is $90\degree$. What if $x \cdot y \neq 0$? It can be anything, from $(-\infty, \infty)$ except $0$. In similarity functions we always like the interval $[0, 1]$ more than $[-\infty, \infty]$. We can shrink the domain to be in the interval $[0, 1]$ usually by normalizing by something. We can use the Euclidean norm of the two vectors $x, y$ to normalize the size of the dot product. What does that product between the lengths of two vectors have to do with the dot product, and the angle between the vectors?</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Euclidean_vector#Dot_product"  class="external-link" target="_blank" rel="noopener">Euclidean dot product</a> formula is:</p>
-<p>$$
+$$</p><p>If we have a way to compare two vectors, i.e. a similarity function, we can search over all our words $w \in V$ in linear time comparing each $e_w$ to $e_{king} - e_{man} + e_{woman}$, and then picking the most similar as $e_w$. How can we say if two vectors are similar?</p><h3 id=cosine-similarity>Cosine Similarity<a hidden class=anchor aria-hidden=true href=#cosine-similarity>#</a></h3><p>Let&rsquo;s keep in mind that the dot product is related to the angle between two vectors. If $x \cdot y = 0$, then $x \perp y$, that is, they are either orthogonal or $x$ or $y = \vec{0}$. In the case that they are orthogonal, the angle between them is $90\degree$. What if $x \cdot y \neq 0$? It can be anything, from $(-\infty, \infty)$ except $0$. In similarity functions we always like the interval $[0, 1]$ more than $[-\infty, \infty]$. We can shrink the domain to be in the interval $[0, 1]$ usually by normalizing by something. We can use the Euclidean norm of the two vectors $x, y$ to normalize the size of the dot product. What does that product between the lengths of two vectors have to do with the dot product, and the angle between the vectors?</p><p>The <a href=https://en.wikipedia.org/wiki/Euclidean_vector#Dot_product>Euclidean dot product</a> formula is:</p><p>$$
 A \cdot B = ||A|| \ ||B|| \cos{\theta}
-$$</p>
-<p>Which is where the <a href="https://en.wikipedia.org/wiki/Cosine_similarity"  class="external-link" target="_blank" rel="noopener">cosine similarity</a> formula comes from:</p>
-<p>$$
+$$</p><p>Which is where the <a href=https://en.wikipedia.org/wiki/Cosine_similarity>cosine similarity</a> formula comes from:</p><p>$$
 S_c(A, B) := \cos{\theta} = \frac{A \cdot B}{||A|| \ ||B||}
-$$</p>
-<p>Remembering the <a href="https://en.wikipedia.org/wiki/Sine_and_cosine"  class="external-link" target="_blank" rel="noopener">sine and cosine</a> definitions: $\cos(90) = 0, \cos(0) = 1$ in angles.</p>
-<p>We can redefine our search problem for analogy reasoning as:</p>
-<p>$$
+$$</p><p>Remembering the <a href=https://en.wikipedia.org/wiki/Sine_and_cosine>sine and cosine</a> definitions: $\cos(90) = 0, \cos(0) = 1$ in angles.</p><p>We can redefine our search problem for analogy reasoning as:</p><p>$$
 \argmax_{w \in W} := S_c(e_w, e_{king} - e_{man} + e_{woman})
-$$</p>
-<p>The analogy reasoning is just a show trick. It&rsquo;s a way of exemplify what embeddings are doing. In practice, using word embeddings allows our models to learn about the connections between words in semantic space; which is very useful for performance.</p>
-<h3 id="embedding-matrix">
-  Embedding Matrix
-  <a class="heading-link" href="#embedding-matrix">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>So to formalize what an embedding is, let&rsquo;s go step by step and calculate some embedding $e_w$. Let $E$ be an embedding matrix of dimensions $(300, 10000)$. It&rsquo;s a mapping from 10,000 dimensional space to 300 dimensional space. The 10,000 comes from our vocabulary size; that is, for each word in our vocabulary $w \in W$ we will have a 300 dimensional vector $e_w$ which represents the embedding of $w \in \mathbb{R}^{300}$. Remember that the one-vector is the same but in more dimensions: $o_w \in \mathbb{R}^{10000}$. What happens if we multiply $E o_w$? The output dimension should be $(300, 1)$ since:</p>
-<p>$$
+$$</p><p>The analogy reasoning is just a show trick. It&rsquo;s a way of exemplify what embeddings are doing. In practice, using word embeddings allows our models to learn about the connections between words in semantic space; which is very useful for performance.</p><h3 id=embedding-matrix>Embedding Matrix<a hidden class=anchor aria-hidden=true href=#embedding-matrix>#</a></h3><p>So to formalize what an embedding is, let&rsquo;s go step by step and calculate some embedding $e_w$. Let $E$ be an embedding matrix of dimensions $(300, 10000)$. It&rsquo;s a mapping from 10,000 dimensional space to 300 dimensional space. The 10,000 comes from our vocabulary size; that is, for each word in our vocabulary $w \in W$ we will have a 300 dimensional vector $e_w$ which represents the embedding of $w \in \mathbb{R}^{300}$. Remember that the one-vector is the same but in more dimensions: $o_w \in \mathbb{R}^{10000}$. What happens if we multiply $E o_w$? The output dimension should be $(300, 1)$ since:</p><p>$$
 \underset{(300, 10000)}{E}\underset{(10000, 1)}{o_w} = \underset{(300, 1)}{e_w}
-$$</p>
-<p>Notice that because of the way matrix multiplication works, only one column of $E$ is selected, and it&rsquo;s exactly the $w_{th}$ one. This makes generating word embeddings pretty computationally expensive, even after learning $E$. Which is the reason why many pre-trained embeddings are distributed as a dictionary mapping $w \to e_w$ directly, without the multiplication step.</p>
-<h2 id="word-embeddings">
-  Word Embeddings
-  <a class="heading-link" href="#word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="learning-word-embeddings">
-  Learning Word Embeddings
-  <a class="heading-link" href="#learning-word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>How can we learn the embedding matrix $E$? We can learn it via supervised learning. If we have some vocabulary $V$ with size $|V| = 10,000$, and $o_w$ represents the one-hot vector encoding of the word with index $w$. The training pair is a pair consisting of a phrase and the next word, such as $X_i=\text{&ldquo;I want a glass of orange&rdquo;}$ and $Y_i=\text{&ldquo;juice&rdquo;}$</p>
-<p>We can randomly initialize $E$ and define $e_w = Eo_w$. The idea is to take each $o_w^{&lt;t&gt;}$ in our training pair and map it to $e_w^{&lt;t&gt;}$ via $E$. Finally, we use all $e_w^{&lt;t&gt;}$ into a fully connected layer that&rsquo;s run into a softmax. The idea is to correctly classify the next word using the optimization on the network parameters $\theta$, one of which is $E$ the embedding matrix, using cross-entropy loss.</p>
-<p>In practice, this means that the algorithm will learn embeddings of words with the directed goal of next token prediction. Since the quality of the embeddings is directly related to word prediction, the algorithm has full incentive to encode relations of similar words into one of the 300 features. This brings us to another important thing.</p>
-<p>So far we have been using semantic topics such as &ldquo;Man&rdquo; or &ldquo;Queen&rdquo;. We do this not because the embeddings will correspond to topics we understand, but to aid the explanation of the topic. In practice, deciphering what an embedding dimension really means is hard, and it amounts to guess work.</p>
-<p>Different extensions of this basic model generalize the pairing of examples for the supervised learning task. We can define a context $c$ and a target word $t$. We were using $c$ to be all the words leading up to $t$. But we are not required to do this. We can use a context where we use 2 words on the left and on the right of the target word, even just the last word. The Word2Vec algorithm is an extension of this idea, and it has a variation that uses <a href="#negative-sampling" >Negative sampling</a> for generating the pairs. Let&rsquo;s discuss the Word2Vec approach first.</p>
-<h3 id="word2vec">
-  Word2Vec
-  <a class="heading-link" href="#word2vec">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>In Word2Vec we keep using the supervised learning approach, but we pick just a pair of words $c, t$, the context and target respectively. Notice that these do not need to be adjacent words. In the <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/"  class="external-link" target="_blank" rel="noopener">skip-gram</a> model, we pick a word $t$ and generate the content by picking a neighboring word $c$ at random. Therefore, the classification task is to classify which words are more likely to occur nearby each other. We will see a more sophisticated way of sampling in <a href="#negative-sampling" >negative sampling</a> but for now let&rsquo;s keep in mind that we are still doing essentially the same as before:</p>
-<p>$$
+$$</p><p>Notice that because of the way matrix multiplication works, only one column of $E$ is selected, and it&rsquo;s exactly the $w_{th}$ one. This makes generating word embeddings pretty computationally expensive, even after learning $E$. Which is the reason why many pre-trained embeddings are distributed as a dictionary mapping $w \to e_w$ directly, without the multiplication step.</p><h2 id=word-embeddings>Word Embeddings<a hidden class=anchor aria-hidden=true href=#word-embeddings>#</a></h2><h3 id=learning-word-embeddings>Learning Word Embeddings<a hidden class=anchor aria-hidden=true href=#learning-word-embeddings>#</a></h3><p>How can we learn the embedding matrix $E$? We can learn it via supervised learning. If we have some vocabulary $V$ with size $|V| = 10,000$, and $o_w$ represents the one-hot vector encoding of the word with index $w$. The training pair is a pair consisting of a phrase and the next word, such as $X_i=\text{&ldquo;I want a glass of orange&rdquo;}$ and $Y_i=\text{&ldquo;juice&rdquo;}$</p><p>We can randomly initialize $E$ and define $e_w = Eo_w$. The idea is to take each $o_w^{&lt;t>}$ in our training pair and map it to $e_w^{&lt;t>}$ via $E$. Finally, we use all $e_w^{&lt;t>}$ into a fully connected layer that&rsquo;s run into a softmax. The idea is to correctly classify the next word using the optimization on the network parameters $\theta$, one of which is $E$ the embedding matrix, using cross-entropy loss.</p><p>In practice, this means that the algorithm will learn embeddings of words with the directed goal of next token prediction. Since the quality of the embeddings is directly related to word prediction, the algorithm has full incentive to encode relations of similar words into one of the 300 features. This brings us to another important thing.</p><p>So far we have been using semantic topics such as &ldquo;Man&rdquo; or &ldquo;Queen&rdquo;. We do this not because the embeddings will correspond to topics we understand, but to aid the explanation of the topic. In practice, deciphering what an embedding dimension really means is hard, and it amounts to guess work.</p><p>Different extensions of this basic model generalize the pairing of examples for the supervised learning task. We can define a context $c$ and a target word $t$. We were using $c$ to be all the words leading up to $t$. But we are not required to do this. We can use a context where we use 2 words on the left and on the right of the target word, even just the last word. The Word2Vec algorithm is an extension of this idea, and it has a variation that uses <a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#negative-sampling>Negative sampling</a> for generating the pairs. Let&rsquo;s discuss the Word2Vec approach first.</p><h3 id=word2vec>Word2Vec<a hidden class=anchor aria-hidden=true href=#word2vec>#</a></h3><p>In Word2Vec we keep using the supervised learning approach, but we pick just a pair of words $c, t$, the context and target respectively. Notice that these do not need to be adjacent words. In the <a href=http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/>skip-gram</a> model, we pick a word $t$ and generate the content by picking a neighboring word $c$ at random. Therefore, the classification task is to classify which words are more likely to occur nearby each other. We will see a more sophisticated way of sampling in <a href=/posts/coursera/deep-learning-specialization/sequence-models/week2/#negative-sampling>negative sampling</a> but for now let&rsquo;s keep in mind that we are still doing essentially the same as before:</p><p>$$
 o_c \to E \to e_c \to \text{softmax} \to \hat{y}
-$$</p>
-<p>The softmax output $\hat{y}$ is the estimate of the probability that we see $c$ given $t$: $P(t\mid c)$. It&rsquo;s defined as:</p>
-<p>$$
+$$</p><p>The softmax output $\hat{y}$ is the estimate of the probability that we see $c$ given $t$: $P(t\mid c)$. It&rsquo;s defined as:</p><p>$$
 P(t \mid c) = \frac{e^{\theta_t^Te_c}}{\sum_{j=1}^{10000}e^{\theta_j^Te_c}}
-$$</p>
-<p>And our loss is:</p>
-<p>$$
+$$</p><p>And our loss is:</p><p>$$
 \mathcal{L}(\hat{y}, y) = - \sum_{i=1}^{10000} y_i \log \hat{y}_i
-$$</p>
-<p>So far so good, and this will work. But there&rsquo;s a problem: calculating the softmax for $10,000$ classes might be feasible, but what about bigger vocabularies? What about a million? It&rsquo;s no longer feasible. There are a few solutions.</p>
-<p>The hierarchical softmax is a similar approach to negative sampling, where the idea is to reduce the computational complexity of the $\text{softmax}$ function down from $O(|V|)$. The hierarchical softmax has a time complexity of $O(\log |V|)$. The approach is based on <a href="https://en.wikipedia.org/wiki/Huffman_coding"  class="external-link" target="_blank" rel="noopener">Huffman coding</a> a coding scheme used for lossless data compression. <a href="http://mccormickml.com/about/"  class="external-link" target="_blank" rel="noopener">Chris McCormick</a> has an amazing <a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/"  class="external-link" target="_blank" rel="noopener">tutorial</a> on his website where you can learn a lot more about word2vec. It seems that negative sampling and hierarchical softmax work in an equivalent manner, with negative sampling being more intuitive to understand.</p>
-<h4 id="negative-sampling">
-  Negative Sampling
-  <a class="heading-link" href="#negative-sampling">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h4>
-<p>In negative sampling we still have a context word and a target: $c, t$. Except we will create fake example pairs, negative samples, in addition to the real pair. For example, if the real pair is <code>(orange, juice)</code>, we might make $k=4$ negative samples:</p>
-<ol>
-<li><code>(orange, king)</code></li>
-<li><code>(orange, book)</code></li>
-<li><code>(orange, the)</code></li>
-<li><code>(orange, of)</code></li>
-</ol>
-<p>Notice that the context $c$ remains fixed, while the target $t$ is sampled at random. For smaller datasets we want to pick $k \in [5, 20]$ while for larger datasets we can get away with $k \in [2, 5]$. Think of $k$ as a sampling size parameter, which reduces the standard error of our estimates as it goes up.</p>
-<p>The next thing is to label all positive samples (real) with a $1$ label, that is $y=1$; while we give a $0$ label to the negative samples, that is $y = 0$. The idea is for the softmax to learn to classify which pairs are positive and which ones are negative. That is we want to estimate:</p>
-<p>$$
+$$</p><p>So far so good, and this will work. But there&rsquo;s a problem: calculating the softmax for $10,000$ classes might be feasible, but what about bigger vocabularies? What about a million? It&rsquo;s no longer feasible. There are a few solutions.</p><p>The hierarchical softmax is a similar approach to negative sampling, where the idea is to reduce the computational complexity of the $\text{softmax}$ function down from $O(|V|)$. The hierarchical softmax has a time complexity of $O(\log |V|)$. The approach is based on <a href=https://en.wikipedia.org/wiki/Huffman_coding>Huffman coding</a> a coding scheme used for lossless data compression. <a href=http://mccormickml.com/about/>Chris McCormick</a> has an amazing <a href=http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/>tutorial</a> on his website where you can learn a lot more about word2vec. It seems that negative sampling and hierarchical softmax work in an equivalent manner, with negative sampling being more intuitive to understand.</p><h4 id=negative-sampling>Negative Sampling<a hidden class=anchor aria-hidden=true href=#negative-sampling>#</a></h4><p>In negative sampling we still have a context word and a target: $c, t$. Except we will create fake example pairs, negative samples, in addition to the real pair. For example, if the real pair is <code>(orange, juice)</code>, we might make $k=4$ negative samples:</p><ol><li><code>(orange, king)</code></li><li><code>(orange, book)</code></li><li><code>(orange, the)</code></li><li><code>(orange, of)</code></li></ol><p>Notice that the context $c$ remains fixed, while the target $t$ is sampled at random. For smaller datasets we want to pick $k \in [5, 20]$ while for larger datasets we can get away with $k \in [2, 5]$. Think of $k$ as a sampling size parameter, which reduces the standard error of our estimates as it goes up.</p><p>The next thing is to label all positive samples (real) with a $1$ label, that is $y=1$; while we give a $0$ label to the negative samples, that is $y = 0$. The idea is for the softmax to learn to classify which pairs are positive and which ones are negative. That is we want to estimate:</p><p>$$
 P(y=1 \mid c, t) = \sigma(\theta_t^Te_c)
-$$</p>
-<p>This is equivalent to training $10,000$ different binary classifiers at the end of the network, but only sampling $k$ of those classifiers at each time. Therefore, we can think of negative sampling as an estimator of the $\text{softmax}$ function.</p>
-<p>But how do we sample the negative samples? The authors recommend a way that&rsquo;s somewhere in between the empirical distribution $P(w_i)$ and $\frac{1}{|V|}$. Using the former will over-sample stop words because they are very common, while the latter will treat extremely uncommon words the same as stop words. The actual probability mass function is given by:</p>
-<p>$$
+$$</p><p>This is equivalent to training $10,000$ different binary classifiers at the end of the network, but only sampling $k$ of those classifiers at each time. Therefore, we can think of negative sampling as an estimator of the $\text{softmax}$ function.</p><p>But how do we sample the negative samples? The authors recommend a way that&rsquo;s somewhere in between the empirical distribution $P(w_i)$ and $\frac{1}{|V|}$. Using the former will over-sample stop words because they are very common, while the latter will treat extremely uncommon words the same as stop words. The actual probability mass function is given by:</p><p>$$
 P(w_i) = \frac{f(w_i)^{\frac{3}{4}}}{\sum_{j=1}^{10000}f(w_j)^{\frac{3}{4}}}
-$$</p>
-<h3 id="glove-word-vectors">
-  GloVe Word Vectors
-  <a class="heading-link" href="#glove-word-vectors">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Global Vectors For Word Representations (GloVE) is another approach to learn $E$ and $e_w$, the embedding matrix and word embeddings. It does something very similar to word2vec.</p>
-<p>In word2vec we were picking $c, t$ two words that appear in proximity. Here we will be more explicit and define $X_{ij}$ as the number of times that word $j$ appears in the context of word $i$. Notice that depending on how we define the context $X_{ij}$ could be equal to $X_{ji}$. If the context wraps around the target it will be symmetrical, while if you only look backwards it will not.</p>
-<p>In this case we want to minimize the following:</p>
-<p>$$
+$$</p><h3 id=glove-word-vectors>GloVe Word Vectors<a hidden class=anchor aria-hidden=true href=#glove-word-vectors>#</a></h3><p>Global Vectors For Word Representations (GloVE) is another approach to learn $E$ and $e_w$, the embedding matrix and word embeddings. It does something very similar to word2vec.</p><p>In word2vec we were picking $c, t$ two words that appear in proximity. Here we will be more explicit and define $X_{ij}$ as the number of times that word $j$ appears in the context of word $i$. Notice that depending on how we define the context $X_{ij}$ could be equal to $X_{ji}$. If the context wraps around the target it will be symmetrical, while if you only look backwards it will not.</p><p>In this case we want to minimize the following:</p><p>$$
 \mathcal{L} = \sum_{i=1}^{|V|} \sum_{j=1}^{|V|} f(X_{ij})(\theta_i^Te_j + b_i + b_j - \log X_{ij})^2
-$$</p>
-<p>$f(X_{ij})$ is some weighting function that allows us to deal with taking $\log 0$ but can also introduce useful information about the frequency of the pair $ij$.</p>
-<p>It turns out that $\theta_i$ and $e_j$ as symmetrical vectors since they are both optimized in the same way. This means that in practice, to calculate the embedding of word $w$ we take the average of the two:</p>
-<p>$$
+$$</p><p>$f(X_{ij})$ is some weighting function that allows us to deal with taking $\log 0$ but can also introduce useful information about the frequency of the pair $ij$.</p><p>It turns out that $\theta_i$ and $e_j$ as symmetrical vectors since they are both optimized in the same way. This means that in practice, to calculate the embedding of word $w$ we take the average of the two:</p><p>$$
 e_w = \frac{\theta_w + e_w}{2}
-$$</p>
-<h2 id="applications-using-word-embeddings">
-  Applications Using Word Embeddings
-  <a class="heading-link" href="#applications-using-word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="sentiment-classification">
-  Sentiment Classification
-  <a class="heading-link" href="#sentiment-classification">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Okay, enough about embeddings. How can we use them? The same way we use one-hot encodings! Let&rsquo;s walk through the steps from a basic NN to using an RNN.</p>
-<p>We could take a review, such as &ldquo;This desert is excellent&rdquo; and want to classify it into five classes, the reviews&rsquo; stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.</p>
-<p>We can simply plug-and-play an RNN using the same embeddings, and generate a prediction at the end, exactly like the many-to-one RNN approach. This will work a lot better for reviews that say things like: &ldquo;A great waste of my very, good, excellent time&rdquo;. The former model might score this review highly because of the presence of positive sentiment words, but an RNN might be more adept at figuring out that &ldquo;waste&rdquo; negates all the other positive words.</p>
-<h3 id="de-biasing-word-embeddings">
-  De-biasing Word Embeddings
-  <a class="heading-link" href="#de-biasing-word-embeddings">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>You might have heard of instances where earlier versions of machine translation approaches would translate the non-gendered words in English such as &ldquo;Doctor&rdquo; into gendered versions in the target language, such as &ldquo;Doctor&rdquo; in Spanish as opposed to &ldquo;Doctora&rdquo;, the female version of the noun. This is a reflection of the corpus the model was trained on. Algorithmic bias is a contentious topic because it reveals biases we either forgot were there or those that we do not like to be reminded of. In this case, male doctors were much more frequent than female doctors in the target translation language, and as such, the language model learned to estimate that empirical probability distribution. But this example, generally benign in its real outcomes, is probably the most benevolent example of algorithmic bias.</p>
-<p>As predictive models make their way into diverse aspects of life, the more important the outcome associated with the prediction generated by an algorithm, the more care we must take with the implicit biases in its training data. One noxious example is that of <a href="https://www.wired.com/story/algorithms-supposed-fix-bail-system-they-havent/"  class="external-link" target="_blank" rel="noopener">bail decisions</a>, an approach supported by <a href="https://cs.stanford.edu/people/jure/pubs/bail-qje17.pdf"  class="external-link" target="_blank" rel="noopener">quasi-experimental methods</a> as an improvement over judges deciding by themselves as measured by the change in the defendant&rsquo;s welfare.</p>
-<p>In economics, we differentiate taste-based discrimination from <a href="https://en.wikipedia.org/wiki/Statistical_discrimination_%28economics%29"  class="external-link" target="_blank" rel="noopener">statistical discrimination</a>. The former emphasizes the role of prejudice on decision-making, while the latter is more mechanical. In the absence of perfect information, people must make guesses, based on observable attributes to make rational decisions. A very interesting study of statistical discrimination occurred in the context of the &ldquo;ban the box&rdquo; (BTB) policies. BTB policies prevented employers from asking about job applicant&rsquo;s criminal records until late in the hiring process, under the idea that it was unfair for people with criminal records. The study however finds the opposite effect: with the absence of information, employers engage in statistical discrimination against demographic groups that include more ex-offenders. The <a href="https://www.journals.uchicago.edu/doi/full/10.1086/705880"  class="external-link" target="_blank" rel="noopener">study</a> finds that BTB policies decrease the probability of employment by $3.4$ percentage points for young, low-skilled black men.</p>
-<p>Is there a way we could de-bias training data so that the predictive model aligns better with our ethical and moral compass? For the case of machine translation, a group of authors did just that.</p>
-<p>With our knowledge of embeddings it&rsquo;s pretty intuitive to understand the basics of the approach by <a href="https://arxiv.org/abs/1607.06520"  class="external-link" target="_blank" rel="noopener">Bolukbasi, et al.</a> in <em>Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</em>. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as <em>man</em> and <em>woman</em> and averaging the bias across all such pairs we find. The bias for the pair <code>(male, female)</code> for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/" >here</a>.</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p><a href="https://en.wikipedia.org/wiki/Dot_product"  class="external-link" target="_blank" rel="noopener">Dot-Product | Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-
-      </div>
-
-
-      <footer>
-        
-
-
-        <div id="disqus_thread"></div>
-<script>
-  window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    
-    document.addEventListener('themeChanged', function (e) { 
-        if (document.readyState == 'complete') {
-          DISQUS.reset({ reload: true, config: disqus_config });
-        }
-    });
-</script>
-        
-        
-        
-        
-        
-        
-      </footer>
-    </article>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
-  
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
-    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
-    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-    onload="renderMathInElement(document.body,
-      {
-        delimiters: [
-          {left: '$$', right: '$$', display:true},
-          {left: '$', right: '$', display:false},
-          {left: '\\(', right: '\\)', display: false},
-          {left: '\\[', right: '\\]', display: true}
-        ]
-      }
-    );"></script>
-  </section>
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-      2023 -
-    
-    2025
-     Manuel Martinez 
-    ·
-    
-      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NJLM0F56ZC');
-</script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-</html>
+$$</p><h2 id=applications-using-word-embeddings>Applications Using Word Embeddings<a hidden class=anchor aria-hidden=true href=#applications-using-word-embeddings>#</a></h2><h3 id=sentiment-classification>Sentiment Classification<a hidden class=anchor aria-hidden=true href=#sentiment-classification>#</a></h3><p>Okay, enough about embeddings. How can we use them? The same way we use one-hot encodings! Let&rsquo;s walk through the steps from a basic NN to using an RNN.</p><p>We could take a review, such as &ldquo;This desert is excellent&rdquo; and want to classify it into five classes, the reviews&rsquo; stars. We do the same thing again, map each $w$ into $o_w$ and then into $e_w$ via an embedding matrix $E$. After we have $e_{the}, \dots, e_{excellent}$ we could take the average of these vectors across the dimensions (columns), resulting in a $300$ dimensional vector, if we use $300$ dimensional embeddings. We could then run this through a softmax with $K = 5$ and generate a prediction for the review score. This will work okay, but we will run into the same issue we ran original when introducing RNNs. The model cannot use temporal structure to affect the prediction.</p><p>We can simply plug-and-play an RNN using the same embeddings, and generate a prediction at the end, exactly like the many-to-one RNN approach. This will work a lot better for reviews that say things like: &ldquo;A great waste of my very, good, excellent time&rdquo;. The former model might score this review highly because of the presence of positive sentiment words, but an RNN might be more adept at figuring out that &ldquo;waste&rdquo; negates all the other positive words.</p><h3 id=de-biasing-word-embeddings>De-biasing Word Embeddings<a hidden class=anchor aria-hidden=true href=#de-biasing-word-embeddings>#</a></h3><p>You might have heard of instances where earlier versions of machine translation approaches would translate the non-gendered words in English such as &ldquo;Doctor&rdquo; into gendered versions in the target language, such as &ldquo;Doctor&rdquo; in Spanish as opposed to &ldquo;Doctora&rdquo;, the female version of the noun. This is a reflection of the corpus the model was trained on. Algorithmic bias is a contentious topic because it reveals biases we either forgot were there or those that we do not like to be reminded of. In this case, male doctors were much more frequent than female doctors in the target translation language, and as such, the language model learned to estimate that empirical probability distribution. But this example, generally benign in its real outcomes, is probably the most benevolent example of algorithmic bias.</p><p>As predictive models make their way into diverse aspects of life, the more important the outcome associated with the prediction generated by an algorithm, the more care we must take with the implicit biases in its training data. One noxious example is that of <a href=https://www.wired.com/story/algorithms-supposed-fix-bail-system-they-havent/>bail decisions</a>, an approach supported by <a href=https://cs.stanford.edu/people/jure/pubs/bail-qje17.pdf>quasi-experimental methods</a> as an improvement over judges deciding by themselves as measured by the change in the defendant&rsquo;s welfare.</p><p>In economics, we differentiate taste-based discrimination from <a href=https://en.wikipedia.org/wiki/Statistical_discrimination_%28economics%29>statistical discrimination</a>. The former emphasizes the role of prejudice on decision-making, while the latter is more mechanical. In the absence of perfect information, people must make guesses, based on observable attributes to make rational decisions. A very interesting study of statistical discrimination occurred in the context of the &ldquo;ban the box&rdquo; (BTB) policies. BTB policies prevented employers from asking about job applicant&rsquo;s criminal records until late in the hiring process, under the idea that it was unfair for people with criminal records. The study however finds the opposite effect: with the absence of information, employers engage in statistical discrimination against demographic groups that include more ex-offenders. The <a href=https://www.journals.uchicago.edu/doi/full/10.1086/705880>study</a> finds that BTB policies decrease the probability of employment by $3.4$ percentage points for young, low-skilled black men.</p><p>Is there a way we could de-bias training data so that the predictive model aligns better with our ethical and moral compass? For the case of machine translation, a group of authors did just that.</p><p>With our knowledge of embeddings it&rsquo;s pretty intuitive to understand the basics of the approach by <a href=https://arxiv.org/abs/1607.06520>Bolukbasi, et al.</a> in <em>Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</em>. The first step is to identify the bias direction. We do this by taking pairs of intrinsically gendered nouns, such as <em>man</em> and <em>woman</em> and averaging the bias across all such pairs we find. The bias for the pair <code>(male, female)</code> for example is defined as $e_{male} - e_{female}$. After we identified the direction of bias, we want to project the bias dimension away. Finally, we want to equalize pairs. This means that definitional words, such as grandfather, should be equidistant from non-definitional nouns, such as doctor.</p><p>Next week&rsquo;s post is <a href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/>here</a>.</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://en.wikipedia.org/wiki/Dot_product>Dot-Product | Wikipedia</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><footer class=post-footer><ul class=post-tags><li><a href=http://localhost:1313/tags/machine-learning/>Machine Learning</a></li><li><a href=http://localhost:1313/tags/deep-learning/>Deep Learning</a></li></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/><span class=title>« Prev</span><br><span>Sequence Models: Week 1 | Recurrent Neural Networks</span>
+</a><a class=next href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/><span class=title>Next »</span><br><span>Sequence Models: Week 3 | Sequence Models & Attention Mechanism</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=http://localhost:1313/>Manuel Martinez</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

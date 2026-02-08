@@ -1,26 +1,90 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Structuring ML Projects on Manuel Martinez</title>
-    <link>https://manmartgarc.github.io/categories/structuring-ml-projects/</link>
+    <link>http://localhost:1313/categories/structuring-ml-projects/</link>
     <description>Recent content in Structuring ML Projects on Manuel Martinez</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Tue, 27 Jun 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://manmartgarc.github.io/categories/structuring-ml-projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/structuring-ml-projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Structuring ML Projects: Week 2 | ML Strategy</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</link>
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</guid>
-      <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;third course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course is less technical than the previous two and focuses instead on general principles and intuition related to machine learning projects.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#error-analysis&#34; &gt;Error Analysis&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#carrying-out-error-analysis&#34; &gt;Carrying out Error Analysis&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#cleaning-up-incorrectly-labeled-data&#34; &gt;Cleaning up Incorrectly Labeled Data&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#build-our-first-system-quickly-then-iterate&#34; &gt;Build our First System Quickly, then Iterate&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#mismatched-training-and-devtest-sets&#34; &gt;Mismatched Training and Dev/Test Sets&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#training-and-testing-on-different-distributions&#34; &gt;Training and Testing on Different Distributions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#bias-and-variance-with-mismatched-data-distributions&#34; &gt;Bias and Variance with Mismatched Data Distributions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#addressing-data-mismatch&#34; &gt;Addressing Data Mismatch&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#learning-from-multiple-tasks&#34; &gt;Learning from Multiple Tasks&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#transfer-learning&#34; &gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#multitask-learning&#34; &gt;Multitask Learning&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#end-to-end-deep-learning&#34; &gt;End-to-end Deep Learning&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#what-is-end-to-end-deep-learning&#34; &gt;What is End-to-end Deep Learning?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#whether-to-use-end-to-end-deep-learning&#34; &gt;Whether to use End-to-end Deep Learning&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;error-analysis&#34;&gt;&#xA;  Error Analysis&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#error-analysis&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;carrying-out-error-analysis&#34;&gt;&#xA;  Carrying out Error Analysis&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#carrying-out-error-analysis&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;One of the things that we can do when our model is performing worse than human-level performance is to carry out error analysis. Error analysis is just a fancy name to trying to ascertain what the sources of errors are. This is critical because if we can quickly come up with a &amp;ldquo;ceiling&amp;rdquo; or upper-bound on the improvement of a particular strategy.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/</guid>
+      <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning&#34;&gt;third course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course is less technical than the previous two and focuses instead on general principles and intuition related to machine learning projects.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#error-analysis&#34;&gt;Error Analysis&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#carrying-out-error-analysis&#34;&gt;Carrying out Error Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#cleaning-up-incorrectly-labeled-data&#34;&gt;Cleaning up Incorrectly Labeled Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#build-our-first-system-quickly-then-iterate&#34;&gt;Build our First System Quickly, then Iterate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#mismatched-training-and-devtest-sets&#34;&gt;Mismatched Training and Dev/Test Sets&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#training-and-testing-on-different-distributions&#34;&gt;Training and Testing on Different Distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#bias-and-variance-with-mismatched-data-distributions&#34;&gt;Bias and Variance with Mismatched Data Distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#addressing-data-mismatch&#34;&gt;Addressing Data Mismatch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#learning-from-multiple-tasks&#34;&gt;Learning from Multiple Tasks&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#transfer-learning&#34;&gt;Transfer Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#multitask-learning&#34;&gt;Multitask Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#end-to-end-deep-learning&#34;&gt;End-to-end Deep Learning&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#what-is-end-to-end-deep-learning&#34;&gt;What is End-to-end Deep Learning?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week2/#whether-to-use-end-to-end-deep-learning&#34;&gt;Whether to use End-to-end Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;error-analysis&#34;&gt;Error Analysis&lt;/h2&gt;
+&lt;h3 id=&#34;carrying-out-error-analysis&#34;&gt;Carrying out Error Analysis&lt;/h3&gt;
+&lt;p&gt;One of the things that we can do when our model is performing worse than human-level performance is to carry out error analysis. Error analysis is just a fancy name to trying to ascertain what the sources of errors are. This is critical because if we can quickly come up with a &amp;ldquo;ceiling&amp;rdquo; or upper-bound on the improvement of a particular strategy.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Structuring ML Projects: Week 1 | ML Strategy</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</link>
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</guid>
-      <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;third course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course is less technical than the previous two and focuses instead on general principles and intuition related to machine learning projects.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction-to-ml-strategy&#34; &gt;Introduction to ML Strategy&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-ml-strategy&#34; &gt;Why ML Strategy&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#orthogonalization&#34; &gt;Orthogonalization&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#setting-up-our-goal&#34; &gt;Setting Up our Goal&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#single-number-evaluation-metric&#34; &gt;Single Number Evaluation Metric&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#satisficing-and-optimizing-metrics&#34; &gt;Satisficing and Optimizing Metrics&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#traindevtest-distributions&#34; &gt;Train/Dev/Test Distributions&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#size-of-dev-and-test-sets&#34; &gt;Size of Dev and Test Sets&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#when-to-change-devtest-sets-and-metrics&#34; &gt;When to Change Dev/Test Sets and Metrics?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#comparing-to-human-level-performance&#34; &gt;Comparing to Human-Level Performance&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-human-level-performance&#34; &gt;Why Human-level performance?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#avoidable-bias&#34; &gt;Avoidable Bias&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#understanding-human-level-performance&#34; &gt;Understanding Human-level Performance&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#surpassing-human-level-performance&#34; &gt;Surpassing Human-level Performance&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#improving-your-model-performance&#34; &gt;Improving your Model Performance&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;introduction-to-ml-strategy&#34;&gt;&#xA;  Introduction to ML Strategy&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction-to-ml-strategy&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;why-ml-strategy&#34;&gt;&#xA;  Why ML Strategy&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-ml-strategy&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Whenever we are working on a machine learning project, and after we have completed our first iteration on the approach, there might be many things to try next. Should we get more data? Try regularization? Try a bigger network? So many things to choose from. This is why we need high-level heuristics to guide our strategy.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/</guid>
+      <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/machine-learning-projects?specialization=deep-learning&#34;&gt;third course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This course is less technical than the previous two and focuses instead on general principles and intuition related to machine learning projects.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#introduction-to-ml-strategy&#34;&gt;Introduction to ML Strategy&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#why-ml-strategy&#34;&gt;Why ML Strategy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#orthogonalization&#34;&gt;Orthogonalization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#setting-up-our-goal&#34;&gt;Setting Up our Goal&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#single-number-evaluation-metric&#34;&gt;Single Number Evaluation Metric&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#satisficing-and-optimizing-metrics&#34;&gt;Satisficing and Optimizing Metrics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#traindevtest-distributions&#34;&gt;Train/Dev/Test Distributions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#size-of-dev-and-test-sets&#34;&gt;Size of Dev and Test Sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#when-to-change-devtest-sets-and-metrics&#34;&gt;When to Change Dev/Test Sets and Metrics?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#comparing-to-human-level-performance&#34;&gt;Comparing to Human-Level Performance&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#why-human-level-performance&#34;&gt;Why Human-level performance?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#avoidable-bias&#34;&gt;Avoidable Bias&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#understanding-human-level-performance&#34;&gt;Understanding Human-level Performance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#surpassing-human-level-performance&#34;&gt;Surpassing Human-level Performance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/structuring-ml-projects/week1/#improving-your-model-performance&#34;&gt;Improving your Model Performance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction-to-ml-strategy&#34;&gt;Introduction to ML Strategy&lt;/h2&gt;
+&lt;h3 id=&#34;why-ml-strategy&#34;&gt;Why ML Strategy&lt;/h3&gt;
+&lt;p&gt;Whenever we are working on a machine learning project, and after we have completed our first iteration on the approach, there might be many things to try next. Should we get more data? Try regularization? Try a bigger network? So many things to choose from. This is why we need high-level heuristics to guide our strategy.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>
-  Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism · Manuel Martinez
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="Manuel Martinez">
-<meta name="description" content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
+<!doctype html><html lang=en dir=auto data-theme=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Sequence Models: Week 3 | Sequence Models & Attention Mechanism | Manuel Martinez</title><meta name=keywords content="machine learning,deep learning"><meta name=description content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week&rsquo;s topics are:
 
 Sequence to Sequence Architectures
@@ -40,556 +25,60 @@ Defining the Attention Model
 
 
 
-
-  Sequence to Sequence Architectures
-  
-    
-    Link to heading
-  
-
-The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
-<meta name="keywords" content="blog,developer,personal">
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism">
-  <meta name="twitter:description" content="This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
+Sequence to Sequence Architectures
+The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example."><meta name=author content="Manuel Martinez"><link rel=canonical href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/><link crossorigin=anonymous href=/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/images/favicon.ico><link rel=apple-touch-icon href=http://localhost:1313/apple-touch-icon.png><link rel=mask-icon href=http://localhost:1313/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],throwOnError:!1})})</script><meta property="og:url" content="http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/"><meta property="og:site_name" content="Manuel Martinez"><meta property="og:title" content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism"><meta property="og:description" content="This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
 This week’s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures Link to heading The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
+Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-08-12T00:00:00+00:00"><meta property="article:modified_time" content="2023-08-12T00:00:00+00:00"><meta property="article:tag" content="Machine Learning"><meta property="article:tag" content="Deep Learning"><meta name=twitter:card content="summary"><meta name=twitter:title content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism"><meta name=twitter:description content="This is the third week of the fifth course of DeepLearning.AI&rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
+This week&rsquo;s topics are:
 
-<meta property="og:url" content="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
-  <meta property="og:site_name" content="Manuel Martinez">
-  <meta property="og:title" content="Sequence Models: Week 3 | Sequence Models & Attention Mechanism">
-  <meta property="og:description" content="This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.
-This week’s topics are:
-Sequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures Link to heading The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-08-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-08-12T00:00:00+00:00">
-    <meta property="article:tag" content="Machine Learning">
-    <meta property="article:tag" content="Deep Learning">
+Sequence to Sequence Architectures
 
+Basic Seq2Seq Models
+Picking the Most Likely Sentence
 
+Why not Greedy Search?
+Beam Search
 
+Refinements
+Error Analysis
 
-<link rel="canonical" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
 
 
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
+Attention
 
-  
-  
-  <link rel="stylesheet" href="/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
+Developing Intuition
+Defining the Attention Model
 
 
 
 
 
 
-  
-    
-    
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="https://manmartgarc.github.io/">
-      Manuel Martinez
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/about/">About</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/posts/">Posts</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/projects/">Projects</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/cv/">CV</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container post">
-    <article>
-      <header>
-        <div class="post-title">
-          <h1 class="title">
-            <a class="title-link" href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/">
-              Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism
-            </a>
-          </h1>
-        </div>
-        <div class="post-meta">
-          <div class="date">
-            <span class="posted-on">
-              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="2023-08-12T00:00:00Z">
-                August 12, 2023
-              </time>
-            </span>
-            <span class="reading-time">
-              <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              15-minute read
-            </span>
-          </div>
-          
-          <div class="categories">
-  <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/coursera/">Coursera</a>
-      <span class="separator">•</span>
-    <a href="/categories/deep-learning-specialization/">Deep Learning Specialization</a>
-      <span class="separator">•</span>
-    <a href="/categories/sequence-models/">Sequence Models</a></div>
-
-          <div class="tags">
-  <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/machine-learning/">Machine Learning</a>
-    </span>
-      <span class="separator">•</span>
-    <span class="tag">
-      <a href="/tags/deep-learning/">Deep Learning</a>
-    </span></div>
-
-        </div>
-      </header>
-
-      <div class="post-content">
-        
-        <p>This is the third week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/"  class="external-link" target="_blank" rel="noopener">fifth course</a> of DeepLearning.AI&rsquo;s <a href="https://www.coursera.org/specializations/deep-learning"  class="external-link" target="_blank" rel="noopener">Deep Learning Specialization</a> offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.</p>
-<p>This week&rsquo;s topics are:</p>
-<ul>
-<li><a href="#sequence-to-sequence-architectures" >Sequence to Sequence Architectures</a>
-<ul>
-<li><a href="#basic-seq2seq-models" >Basic Seq2Seq Models</a></li>
-<li><a href="#picking-the-most-likely-sentence" >Picking the Most Likely Sentence</a>
-<ul>
-<li><a href="#why-not-greedy-search" >Why not Greedy Search?</a></li>
-<li><a href="#beam-search" >Beam Search</a>
-<ul>
-<li><a href="#refinements" >Refinements</a></li>
-<li><a href="#error-analysis" >Error Analysis</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#attention" >Attention</a>
-<ul>
-<li><a href="#developing-intuition" >Developing Intuition</a></li>
-<li><a href="#defining-the-attention-model" >Defining the Attention Model</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="sequence-to-sequence-architectures">
-  Sequence to Sequence Architectures
-  <a class="heading-link" href="#sequence-to-sequence-architectures">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The basic example for sequence-to-sequence approaches was also covered in the <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/" >first week</a> of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.</p>
-<h3 id="basic-seq2seq-models">
-  Basic Seq2Seq Models
-  <a class="heading-link" href="#basic-seq2seq-models">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Imagine that we want to translate a sentence in French to English. The sentence is <em>Jane visite l&rsquo;Afrique en septembre</em>, and we&rsquo;d like the translation to be <em>Jane is visiting Africa in September</em>. As always we&rsquo;ll use $x^{&lt;t&gt;}$ to represents the words in the French input and $y^{&lt;t&gt;}$ to represent the words in the output.</p>
-<figure><img src="/images/enc-dec-1.png"
-    alt="Encoder-Decoder Seq2Seq" width="60%"><figcaption>
-      <p><a href="https://www.coursera.org/learn/sequence-models/"  class="external-link" target="_blank" rel="noopener">Encoder-Decoder Seq2Seq</a></p>
-    </figcaption>
-</figure>
-
-<p>Notice that the encoder, in green, can use any type of RNN, GRU or even LSTM to learn some encoding of the <em>entire</em> input; that is, before generating any predictions we have seen the entire input and generated some encoding. From this learned encoding, the decoder part in purple, will generate each output $\hat{y}^{&lt;t&gt;}$, using the previous&rsquo; steps prediction for the next one until reaching the $T_y$ time step.</p>
-<p>A very similar architecture works very well for image captioning, that is generating captions for an image. The idea is to have some trained CNN, something like AlexNet, and change the last layer; which in AlexNet is a softmax. We do this by replacing the softmax with some RNN, GRU or LSTM for generating the sequence of captions. Notice that this is very similar to the previous approach. The difference is that the CNN is acting as an encoder, while the sequence model is acting as the decoder.</p>
-<p>Whatever approach we take, a question remains: how do we pick the most likely sequence? Can we cast this problem into a conditional probability one like we did before?</p>
-<h3 id="picking-the-most-likely-sentence">
-  Picking the Most Likely Sentence
-  <a class="heading-link" href="#picking-the-most-likely-sentence">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>We can definitely think of machine translation as building a conditional language model. The difference being that we are not starting with a hidden state of $\vec{0}$, but instead we start the sequence generation from an <em>encoding</em> learned by the encoder network; just like the encoder-decoder image. In this case, our language model is the decoder.</p>
-<p>Remember that in a language model, we try to model the probability of a sentence. We do this by using the conditional probabilities of each word as we move down in the sequence. So if the output sequence is <em>I would like to have a balloon</em>, and we are at the &ldquo;balloon&rdquo; step, we want our model to estimate the probability of seeing &ldquo;balloon&rdquo; given that it saw &ldquo;I would like to have a&rdquo; before. In machine translation we are doing the same except for a small change.</p>
-<p>We would like to generate a sentence in the target language that maximizes the language model probability <em>given</em> that we saw the source language sentence (in its encoded form). In other words, we want to estimate:</p>
-<p>$$
-P(y^{&lt;1&gt;}, \dots, y^{&lt;T_y&gt;} \mid x^{&lt;1&gt;}, \dots, x^{&lt;T_x&gt;})
-$$</p>
-<p>Where $x^{&lt;t&gt;}$ is our source language sentence, and $y^{&lt;t&gt;}$ is our target language sentence.</p>
-<p>How do we compare the likelihood of each of the sentences the model might consider? We might imagine that given the source language sentence <em>Jane visite l&rsquo;Afrique en septembre</em> there might be many &ldquo;likely&rdquo; translations:</p>
-<ul>
-<li><em>Jane is visiting Africa in September</em>.</li>
-<li><em>Jane is going to be visiting Africa in September</em>.</li>
-<li><em>In September, Jane will visit Africa</em>.</li>
-<li><em>Her African friend welcomed Jane in September</em>.</li>
-</ul>
-<p>Think of all these sentences as sampled from the $P(\underbrace{y^{&lt;1&gt;}, \dots, y^{&lt;T_y&gt;}}_{\text{English}} \mid \underbrace{x}_{\text{French}})$ distribution. Of course, all these probabilities should not be the same if your language model is modelling the translation task correctly. We want the <em>best</em> one:</p>
-<p>$$
-\argmax_{y^{&lt;1&gt;}, \dots, y^{&lt;T_y&gt;}} P(y^{&lt;1&gt;}, \dots, y^{&lt;T_y&gt;} \mid x)
-$$</p>
-<h4 id="why-not-greedy-search">
-  Why not Greedy Search?
-  <a class="heading-link" href="#why-not-greedy-search">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h4>
-<p>Finding the maximum should be easy, right? We just consider one at a time and then pick the highest one when we run out of elements. As you might know already, there&rsquo;s an issue with this. Maximizing a linear function applied over a set of elements can be tricky; the <a href="https://en.wikipedia.org/wiki/Knapsack_problem"  class="external-link" target="_blank" rel="noopener">knapsack problem</a> is the quintessential problem that illustrates the issue. If we apply greedy search, and pick the most likely one at each step, we might not pick the <em>set</em> of words that <em>together</em> maximize the probability. That is, the problem is that the token that looks good to the decoder might turn out later to have been the wrong choice! <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>This approach is called greedy search, greedy of course because we greedily pick the largest value we find every time we look. Let&rsquo;s think about the probabilities the model is modeling: we might see more common words sneaking into our translation when we don&rsquo;t want it. For example a proper translation of the French sentence is <em>Jane is visiting Africa in September</em>. However, if we use greedy search, we might get results such as <em>Jane is going to be visiting Africa in September</em>, simply because <em>going</em> is more common than <em>visiting</em>. Notice that after picking <em>going</em>, all the other sentences picked after are also conditioned by this choice.</p>
-<p>What else can we do? If we are not checking enough, let&rsquo;s check them all. As you might imagine, considering the entire sequence at a time might result in an exponential explosion of checks. On one extreme, we have exhaustive search; which checks all possible permutations of the sequence with a time-complexity of $O(|V|^{T_y})$. If $|V| = 10000$ and $T_y = 10$ then exhaustive search will evaluate $10000^{10} = 10^{40}$ sequences. On the other extreme, we have greedy search; with a time-complexity of $O(|V|T_y)$; with the same numbers we would need $10000 \times 10 = 10^5$ sequence checks. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> I hope you don&rsquo;t need to be convinced that $10^5$ is a lot better than $10^{40}$.</p>
-<p>It seems like neither approach would work. We&rsquo;d like to use greedy search because it&rsquo;s cheap, but it won&rsquo;t work because there&rsquo;s no guarantee of finding the optimal value. On the other hand, we&rsquo;d like to use exhaustive search because it does guarantee finding the optimal value, but it&rsquo;s computationally unfeasible. Wouldn&rsquo;t it be nice to have something in between?</p>
-<h4 id="beam-search">
-  Beam Search
-  <a class="heading-link" href="#beam-search">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h4>
-<p><a href="https://en.wikipedia.org/wiki/Beam_search"  class="external-link" target="_blank" rel="noopener">Beam search</a> allows us to <em>choose</em> somewhere between greedy search and exhaustive search. It has a single hyperparameter called the beam size $B$, which controls how close we are to either greedy or exhaustive search. If we set $B=1$ then we are using greedy search, which means that if we set $B = k$ then we are considering $k$-best choices at each time. Let&rsquo;s walk through the example shown in the course by Andrew.</p>
-<p>Let&rsquo;s start by trying to predict the first word in the output $P(y^{&lt;1&gt;} \mid x)$ and use $B = 3$. If we use greedy search, we would just pick the most likely word as $\hat{y}^{&lt;1&gt;}$ and set that for the next time step&rsquo;s prediction. Since we are using $B = 3$, we will consider <em>three</em> different words, and not just any words, but the three <em>most-likely</em> tokens in the step. The $B$ most likely probabilities from the softmax at this step is called the search frontier, and the $B$ most likely tokens are called the hypotheses. Let&rsquo;s say that for this step we get: <code>[in, jane, september]</code> as the $B$-most likely tokens. Let&rsquo;s go into the next step.</p>
-<p>Remember that we kept only 3 tokens in the past step since $B = 3$. For each of them we will calculate the conditional probability of the second token in the sequence:</p>
-<ol>
-<li>For <code>in</code> we calculate $P(y^{&lt;2&gt;} \mid x, \text{in})$</li>
-<li>For <code>jane</code> we calculate $P(y^{&lt;2&gt;} \mid x, \text{jane})$</li>
-<li>For <code>september</code> we calculate $P(y^{&lt;2&gt;} \mid x, \text{september})$</li>
-</ol>
-<p>Since our vocabulary size $|V| = 10000$ and $B = 3$ we will calculate $3 \times 10,000 = 30,000$ probabilities. It&rsquo;s out of <em>these</em> $30,000$ probabilities that we will select the $B$ highest ones, that is, the three highest ones. Let&rsquo;s say that the ones we pick are the following:</p>
-<ol>
-<li><code>[in, september]</code></li>
-<li><code>[jane, is]</code></li>
-<li><code>[jane, visits]</code></li>
-</ol>
-<p>Notice that we got rid of the third selection <code>september</code> in the first step as the first token in the output sequence. This is exactly what greedy search doesn&rsquo;t allow us to do. Our decision to <a href="https://en.wikipedia.org/wiki/Exploration-exploitation_dilemma"  class="external-link" target="_blank" rel="noopener">trade exploration for exploitation</a> paid off! Now we just repeat the step again. Let&rsquo;s say that we end up with:</p>
-<ol>
-<li><code>[in, september, jane]</code></li>
-<li><code>[jane, is, visiting]</code></li>
-<li><code>[jane, visits, africa]</code></li>
-</ol>
-<p>So on and so forth until one of the sentences predicts the end-of-sentence token, or we reach the maximum output sequence length.</p>
-<h5 id="refinements">
-  Refinements
-  <a class="heading-link" href="#refinements">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h5>
-<p>Since we are calculating conditional probabilities, and therefore all probabilities are $\in [0, 1]$, we don&rsquo;t want our numbers to shrink so much and run into numerical underflow. The common trick to do this is to transform a multiplication into summation. Remember one of the properties of logarithms is that the log of a product is the sum of the logs: $\log_a xy = \log_ax + \log_ay$. Therefore, instead of calculating:</p>
-<p>$$
-\argmax_y \prod_{t=1}^{T_y} P(y^{&lt;t&gt;} \mid x, y^{&lt;1&gt;}, \dots, y^{&lt;t - 1&gt;})
-$$</p>
-<p>Where $\prod$ is the product symbol, much like $\sum$ is the summation symbol; we want to calculate:</p>
-<p>$$
-\argmax_y \sum_{t=1}^{T_y} \log P(y^{&lt;t&gt;} \mid x, y^{&lt;1&gt;}, \dots, y^{&lt;t - 1&gt;})
-$$</p>
-<p>This trick is found pretty much anywhere you are calculating conditional probabilities.</p>
-<p>There&rsquo;s another issue however, related to the length of the output sequence $y$. Since we are multiplying probabilities, or summing them in log space, longer sequences will have smaller probabilities assigned to them. This is simply because we are multiplying numbers between $[0, 1]$; $0.5^3 = 0.125$ while $0.5^2 = 0.25$. To ameliorate this, we will introduce a weighting term that normalizes the probabilities by the size of $T_y$</p>
-<p>$$
-\argmax_y \frac{1}{T_y^{\alpha}}\sum_{t=1}^{T_y} \log P(y^{&lt;t&gt;} \mid x, y^{&lt;1&gt;}, \dots, y^{&lt;t - 1&gt;})
-$$</p>
-<p>Setting $\alpha = 0.7$ to be somewhere in between $\alpha = 0$, no normalization, and $\alpha = 1$, full normalization.</p>
-<p>Finally, regarding the beam size. As we mentioned, setting $B=1$ amounts to greedy search, which is fast but worse result. As we increase $B$, we get slower performance but better results. $B$ is a parameter that regulates the mixture of exploitation and exploration. Remember that to find <em>exact</em> maximums we need to use exhaustive search. Anything other than that has no guarantees. In beam search, we can adjust how much &ldquo;guarantee&rdquo; in finding an optimal solution by varying $B$.</p>
-<h5 id="error-analysis">
-  Error Analysis
-  <a class="heading-link" href="#error-analysis">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h5>
-<p>Since we introduced another source of error by using beam search, we need to be able to know whether errors are coming from the sequence model, or if they are arising from using beam search. That is, do we need to keep training/add more data, or do we need to use a larger beam size?</p>
-<p>Let&rsquo;s keep using the French example: <em>Jane visite l&rsquo;Afrique en septembre</em>. Let&rsquo;s say that the human-generated label in our dev set for this example is:</p>
-<ul>
-<li>$y^*$: <em>Jane visits Africa in September.</em></li>
-</ul>
-<p>And let&rsquo;s say that our algorithm is predicting:</p>
-<ul>
-<li>$\hat{y}$: <em>Jane visited Africa last September.</em></li>
-</ul>
-<p>Obviously, our algorithm&rsquo;s prediction is wrong! The whole meaning of the sentence is different. How can we zone-in into the root cause of the problem?</p>
-<p>We can grab the RNN component of our model, that is the encoder and decoder, which computes $P(y \mid x)$, and compare two things:</p>
-<ul>
-<li>Run $y^*$ through the RNN, to estimate $P(y^* \mid x)$.</li>
-<li>Run $\hat{y}$ through the RNN, to estimate $P(\hat{y} \mid x)$</li>
-</ul>
-<p>What are we really doing here? We are saying: Hey RNN! Do you think the bad translation is more likely than the good translation? If the RNN is predicting the bad translation to be more likely than the good translation, then it doesn&rsquo;t matter what beam search is doing; the model still needs more training. On the other hand, if the model thinks that the good translation is more likely than the bad one, then the only way we are getting a bad translation at the end is due to beam search. In this case, increasing the beam width should help improve our model&rsquo;s performance. In practice, we calculate the fraction of errors due to either the RNN or the beam search, and take action based on what is more efficient.</p>
-<h3 id="attention">
-  Attention
-  <a class="heading-link" href="#attention">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Through this whole week we have been using the encoder-decoder architecture, one RNN reads in the sentence and learns an encoding, while another RNN decodes the encoding. There is another approach, called the attention mechanism approach, which makes this work a lot better albeit for larger compute costs.</p>
-<h4 id="developing-intuition">
-  Developing Intuition
-  <a class="heading-link" href="#developing-intuition">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h4>
-<p>Let&rsquo;s consider what happens in very long sequences, say a paragraph, when we try to apply machine translation with the encoder-decoder architecture. The encoder will memorize the entire thing, which is pretty long, and then pass it into the decoder. Think instead, how a human translator would tackle the problem of translating a whole paragraph. The translator might start with the first few sentences, translate them, and then move on. Even more so, the translator can read the entire paragraph before starting to translate, using the latter context of the paragraph to guide the beginning of the translation.</p>
-<p>The encoder will try its best to encode as much useful information in the encoding, but as sentence length grows, this task gets harder and harder. In practice, the encoder-decoder architecture&rsquo;s performance suffers as sentence length grows because of this. The attention approach is a remedy for this issue; the performance is not hurt as sentence length grows.</p>
-<p>In the attention model, we no longer have an encoder-decoder architecture. Instead, we have a bidirectional RNN (choose your flavor) called the pre-attention RNN. Hooked to each of the outputs of the pre-attention bidirectional RNN, we will have a uni-directional RNN (choose your flavor) called the post-attention RNN. The role of the pre-attention RNN is to figure out how much <em>attention</em> to pay to each of the input words when predicting some word. Since the pre-attention RNN is bidirectional, we can pay attention to the entire input sequence when generating the first prediction.</p>
-<p>We do this by learning some parameter $\alpha^{&lt;t,t&rsquo;&gt;}$. Each parameter tells us, how much attention (a value $\in [0, 1]$) we should give French word $t&rsquo;$ when generating the English word $t$. Let&rsquo;s go into more detail.</p>
-<h4 id="defining-the-attention-model">
-  Defining the Attention Model
-  <a class="heading-link" href="#defining-the-attention-model">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h4>
-<p>Let&rsquo;s start with the pre-attention bidirectional RNN, which in practice is usually implemented as a bidirectional LSTM network. Remember that in a bidirectional RNN, we have two hidden states $a^{&lt;t&gt;}$; one going forward $\overrightarrow{a}^{&lt;t&gt;}$, and one going backwards $\overleftarrow{a}^{&lt;t&gt;}$. To simplify the notation, we will define a single hidden state:</p>
-<p>$$
-a^{&lt;t&gt;} = (\overrightarrow{a}^{&lt;t&gt;}, \overleftarrow{a}^{&lt;t&gt;})
-$$</p>
-<p>Which is equal to both states concatenated together.</p>
-<p>Let&rsquo;s now focus on the post-attention RNN. This part will have a hidden state $s^{&lt;t&gt;}$, which is used to generate $\hat{y}^{&lt;t&gt;}$. What is the input of this post-attention RNN? It&rsquo;s some context $c^{&lt;t&gt;}$ which is the output at step $t$ of the pre-attention bidirectional RNN. It&rsquo;s this context which defines the attention mechanism.</p>
-<p>The context will be the weighted sum of all $a^{&lt;t&gt;}$, the hidden state in the pre-attention layer, with their respective attention weights $\alpha^{&lt;t, t&rsquo;&gt;}$. We want all attention weights for a particular token $t$ to sum up to one:</p>
-<p>$$
-\sum_{t&rsquo;=1}^{T_x} \alpha^{&lt;t,t&rsquo;&gt;} = 1
-$$</p>
-<p>We can then use these weights when calculating the context, we can control the mixture of each of the input tokens as it relates to this particular&rsquo;s time step&rsquo;s prediction:</p>
-<p>$$
-c^{&lt;t&gt;} = \sum_{t&rsquo;=1}^{T_x} \alpha^{&lt;t,t&rsquo;&gt;} a^{&lt;t&rsquo;&gt;}
-$$</p>
-<p>We should be convinced that when $\alpha^{&lt;t,t&rsquo;&gt;} = 0$ it means that $t&rsquo;$ is not that important when generating $t$, therefore the hidden state for $t&rsquo;$ is not that important, and will be weighted down in the sum.</p>
-<p>How do we calculate these attention weights $\alpha^{&lt;t,t&rsquo;&gt;}$? Let&rsquo;s be reminded that $\alpha^{&lt;t,t&rsquo;&gt;}$ defines the amount of attention $y^{&lt;t&gt;}$ should pay to $a^{&lt;t&rsquo;&gt;}$. We can define this attention as a softmax, to guarantee that the weights sum up to one as we mentioned earlier:</p>
-<p>$$
-\alpha^{&lt;t,t&rsquo;&gt;} = \frac{\exp(e^{&lt;t,t&rsquo;&gt;})}{\sum_{t&rsquo;=1}^{T_x} \exp(e^{&lt;t,t&rsquo;&gt;})}
-$$</p>
-<p>But where do these new terms $e^{&lt;t,t&rsquo;&gt;}$ come from? We will use a small neural network with only one hidden layer to learn these. The small network will take $s^{&lt;t-1&gt;}$ and $a^{&lt;t&rsquo;&gt;}$ to produce $e^{&lt;t,t&rsquo;&gt;}$. Let&rsquo;s keep in mind that $s^{&lt;t-1&gt;}$ is the hidden state of the post-attention layer for the previous time step, while $a^{&lt;t&rsquo;&gt;}$ is a hidden state in the pre-attention layer for the $t&rsquo;$ time step. This means that this layer will learn to combine the hidden state of the previous token in the prediction, that is how relevant the previous prediction token is to the current one, with each of the input token hidden states, that is each of the tokens in the input.</p>
-<p>It makes sense to define attention as: I have some memory of what I&rsquo;ve translated so far, and attention is the thing that relates each of the words in the input, with the memory of what I&rsquo;ve done so far. This means that $\alpha^{&lt;t,t&rsquo;&gt;}$ and $e^{&lt;t,t&rsquo;&gt;}$ will depend on $s^{&lt;t-1&gt;}$ and $a^{&lt;t&rsquo;&gt;}$ when considering $t$.</p>
-<figure><img src="/images/attention-1.png"
-    alt="Attention Mechanism" width="75%"><figcaption>
-      <p><a href="https://developer.nvidia.com/blog/introduction-neural-machine-translation-gpus-part-3/"  class="external-link" target="_blank" rel="noopener">Attention Mechanism</a></p>
-    </figcaption>
-</figure>
-
-<p>In the picture, the annotation vectors are the pre-attention layer, the attention mechanism represents the layer where we estimate $\alpha^{&lt;t,t&rsquo;&gt;}$ and everything above the dotted line is the post-attention layer.</p>
-<p>Next week&rsquo;s post is <a href="https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/" >here</a>.</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p><a href="https://web.stanford.edu/~jurafsky/slp3/"  class="external-link" target="_blank" rel="noopener">Jurafsky and Martin | Speech and Language Processing, 3rd Edition</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p><a href="https://d2l.ai/chapter_recurrent-modern/beam-search.html"  class="external-link" target="_blank" rel="noopener">Dive Into Deep Learning | Beam Search</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-
-      </div>
-
-
-      <footer>
-        
-
-
-        <div id="disqus_thread"></div>
-<script>
-  window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "https-manmartgarc-github-io" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    
-    document.addEventListener('themeChanged', function (e) { 
-        if (document.readyState == 'complete') {
-          DISQUS.reset({ reload: true, config: disqus_config });
-        }
-    });
-</script>
-        
-        
-        
-        
-        
-        
-      </footer>
-    </article>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
-  
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
-    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
-    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-    onload="renderMathInElement(document.body,
-      {
-        delimiters: [
-          {left: '$$', right: '$$', display:true},
-          {left: '$', right: '$', display:false},
-          {left: '\\(', right: '\\)', display: false},
-          {left: '\\[', right: '\\]', display: true}
-        ]
-      }
-    );"></script>
-  </section>
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-      2023 -
-    
-    2025
-     Manuel Martinez 
-    ·
-    
-      Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJLM0F56ZC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NJLM0F56ZC');
-</script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-</html>
+Sequence to Sequence Architectures
+The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"Sequence Models: Week 3 | Sequence Models \u0026 Attention Mechanism","item":"http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sequence Models: Week 3 | Sequence Models \u0026 Attention Mechanism","name":"Sequence Models: Week 3 | Sequence Models \u0026 Attention Mechanism","description":"This is the third week of the fifth course of DeepLearning.AI\u0026rsquo;s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.\nThis week\u0026rsquo;s topics are:\nSequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \\neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.\n","keywords":["machine learning","deep learning"],"articleBody":"This is the third week of the fifth course of DeepLearning.AI’s Deep Learning Specialization offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.\nThis week’s topics are:\nSequence to Sequence Architectures Basic Seq2Seq Models Picking the Most Likely Sentence Why not Greedy Search? Beam Search Refinements Error Analysis Attention Developing Intuition Defining the Attention Model Sequence to Sequence Architectures The basic example for sequence-to-sequence approaches was also covered in the first week of the course; where we discussed the many-to-many RNN approach where $T_x \\neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.\nBasic Seq2Seq Models Imagine that we want to translate a sentence in French to English. The sentence is Jane visite l’Afrique en septembre, and we’d like the translation to be Jane is visiting Africa in September. As always we’ll use $x^{}$ to represents the words in the French input and $y^{}$ to represent the words in the output.\nEncoder-Decoder Seq2Seq\nNotice that the encoder, in green, can use any type of RNN, GRU or even LSTM to learn some encoding of the entire input; that is, before generating any predictions we have seen the entire input and generated some encoding. From this learned encoding, the decoder part in purple, will generate each output $\\hat{y}^{}$, using the previous’ steps prediction for the next one until reaching the $T_y$ time step.\nA very similar architecture works very well for image captioning, that is generating captions for an image. The idea is to have some trained CNN, something like AlexNet, and change the last layer; which in AlexNet is a softmax. We do this by replacing the softmax with some RNN, GRU or LSTM for generating the sequence of captions. Notice that this is very similar to the previous approach. The difference is that the CNN is acting as an encoder, while the sequence model is acting as the decoder.\nWhatever approach we take, a question remains: how do we pick the most likely sequence? Can we cast this problem into a conditional probability one like we did before?\nPicking the Most Likely Sentence We can definitely think of machine translation as building a conditional language model. The difference being that we are not starting with a hidden state of $\\vec{0}$, but instead we start the sequence generation from an encoding learned by the encoder network; just like the encoder-decoder image. In this case, our language model is the decoder.\nRemember that in a language model, we try to model the probability of a sentence. We do this by using the conditional probabilities of each word as we move down in the sequence. So if the output sequence is I would like to have a balloon, and we are at the “balloon” step, we want our model to estimate the probability of seeing “balloon” given that it saw “I would like to have a” before. In machine translation we are doing the same except for a small change.\nWe would like to generate a sentence in the target language that maximizes the language model probability given that we saw the source language sentence (in its encoded form). In other words, we want to estimate:\n$$ P(y^{\u003c1\u003e}, \\dots, y^{} \\mid x^{\u003c1\u003e}, \\dots, x^{}) $$\nWhere $x^{}$ is our source language sentence, and $y^{}$ is our target language sentence.\nHow do we compare the likelihood of each of the sentences the model might consider? We might imagine that given the source language sentence Jane visite l’Afrique en septembre there might be many “likely” translations:\nJane is visiting Africa in September. Jane is going to be visiting Africa in September. In September, Jane will visit Africa. Her African friend welcomed Jane in September. Think of all these sentences as sampled from the $P(\\underbrace{y^{\u003c1\u003e}, \\dots, y^{}}_{\\text{English}} \\mid \\underbrace{x}_{\\text{French}})$ distribution. Of course, all these probabilities should not be the same if your language model is modelling the translation task correctly. We want the best one:\n$$ \\argmax_{y^{\u003c1\u003e}, \\dots, y^{}} P(y^{\u003c1\u003e}, \\dots, y^{} \\mid x) $$\nWhy not Greedy Search? Finding the maximum should be easy, right? We just consider one at a time and then pick the highest one when we run out of elements. As you might know already, there’s an issue with this. Maximizing a linear function applied over a set of elements can be tricky; the knapsack problem is the quintessential problem that illustrates the issue. If we apply greedy search, and pick the most likely one at each step, we might not pick the set of words that together maximize the probability. That is, the problem is that the token that looks good to the decoder might turn out later to have been the wrong choice! 1\nThis approach is called greedy search, greedy of course because we greedily pick the largest value we find every time we look. Let’s think about the probabilities the model is modeling: we might see more common words sneaking into our translation when we don’t want it. For example a proper translation of the French sentence is Jane is visiting Africa in September. However, if we use greedy search, we might get results such as Jane is going to be visiting Africa in September, simply because going is more common than visiting. Notice that after picking going, all the other sentences picked after are also conditioned by this choice.\nWhat else can we do? If we are not checking enough, let’s check them all. As you might imagine, considering the entire sequence at a time might result in an exponential explosion of checks. On one extreme, we have exhaustive search; which checks all possible permutations of the sequence with a time-complexity of $O(|V|^{T_y})$. If $|V| = 10000$ and $T_y = 10$ then exhaustive search will evaluate $10000^{10} = 10^{40}$ sequences. On the other extreme, we have greedy search; with a time-complexity of $O(|V|T_y)$; with the same numbers we would need $10000 \\times 10 = 10^5$ sequence checks. 2 I hope you don’t need to be convinced that $10^5$ is a lot better than $10^{40}$.\nIt seems like neither approach would work. We’d like to use greedy search because it’s cheap, but it won’t work because there’s no guarantee of finding the optimal value. On the other hand, we’d like to use exhaustive search because it does guarantee finding the optimal value, but it’s computationally unfeasible. Wouldn’t it be nice to have something in between?\nBeam Search Beam search allows us to choose somewhere between greedy search and exhaustive search. It has a single hyperparameter called the beam size $B$, which controls how close we are to either greedy or exhaustive search. If we set $B=1$ then we are using greedy search, which means that if we set $B = k$ then we are considering $k$-best choices at each time. Let’s walk through the example shown in the course by Andrew.\nLet’s start by trying to predict the first word in the output $P(y^{\u003c1\u003e} \\mid x)$ and use $B = 3$. If we use greedy search, we would just pick the most likely word as $\\hat{y}^{\u003c1\u003e}$ and set that for the next time step’s prediction. Since we are using $B = 3$, we will consider three different words, and not just any words, but the three most-likely tokens in the step. The $B$ most likely probabilities from the softmax at this step is called the search frontier, and the $B$ most likely tokens are called the hypotheses. Let’s say that for this step we get: [in, jane, september] as the $B$-most likely tokens. Let’s go into the next step.\nRemember that we kept only 3 tokens in the past step since $B = 3$. For each of them we will calculate the conditional probability of the second token in the sequence:\nFor in we calculate $P(y^{\u003c2\u003e} \\mid x, \\text{in})$ For jane we calculate $P(y^{\u003c2\u003e} \\mid x, \\text{jane})$ For september we calculate $P(y^{\u003c2\u003e} \\mid x, \\text{september})$ Since our vocabulary size $|V| = 10000$ and $B = 3$ we will calculate $3 \\times 10,000 = 30,000$ probabilities. It’s out of these $30,000$ probabilities that we will select the $B$ highest ones, that is, the three highest ones. Let’s say that the ones we pick are the following:\n[in, september] [jane, is] [jane, visits] Notice that we got rid of the third selection september in the first step as the first token in the output sequence. This is exactly what greedy search doesn’t allow us to do. Our decision to trade exploration for exploitation paid off! Now we just repeat the step again. Let’s say that we end up with:\n[in, september, jane] [jane, is, visiting] [jane, visits, africa] So on and so forth until one of the sentences predicts the end-of-sentence token, or we reach the maximum output sequence length.\nRefinements Since we are calculating conditional probabilities, and therefore all probabilities are $\\in [0, 1]$, we don’t want our numbers to shrink so much and run into numerical underflow. The common trick to do this is to transform a multiplication into summation. Remember one of the properties of logarithms is that the log of a product is the sum of the logs: $\\log_a xy = \\log_ax + \\log_ay$. Therefore, instead of calculating:\n$$ \\argmax_y \\prod_{t=1}^{T_y} P(y^{} \\mid x, y^{\u003c1\u003e}, \\dots, y^{}) $$\nWhere $\\prod$ is the product symbol, much like $\\sum$ is the summation symbol; we want to calculate:\n$$ \\argmax_y \\sum_{t=1}^{T_y} \\log P(y^{} \\mid x, y^{\u003c1\u003e}, \\dots, y^{}) $$\nThis trick is found pretty much anywhere you are calculating conditional probabilities.\nThere’s another issue however, related to the length of the output sequence $y$. Since we are multiplying probabilities, or summing them in log space, longer sequences will have smaller probabilities assigned to them. This is simply because we are multiplying numbers between $[0, 1]$; $0.5^3 = 0.125$ while $0.5^2 = 0.25$. To ameliorate this, we will introduce a weighting term that normalizes the probabilities by the size of $T_y$\n$$ \\argmax_y \\frac{1}{T_y^{\\alpha}}\\sum_{t=1}^{T_y} \\log P(y^{} \\mid x, y^{\u003c1\u003e}, \\dots, y^{}) $$\nSetting $\\alpha = 0.7$ to be somewhere in between $\\alpha = 0$, no normalization, and $\\alpha = 1$, full normalization.\nFinally, regarding the beam size. As we mentioned, setting $B=1$ amounts to greedy search, which is fast but worse result. As we increase $B$, we get slower performance but better results. $B$ is a parameter that regulates the mixture of exploitation and exploration. Remember that to find exact maximums we need to use exhaustive search. Anything other than that has no guarantees. In beam search, we can adjust how much “guarantee” in finding an optimal solution by varying $B$.\nError Analysis Since we introduced another source of error by using beam search, we need to be able to know whether errors are coming from the sequence model, or if they are arising from using beam search. That is, do we need to keep training/add more data, or do we need to use a larger beam size?\nLet’s keep using the French example: Jane visite l’Afrique en septembre. Let’s say that the human-generated label in our dev set for this example is:\n$y^*$: Jane visits Africa in September. And let’s say that our algorithm is predicting:\n$\\hat{y}$: Jane visited Africa last September. Obviously, our algorithm’s prediction is wrong! The whole meaning of the sentence is different. How can we zone-in into the root cause of the problem?\nWe can grab the RNN component of our model, that is the encoder and decoder, which computes $P(y \\mid x)$, and compare two things:\nRun $y^*$ through the RNN, to estimate $P(y^* \\mid x)$. Run $\\hat{y}$ through the RNN, to estimate $P(\\hat{y} \\mid x)$ What are we really doing here? We are saying: Hey RNN! Do you think the bad translation is more likely than the good translation? If the RNN is predicting the bad translation to be more likely than the good translation, then it doesn’t matter what beam search is doing; the model still needs more training. On the other hand, if the model thinks that the good translation is more likely than the bad one, then the only way we are getting a bad translation at the end is due to beam search. In this case, increasing the beam width should help improve our model’s performance. In practice, we calculate the fraction of errors due to either the RNN or the beam search, and take action based on what is more efficient.\nAttention Through this whole week we have been using the encoder-decoder architecture, one RNN reads in the sentence and learns an encoding, while another RNN decodes the encoding. There is another approach, called the attention mechanism approach, which makes this work a lot better albeit for larger compute costs.\nDeveloping Intuition Let’s consider what happens in very long sequences, say a paragraph, when we try to apply machine translation with the encoder-decoder architecture. The encoder will memorize the entire thing, which is pretty long, and then pass it into the decoder. Think instead, how a human translator would tackle the problem of translating a whole paragraph. The translator might start with the first few sentences, translate them, and then move on. Even more so, the translator can read the entire paragraph before starting to translate, using the latter context of the paragraph to guide the beginning of the translation.\nThe encoder will try its best to encode as much useful information in the encoding, but as sentence length grows, this task gets harder and harder. In practice, the encoder-decoder architecture’s performance suffers as sentence length grows because of this. The attention approach is a remedy for this issue; the performance is not hurt as sentence length grows.\nIn the attention model, we no longer have an encoder-decoder architecture. Instead, we have a bidirectional RNN (choose your flavor) called the pre-attention RNN. Hooked to each of the outputs of the pre-attention bidirectional RNN, we will have a uni-directional RNN (choose your flavor) called the post-attention RNN. The role of the pre-attention RNN is to figure out how much attention to pay to each of the input words when predicting some word. Since the pre-attention RNN is bidirectional, we can pay attention to the entire input sequence when generating the first prediction.\nWe do this by learning some parameter $\\alpha^{}$. Each parameter tells us, how much attention (a value $\\in [0, 1]$) we should give French word $t’$ when generating the English word $t$. Let’s go into more detail.\nDefining the Attention Model Let’s start with the pre-attention bidirectional RNN, which in practice is usually implemented as a bidirectional LSTM network. Remember that in a bidirectional RNN, we have two hidden states $a^{}$; one going forward $\\overrightarrow{a}^{}$, and one going backwards $\\overleftarrow{a}^{}$. To simplify the notation, we will define a single hidden state:\n$$ a^{} = (\\overrightarrow{a}^{}, \\overleftarrow{a}^{}) $$\nWhich is equal to both states concatenated together.\nLet’s now focus on the post-attention RNN. This part will have a hidden state $s^{}$, which is used to generate $\\hat{y}^{}$. What is the input of this post-attention RNN? It’s some context $c^{}$ which is the output at step $t$ of the pre-attention bidirectional RNN. It’s this context which defines the attention mechanism.\nThe context will be the weighted sum of all $a^{}$, the hidden state in the pre-attention layer, with their respective attention weights $\\alpha^{}$. We want all attention weights for a particular token $t$ to sum up to one:\n$$ \\sum_{t’=1}^{T_x} \\alpha^{} = 1 $$\nWe can then use these weights when calculating the context, we can control the mixture of each of the input tokens as it relates to this particular’s time step’s prediction:\n$$ c^{} = \\sum_{t’=1}^{T_x} \\alpha^{} a^{} $$\nWe should be convinced that when $\\alpha^{} = 0$ it means that $t’$ is not that important when generating $t$, therefore the hidden state for $t’$ is not that important, and will be weighted down in the sum.\nHow do we calculate these attention weights $\\alpha^{}$? Let’s be reminded that $\\alpha^{}$ defines the amount of attention $y^{}$ should pay to $a^{}$. We can define this attention as a softmax, to guarantee that the weights sum up to one as we mentioned earlier:\n$$ \\alpha^{} = \\frac{\\exp(e^{})}{\\sum_{t’=1}^{T_x} \\exp(e^{})} $$\nBut where do these new terms $e^{}$ come from? We will use a small neural network with only one hidden layer to learn these. The small network will take $s^{}$ and $a^{}$ to produce $e^{}$. Let’s keep in mind that $s^{}$ is the hidden state of the post-attention layer for the previous time step, while $a^{}$ is a hidden state in the pre-attention layer for the $t’$ time step. This means that this layer will learn to combine the hidden state of the previous token in the prediction, that is how relevant the previous prediction token is to the current one, with each of the input token hidden states, that is each of the tokens in the input.\nIt makes sense to define attention as: I have some memory of what I’ve translated so far, and attention is the thing that relates each of the words in the input, with the memory of what I’ve done so far. This means that $\\alpha^{}$ and $e^{}$ will depend on $s^{}$ and $a^{}$ when considering $t$.\nAttention Mechanism\nIn the picture, the annotation vectors are the pre-attention layer, the attention mechanism represents the layer where we estimate $\\alpha^{}$ and everything above the dotted line is the post-attention layer.\nNext week’s post is here.\nJurafsky and Martin | Speech and Language Processing, 3rd Edition ↩︎\nDive Into Deep Learning | Beam Search ↩︎\n","wordCount":"2956","inLanguage":"en","datePublished":"2023-08-12T00:00:00Z","dateModified":"2023-08-12T00:00:00Z","author":{"@type":"Person","name":"Manuel Martinez"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/"},"publisher":{"@type":"Organization","name":"Manuel Martinez","logo":{"@type":"ImageObject","url":"http://localhost:1313/images/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="Manuel Martinez (Alt + H)">Manuel Martinez</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li><li><a href=http://localhost:1313/posts/ title=Posts><span>Posts</span></a></li><li><a href=http://localhost:1313/archives/ title=Archive><span>Archive</span></a></li><li><a href=http://localhost:1313/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://localhost:1313/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://localhost:1313/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=http://localhost:1313/cv/ title=CV><span>CV</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:1313/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:1313/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Sequence Models: Week 3 | Sequence Models & Attention Mechanism</h1><div class=post-meta><span title='2023-08-12 00:00:00 +0000 UTC'>August 12, 2023</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;·&nbsp;<span>Manuel Martinez</span></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#sequence-to-sequence-architectures>Sequence to Sequence Architectures</a><ul><li><a href=#basic-seq2seq-models>Basic Seq2Seq Models</a></li><li><a href=#picking-the-most-likely-sentence>Picking the Most Likely Sentence</a></li><li><a href=#attention>Attention</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p>This is the third week of the <a href="https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/">fifth course</a> of DeepLearning.AI&rsquo;s <a href=https://www.coursera.org/specializations/deep-learning>Deep Learning Specialization</a> offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.</p><p>This week&rsquo;s topics are:</p><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#sequence-to-sequence-architectures>Sequence to Sequence Architectures</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#basic-seq2seq-models>Basic Seq2Seq Models</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#picking-the-most-likely-sentence>Picking the Most Likely Sentence</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#why-not-greedy-search>Why not Greedy Search?</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#beam-search>Beam Search</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#refinements>Refinements</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#error-analysis>Error Analysis</a></li></ul></li></ul></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#attention>Attention</a><ul><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#developing-intuition>Developing Intuition</a></li><li><a href=/posts/coursera/deep-learning-specialization/sequence-models/week3/#defining-the-attention-model>Defining the Attention Model</a></li></ul></li></ul></li></ul><hr><h2 id=sequence-to-sequence-architectures>Sequence to Sequence Architectures<a hidden class=anchor aria-hidden=true href=#sequence-to-sequence-architectures>#</a></h2><p>The basic example for sequence-to-sequence approaches was also covered in the <a href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/>first week</a> of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.</p><h3 id=basic-seq2seq-models>Basic Seq2Seq Models<a hidden class=anchor aria-hidden=true href=#basic-seq2seq-models>#</a></h3><p>Imagine that we want to translate a sentence in French to English. The sentence is <em>Jane visite l&rsquo;Afrique en septembre</em>, and we&rsquo;d like the translation to be <em>Jane is visiting Africa in September</em>. As always we&rsquo;ll use $x^{&lt;t>}$ to represents the words in the French input and $y^{&lt;t>}$ to represent the words in the output.</p><figure><img loading=lazy src=/images/enc-dec-1.png alt="Encoder-Decoder Seq2Seq" width=60%><figcaption><p><a href=https://www.coursera.org/learn/sequence-models/>Encoder-Decoder Seq2Seq</a></p></figcaption></figure><p>Notice that the encoder, in green, can use any type of RNN, GRU or even LSTM to learn some encoding of the <em>entire</em> input; that is, before generating any predictions we have seen the entire input and generated some encoding. From this learned encoding, the decoder part in purple, will generate each output $\hat{y}^{&lt;t>}$, using the previous&rsquo; steps prediction for the next one until reaching the $T_y$ time step.</p><p>A very similar architecture works very well for image captioning, that is generating captions for an image. The idea is to have some trained CNN, something like AlexNet, and change the last layer; which in AlexNet is a softmax. We do this by replacing the softmax with some RNN, GRU or LSTM for generating the sequence of captions. Notice that this is very similar to the previous approach. The difference is that the CNN is acting as an encoder, while the sequence model is acting as the decoder.</p><p>Whatever approach we take, a question remains: how do we pick the most likely sequence? Can we cast this problem into a conditional probability one like we did before?</p><h3 id=picking-the-most-likely-sentence>Picking the Most Likely Sentence<a hidden class=anchor aria-hidden=true href=#picking-the-most-likely-sentence>#</a></h3><p>We can definitely think of machine translation as building a conditional language model. The difference being that we are not starting with a hidden state of $\vec{0}$, but instead we start the sequence generation from an <em>encoding</em> learned by the encoder network; just like the encoder-decoder image. In this case, our language model is the decoder.</p><p>Remember that in a language model, we try to model the probability of a sentence. We do this by using the conditional probabilities of each word as we move down in the sequence. So if the output sequence is <em>I would like to have a balloon</em>, and we are at the &ldquo;balloon&rdquo; step, we want our model to estimate the probability of seeing &ldquo;balloon&rdquo; given that it saw &ldquo;I would like to have a&rdquo; before. In machine translation we are doing the same except for a small change.</p><p>We would like to generate a sentence in the target language that maximizes the language model probability <em>given</em> that we saw the source language sentence (in its encoded form). In other words, we want to estimate:</p><p>$$
+P(y^{&lt;1>}, \dots, y^{&lt;T_y>} \mid x^{&lt;1>}, \dots, x^{&lt;T_x>})
+$$</p><p>Where $x^{&lt;t>}$ is our source language sentence, and $y^{&lt;t>}$ is our target language sentence.</p><p>How do we compare the likelihood of each of the sentences the model might consider? We might imagine that given the source language sentence <em>Jane visite l&rsquo;Afrique en septembre</em> there might be many &ldquo;likely&rdquo; translations:</p><ul><li><em>Jane is visiting Africa in September</em>.</li><li><em>Jane is going to be visiting Africa in September</em>.</li><li><em>In September, Jane will visit Africa</em>.</li><li><em>Her African friend welcomed Jane in September</em>.</li></ul><p>Think of all these sentences as sampled from the $P(\underbrace{y^{&lt;1>}, \dots, y^{&lt;T_y>}}_{\text{English}} \mid \underbrace{x}_{\text{French}})$ distribution. Of course, all these probabilities should not be the same if your language model is modelling the translation task correctly. We want the <em>best</em> one:</p><p>$$
+\argmax_{y^{&lt;1>}, \dots, y^{&lt;T_y>}} P(y^{&lt;1>}, \dots, y^{&lt;T_y>} \mid x)
+$$</p><h4 id=why-not-greedy-search>Why not Greedy Search?<a hidden class=anchor aria-hidden=true href=#why-not-greedy-search>#</a></h4><p>Finding the maximum should be easy, right? We just consider one at a time and then pick the highest one when we run out of elements. As you might know already, there&rsquo;s an issue with this. Maximizing a linear function applied over a set of elements can be tricky; the <a href=https://en.wikipedia.org/wiki/Knapsack_problem>knapsack problem</a> is the quintessential problem that illustrates the issue. If we apply greedy search, and pick the most likely one at each step, we might not pick the <em>set</em> of words that <em>together</em> maximize the probability. That is, the problem is that the token that looks good to the decoder might turn out later to have been the wrong choice! <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p><p>This approach is called greedy search, greedy of course because we greedily pick the largest value we find every time we look. Let&rsquo;s think about the probabilities the model is modeling: we might see more common words sneaking into our translation when we don&rsquo;t want it. For example a proper translation of the French sentence is <em>Jane is visiting Africa in September</em>. However, if we use greedy search, we might get results such as <em>Jane is going to be visiting Africa in September</em>, simply because <em>going</em> is more common than <em>visiting</em>. Notice that after picking <em>going</em>, all the other sentences picked after are also conditioned by this choice.</p><p>What else can we do? If we are not checking enough, let&rsquo;s check them all. As you might imagine, considering the entire sequence at a time might result in an exponential explosion of checks. On one extreme, we have exhaustive search; which checks all possible permutations of the sequence with a time-complexity of $O(|V|^{T_y})$. If $|V| = 10000$ and $T_y = 10$ then exhaustive search will evaluate $10000^{10} = 10^{40}$ sequences. On the other extreme, we have greedy search; with a time-complexity of $O(|V|T_y)$; with the same numbers we would need $10000 \times 10 = 10^5$ sequence checks. <sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup> I hope you don&rsquo;t need to be convinced that $10^5$ is a lot better than $10^{40}$.</p><p>It seems like neither approach would work. We&rsquo;d like to use greedy search because it&rsquo;s cheap, but it won&rsquo;t work because there&rsquo;s no guarantee of finding the optimal value. On the other hand, we&rsquo;d like to use exhaustive search because it does guarantee finding the optimal value, but it&rsquo;s computationally unfeasible. Wouldn&rsquo;t it be nice to have something in between?</p><h4 id=beam-search>Beam Search<a hidden class=anchor aria-hidden=true href=#beam-search>#</a></h4><p><a href=https://en.wikipedia.org/wiki/Beam_search>Beam search</a> allows us to <em>choose</em> somewhere between greedy search and exhaustive search. It has a single hyperparameter called the beam size $B$, which controls how close we are to either greedy or exhaustive search. If we set $B=1$ then we are using greedy search, which means that if we set $B = k$ then we are considering $k$-best choices at each time. Let&rsquo;s walk through the example shown in the course by Andrew.</p><p>Let&rsquo;s start by trying to predict the first word in the output $P(y^{&lt;1>} \mid x)$ and use $B = 3$. If we use greedy search, we would just pick the most likely word as $\hat{y}^{&lt;1>}$ and set that for the next time step&rsquo;s prediction. Since we are using $B = 3$, we will consider <em>three</em> different words, and not just any words, but the three <em>most-likely</em> tokens in the step. The $B$ most likely probabilities from the softmax at this step is called the search frontier, and the $B$ most likely tokens are called the hypotheses. Let&rsquo;s say that for this step we get: <code>[in, jane, september]</code> as the $B$-most likely tokens. Let&rsquo;s go into the next step.</p><p>Remember that we kept only 3 tokens in the past step since $B = 3$. For each of them we will calculate the conditional probability of the second token in the sequence:</p><ol><li>For <code>in</code> we calculate $P(y^{&lt;2>} \mid x, \text{in})$</li><li>For <code>jane</code> we calculate $P(y^{&lt;2>} \mid x, \text{jane})$</li><li>For <code>september</code> we calculate $P(y^{&lt;2>} \mid x, \text{september})$</li></ol><p>Since our vocabulary size $|V| = 10000$ and $B = 3$ we will calculate $3 \times 10,000 = 30,000$ probabilities. It&rsquo;s out of <em>these</em> $30,000$ probabilities that we will select the $B$ highest ones, that is, the three highest ones. Let&rsquo;s say that the ones we pick are the following:</p><ol><li><code>[in, september]</code></li><li><code>[jane, is]</code></li><li><code>[jane, visits]</code></li></ol><p>Notice that we got rid of the third selection <code>september</code> in the first step as the first token in the output sequence. This is exactly what greedy search doesn&rsquo;t allow us to do. Our decision to <a href=https://en.wikipedia.org/wiki/Exploration-exploitation_dilemma>trade exploration for exploitation</a> paid off! Now we just repeat the step again. Let&rsquo;s say that we end up with:</p><ol><li><code>[in, september, jane]</code></li><li><code>[jane, is, visiting]</code></li><li><code>[jane, visits, africa]</code></li></ol><p>So on and so forth until one of the sentences predicts the end-of-sentence token, or we reach the maximum output sequence length.</p><h5 id=refinements>Refinements<a hidden class=anchor aria-hidden=true href=#refinements>#</a></h5><p>Since we are calculating conditional probabilities, and therefore all probabilities are $\in [0, 1]$, we don&rsquo;t want our numbers to shrink so much and run into numerical underflow. The common trick to do this is to transform a multiplication into summation. Remember one of the properties of logarithms is that the log of a product is the sum of the logs: $\log_a xy = \log_ax + \log_ay$. Therefore, instead of calculating:</p><p>$$
+\argmax_y \prod_{t=1}^{T_y} P(y^{&lt;t>} \mid x, y^{&lt;1>}, \dots, y^{&lt;t - 1>})
+$$</p><p>Where $\prod$ is the product symbol, much like $\sum$ is the summation symbol; we want to calculate:</p><p>$$
+\argmax_y \sum_{t=1}^{T_y} \log P(y^{&lt;t>} \mid x, y^{&lt;1>}, \dots, y^{&lt;t - 1>})
+$$</p><p>This trick is found pretty much anywhere you are calculating conditional probabilities.</p><p>There&rsquo;s another issue however, related to the length of the output sequence $y$. Since we are multiplying probabilities, or summing them in log space, longer sequences will have smaller probabilities assigned to them. This is simply because we are multiplying numbers between $[0, 1]$; $0.5^3 = 0.125$ while $0.5^2 = 0.25$. To ameliorate this, we will introduce a weighting term that normalizes the probabilities by the size of $T_y$</p><p>$$
+\argmax_y \frac{1}{T_y^{\alpha}}\sum_{t=1}^{T_y} \log P(y^{&lt;t>} \mid x, y^{&lt;1>}, \dots, y^{&lt;t - 1>})
+$$</p><p>Setting $\alpha = 0.7$ to be somewhere in between $\alpha = 0$, no normalization, and $\alpha = 1$, full normalization.</p><p>Finally, regarding the beam size. As we mentioned, setting $B=1$ amounts to greedy search, which is fast but worse result. As we increase $B$, we get slower performance but better results. $B$ is a parameter that regulates the mixture of exploitation and exploration. Remember that to find <em>exact</em> maximums we need to use exhaustive search. Anything other than that has no guarantees. In beam search, we can adjust how much &ldquo;guarantee&rdquo; in finding an optimal solution by varying $B$.</p><h5 id=error-analysis>Error Analysis<a hidden class=anchor aria-hidden=true href=#error-analysis>#</a></h5><p>Since we introduced another source of error by using beam search, we need to be able to know whether errors are coming from the sequence model, or if they are arising from using beam search. That is, do we need to keep training/add more data, or do we need to use a larger beam size?</p><p>Let&rsquo;s keep using the French example: <em>Jane visite l&rsquo;Afrique en septembre</em>. Let&rsquo;s say that the human-generated label in our dev set for this example is:</p><ul><li>$y^*$: <em>Jane visits Africa in September.</em></li></ul><p>And let&rsquo;s say that our algorithm is predicting:</p><ul><li>$\hat{y}$: <em>Jane visited Africa last September.</em></li></ul><p>Obviously, our algorithm&rsquo;s prediction is wrong! The whole meaning of the sentence is different. How can we zone-in into the root cause of the problem?</p><p>We can grab the RNN component of our model, that is the encoder and decoder, which computes $P(y \mid x)$, and compare two things:</p><ul><li>Run $y^*$ through the RNN, to estimate $P(y^* \mid x)$.</li><li>Run $\hat{y}$ through the RNN, to estimate $P(\hat{y} \mid x)$</li></ul><p>What are we really doing here? We are saying: Hey RNN! Do you think the bad translation is more likely than the good translation? If the RNN is predicting the bad translation to be more likely than the good translation, then it doesn&rsquo;t matter what beam search is doing; the model still needs more training. On the other hand, if the model thinks that the good translation is more likely than the bad one, then the only way we are getting a bad translation at the end is due to beam search. In this case, increasing the beam width should help improve our model&rsquo;s performance. In practice, we calculate the fraction of errors due to either the RNN or the beam search, and take action based on what is more efficient.</p><h3 id=attention>Attention<a hidden class=anchor aria-hidden=true href=#attention>#</a></h3><p>Through this whole week we have been using the encoder-decoder architecture, one RNN reads in the sentence and learns an encoding, while another RNN decodes the encoding. There is another approach, called the attention mechanism approach, which makes this work a lot better albeit for larger compute costs.</p><h4 id=developing-intuition>Developing Intuition<a hidden class=anchor aria-hidden=true href=#developing-intuition>#</a></h4><p>Let&rsquo;s consider what happens in very long sequences, say a paragraph, when we try to apply machine translation with the encoder-decoder architecture. The encoder will memorize the entire thing, which is pretty long, and then pass it into the decoder. Think instead, how a human translator would tackle the problem of translating a whole paragraph. The translator might start with the first few sentences, translate them, and then move on. Even more so, the translator can read the entire paragraph before starting to translate, using the latter context of the paragraph to guide the beginning of the translation.</p><p>The encoder will try its best to encode as much useful information in the encoding, but as sentence length grows, this task gets harder and harder. In practice, the encoder-decoder architecture&rsquo;s performance suffers as sentence length grows because of this. The attention approach is a remedy for this issue; the performance is not hurt as sentence length grows.</p><p>In the attention model, we no longer have an encoder-decoder architecture. Instead, we have a bidirectional RNN (choose your flavor) called the pre-attention RNN. Hooked to each of the outputs of the pre-attention bidirectional RNN, we will have a uni-directional RNN (choose your flavor) called the post-attention RNN. The role of the pre-attention RNN is to figure out how much <em>attention</em> to pay to each of the input words when predicting some word. Since the pre-attention RNN is bidirectional, we can pay attention to the entire input sequence when generating the first prediction.</p><p>We do this by learning some parameter $\alpha^{&lt;t,t&rsquo;>}$. Each parameter tells us, how much attention (a value $\in [0, 1]$) we should give French word $t&rsquo;$ when generating the English word $t$. Let&rsquo;s go into more detail.</p><h4 id=defining-the-attention-model>Defining the Attention Model<a hidden class=anchor aria-hidden=true href=#defining-the-attention-model>#</a></h4><p>Let&rsquo;s start with the pre-attention bidirectional RNN, which in practice is usually implemented as a bidirectional LSTM network. Remember that in a bidirectional RNN, we have two hidden states $a^{&lt;t>}$; one going forward $\overrightarrow{a}^{&lt;t>}$, and one going backwards $\overleftarrow{a}^{&lt;t>}$. To simplify the notation, we will define a single hidden state:</p><p>$$
+a^{&lt;t>} = (\overrightarrow{a}^{&lt;t>}, \overleftarrow{a}^{&lt;t>})
+$$</p><p>Which is equal to both states concatenated together.</p><p>Let&rsquo;s now focus on the post-attention RNN. This part will have a hidden state $s^{&lt;t>}$, which is used to generate $\hat{y}^{&lt;t>}$. What is the input of this post-attention RNN? It&rsquo;s some context $c^{&lt;t>}$ which is the output at step $t$ of the pre-attention bidirectional RNN. It&rsquo;s this context which defines the attention mechanism.</p><p>The context will be the weighted sum of all $a^{&lt;t>}$, the hidden state in the pre-attention layer, with their respective attention weights $\alpha^{&lt;t, t&rsquo;>}$. We want all attention weights for a particular token $t$ to sum up to one:</p><p>$$
+\sum_{t&rsquo;=1}^{T_x} \alpha^{&lt;t,t&rsquo;>} = 1
+$$</p><p>We can then use these weights when calculating the context, we can control the mixture of each of the input tokens as it relates to this particular&rsquo;s time step&rsquo;s prediction:</p><p>$$
+c^{&lt;t>} = \sum_{t&rsquo;=1}^{T_x} \alpha^{&lt;t,t&rsquo;>} a^{&lt;t&rsquo;>}
+$$</p><p>We should be convinced that when $\alpha^{&lt;t,t&rsquo;>} = 0$ it means that $t&rsquo;$ is not that important when generating $t$, therefore the hidden state for $t&rsquo;$ is not that important, and will be weighted down in the sum.</p><p>How do we calculate these attention weights $\alpha^{&lt;t,t&rsquo;>}$? Let&rsquo;s be reminded that $\alpha^{&lt;t,t&rsquo;>}$ defines the amount of attention $y^{&lt;t>}$ should pay to $a^{&lt;t&rsquo;>}$. We can define this attention as a softmax, to guarantee that the weights sum up to one as we mentioned earlier:</p><p>$$
+\alpha^{&lt;t,t&rsquo;>} = \frac{\exp(e^{&lt;t,t&rsquo;>})}{\sum_{t&rsquo;=1}^{T_x} \exp(e^{&lt;t,t&rsquo;>})}
+$$</p><p>But where do these new terms $e^{&lt;t,t&rsquo;>}$ come from? We will use a small neural network with only one hidden layer to learn these. The small network will take $s^{&lt;t-1>}$ and $a^{&lt;t&rsquo;>}$ to produce $e^{&lt;t,t&rsquo;>}$. Let&rsquo;s keep in mind that $s^{&lt;t-1>}$ is the hidden state of the post-attention layer for the previous time step, while $a^{&lt;t&rsquo;>}$ is a hidden state in the pre-attention layer for the $t&rsquo;$ time step. This means that this layer will learn to combine the hidden state of the previous token in the prediction, that is how relevant the previous prediction token is to the current one, with each of the input token hidden states, that is each of the tokens in the input.</p><p>It makes sense to define attention as: I have some memory of what I&rsquo;ve translated so far, and attention is the thing that relates each of the words in the input, with the memory of what I&rsquo;ve done so far. This means that $\alpha^{&lt;t,t&rsquo;>}$ and $e^{&lt;t,t&rsquo;>}$ will depend on $s^{&lt;t-1>}$ and $a^{&lt;t&rsquo;>}$ when considering $t$.</p><figure><img loading=lazy src=/images/attention-1.png alt="Attention Mechanism" width=75%><figcaption><p><a href=https://developer.nvidia.com/blog/introduction-neural-machine-translation-gpus-part-3/>Attention Mechanism</a></p></figcaption></figure><p>In the picture, the annotation vectors are the pre-attention layer, the attention mechanism represents the layer where we estimate $\alpha^{&lt;t,t&rsquo;>}$ and everything above the dotted line is the post-attention layer.</p><p>Next week&rsquo;s post is <a href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/>here</a>.</p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://web.stanford.edu/~jurafsky/slp3/>Jurafsky and Martin | Speech and Language Processing, 3rd Edition</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://d2l.ai/chapter_recurrent-modern/beam-search.html>Dive Into Deep Learning | Beam Search</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><footer class=post-footer><ul class=post-tags><li><a href=http://localhost:1313/tags/machine-learning/>Machine Learning</a></li><li><a href=http://localhost:1313/tags/deep-learning/>Deep Learning</a></li></ul><nav class=paginav><a class=prev href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/><span class=title>« Prev</span><br><span>Sequence Models: Week 2 | NLP & Word Embeddings</span>
+</a><a class=next href=http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/><span class=title>Next »</span><br><span>Sequence Models: Week 4 | Transformers</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=http://localhost:1313/>Manuel Martinez</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

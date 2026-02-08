@@ -1,40 +1,135 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sequence Models on Manuel Martinez</title>
-    <link>https://manmartgarc.github.io/categories/sequence-models/</link>
+    <link>http://localhost:1313/categories/sequence-models/</link>
     <description>Recent content in Sequence Models on Manuel Martinez</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 13 Aug 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://manmartgarc.github.io/categories/sequence-models/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/sequence-models/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sequence Models: Week 4 | Transformers</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/</link>
       <pubDate>Sun, 13 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week4/</guid>
-      <description>&lt;p&gt;This is the fourth and last week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The main topic for this week is transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#transformer-network-intuition&#34; &gt;Transformer Network Intuition&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#self-attention&#34; &gt;Self-Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#multi-head-attention&#34; &gt;Multi-Head Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#transformer-network-architecture&#34; &gt;Transformer Network Architecture&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#more-information&#34; &gt;More Information&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;transformer-network-intuition&#34;&gt;&#xA;  Transformer Network Intuition&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#transformer-network-intuition&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;We started with RNNs (known as part of the &lt;a href=&#34;https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;amp;t=1436s&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;prehistoric era now&lt;/a&gt;), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&amp;rsquo;s hidden states with the current one. To solve some issues with vanilla RNNs, we introduced GRUs and LSTMs; both more flexible and more complex than simple RNNs. However, one of the things that they all share in common is that the &lt;em&gt;input&lt;/em&gt; must be processed sequentially, i.e. one token at a time. This is a problem with large models, where we want to parallelize computation as much as possible. &lt;a href=&#34;https://en.wikipedia.org/wiki/Amdahl%27s_law&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Amdahl&amp;rsquo;s Law&lt;/a&gt; gives us a theoretical speed up limit based on the fraction of parallelizable compute in a computer program. Unfortunately, since the entire model is sequential the speed-ups are miniscule. The transformer architecture allows us to process &lt;em&gt;the entire&lt;/em&gt; input at once, and in parallel; allowing us to train much more complex models which in turn generate richer feature representations of our sequences.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/</guid>
+      <description>&lt;p&gt;This is the fourth and last week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. The main topic for this week is transformers, a generalization of the attention model that has taken the deep learning world by storm since its inception in 2017.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#transformer-network-intuition&#34;&gt;Transformer Network Intuition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#self-attention&#34;&gt;Self-Attention&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#multi-head-attention&#34;&gt;Multi-Head Attention&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#transformer-network-architecture&#34;&gt;Transformer Network Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week4/#more-information&#34;&gt;More Information&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;transformer-network-intuition&#34;&gt;Transformer Network Intuition&lt;/h2&gt;
+&lt;p&gt;We started with RNNs (known as part of the &lt;a href=&#34;https://www.youtube.com/watch?v=XfpMkf4rD6E&amp;amp;t=1436s&#34;&gt;prehistoric era now&lt;/a&gt;), a simple model that reutilizes the same weights at each time steps; allowing to combine previous step&amp;rsquo;s hidden states with the current one. To solve some issues with vanilla RNNs, we introduced GRUs and LSTMs; both more flexible and more complex than simple RNNs. However, one of the things that they all share in common is that the &lt;em&gt;input&lt;/em&gt; must be processed sequentially, i.e. one token at a time. This is a problem with large models, where we want to parallelize computation as much as possible. &lt;a href=&#34;https://en.wikipedia.org/wiki/Amdahl%27s_law&#34;&gt;Amdahl&amp;rsquo;s Law&lt;/a&gt; gives us a theoretical speed up limit based on the fraction of parallelizable compute in a computer program. Unfortunately, since the entire model is sequential the speed-ups are miniscule. The transformer architecture allows us to process &lt;em&gt;the entire&lt;/em&gt; input at once, and in parallel; allowing us to train much more complex models which in turn generate richer feature representations of our sequences.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sequence Models: Week 3 | Sequence Models &amp; Attention Mechanism</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/</link>
       <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week3/</guid>
-      <description>&lt;p&gt;This is the third week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#sequence-to-sequence-architectures&#34; &gt;Sequence to Sequence Architectures&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#basic-seq2seq-models&#34; &gt;Basic Seq2Seq Models&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#picking-the-most-likely-sentence&#34; &gt;Picking the Most Likely Sentence&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-not-greedy-search&#34; &gt;Why not Greedy Search?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#beam-search&#34; &gt;Beam Search&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#refinements&#34; &gt;Refinements&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#error-analysis&#34; &gt;Error Analysis&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#attention&#34; &gt;Attention&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#developing-intuition&#34; &gt;Developing Intuition&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#defining-the-attention-model&#34; &gt;Defining the Attention Model&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;sequence-to-sequence-architectures&#34;&gt;&#xA;  Sequence to Sequence Architectures&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#sequence-to-sequence-architectures&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The basic example for sequence-to-sequence approaches was also covered in the &lt;a href=&#34;https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/&#34; &gt;first week&lt;/a&gt; of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/</guid>
+      <description>&lt;p&gt;This is the third week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week goes over sequence-to-sequence models using beam search to optimize the classification step. We also go over the important concept of attention which generalizes a couple of things seen in the last week.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#sequence-to-sequence-architectures&#34;&gt;Sequence to Sequence Architectures&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#basic-seq2seq-models&#34;&gt;Basic Seq2Seq Models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#picking-the-most-likely-sentence&#34;&gt;Picking the Most Likely Sentence&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#why-not-greedy-search&#34;&gt;Why not Greedy Search?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#beam-search&#34;&gt;Beam Search&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#refinements&#34;&gt;Refinements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#error-analysis&#34;&gt;Error Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#attention&#34;&gt;Attention&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#developing-intuition&#34;&gt;Developing Intuition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week3/#defining-the-attention-model&#34;&gt;Defining the Attention Model&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sequence-to-sequence-architectures&#34;&gt;Sequence to Sequence Architectures&lt;/h2&gt;
+&lt;p&gt;The basic example for sequence-to-sequence approaches was also covered in the &lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/&#34;&gt;first week&lt;/a&gt; of the course; where we discussed the many-to-many RNN approach where $T_x \neq T_y$. This encoder-decoder approach is what we will start discussing in the context of machine translation, a sequence-to-sequence application example.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sequence Models: Week 2 | NLP &amp; Word Embeddings</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/</link>
       <pubDate>Thu, 10 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week2/</guid>
-      <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction-to-word-embeddings&#34; &gt;Introduction to Word Embeddings&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#word-representation&#34; &gt;Word Representation&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#using-word-embeddings&#34; &gt;Using Word Embeddings&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#properties-of-word-embeddings&#34; &gt;Properties of Word Embeddings&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#cosine-similarity&#34; &gt;Cosine Similarity&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#embedding-matrix&#34; &gt;Embedding Matrix&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#word-embeddings&#34; &gt;Word Embeddings&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#learning-word-embeddings&#34; &gt;Learning Word Embeddings&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#word2vec&#34; &gt;Word2Vec&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#negative-sampling&#34; &gt;Negative Sampling&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#glove-word-vectors&#34; &gt;GloVe Word Vectors&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#applications-using-word-embeddings&#34; &gt;Applications Using Word Embeddings&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#sentiment-classification&#34; &gt;Sentiment Classification&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#de-biasing-word-embeddings&#34; &gt;De-biasing Word Embeddings&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;introduction-to-word-embeddings&#34;&gt;&#xA;  Introduction to Word Embeddings&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction-to-word-embeddings&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;word-representation&#34;&gt;&#xA;  Word Representation&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#word-representation&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&amp;rsquo;s go over how this is possible.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/</guid>
+      <description>&lt;p&gt;This is the second week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. In this week, we go a little more in depth into natural language applications with sequence models, and also discuss word embeddings—an amazing technique for extracting semantic meaning from words.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#introduction-to-word-embeddings&#34;&gt;Introduction to Word Embeddings&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-representation&#34;&gt;Word Representation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#using-word-embeddings&#34;&gt;Using Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#properties-of-word-embeddings&#34;&gt;Properties of Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#cosine-similarity&#34;&gt;Cosine Similarity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#embedding-matrix&#34;&gt;Embedding Matrix&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#word-embeddings&#34;&gt;Word Embeddings&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#learning-word-embeddings&#34;&gt;Learning Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#word2vec&#34;&gt;Word2Vec&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#negative-sampling&#34;&gt;Negative Sampling&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#glove-word-vectors&#34;&gt;GloVe Word Vectors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#applications-using-word-embeddings&#34;&gt;Applications Using Word Embeddings&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#sentiment-classification&#34;&gt;Sentiment Classification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week2/#de-biasing-word-embeddings&#34;&gt;De-biasing Word Embeddings&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction-to-word-embeddings&#34;&gt;Introduction to Word Embeddings&lt;/h2&gt;
+&lt;h3 id=&#34;word-representation&#34;&gt;Word Representation&lt;/h3&gt;
+&lt;p&gt;Word embeddings are a way of representing words. The approach borrows from dimensionality reduction, and combines it with optimization. These two things allow us to create new word representations that are empirically good with respect to some task. Let&amp;rsquo;s go over how this is possible.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sequence Models: Week 1 | Recurrent Neural Networks</title>
-      <link>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>
+      <link>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://manmartgarc.github.io/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
-      <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&amp;rsquo;s get started.&lt;/p&gt;&#xA;&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#why-sequence-models&#34; &gt;Why Sequence Models?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#notation&#34; &gt;Notation&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#representing-words&#34; &gt;Representing Words&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#recurrent-neural-network&#34; &gt;Recurrent Neural Network&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#forward-propagation&#34; &gt;Forward Propagation&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#different-types-of-rnns&#34; &gt;Different Types of RNNs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#language-model-and-sequence-generation&#34; &gt;Language Model and Sequence Generation&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#vanishing-gradients-with-rnns&#34; &gt;Vanishing Gradients with RNNs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gated-recurrent-unit&#34; &gt;Gated Recurrent Unit&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#long-short-term-memory&#34; &gt;Long Short-Term Memory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#bidirectional-rnn&#34; &gt;Bidirectional RNN&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;why-sequence-models&#34;&gt;&#xA;  Why Sequence Models?&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-sequence-models&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we&amp;rsquo;d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/</guid>
+      <description>&lt;p&gt;This is the first week of the &lt;a href=&#34;https://www.coursera.org/learn/nlp-sequence-models?specialization=deep-learning/&#34;&gt;fifth course&lt;/a&gt; of DeepLearning.AI&amp;rsquo;s &lt;a href=&#34;https://www.coursera.org/specializations/deep-learning&#34;&gt;Deep Learning Specialization&lt;/a&gt; offered on Coursera. This week we go over some motivation for sequence models. These are models that are designed to work with sequential data, otherwise known as time-series. Let&amp;rsquo;s get started.&lt;/p&gt;
+&lt;p&gt;This week&amp;rsquo;s topics are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#why-sequence-models&#34;&gt;Why Sequence Models?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#notation&#34;&gt;Notation&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#representing-words&#34;&gt;Representing Words&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#recurrent-neural-network&#34;&gt;Recurrent Neural Network&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#forward-propagation&#34;&gt;Forward Propagation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#different-types-of-rnns&#34;&gt;Different Types of RNNs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#language-model-and-sequence-generation&#34;&gt;Language Model and Sequence Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#vanishing-gradients-with-rnns&#34;&gt;Vanishing Gradients with RNNs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#gated-recurrent-unit&#34;&gt;Gated Recurrent Unit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#long-short-term-memory&#34;&gt;Long Short-Term Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/coursera/deep-learning-specialization/sequence-models/week1/#bidirectional-rnn&#34;&gt;Bidirectional RNN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;why-sequence-models&#34;&gt;Why Sequence Models?&lt;/h2&gt;
+&lt;p&gt;Time-series get to be their own thing, just like in regression analysis. This time, since we are focusing on prediction instead of inference, we are less concerned about the statistical properties of the parameters we estimate, but we&amp;rsquo;d like our models to do very well in their prediction tasks. But how can we exploit temporal information, without using classical methods such as AR methods? The current bag of tricks we have developed so far will only take us some distance. Here are a couple of hiccups:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
