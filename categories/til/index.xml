@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>TIL on Manuel Martinez</title>
-    <link>http://localhost:1314/categories/til/</link>
+    <link>http://10.0.0.251:1314/categories/til/</link>
     <description>Recent content in TIL on Manuel Martinez</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1314/categories/til/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://10.0.0.251:1314/categories/til/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Recommender Systems: Content-based Filtering</title>
-      <link>http://localhost:1314/posts/content-filtering/content-based/</link>
+      <link>http://10.0.0.251:1314/posts/content-filtering/content-based/</link>
       <pubDate>Mon, 12 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/posts/content-filtering/content-based/</guid>
+      <guid>http://10.0.0.251:1314/posts/content-filtering/content-based/</guid>
       <description>&lt;h3 id=&#34;content-based-filtering&#34;&gt;Content-Based Filtering&lt;/h3&gt;
-&lt;p&gt;This paradigm is very straightforward. It uses item features to recommend other items similar to what the user likes, based on their previous actions or explicit feedback. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; There are many approaches to defining similarity, and implicitly, this is how we are defining pertinence. That is, we think that items that are similar to other items that the user has seen in the past are pertinent to that user based on whatever &lt;a href=&#34;http://localhost:1314/posts/content-filtering/content-based/#similarity-metrics&#34;&gt;similarity&lt;/a&gt; we have chosen.&lt;/p&gt;</description>
+&lt;p&gt;This paradigm is very straightforward. It uses item features to recommend other items similar to what the user likes, based on their previous actions or explicit feedback. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; There are many approaches to defining similarity, and implicitly, this is how we are defining pertinence. That is, we think that items that are similar to other items that the user has seen in the past are pertinent to that user based on whatever &lt;a href=&#34;http://10.0.0.251:1314/posts/content-filtering/content-based/#similarity-metrics&#34;&gt;similarity&lt;/a&gt; we have chosen.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Recommender Systems: What are they?</title>
-      <link>http://localhost:1314/posts/content-filtering/what-is/</link>
+      <link>http://10.0.0.251:1314/posts/content-filtering/what-is/</link>
       <pubDate>Mon, 12 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1314/posts/content-filtering/what-is/</guid>
+      <guid>http://10.0.0.251:1314/posts/content-filtering/what-is/</guid>
       <description>&lt;p&gt;This is the first post in what I plan to be a series of very basic introductions to recommendation engines, and the most basic ones at that. I am by no means an expert, or even a middling practitioner, but just a neophyte, so the series will not be exhaustive. The real purpose of these posts is to &lt;a href=&#34;https://www.colorado.edu/artssciences-advising/resource-library/life-skills/the-feynman-technique-in-academic-coaching&#34;&gt;learn by explaining&lt;/a&gt;, but also to allow you to hit the ground running if you want to set up a basic recommendation system for your purposes.&lt;/p&gt;</description>
     </item>
   </channel>
