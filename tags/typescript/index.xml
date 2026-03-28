@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Typescript on Manuel Martinez</title>
     <link>http://localhost:1313/tags/typescript/</link>
     <description>Recent content in Typescript on Manuel Martinez</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 24 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo -- 0.159.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Building an MCP Server for OpenDota API with FastMCP</title>
-      <link>http://localhost:1313/posts/tech-support/fastmcp-opendota/</link>
-      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/tech-support/fastmcp-opendota/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I recently built a showcase project that demonstrates how to transform any OpenAPI-compliant REST API into a Model Context Protocol (MCP) server using &lt;a href=&#34;https://gofastmcp.com/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FastMCP&lt;/a&gt;. The result is &lt;a href=&#34;https://github.com/manmartgarc/opendotamcp&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;opendotamcp&lt;/a&gt;, an MCP server that wraps the &lt;a href=&#34;https://www.opendota.com/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenDota API&lt;/a&gt; and can be deployed both locally and remotely via AWS Lambda + API Gateway.&lt;/p&gt;&#xA;&lt;p&gt;This project serves as both a practical tool for AI agents to access Dota 2 statistics and a reference implementation for anyone looking to build production-ready MCP servers.&lt;/p&gt;</description>
+      <title>Scaling MCP Agents: Why Code Execution Beats Direct Tool Calls</title>
+      <link>http://localhost:1313/posts/tech-support/scaling-mcp-agents/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tech-support/scaling-mcp-agents/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;If you&amp;rsquo;ve wired up one or two MCP servers to an AI agent, the experience feels seamless — the model discovers the tools, calls them, and returns results. But the moment you start connecting &lt;em&gt;dozens&lt;/em&gt; of servers, each with tens or hundreds of tools, something breaks down quietly: your token bill climbs, latency creeps up, and responses get worse even though you added more capabilities.&lt;/p&gt;
+&lt;p&gt;This post unpacks why that happens, and walks through an architectural pattern — code execution — that can cut token usage by over 98% compared to naive direct tool calls. The ideas here are heavily inspired by &lt;a href=&#34;https://www.anthropic.com/engineering/code-execution-with-mcp&#34;&gt;Anthropic&amp;rsquo;s recent engineering post&lt;/a&gt; on this topic, but I want to present them from the perspective of someone who has &lt;a href=&#34;http://localhost:1313/posts/tech-support/fastmcp-opendota/&#34;&gt;built and deployed an MCP server&lt;/a&gt; and run into these scaling walls firsthand.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

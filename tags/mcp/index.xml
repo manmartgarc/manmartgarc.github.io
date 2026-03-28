@@ -4,17 +4,25 @@
     <title>Mcp on Manuel Martinez</title>
     <link>https://manmartgarc.github.io/tags/mcp/</link>
     <description>Recent content in Mcp on Manuel Martinez</description>
-    <generator>Hugo -- 0.155.3</generator>
+    <generator>Hugo -- 0.159.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://manmartgarc.github.io/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scaling MCP Agents: Why Code Execution Beats Direct Tool Calls</title>
+      <link>https://manmartgarc.github.io/posts/tech-support/scaling-mcp-agents/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://manmartgarc.github.io/posts/tech-support/scaling-mcp-agents/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been thinking about MCP scaling problems since I &lt;a href=&#34;https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/&#34;&gt;built and deployed an MCP server&lt;/a&gt; for the OpenDota API. In that post I talked about the pitfalls of auto-converting a REST API into MCP tools: context pollution, overlapping tool descriptions, the agent struggling to pick the right tool out of 200+ options. At the time, I framed those as reasons to curate your tool set carefully. But I didn&amp;rsquo;t have a good answer for what you do when you genuinely &lt;em&gt;need&lt;/em&gt; a lot of tools.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Building an MCP Server for OpenDota API with FastMCP</title>
       <link>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;You&amp;rsquo;ve probably heard about the &lt;a href=&#34;https://modelcontextprotocol.io/docs/getting-started/intro&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt; by now — an emerging standard for connecting AI agents to external data sources and tools.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ve probably heard about the &lt;a href=&#34;https://modelcontextprotocol.io/docs/getting-started/intro&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt; by now: an emerging standard for connecting AI agents to external data sources and tools.&lt;/p&gt;
 &lt;p&gt;I wanted to explore building a serverless HTTP-based MCP server using the typical &lt;a href=&#34;https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html&#34;&gt;APIGW + Lambda pattern&lt;/a&gt; that is common in serverless applications, i.e. the way some MCP server provider might want to host MCP servers for public consumption. When thinking about which tools the MCP server should have, I wondered how hard it would be to convert an existing REST API into an MCP server - especially given some standard specifications like OpenAPI.&lt;/p&gt;</description>
     </item>
   </channel>

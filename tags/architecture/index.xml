@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Architecture on Manuel Martinez</title>
+    <link>https://manmartgarc.github.io/tags/architecture/</link>
+    <description>Recent content in Architecture on Manuel Martinez</description>
+    <generator>Hugo -- 0.159.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://manmartgarc.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scaling MCP Agents: Why Code Execution Beats Direct Tool Calls</title>
+      <link>https://manmartgarc.github.io/posts/tech-support/scaling-mcp-agents/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://manmartgarc.github.io/posts/tech-support/scaling-mcp-agents/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been thinking about MCP scaling problems since I &lt;a href=&#34;https://manmartgarc.github.io/posts/tech-support/fastmcp-opendota/&#34;&gt;built and deployed an MCP server&lt;/a&gt; for the OpenDota API. In that post I talked about the pitfalls of auto-converting a REST API into MCP tools: context pollution, overlapping tool descriptions, the agent struggling to pick the right tool out of 200+ options. At the time, I framed those as reasons to curate your tool set carefully. But I didn&amp;rsquo;t have a good answer for what you do when you genuinely &lt;em&gt;need&lt;/em&gt; a lot of tools.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
